@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cssl.pojo.dao.HomePage_productDao">
+
+    <select id="findAll" resultType="homepage_product">
+SELECT t.tp_id AS "product_id",p.Product_Name AS "product_name",t.picture1 AS "product_imgPath",t.price AS "product_price" FROM product p INNER JOIN tourismproducts t ON p.Product_id = t.Product_id
+    </select>
+
+</mapper>

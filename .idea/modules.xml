@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Itrip.iml" filepath="$PROJECT_DIR$/.idea/Itrip.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Itrip_HomePage/Itrip_HomePage.iml" filepath="$PROJECT_DIR$/Itrip_HomePage/Itrip_HomePage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/comm/comm.iml" filepath="$PROJECT_DIR$/comm/comm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/consumer_feign_80/consumer_feign_80.iml" filepath="$PROJECT_DIR$/consumer_feign_80/consumer_feign_80.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eureka_6001/eureka_6001.iml" filepath="$PROJECT_DIR$/eureka_6001/eureka_6001.iml" />
+    </modules>
+  </component>
+</project>

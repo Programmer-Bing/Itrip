@@ -1,6 +1,7 @@
 package com.cssl.pojo.controller;
 
 import com.cssl.pojo.Dept;
+import com.cssl.pojo.HomePage_product;
 import com.cssl.pojo.service.DeptClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,13 +23,14 @@ public class DeptController_Consumer {
 	}
 
 	@RequestMapping(value = "/consumer/dept/list")
-	public List<Dept> list(HttpSession session){
+	public List<HomePage_product> list(HttpSession session){
 		System.out.println("sessionId:"+session.getId());
 		return this.service.list();
 	}
 
 	@RequestMapping(value = "/consumer/dept/add")
 	public Object add(Dept dept){
+		System.out.println("nmsl");
 		return this.service.add(dept);
 	}
 }

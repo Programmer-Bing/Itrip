@@ -3,6 +3,7 @@ package com.cssl.pojo.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.cssl.pojo.HomePage_product;
 import org.springframework.stereotype.Component;
 
 import com.cssl.pojo.Dept;
@@ -26,7 +27,7 @@ public class DeptClientServiceFallbackFactory implements FallbackFactory<DeptCli
 			}
 
 			@Override
-			public List<Dept> list(){
+			public List<HomePage_product> list(){
 				return new ArrayList<>();
 			}
 

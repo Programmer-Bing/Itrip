@@ -1,6 +1,7 @@
 package com.cssl.pojo.controller;
 
 import com.cssl.pojo.Dept;
+import com.cssl.pojo.HomePage_product;
 import com.cssl.pojo.service.DeptClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +19,7 @@ public class DeptController_Consumer2 {
 	@RequestMapping(value = "/list")
 	public String list(Model model){
 		System.out.println("/list");
-		List<Dept> list = service.list();
+		List<HomePage_product> list = service.list();
 		System.out.println("list:"+list);
 		model.addAttribute("list",list);
 		model.addAttribute("user","admin");
