@@ -17,20 +17,9 @@ public class DeptController_Consumer {
 	@Autowired
 	private DeptClientService service;
 
-	@RequestMapping(value = "/consumer/dept/get/{id}")
-	public Dept get(@PathVariable("id") Long id){
-		return this.service.get(id);
-	}
-
 	@RequestMapping(value = "/consumer/dept/list")
 	public List<HomePage_product> list(HttpSession session){
 		System.out.println("sessionId:"+session.getId());
 		return this.service.list();
-	}
-
-	@RequestMapping(value = "/consumer/dept/add")
-	public Object add(Dept dept){
-		System.out.println("nmsl");
-		return this.service.add(dept);
 	}
 }
