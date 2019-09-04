@@ -17,4 +17,7 @@ public class Dept {
     private String dname;
     private String db;
 
+
+    private int ss;
+
 }
