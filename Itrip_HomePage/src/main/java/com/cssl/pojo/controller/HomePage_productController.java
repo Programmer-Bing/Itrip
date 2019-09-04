@@ -1,6 +1,5 @@
 package com.cssl.pojo.controller;
 
-import com.cssl.pojo.Dept;
 import com.cssl.pojo.HomePage_product;
 import com.cssl.pojo.service.HomePage_productService;
 import org.springframework.beans.factory.annotation.Autowired;
