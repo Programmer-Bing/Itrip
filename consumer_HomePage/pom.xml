@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>consumer_feign_80</artifactId>
+    <artifactId>consumer_HomePage</artifactId>
     <dependencies>
         <!-- 引入comm通用包，可以使用Dept -->
         <dependency>

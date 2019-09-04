@@ -15,7 +15,7 @@ public class HomePageController_Consumer {
 	@Autowired
 	private HomePageClientService service;
 
-	@RequestMapping(value = "/consumer/dept/list")
+	@RequestMapping(value = "/consumer/homeproduct/list")
 	public List<HomePage_product> list(HttpSession session){
 		System.out.println("sessionId:"+session.getId());
 		return this.service.list();

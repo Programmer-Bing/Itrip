@@ -12,9 +12,8 @@ import java.util.List;
 public class HomePage_productController {
     @Autowired
     private HomePage_productService homePage_productService;
-    @GetMapping("/dept/list")
+    @GetMapping("/homeproduct/list")
     public List<HomePage_product> list(){
-        System.out.println("8001");
         return homePage_productService.findAll();
     }
 }
