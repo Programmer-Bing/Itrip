@@ -13,9 +13,9 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql:///itrip
-    username: root
-    password: root
+    url: jdbc:mysql://192.168.43.87:3306/itrip?useUnicode=true&characterEncoding=utf8
+    username: myuser
+    password: mypassword
     dbcp2:
       min-idle: 5
       initial-size: 5
