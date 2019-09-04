@@ -11,7 +11,7 @@
     <modules>
         <module>eureka_6001</module>
         <module>comm</module>
-        <module>consumer_feign_80</module>
+        <module>consumer_HomePage</module>
         <module>Itrip_HomePage</module>
     </modules>
     <!--依赖环境的版本信息-->
