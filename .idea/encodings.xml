@@ -2,8 +2,10 @@
 <project version="4">
   <component name="Encoding" addBOMForNewFiles="with NO BOM">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Itrip_Backstage" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Itrip_HomePage" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/comm" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/consumer_Backstage" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/consumer_HomePage" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eureka_6001" charset="UTF-8" />
   </component>

@@ -1,6 +1,8 @@
 server:
   port: 8089
 spring:
+  resources:
+    static-locations: classpath:/templates/,classpath:/static/,classpath:/META-NF/resources/,classpath:/resources/,classpath:/public/,classpath:/upload
   thymeleaf:
     encoding: UTF-8
     #开发时关闭缓存,不然没法看到实时页面
