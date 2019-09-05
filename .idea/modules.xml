@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/comm/comm.iml" filepath="$PROJECT_DIR$/comm/comm.iml" />
       <module fileurl="file://$PROJECT_DIR$/consumer_HomePage/consumer_HomePage.iml" filepath="$PROJECT_DIR$/consumer_HomePage/consumer_HomePage.iml" />
       <module fileurl="file://$PROJECT_DIR$/eureka_6001/eureka_6001.iml" filepath="$PROJECT_DIR$/eureka_6001/eureka_6001.iml" />
+      <module fileurl="file://$PROJECT_DIR$/itrip-user/itrip-user.iml" filepath="$PROJECT_DIR$/itrip-user/itrip-user.iml" />
     </modules>
   </component>
 </project>

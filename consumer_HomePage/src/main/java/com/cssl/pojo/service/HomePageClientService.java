@@ -2,19 +2,20 @@ package com.cssl.pojo.service;
 
 import com.cssl.pojo.HomePage_product;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
-//@FeignClient("MICROSERVICE-DEPT")
 //当一个服务停止了，Consumer客户端提供降级信息
-@FeignClient(value = "microservice-dept",fallbackFactory= HomePageClientServiceFallbackFactory.class)
-//通过网关服务访问
-//@FeignClient(value = "microservice-zuul-gateway",fallbackFactory=DeptClientServiceFallbackFactory.class)
+//@FeignClient("MICROSERVICE-DEPT")
+@FeignClient(value = "MICROSERVICE-DEPT",fallbackFactory=DeptClientServiceFallbackFactory.class)
+@Service
 public interface HomePageClientService {
-	@GetMapping("/dept/list")
-	//网关取的服务别名mydept
-	//@GetMapping("/cssl/mydept/dept/list")
+    @RequestMapping(method = RequestMethod.GET,value="/homeproduct/list")
 	public List<HomePage_product> list();
+    @RequestMapping(method = RequestMethod.GET,value="/homeproduct/list2")
+    public List<HomePage_product> list2(@RequestParam Map<String,Object> map);
 
 }

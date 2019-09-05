@@ -13,12 +13,14 @@ import lombok.experimental.Accessors;
 @Accessors(chain=true)
 //2. chain 一个布尔值。如果为真，产生的setter返回的this而不是void。
 // 默认是假。如果fluent=true，那么chain默认为真。
-//新增注释
+//新增注释123
 public class HomePage_product {
     int product_id;
     String product_name;
     String product_imgPath;
     double product_price;
+    String Country_name;
+    String ProductType_name;
 
     @Override
     public String toString() {
@@ -27,6 +29,8 @@ public class HomePage_product {
                 ", product_name='" + product_name + '\'' +
                 ", product_imgPath='" + product_imgPath + '\'' +
                 ", product_price=" + product_price +
+                ", Country_name='" + Country_name + '\'' +
+                ", ProductType_name='" + ProductType_name + '\'' +
                 '}';
     }
 }

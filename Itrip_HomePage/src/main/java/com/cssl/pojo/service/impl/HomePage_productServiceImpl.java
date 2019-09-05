@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
+
 @Service
 @Transactional
 public class HomePage_productServiceImpl implements HomePage_productService {
@@ -18,5 +20,11 @@ public class HomePage_productServiceImpl implements HomePage_productService {
     @Override
     public List<HomePage_product> findAll() {
         return hpdao.findAll();
+    }
+
+    @Override
+    public List<HomePage_product> findByCPT(Map<String, Object> map) {
+        System.out.println("进入了服务提供者");
+        return hpdao.findByCPT(map);
     }
 }
