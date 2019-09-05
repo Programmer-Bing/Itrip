@@ -19,6 +19,8 @@ public class HomePage_product {
     String product_name;
     String product_imgPath;
     double product_price;
+    String Country_name;
+    String ProductType_name;
 
     @Override
     public String toString() {
@@ -27,6 +29,8 @@ public class HomePage_product {
                 ", product_name='" + product_name + '\'' +
                 ", product_imgPath='" + product_imgPath + '\'' +
                 ", product_price=" + product_price +
+                ", Country_name='" + Country_name + '\'' +
+                ", ProductType_name='" + ProductType_name + '\'' +
                 '}';
     }
 }
