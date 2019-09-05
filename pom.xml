@@ -13,8 +13,7 @@
         <module>comm</module>
         <module>consumer_HomePage</module>
         <module>Itrip_HomePage</module>
-        <module>Itrip_Backstage</module>
-        <module>consumer_Backstage</module>
+        <module>itrip-hotel</module>
     </modules>
     <!--依赖环境的版本信息-->
     <properties>
