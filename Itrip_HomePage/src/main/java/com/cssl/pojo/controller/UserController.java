@@ -17,42 +17,39 @@ public class UserController {
     private UserService us;
 
 
-
     @RequestMapping("/homeproduct/cs")
-    public List<User> Cs(){
-        return  us.Cs();
+    public List<User> Cs() {
+        return us.Cs();
     }
 
 
     /***
      *
      * 添加 用户 注册
-     * @param name
+     * @param
      * @return
      */
+    @RequestMapping(method = RequestMethod.GET, value = "UserzhuceADD")
+    public int addUser(@RequestParam(value = "phone") String phone) {
+        System.out.println("提供者来到注册");
 
-    @RequestMapping("/homeproduct/add")
-    public int addUser(@RequestParam String name){
-
-
-        return  us.addUser(name);
+        return us.addUser(phone);
     }
 
 
     /***
-     *
-     *
      * 用户注册
      * 判断号码
      * @param phone
      * @return
      */
-
-    @RequestMapping(method = RequestMethod.GET,value = "/homeproduct/judgeuser")
-    public  List<User> JudgeUser(@RequestParam("phone")  String phone){
+    @RequestMapping(method = RequestMethod.GET, value = "UserRegistration")
+    public List<User> JudgeUser(@RequestParam(value = "phone") String phone) {
         System.out.println("来了提供者con太肉了咯");
-        return  us.JudgeUser(phone);
+        return us.JudgeUser(phone);
     }
+
+
 
 
 }

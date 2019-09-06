@@ -2,8 +2,11 @@ package com.cssl.pojo.controller;
 
 import com.cssl.pojo.po.User;
 import com.cssl.pojo.service.HomePageClientService;
+import com.cssl.pojo.util.DunXing;
+import com.cssl.pojo.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import redis.clients.jedis.Jedis;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -13,6 +16,9 @@ public class UserController {
 
     @Autowired
     private HomePageClientService service;
+
+    private  RedisUtil ru=new RedisUtil();
+
     @RequestMapping(value = "/consumer/homeproduct/cs")
     public List<User> Cs(HttpSession session){
         return this.service.Cs();
@@ -20,19 +26,52 @@ public class UserController {
 
 
 
-    @RequestMapping(value ="/consumer/homeproduct/add")
-    public int addUser(@RequestParam String name){
+    @RequestMapping(value ="/usercode")
+    public String Usercode(@RequestParam String phone) throws Exception{
+        System.out.println("手机号码: "+phone);
+        DunXing dd=new DunXing();
 
-        return  0;
+
+        //int dx = dd.DX(phone);
+
+        String dx="123456";
+        ru.SetKey("code",dx);
+        System.out.println("短信验证码"+dx);
+
+
+        return "0";
 
     }
 
-    @RequestMapping(value = "/consumer/homeproduct/JudageUser")
+
+
+    @RequestMapping(value = "/UserRegistration")
     public List<User> JudgeUser(@RequestParam String phone){
-        System.out.println("注册判断");
-        System.out.println(phone);
+        System.out.println("注册判断: "+phone);
+        System.out.println("长度: "+service.JudgeUser(phone).size());
         return  service.JudgeUser(phone);
     }
+
+
+    @RequestMapping(value = "/addUser")
+    public int addUser(@RequestParam String phone,@RequestParam String code){
+        System.out.println("添加:");
+        String coderedis = ru.getKey("code");
+        System.out.println("redis取出来的验证码: "+coderedis);
+        if(code.equals(coderedis)){
+            System.out.println("验证码输入正确");
+            return  service.addUser(phone);
+        }
+        else{
+            System.out.println("验证码输入错误");
+            return  0;
+        }
+
+
+    }
+
+
+
 
 
 

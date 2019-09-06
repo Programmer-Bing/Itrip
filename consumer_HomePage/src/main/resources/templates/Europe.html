@@ -22,15 +22,15 @@
     <script type="text/javascript" src="scripts/jquery-1.8.3.min.js"></script>
     <script>
         $(function () {
+            //特价商品Ajax加载
             $.getJSON("findBargains",{"lp_id":"3"},function (date) {
-                for (i=0;i<date.length;i++){
-                    alert("success");
+                for (i=0;i<2;i++){
                     var li = "";
                     li +=  "<li data-i-op=\"3684\">" ;
                     li += "<a name=\"__AD_module_2_12_3684\" href=\"https://www.itrip.com/p16022\" target=\"_blank\"";
                     li += "data-i-op=\"3684\" data-i-op-href=\"\">";
                     li += "<img width=\"218\" height=\"138\" class=\"lazy\" style=\"display: block;\"";
-                    li += "alt=\"【云湖仙屿】8人中文团 英国苏格兰高地 天空岛+尼斯湖+蒸汽火车四日游(赠爱丁堡游+火车票可选+3晚住宿3早)\"";
+                    li += "alt='"+date[i].product_name+"'";
                     li += "src=\"//pic2.itrip.com/p/20190725150827-standard-621.jpg?imageView2/5/w/218/h/138/q/100\"";
                     li += "border=\"0\" data-i-op=\"3684\"";
                     li += "data-original=\"//pic2.itrip.com/p/20190725150827-standard-621.jpg?imageView2/5/w/218/h/138/q/100\"";
@@ -39,7 +39,7 @@
                     li += "<div class=\"proinfo oh\">";
                     li += "<p class=\"f14 mt10 oh\" style=\"height:42px;\">";
                     li += "<a name=\"__AD_module_2_12_3684\"";
-                    li += "title=\"【云湖仙屿】8人中文团 英国苏格兰高地 天空岛+尼斯湖+蒸汽火车四日游(赠爱丁堡游+火车票可选+3晚住宿3早)\"";
+                    li += "title=\"\"+date[i].product_name+\"\"";
                     li += "href=\"https://www.itrip.com/p16022\" target=\"_blank\" data-i-op=\"3684\"";
                     li += "data-i-op-href=\"\" data-i-op-titile=\"\">";
                     li += ""+date[i].product_name+"</a>";
@@ -51,16 +51,20 @@
                     li += "data-price=\"376.5454\"";
                     li += "data-exrates=\"{9=4.74, 10=4.52, 11=3.16, 12=1.0, 13=6.88, 14=0.23, 15=5.0E-4, 17=5.01, 16=1.6, 21=8.6016, 20=7.8646,";
                     li += "23=0.06, 22=7.0395, 25=0.73, 24=0.79, 27=1.03, 26=0.31}\"";
-                    li += "data-cid=\"21\" data-i-op-price=\"\">3238.89</label><label";
+                    li += "data-cid=\"21\" data-i-op-price=\"\">"+date[i].product_price+"</label><label";
                     li += "class=\"f12\">&nbsp;起</label>";
                     li += "</span>";
                     li += "</p>";
                     li += "</div>";
                     li += "<div class=\"bor\"></div></li>";
                     $("#Special").append(li);
-                    alert("成功！！！")
                 }
-            })
+            });
+            //吃喝玩乐Ajax加载
+            $.getJSON("findPartyingByCity",{"P_cid":"3","Pt_id":"1"},function (date) {
+                alert("进入了吃喝玩乐板块");
+            });
+
         })
     </script>
 </head>
