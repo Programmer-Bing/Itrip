@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.cssl.pojo.HomePage_product;
+import com.cssl.pojo.po.User;
 import org.springframework.stereotype.Component;
 
 import feign.hystrix.FallbackFactory;
@@ -23,6 +24,21 @@ public class FeginFactory implements FallbackFactory<HomePageClientService>{
 			@Override
 			public List<HomePage_product> findBargains(Integer id) {
 				return new ArrayList<>();
+			}
+
+			@Override
+			public List<HomePage_product> list2(Map<String, Object> map) {
+				return new ArrayList<>();
+			}
+
+			@Override
+			public List<User> Cs() {
+				return new ArrayList<>();
+			}
+
+			@Override
+			public int addUser(String name) {
+				return 0;
 			}
 		};
 	}
