@@ -29,7 +29,7 @@ public class UserController {
      * @param
      * @return
      */
-    @RequestMapping(method = RequestMethod.GET, value = "UserzhuceADD")
+    @RequestMapping(method = RequestMethod.GET, value = "/UserzhuceADD")
     public int addUser(@RequestParam(value = "phone") String phone) {
         System.out.println("提供者来到注册");
 

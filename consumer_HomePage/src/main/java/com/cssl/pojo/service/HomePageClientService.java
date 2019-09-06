@@ -32,7 +32,7 @@ public interface HomePageClientService {
      * @return
      */
     @RequestMapping(method = RequestMethod.GET, value = "/UserzhuceADD")
-    public int addUser(@RequestParam(value = "123456") String phone);
+    public int addUser(@RequestParam(value = "phone") String phone);
 
 
     /***
