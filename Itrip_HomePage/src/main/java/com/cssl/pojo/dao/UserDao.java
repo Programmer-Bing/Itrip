@@ -23,4 +23,12 @@ public interface UserDao {
      * @return
      */
     public int addUser(@PathVariable String name);
+
+    /***
+     *
+     * 注册 判断重复账号
+     * @param phone
+     * @return
+     */
+    public  List<User> JudgeUser(String phone);
 }

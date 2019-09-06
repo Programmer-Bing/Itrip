@@ -5,10 +5,12 @@ import com.cssl.pojo.po.User;
 import com.cssl.pojo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -23,5 +25,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public int addUser(String name) {
         return  ud.addUser(name);
+    }
+
+
+    @Override
+    public List<User> JudgeUser(String phone) {
+        return ud.JudgeUser(phone);
     }
 }

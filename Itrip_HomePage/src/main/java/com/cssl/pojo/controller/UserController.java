@@ -37,5 +37,10 @@ public class UserController {
         return  us.addUser(name);
     }
 
+    @RequestMapping("/homeproduct/judgeuser")
+    public  List<User> JudgeUser(String phone){
+        return  us.JudgeUser(phone);
+    }
+
 
 }
