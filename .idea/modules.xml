@@ -5,11 +5,10 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/Itrip.iml" filepath="$PROJECT_DIR$/.idea/Itrip.iml" />
       <module fileurl="file://$PROJECT_DIR$/Itrip_HomePage/Itrip_HomePage.iml" filepath="$PROJECT_DIR$/Itrip_HomePage/Itrip_HomePage.iml" />
       <module fileurl="file://$PROJECT_DIR$/comm/comm.iml" filepath="$PROJECT_DIR$/comm/comm.iml" />
-      <module fileurl="file://$PROJECT_DIR$/consumer_Backstage/consumer_Backstage.iml" filepath="$PROJECT_DIR$/consumer_Backstage/consumer_Backstage.iml" />
       <module fileurl="file://$PROJECT_DIR$/consumer_HomePage/consumer_HomePage.iml" filepath="$PROJECT_DIR$/consumer_HomePage/consumer_HomePage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/consumer_Hotel/consumer_Hotel.iml" filepath="$PROJECT_DIR$/consumer_Hotel/consumer_Hotel.iml" />
       <module fileurl="file://$PROJECT_DIR$/eureka_6001/eureka_6001.iml" filepath="$PROJECT_DIR$/eureka_6001/eureka_6001.iml" />
-      <module fileurl="file://$PROJECT_DIR$/itrip-hotel/itrip-hotel.iml" filepath="$PROJECT_DIR$/itrip-hotel/itrip-hotel.iml" />
-      <module fileurl="file://$PROJECT_DIR$/itrip-user/itrip-user.iml" filepath="$PROJECT_DIR$/itrip-user/itrip-user.iml" />
+      <module fileurl="file://$PROJECT_DIR$/itrip-Hotel/itrip-hotel.iml" filepath="$PROJECT_DIR$/itrip-Hotel/itrip-hotel.iml" />
     </modules>
   </component>
 </project>
