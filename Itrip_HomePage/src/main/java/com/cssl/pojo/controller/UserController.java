@@ -17,10 +17,9 @@ public class UserController {
     private UserService us;
 
 
-
     @RequestMapping("/homeproduct/cs")
-    public List<User> Cs(){
-        return  us.Cs();
+    public List<User> Cs() {
+        return us.Cs();
     }
 
 
@@ -32,26 +31,23 @@ public class UserController {
      */
 
     @RequestMapping("/homeproduct/add")
-    public int addUser(@RequestParam String name){
+    public int addUser(@RequestParam String name) {
 
 
-        return  us.addUser(name);
+        return us.addUser(name);
     }
 
 
     /***
-     *
-     *
      * 用户注册
      * 判断号码
      * @param phone
      * @return
      */
-
-    @RequestMapping(method = RequestMethod.GET,value = "/homeproduct/judgeuser")
-    public  List<User> JudgeUser(@RequestParam("phone")  String phone){
+    @RequestMapping(method = RequestMethod.GET, value = "UserRegistration")
+    public List<User> JudgeUser(@RequestParam(value = "phone",required = false) String phone) {
         System.out.println("来了提供者con太肉了咯");
-        return  us.JudgeUser(phone);
+        return us.JudgeUser(phone);
     }
 
 
