@@ -24,6 +24,11 @@ public class FeginFactory implements FallbackFactory<HomePageClientService>{
 			public List<HomePage_product> findBargains(Integer id) {
 				return new ArrayList<>();
 			}
+
+			@Override
+			public List<HomePage_product> findPartyingByCity(Integer P_cid, Integer Pt_id) {
+				return new ArrayList<>();
+			}
 		};
 	}
 }
