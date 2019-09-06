@@ -14,6 +14,12 @@ public class DeptClientServiceFallbackFactory implements FallbackFactory<UserSer
     public UserService create(Throwable throwable) {
         return new UserService() {
             @Override
+            public List<Map<String, Object>> productType() {
+                System.out.println("失败了");
+                return new ArrayList<>();
+            }
+
+            @Override
             public List<Map<String,Object>> findAll() {
                 System.out.println("查询失败了");
                 return new ArrayList<>();

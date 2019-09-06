@@ -11,8 +11,18 @@
 <script src="js/jquery.js"></script>
 <script src="js/pintuer.js"></script>
 </head>
+<script type="text/javascript" src="scripts/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
 $(function(){
+
+    $.getJSON("productType","",function(json){
+        for (var i = 0; i <json.length ; i++) {
+            var tr="";
+            tr+="<option value='"+json[i].PT_id+"'>"+json[i].PT_name+"</option>"
+            $("#product").append(tr);
+        }
+
+    });
 $("#product").change(function(){
 	var pid=0;
 	pid=parseInt($(this).val());
@@ -157,9 +167,6 @@ $("#product").change(function(){
         <div class="field">
           <select name="product" id="product" class="input"  style="width:200px; line-height:17px;display:inline-block">
             <option value="0">选择</option>
-            <option value="1">旅游产品</option>
-            <option value="2">酒店产品</option>
-			<option value="3">汽车产品</option>
           </select>     
         </div>
       </div>

@@ -12,6 +12,8 @@ import java.util.Map;
 @FeignClient(value="backstage-dept",fallbackFactory=DeptClientServiceFallbackFactory.class)
 public interface UserService {
 
+    @RequestMapping("productType")
+    public List<Map<String,Object>> productType();
     @RequestMapping("findAll")
     public List<Map<String,Object>> findAll();
 }

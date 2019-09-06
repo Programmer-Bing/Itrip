@@ -21,4 +21,5 @@ public class UserServiceImpl implements UserService {
     public List<Map<String,Object>> findAll() {
         return userMapper.findAll();
     }
+
 }
