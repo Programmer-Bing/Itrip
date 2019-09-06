@@ -7,10 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
+import java.util.Map;
 
 @FeignClient(value="backstage-dept",fallbackFactory=DeptClientServiceFallbackFactory.class)
 public interface UserService {
 
-    @RequestMapping(method = RequestMethod.GET,value = "findALL")
-    public List<User> findAll();
+    @RequestMapping("findAll")
+    public List<Map<String,Object>> findAll();
 }

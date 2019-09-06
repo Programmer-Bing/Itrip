@@ -3,8 +3,9 @@ package com.cssl.pojo.service;
 import com.cssl.pojo.po.User;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserService {
 
-    public List<User> findAll();
+    public List<Map<String,Object>> findAll();
 }

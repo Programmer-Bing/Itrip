@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class UserController {
@@ -16,9 +17,9 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("findAll")
-    @ResponseBody
-    public List<User> findALL(){
+    public List<Map<String,Object>> findALL(){
         System.out.println("进入消费者Controller");
-        return userService.findAll();
+        System.out.println("输出:"+userService.findAll());
+        return this.userService.findAll();
     }
 }
