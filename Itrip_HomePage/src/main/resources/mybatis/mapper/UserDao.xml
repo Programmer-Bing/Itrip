@@ -4,5 +4,17 @@
 
 <mapper namespace="com.cssl.pojo.dao.UserDao">
 
+    <select id="Cs" resultType="User">
+        select*from user
+    </select>
 
+    <insert id="addUser" parameterType="String">
+
+
+        INSERT INTO USER(Account_number) VALUES(#{name})
+    </insert>
+
+    <select id="JudgeUser" parameterType="String" resultType="User">
+        SELECT*FROM USER WHERE Phone_number=#{phone}
+    </select>
 </mapper>
