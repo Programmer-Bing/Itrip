@@ -14,12 +14,14 @@ import java.util.Map;
 public class HomePage_productController {
     @Autowired
     private HomePage_productService homePage_productService;
+    /*特价商品*/
     @RequestMapping("findBargains")
     public List<HomePage_product> findBargains(@RequestParam("lp_id") Integer lp_id){
         System.out.println("成功到服务者模块！！");
         System.out.println(lp_id);
         return homePage_productService.findBargains(lp_id);
     }
+    /*吃喝玩乐*/
     @RequestMapping("findPartyingByCity")
     public List<HomePage_product> findPartyingByCity( @RequestParam(required = false, value = "P_cid") Integer P_cid, @RequestParam(required = false, value = "Pt_id") Integer Pt_id){
         System.out.println("成功到服务者模块！！");
