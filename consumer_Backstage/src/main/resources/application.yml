@@ -1,0 +1,30 @@
+server:
+  port: 8090
+spring:
+  resources:
+    static-locations: classpath:/templates/,classpath:/static/,classpath:/META-NF/resources/,classpath:/resources/,classpath:/public/,classpath:/upload
+  thymeleaf:
+    encoding: UTF-8
+    #开发时关闭缓存,不然没法看到实时页面
+    cache: false
+    prefix: classpath:/static/
+    suffix: .html
+
+  #spring:
+  application:
+    name: backstage-consumer
+
+eureka:
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://127.0.0.1:6001/eureka/
+    enabled: true
+  instance:
+    instance-id: backstage-consumer-80
+    prefer-ip-address: true     #访问路径可以显示IP地址
+
+#注释后hystrix服务降级不可用
+feign:
+  hystrix:
+    enabled: true
