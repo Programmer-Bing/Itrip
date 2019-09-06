@@ -21,4 +21,9 @@ public class HomePage_productServiceImpl implements HomePage_productService {
     public List<HomePage_product> findBargains(Integer id) {
         return hpdao.findBargains(id);
     }
+
+    @Override
+    public List<HomePage_product> findPartyingByCity(Map<String, Object> map) {
+        return hpdao.findPartyingByCity(map);
+    }
 }
