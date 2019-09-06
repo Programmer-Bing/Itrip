@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 //当一个服务停止了，Consumer客户端提供降级信息
-//@FeignClient("MICROSERVICE-DEPT")
+/*@FeignClient("MICROSERVICE-DEPT")*/
 @FeignClient(value = "MICROSERVICE-DEPT",fallbackFactory= FeginFactory.class)
 public interface HomePageClientService {
     @RequestMapping(method = RequestMethod.GET,value="findBargains")
@@ -21,9 +21,6 @@ public interface HomePageClientService {
     @RequestMapping(method = RequestMethod.GET,value="/homeproduct/cs")
     public  List<User> Cs();
 
-
-
-
     /***
      * 添加用户 注册
      * @param name
@@ -31,4 +28,16 @@ public interface HomePageClientService {
      */
     @RequestMapping(method = RequestMethod.GET,value = "/homeproduct/add")
     public int  addUser(@RequestParam(value = "空",required = true) String name);
+
+
+    /****
+     *
+     *
+     * 注册
+     *  判断号码
+     * @param
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET,value = "/homeproduct/judgeuser")
+    public List<User> JudgeUser(@RequestParam(value = "123456789") String phone);
 }

@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/consumer_Hotel/consumer_Hotel.iml" filepath="$PROJECT_DIR$/consumer_Hotel/consumer_Hotel.iml" />
       <module fileurl="file://$PROJECT_DIR$/eureka_6001/eureka_6001.iml" filepath="$PROJECT_DIR$/eureka_6001/eureka_6001.iml" />
       <module fileurl="file://$PROJECT_DIR$/itrip-Hotel/itrip-hotel.iml" filepath="$PROJECT_DIR$/itrip-Hotel/itrip-hotel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/itrip-Hotel/itrip-hotel.iml" filepath="$PROJECT_DIR$/itrip-Hotel/itrip-hotel.iml" />
     </modules>
   </component>
 </project>

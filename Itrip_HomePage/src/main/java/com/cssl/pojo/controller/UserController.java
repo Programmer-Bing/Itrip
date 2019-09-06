@@ -4,6 +4,7 @@ import com.cssl.pojo.po.User;
 import com.cssl.pojo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,8 +38,19 @@ public class UserController {
         return  us.addUser(name);
     }
 
-    @RequestMapping("/homeproduct/judgeuser")
-    public  List<User> JudgeUser(String phone){
+
+    /***
+     *
+     *
+     * 用户注册
+     * 判断号码
+     * @param phone
+     * @return
+     */
+
+    @RequestMapping(method = RequestMethod.GET,value = "/homeproduct/judgeuser")
+    public  List<User> JudgeUser(@RequestParam("phone")  String phone){
+        System.out.println("来了提供者con太肉了咯");
         return  us.JudgeUser(phone);
     }
 

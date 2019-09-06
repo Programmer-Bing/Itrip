@@ -14,7 +14,7 @@
         INSERT INTO USER(Account_number) VALUES(#{name})
     </insert>
 
-    <select id="JudgeUser" parameterType="String">
+    <select id="JudgeUser" parameterType="String" resultType="User">
         SELECT*FROM USER WHERE Phone_number=#{phone}
     </select>
 </mapper>

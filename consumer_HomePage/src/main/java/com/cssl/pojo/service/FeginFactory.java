@@ -40,6 +40,12 @@ public class FeginFactory implements FallbackFactory<HomePageClientService>{
 			public int addUser(String name) {
 				return 0;
 			}
+
+
+			@Override
+			public List<User> JudgeUser(String phone) {
+				return new ArrayList<>();
+			}
 		};
 	}
 }

@@ -14,7 +14,7 @@
         <module>consumer_HomePage</module>
         <module>Itrip_HomePage</module>
         <module>itrip-hotel</module>
-        <module>consumer_Hotel</module>
+
     </modules>
     <!--依赖环境的版本信息-->
     <properties>
