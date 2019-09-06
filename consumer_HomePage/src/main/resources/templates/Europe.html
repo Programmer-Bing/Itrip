@@ -18,7 +18,51 @@
     <meta name="Keywords" content="欧洲旅游,欧洲跟团游,欧洲自由行,欧洲自助游,欧洲一国游,欧洲六国游,欧洲十国深度游">
     <title>【欧洲旅游】欧洲跟团游 _欧洲自由行/自助游_欧洲一国/六国/十国深度游-iTrip爱去</title>
     <link href="//static.itrip.com/css/it_index_eu2_201902190028.css" rel="stylesheet" type="text/css">
-
+    <script type="text/javascript" src="scripts/function.js"></script>
+    <script type="text/javascript" src="scripts/jquery-1.8.3.min.js"></script>
+    <script>
+        $(function () {
+            $.getJSON("findBargains",{"lp_id":"3"},function (date) {
+                for (i=0;i<date.length;i++){
+                    alert("success");
+                    var li = "";
+                    li +=  "<li data-i-op=\"3684\">" ;
+                    li += "<a name=\"__AD_module_2_12_3684\" href=\"https://www.itrip.com/p16022\" target=\"_blank\"";
+                    li += "data-i-op=\"3684\" data-i-op-href=\"\">";
+                    li += "<img width=\"218\" height=\"138\" class=\"lazy\" style=\"display: block;\"";
+                    li += "alt=\"【云湖仙屿】8人中文团 英国苏格兰高地 天空岛+尼斯湖+蒸汽火车四日游(赠爱丁堡游+火车票可选+3晚住宿3早)\"";
+                    li += "src=\"//pic2.itrip.com/p/20190725150827-standard-621.jpg?imageView2/5/w/218/h/138/q/100\"";
+                    li += "border=\"0\" data-i-op=\"3684\"";
+                    li += "data-original=\"//pic2.itrip.com/p/20190725150827-standard-621.jpg?imageView2/5/w/218/h/138/q/100\"";
+                    li += "data-i-op-img=\"\">";
+                    li += "</a>";
+                    li += "<div class=\"proinfo oh\">";
+                    li += "<p class=\"f14 mt10 oh\" style=\"height:42px;\">";
+                    li += "<a name=\"__AD_module_2_12_3684\"";
+                    li += "title=\"【云湖仙屿】8人中文团 英国苏格兰高地 天空岛+尼斯湖+蒸汽火车四日游(赠爱丁堡游+火车票可选+3晚住宿3早)\"";
+                    li += "href=\"https://www.itrip.com/p16022\" target=\"_blank\" data-i-op=\"3684\"";
+                    li += "data-i-op-href=\"\" data-i-op-titile=\"\">";
+                    li += ""+date[i].product_name+"</a>";
+                    li += "</p>";
+                    li += " <p class=\"oh mt5 price_label\">";
+                    li += "<span class=\"fr pri \">";
+                    li += "<label class=\"js_curCode f12\">RMB</label>&nbsp;";
+                    li += "<label class=\"js_curMonery_exten f16\" data-i-op=\"3684\"";
+                    li += "data-price=\"376.5454\"";
+                    li += "data-exrates=\"{9=4.74, 10=4.52, 11=3.16, 12=1.0, 13=6.88, 14=0.23, 15=5.0E-4, 17=5.01, 16=1.6, 21=8.6016, 20=7.8646,";
+                    li += "23=0.06, 22=7.0395, 25=0.73, 24=0.79, 27=1.03, 26=0.31}\"";
+                    li += "data-cid=\"21\" data-i-op-price=\"\">3238.89</label><label";
+                    li += "class=\"f12\">&nbsp;起</label>";
+                    li += "</span>";
+                    li += "</p>";
+                    li += "</div>";
+                    li += "<div class=\"bor\"></div></li>";
+                    $("#Special").append(li);
+                    alert("成功！！！")
+                }
+            })
+        })
+    </script>
 </head>
 <body>
 
@@ -771,7 +815,20 @@
                     </div>
                     <!-- 特价商品区 -->
                     <div class="list_ad mt15">
-                        <ul>
+                        <ul id="Special">
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="fr w440">
+                    <div class="icon_ad icon_ad_hot">
+					<span class="orange f16 bold">
+						<h2 class="f16">热销</h2>
+					</span>
+                    </div>
+                    <!-- 热销商品 -->
+                    <div class="list_ad mt15">
+                        <ul id="Hot-sale">
                             <li data-i-op="9500">
                                 <a name="__AD_module_1_17_9500" href="https://www.itrip.com/p8542" target="_blank"
                                    data-i-op="9500" data-i-op-href="">
@@ -797,49 +854,6 @@
                                                            data-price="63.48"
                                                            data-exrates="{9=4.74, 10=4.52, 11=3.16, 12=1.0, 13=6.88, 14=0.23, 15=5.0E-4, 17=5.01, 16=1.6, 21=8.6016, 20=7.8646, 23=0.06, 22=7.0395, 25=0.73, 24=0.79, 27=1.03, 26=0.31}"
                                                            data-cid="21" data-i-op-price="">546.03</label><label
-                                                        class="f12">&nbsp;起</label>
-												</span>
-                                    </p>
-                                </div>
-                                <div class="bor"></div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="fr w440">
-                    <div class="icon_ad icon_ad_hot">
-					<span class="orange f16 bold">
-						<h2 class="f16">热销</h2>
-					</span>
-                    </div>
-                    <!-- 热销商品 -->
-                    <div class="list_ad mt15">
-                        <ul>
-                            <li data-i-op="3684">
-                                <a name="__AD_module_2_12_3684" href="https://www.itrip.com/p16022" target="_blank"
-                                   data-i-op="3684" data-i-op-href="">
-                                    <img width="218" height="138" class="lazy" style="display: block;"
-                                         alt="【云湖仙屿】8人中文团 英国苏格兰高地 天空岛+尼斯湖+蒸汽火车四日游(赠爱丁堡游+火车票可选+3晚住宿3早)"
-                                         src="//pic2.itrip.com/p/20190725150827-standard-621.jpg?imageView2/5/w/218/h/138/q/100"
-                                         border="0" data-i-op="3684"
-                                         data-original="//pic2.itrip.com/p/20190725150827-standard-621.jpg?imageView2/5/w/218/h/138/q/100"
-                                         data-i-op-img="">
-                                </a>
-                                <div class="proinfo oh">
-                                    <p class="f14 mt10 oh" style="height:42px;">
-                                        <a name="__AD_module_2_12_3684"
-                                           title="【云湖仙屿】8人中文团 英国苏格兰高地 天空岛+尼斯湖+蒸汽火车四日游(赠爱丁堡游+火车票可选+3晚住宿3早)"
-                                           href="https://www.itrip.com/p16022" target="_blank" data-i-op="3684"
-                                           data-i-op-href="" data-i-op-titile="">【云湖仙屿】8人中文团 英国苏格兰高地
-                                            天空岛+尼斯湖+蒸汽火车四日游(赠爱丁堡游+火车票可选+3晚住宿3早)</a>
-                                    </p>
-                                    <p class="oh mt5 price_label">
-												<span class="fr pri ">
-													<label class="js_curCode f12">RMB</label>&nbsp;
-													<label class="js_curMonery_exten f16" data-i-op="3684"
-                                                           data-price="376.5454"
-                                                           data-exrates="{9=4.74, 10=4.52, 11=3.16, 12=1.0, 13=6.88, 14=0.23, 15=5.0E-4, 17=5.01, 16=1.6, 21=8.6016, 20=7.8646, 23=0.06, 22=7.0395, 25=0.73, 24=0.79, 27=1.03, 26=0.31}"
-                                                           data-cid="21" data-i-op-price="">3238.89</label><label
                                                         class="f12">&nbsp;起</label>
 												</span>
                                     </p>
@@ -1149,7 +1163,7 @@
 											</span>
                                         </p></div>
                                     <div class="bor_img"></div>
-                                </a
+                                </a>
                             </li>
                         </ul>
                     </div>

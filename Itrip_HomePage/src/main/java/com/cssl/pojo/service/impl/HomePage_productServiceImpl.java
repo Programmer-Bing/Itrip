@@ -18,13 +18,7 @@ public class HomePage_productServiceImpl implements HomePage_productService {
     public HomePage_productDao hpdao;
 
     @Override
-    public List<HomePage_product> findAll() {
-        return hpdao.findAll();
-    }
-
-    @Override
-    public List<HomePage_product> findByCPT(Map<String, Object> map) {
-        System.out.println("进入了服务提供者");
-        return hpdao.findByCPT(map);
+    public List<HomePage_product> findBargains(Integer id) {
+        return hpdao.findBargains(id);
     }
 }

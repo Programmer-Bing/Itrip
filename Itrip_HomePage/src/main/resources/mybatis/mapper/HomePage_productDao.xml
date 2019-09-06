@@ -4,7 +4,7 @@
 
 <mapper namespace="com.cssl.pojo.dao.HomePage_productDao">
 
-    <select id="findAll" resultType="homepage_product">
+    <!--<select id="findAll" resultType="homepage_product">
         SELECT p.P_id AS "product_id",p.P_name AS "product_name",p.P_imgpath AS "product_imgPath",p.P_price AS "product_price"
         FROM product p
     </select>
@@ -16,6 +16,12 @@
             <if test="Country_name!=null and Country_name!=''"> and Country_name = #{Countrt_name}</if>
             <if test="ProductType_name!=null and ProductType_name!=''"> and PT_name = #{ProductType_name}</if>
         </trim>
-    </select>
-
+    </select>-->
+<select id="findBargains" parameterType="int" resultType="homepage_product">
+    SELECT p.`Product_id` AS "product_id",p.`Product_Name` AS "product_name",p.P_imgpath AS "product_imgPath",p.P_price AS "product_price"
+    FROM product p INNER JOIN preferentialactivities pre ON p.`Product_id`=pre.`Product_id`
+                        INNER JOIN citiesstates c ON c.`cs_id`=p.p_cid
+                        INNER JOIN smallplate s ON c.`sp_id`=s.`sp_id`
+                        INNER JOIN largeplate l ON s.`lp_id`=l.`lp_id` WHERE l.`lp_id` = #{lp_id}
+</select>
 </mapper>
