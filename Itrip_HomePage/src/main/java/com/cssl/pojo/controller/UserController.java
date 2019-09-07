@@ -3,12 +3,10 @@ package com.cssl.pojo.controller;
 import com.cssl.pojo.po.User;
 import com.cssl.pojo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class UserController {
@@ -29,11 +27,12 @@ public class UserController {
      * @param
      * @return
      */
-    @RequestMapping(method = RequestMethod.GET, value = "/UserzhuceADD")
-    public int addUser(@RequestParam(value = "phone") String phone,@RequestParam(value = "name") String name,@RequestParam("passwword") String password) {
+
+    @RequestMapping(method = RequestMethod.POST, value = "/userADD")
+    public int addUser(@RequestBody Map<String,Object> map) {
         System.out.println("提供者来到注册");
 
-        return us.addUser(phone,name,password);
+        return us.addUser(map);
     }
 
 
