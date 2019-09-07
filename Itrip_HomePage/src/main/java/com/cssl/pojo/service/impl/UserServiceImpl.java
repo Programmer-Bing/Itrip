@@ -32,4 +32,9 @@ public class UserServiceImpl implements UserService {
     public List<User> JudgeUser(String phone) {
         return ud.JudgeUser(phone);
     }
+
+    @Override
+    public String Cs2(String name) {
+        return ud.Cs2(name);
+    }
 }

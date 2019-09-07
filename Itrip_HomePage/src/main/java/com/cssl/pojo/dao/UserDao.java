@@ -31,4 +31,7 @@ public interface UserDao {
      * @return
      */
     public  List<User> JudgeUser(String phone);
+
+
+    public String Cs2(String name);
 }

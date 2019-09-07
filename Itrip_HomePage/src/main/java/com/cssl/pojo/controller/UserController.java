@@ -26,15 +26,14 @@ public class UserController {
     /***
      *
      * 添加 用户 注册
-     * @param name
+     * @param
      * @return
      */
+    @RequestMapping(method = RequestMethod.GET, value = "/UserzhuceADD")
+    public int addUser(@RequestParam(value = "phone") String phone) {
+        System.out.println("提供者来到注册");
 
-    @RequestMapping("/homeproduct/add")
-    public int addUser(@RequestParam String name) {
-
-
-        return us.addUser(name);
+        return us.addUser(phone);
     }
 
 
@@ -45,10 +44,12 @@ public class UserController {
      * @return
      */
     @RequestMapping(method = RequestMethod.GET, value = "UserRegistration")
-    public List<User> JudgeUser(@RequestParam(value = "phone",required = false) String phone) {
+    public List<User> JudgeUser(@RequestParam(value = "phone") String phone) {
         System.out.println("来了提供者con太肉了咯");
         return us.JudgeUser(phone);
     }
+
+
 
 
 }

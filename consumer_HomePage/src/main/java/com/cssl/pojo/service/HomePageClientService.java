@@ -28,11 +28,11 @@ public interface HomePageClientService {
 
     /***
      * 添加用户 注册
-     * @param name
+     * @param
      * @return
      */
-    @RequestMapping(method = RequestMethod.GET, value = "/homeproduct/add")
-    public int addUser(@RequestParam(value = "空", required = true) String name);
+    @RequestMapping(method = RequestMethod.GET, value = "/UserzhuceADD")
+    public int addUser(@RequestParam(value = "phone") String phone);
 
 
     /***
@@ -43,4 +43,8 @@ public interface HomePageClientService {
      */
     @RequestMapping(method = RequestMethod.GET, value = "UserRegistration")
     public List<User> JudgeUser(@RequestParam(value = "phone") String phone);
+
+
+
+
 }
