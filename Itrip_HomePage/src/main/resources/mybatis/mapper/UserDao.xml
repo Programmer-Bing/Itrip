@@ -11,7 +11,8 @@
     <insert id="addUser" parameterType="String">
 
 
-        INSERT INTO USER(Phone_number) VALUES(#{name})
+
+        INSERT INTO USER(Phone_number,user_name,`Password`) VALUES(#{phone},#{name},#{password})
     </insert>
 
     <select id="JudgeUser" parameterType="String" resultType="User">

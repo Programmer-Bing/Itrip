@@ -30,10 +30,10 @@ public class UserController {
      * @return
      */
     @RequestMapping(method = RequestMethod.GET, value = "/UserzhuceADD")
-    public int addUser(@RequestParam(value = "phone") String phone) {
+    public int addUser(@RequestParam(value = "phone") String phone,@RequestParam(value = "name") String name,@RequestParam("passwword") String password) {
         System.out.println("提供者来到注册");
 
-        return us.addUser(phone);
+        return us.addUser(phone,name,password);
     }
 
 
