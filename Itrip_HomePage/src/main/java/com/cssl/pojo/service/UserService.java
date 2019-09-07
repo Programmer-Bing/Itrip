@@ -14,7 +14,7 @@ public interface UserService  {
      * 添加用户 注册
      * @return
      */
-    public int addUser(String name);
+    public int addUser(String name,String phone,String password);
 
 
     /***

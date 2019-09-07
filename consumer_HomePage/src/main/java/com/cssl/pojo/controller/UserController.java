@@ -52,7 +52,13 @@ public class UserController {
         return  service.JudgeUser(phone);
     }
 
-
+    /***
+     *
+     * 注册 判断验证码 跳转
+     * @param phone
+     * @param code
+     * @return
+     */
     @RequestMapping(value = "/addUser")
     public int addUser(@RequestParam String phone,@RequestParam String code){
         System.out.println("添加:");
@@ -60,11 +66,30 @@ public class UserController {
         System.out.println("redis取出来的验证码: "+coderedis);
         if(code.equals(coderedis)){
             System.out.println("验证码输入正确");
-            return  service.addUser(phone);
+            return 1;
         }
         else{
             System.out.println("验证码输入错误");
             return  0;
+        }
+
+
+    }
+
+    /***
+     *
+     *用户注册添加
+     * @return
+     */
+    @RequestMapping(value = "/UserAddZc")
+    public int UertAdd(@RequestParam String phone,@RequestParam String username,@RequestParam String rePhonePwd,@RequestParam String password){
+        System.out.println("前台注册添加");
+        if(password.equals(rePhonePwd)){
+            System.out.println("密码输入一致");
+            return 0;
+        }
+        else{
+            return  service.addUser(phone,username,password);
         }
 
 

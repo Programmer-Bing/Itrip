@@ -22,7 +22,7 @@ public interface UserDao {
      * 添加用户 注册
      * @return
      */
-    public int addUser(@PathVariable String name);
+    public int addUser(@PathVariable String name,String phone,String password);
 
     /***
      *

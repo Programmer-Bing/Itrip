@@ -23,8 +23,8 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public int addUser(String name) {
-        return  ud.addUser(name);
+    public int addUser(String name,String phone,String password) {
+        return  ud.addUser(name,phone,password);
     }
 
 
