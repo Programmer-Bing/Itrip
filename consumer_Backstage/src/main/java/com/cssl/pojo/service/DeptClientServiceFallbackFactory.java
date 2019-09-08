@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class DeptClientServiceFallbackFactory implements FallbackFactory<UserService> {
@@ -13,8 +14,24 @@ public class DeptClientServiceFallbackFactory implements FallbackFactory<UserSer
     public UserService create(Throwable throwable) {
         return new UserService() {
             @Override
-            public List<User> findAll() {
+            public List<Map<String, Object>> productType() {
+                System.out.println("失败了");
+                return new ArrayList<>();
+            }
+
+            @Override
+            public List<Map<String,Object>> findAll() {
                 System.out.println("查询失败了");
+                return new ArrayList<>();
+            }
+
+            @Override
+            public List<Map<String, Object>> citiesstates() {
+                return new ArrayList<>();
+            }
+
+            @Override
+            public List<Map<String, Object>> findProduct(Map<String, Object> map) {
                 return new ArrayList<>();
             }
         };

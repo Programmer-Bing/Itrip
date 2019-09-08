@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cssl.pojo.dao.ProductMapper">
+
+    <select id="productType" resultType="map" >
+        SELECT * FROM producttype
+    </select>
+
+    <insert id="addProduct" parameterType="map">
+
+    </insert>
+
+    <select id="citiesstates" resultType="map">
+        SELECT * FROM citiesstates
+    </select>
+
+    <select id="findProduct" parameterType="map" resultType="map">
+        SELECT * FROM product
+    <trim prefix="where" prefixOverrides="or||and">
+    <if test="pt_id!=null and pt_id!=0 and pt_id!=''">
+    and pt_id=#{pt_id}
+    </if>
+    <if test="p_cid!=null and p_cid!=0 and p_cid!=''">
+    and p_cid=#{p_cid}
+    </if>
+    </trim>
+    <if test="index!=null and size!=null">
+        LIMIT #{index},#{size}
+    </if>
+    </select>
+</mapper>
