@@ -22,4 +22,14 @@ public class ProductServiceImpl implements ProductService {
     public List<Map<String, Object>> productType() {
         return productMapper.productType();
     }
+
+    @Override
+    public List<Map<String, Object>> citiesstates() {
+        return productMapper.citiesstates();
+    }
+
+    @Override
+    public List<Map<String, Object>> findProduct(Map<String, Object> map) {
+        return productMapper.findProduct(map);
+    }
 }

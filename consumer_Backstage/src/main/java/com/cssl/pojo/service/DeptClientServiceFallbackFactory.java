@@ -24,6 +24,16 @@ public class DeptClientServiceFallbackFactory implements FallbackFactory<UserSer
                 System.out.println("查询失败了");
                 return new ArrayList<>();
             }
+
+            @Override
+            public List<Map<String, Object>> citiesstates() {
+                return new ArrayList<>();
+            }
+
+            @Override
+            public List<Map<String, Object>> findProduct(Map<String, Object> map) {
+                return new ArrayList<>();
+            }
         };
     }
 }

@@ -12,4 +12,10 @@ import java.util.Map;
 public interface ProductMapper {
 
     public List<Map<String,Object>> productType();
+
+    public int addProduct(Map<String,Object> map);
+
+    public List<Map<String,Object>> findProduct(Map<String,Object> map);
+
+    public List<Map<String,Object>> citiesstates();
 }
