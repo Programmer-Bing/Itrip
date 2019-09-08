@@ -45,17 +45,21 @@
 				 }
 				 else{
                      $("#showts").text("")
-					 return true;
+
 				 }
+
 
 				 $.getJSON("/UserAddZc",{"phone":phone,"username":username,"password":password,"rePhonePwd":rePhonePwd},function (data) {
 								if(data>0){
-								    alert("添加成功")
+								    window.location="login.html";
 								}
 								else{
-								    alert("添加失败")
+                                    $("#showts").text("两次密码输入不一致")
+
 								}
                  })
+
+
 
             })
         })

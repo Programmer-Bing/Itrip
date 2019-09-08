@@ -31,8 +31,8 @@ public interface HomePageClientService {
      * @param
      * @return
      */
-    @RequestMapping(method = RequestMethod.GET, value = "/UserzhuceADD")
-    public int addUser(@RequestParam(value = "phone") String phone,@RequestParam(value = "name") String name,@RequestParam("passwword") String password);
+    @RequestMapping(method = RequestMethod.POST, value = "/userADD")
+    public int addUser(@RequestBody Map<String,Object> map);
 
 
     /***

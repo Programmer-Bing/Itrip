@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import redis.clients.jedis.Jedis;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class UserController {
@@ -21,6 +23,7 @@ public class UserController {
 
     @RequestMapping(value = "/consumer/homeproduct/cs")
     public List<User> Cs(HttpSession session){
+        System.out.println("测试类");
         return this.service.Cs();
     }
 
@@ -84,12 +87,21 @@ public class UserController {
     @RequestMapping(value = "/UserAddZc")
     public int UertAdd(@RequestParam String phone,@RequestParam String username,@RequestParam String rePhonePwd,@RequestParam String password){
         System.out.println("前台注册添加");
+        System.out.println("mm1: "+password);
+        System.out.println("mm2: "+rePhonePwd);
         if(password.equals(rePhonePwd)){
             System.out.println("密码输入一致");
-            return 0;
+            HashMap<String,Object> map=new HashMap<String, Object>();
+            map.put("phone",phone);
+            map.put("password",password);
+            map.put("username",username);
+            map.put("account",phone);
+            return  service.addUser(map);
+
         }
         else{
-            return  service.addUser(phone,username,password);
+            System.out.println("密码输入不一致");
+            return 0;
         }
 
 

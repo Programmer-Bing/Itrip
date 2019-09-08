@@ -9,6 +9,7 @@ import com.cssl.pojo.po.User;
 import org.springframework.stereotype.Component;
 
 import feign.hystrix.FallbackFactory;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -51,7 +52,7 @@ public class FeginFactory implements FallbackFactory<HomePageClientService>{
 
 
 			@Override
-			public int addUser(String phone, String name, String password) {
+			public int addUser(Map<String,Object> map) {
 				return 0;
 			}
 		};

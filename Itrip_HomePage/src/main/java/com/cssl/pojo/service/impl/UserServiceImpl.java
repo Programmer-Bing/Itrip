@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -23,8 +24,8 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public int addUser(String name,String phone,String password) {
-        return  ud.addUser(name,phone,password);
+    public int addUser(Map<String,Object> map) {
+        return  ud.addUser(map);
     }
 
 
