@@ -32,41 +32,67 @@
               document.getElementById("logintype-next").style.display="none";
 
 
+          })
+
+		  $("#phoneLogin").click(function () {
+				var phonenumber=$("#phoneNum").val();
+				var phonePwd=$("#phonePwd").val();
+              var patrn=/^(\w){6,20}$/;
+				if(phonenumber==null||phonenumber==""){
+					$("#hint0").text("手机号码不能为空")
+					return false;
+				}
+                if(!(/^1(3|4|5|6|7|8|9)\d{9}$/.test(phonenumber))){
+
+                  $("#hint0").text("手机号码有误，请重填")
+                  return false;
+                }
+				if(phonePwd==null||phonePwd==""){
+                    $("#hint0").text("密码不能为空")
+					return false;
+				}
+               if(!patrn.exec(phonePwd)){
+                  $("#hint0").text("密码输入格式不正确(6-20个字母,字符)")
+                  return false;
+               }else{
+                   $("#hint0").text("")
+			   }
+
+          })
 
 
+		  $("#emailLogin").click(function () {
+			  var email = $("#email").val();
+			  var  emailPwd=$("#emailPwd").val();
+              var patrn=/^(\w){6,20}$/;
+                //要求：邮箱的开头不能使用数字及非法字符；.必须在@后面；
+			  var pa2=/^[a-z]([a-zA-Z0-9_]{5,20})@([a-z0-9]{1,10})([.]{1})([a-z]{2,4})$/;
+			  if(email==null||email==""){
+                  $("#hint1").text("邮箱不能为空")
+                  return false;
+               }
+              if (!pa2.test(email)) {
+                  $("#hint1").text("邮箱输入格式不正确")
+                  return false;
+			  }
+
+              if(emailPwd==null||emailPwd==""){
+                  $("#hint1").text("密码不能为空")
+                  return false;
+              }
+              if(!patrn.exec(emailPwd)){
+                  $("#hint1").text("密码输入格式不正确(6-20个字母,字符)")
+                  return false;
+              }else{
+                  $("#hint1").text("")
+              }
 
           })
 
 
 
-					var phone=$("#phoneNum").val();
-					var pwd=$("#phonePwd").val();
-                    var patrn=/^(\w){6,20}$/;
-                   if(phone==""||phone==null){
-                      $("#ts").text("手机号码不能为空")
-
-                      return false;
-                   }
-                   if(!(/^1(3|4|5|6|7|8|9)\d{9}$/.test(phone))){
-
-                      $("#ts").text("手机号码有误，请重填")
-                      return false;
-                   }
-                   if(pwd==""||pwd==null){
-                       $("#ts").text("密码不能为空")
-					   return false;
-				   }
-                   if(!patrn.exec(pwd)){
-                      $("#ts").text("密码输入格式不正确(6-20个字母,字符)")
-                      return false;
-                   }else{
-                       $("#ts").text("")
-				   }
 
 
-			$(".pos_r span:first").click(function () {
-
-            })
 
 
           })
@@ -92,13 +118,16 @@
 
       function  numberLogin() {
 
-          document.getElementById("loginphone").style.display="block";
-          document.getElementById("logintype-next").style.display="none";
+          document.getElementById("logintype-next").style.display="block";
           document.getElementById("logintype-email").style.display="none";
           document.getElementById("number0").style.color="#56aaf0";
           document.getElementById("number0").style.borderBottom="#56aaf0 4px solid";
           document.getElementById("email0").style.borderBottom="";
 
+      }
+
+      function  zhuce() {
+		  window.location="zhuce.html";
       }
   </script>
   <body>
@@ -403,6 +432,7 @@
 					<div style="color: orange;margin-top: 15px;font-size: 15px"><p id="ts"></p></div>
 				</form>
 				<div class="oh mt10 forgatpassword">
+					<span style="color: orange;font-size: 15px" id="hint0"></span>
 					<span id="errTipPhone" class="warnning"></span>
 					<a class="forgetPass" href="javascript:;">忘记密码?</a>
 				</div>
@@ -421,17 +451,15 @@
 					</div>
 					<!-- 输入系统验证码 -->
 					<div class="oh mt10 verfiycode_div_e hide" id="verfiycode_div_e" phonepasshasnot=""> <!-- 无密码 -->
-						<div class="iptBox fl cus_input">
-							<input id="ipt_verifyCode_e" data-valid="required max[4]" data-hidevalid="1" data-name="图形验证码" type="text" name="ipt_verifyCode_e" style="width:120px;" placeholder="图形验证码" autocomplete="off">
-						</div>
-						<img src="../main/verifyCode.jpg" height="36" width="120" class="ml10 hand" border="0" title="看不清，请点我" id="img_verifycode_e">
+
 					</div>
 					<div class="oh mt10 forgatpassword">
+						<span style="color: orange;font-size: 15px" id="hint1"></span>
 						<span id="errTiEmail" class="warnning"></span>
 						<a class="forgetPass" href="javascript:;">忘记密码?</a>
 					</div>
 					<a id="emailLogin" href="javascript:;" class="btn-normal-blue mt20" phonepasshas="">登录</a>
-					<p class="mt10">还没有帐号？立即<a id="signup2" href="javascript:;" class="blueLink">注册</a></p>
+					<p class="mt10">还没有帐号？立即<a id="signup2" href="javascript:;" class="blueLink" onclick="zhuce()">注册</a></p>
 				</form>
 			</div>
 			
