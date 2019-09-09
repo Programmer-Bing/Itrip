@@ -8,10 +8,11 @@
         select*from user
     </select>
 
-    <insert id="addUser" parameterType="String">
+    <insert id="addUser" parameterType="Map">
 
 
-        INSERT INTO USER(Phone_number) VALUES(#{name})
+
+        INSERT INTO USER(Phone_number,user_name,`Password`,Account_number) VALUES(#{phone},#{username},#{password},#{account})
     </insert>
 
     <select id="JudgeUser" parameterType="String" resultType="User">

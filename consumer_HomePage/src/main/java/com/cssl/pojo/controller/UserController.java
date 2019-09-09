@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import redis.clients.jedis.Jedis;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class UserController {
@@ -21,6 +23,7 @@ public class UserController {
 
     @RequestMapping(value = "/consumer/homeproduct/cs")
     public List<User> Cs(HttpSession session){
+        System.out.println("测试类");
         return this.service.Cs();
     }
 
@@ -52,7 +55,13 @@ public class UserController {
         return  service.JudgeUser(phone);
     }
 
-
+    /***
+     *
+     * 注册 判断验证码 跳转
+     * @param phone
+     * @param code
+     * @return
+     */
     @RequestMapping(value = "/addUser")
     public int addUser(@RequestParam String phone,@RequestParam String code){
         System.out.println("添加:");
@@ -60,11 +69,39 @@ public class UserController {
         System.out.println("redis取出来的验证码: "+coderedis);
         if(code.equals(coderedis)){
             System.out.println("验证码输入正确");
-            return  service.addUser(phone);
+            return 1;
         }
         else{
             System.out.println("验证码输入错误");
             return  0;
+        }
+
+
+    }
+
+    /***
+     *
+     *用户注册添加
+     * @return
+     */
+    @RequestMapping(value = "/UserAddZc")
+    public int UertAdd(@RequestParam String phone,@RequestParam String username,@RequestParam String rePhonePwd,@RequestParam String password){
+        System.out.println("前台注册添加");
+        System.out.println("mm1: "+password);
+        System.out.println("mm2: "+rePhonePwd);
+        if(password.equals(rePhonePwd)){
+            System.out.println("密码输入一致");
+            HashMap<String,Object> map=new HashMap<String, Object>();
+            map.put("phone",phone);
+            map.put("password",password);
+            map.put("username",username);
+            map.put("account",phone);
+            return  service.addUser(map);
+
+        }
+        else{
+            System.out.println("密码输入不一致");
+            return 0;
         }
 
 

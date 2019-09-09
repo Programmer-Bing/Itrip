@@ -1,10 +1,8 @@
 package com.cssl.pojo.controller;
 
 import com.cssl.pojo.HomePage_product;
-import com.cssl.pojo.po.User;
 import com.cssl.pojo.service.HomePageClientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 @Repository
@@ -22,7 +23,7 @@ public interface UserDao {
      * 添加用户 注册
      * @return
      */
-    public int addUser(@PathVariable String name);
+    public int addUser(Map<String,Object> map);
 
     /***
      *

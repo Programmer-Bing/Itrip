@@ -9,7 +9,56 @@
     <link rel="stylesheet" href="css/pintuer.css">
     <link rel="stylesheet" href="css/admin.css">
     <script src="js/jquery.js"></script>
-    <script src="js/pintuer.js"></script>  
+    <script src="js/pintuer.js"></script>
+    <script type="text/javascript" src="scripts/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            //var num=$("#biaoti").html();
+            //if(num.length>10){
+            //    $("#biaoti").html(num.substr(0,10)+"...");
+            //}
+
+
+            $.getJSON("productType","",function(json){
+                for (var i = 0; i <json.length ; i++) {
+                    var tr="";
+                    tr+="<option value='"+json[i].PT_id+"'>"+json[i].PT_name+"</option>"
+                    $("#s_isvouch").append(tr);
+                }
+            });
+            $.getJSON("citiesstates","",function(json){
+                for (var i = 0; i <json.length ; i++) {
+                    var tr="";
+                    tr+="<option value='"+json[i].cs_id+"'>"+json[i].cs_name+"</option>"
+                    $("#citiesstates").append(tr);
+                }
+            });
+
+            var pageNumber=1;
+            var pt_id=0;
+            var p_cid=0;
+
+            fenye(pageNumber,pt_id,p_cid);
+
+            function fenye(pageNumber,pt_id,p_cid) {
+                $.getJSON("findProduct","pageNumber="+pageNumber+"&pt_id="+pt_id+"&p_cid="+p_cid,function(json){
+                    for(var i=0;i<json.list.length;i++){
+                        var prolist=json.list;
+                        var tr="";
+                        tr+="<tr>"
+                        tr+="<td><input type='checkbox' name='id[]' value='1' />"+prolist[i].Product_id+"</td>"
+                        tr+="    <td id='biaoti'>"+prolist[i].Product_Name+"</td>"
+                        tr+="<td><img src='images/11.jpg' alt='' width='120' height='50' /></td>"
+                        tr+="<td>"+prolist[i].P_price+"</td>"
+                        tr+="   <td><div class='button-group'> <a class='button border-main' href='modProduct.html'><span class='icon-edit'></span> 修改</a>"
+                        tr+="<a class='button border-red' href='javascript:void(0)' onclick='return del(1,2)'><span class='icon-trash-o'></span> 删除</a> </div></td>"
+                        tr+="</tr>"
+                        $("#xianshi:eq(0)").append(tr);
+                    }
+                });
+            }
+        });
+    </script>
 </head>
 <body>
 <form method="post" action="">
@@ -22,33 +71,40 @@
           <button type="button"  class="button border-green" id="checkall"><span class="icon-check"></span> 全选</button>
           <button type="submit" class="button border-red"><span class="icon-trash-o"></span> 批量删除</button>
         </li>
+          <li>
+              城市:
+              <select name="citiesstates" id="citiesstates" class="input" onchange="changesearch()"  style="width:150px; line-height:17px;display:inline-block">
+                  <option value="0">选择</option>
+              </select>
+          </li>
 		<li>
           产品分类:
-          <select name="s_isvouch" class="input" onchange="changesearch()"  style="width:200px; line-height:17px;display:inline-block">
-            <option value="">选择</option>
-            <option value="1">旅游产品</option>
-            <option value="2">酒店产品</option>
-			<option value="0">汽车产品</option>
+          <select name="s_isvouch" id="s_isvouch" class="input"  style="width:150px; line-height:17px;display:inline-block">
+            <option value="0">选择</option>
           </select>
         </li>
 		<li>
           <input type="text" placeholder="请输入搜索关键字" name="keywords" class="input" style="width:250px; line-height:17px;display:inline-block" />
-          <a href="javascript:void(0)" class="button border-main icon-search" onclick="changesearch()" > 搜索</a></li>
+          <a href="" class="button border-main icon-search" onclick="changesearch()" > 搜索</a></li>
       </ul>
     </div>
-    <table class="table table-hover text-center">
+    <table class="table table-hover text-center" id="xianshi">
       <tr>
         <th>ID</th>
         <th>产品名字</th>
+        <th>图片</th>
+        <th>价格</th>
         <th>操作</th>       
-      </tr>      
-        <tr>
-          <td><input type="checkbox" name="id[]" value="1" />
-            1</td>
-          <td over-flow: hidden;>【云湖仙屿】8人中文团 英国苏格兰高地 天空岛+尼斯湖+蒸汽火车四日游(赠爱丁堡游+火车票可选+3晚住宿3早)</td>
-          <td><div class="button-group"> <a class="button border-main" href="modProduct.html"><span class="icon-edit"></span> 修改</a>
-		  <a class="button border-red" href="javascript:void(0)" onclick="return del(1,2)"><span class="icon-trash-o"></span> 删除</a> </div></td>
-        </tr>
+      </tr>
+        <!--<tr>-->
+          <!--<td><input type="checkbox" name="id[]" value="1" />-->
+            <!--1</td>-->
+          <!--<td id="biaoti">【云湖仙屿】8人中文团 英国苏格兰高地 天空岛+尼斯湖+蒸汽火车四日游(赠爱丁堡游+火车票可选+3晚住宿3早)</td>-->
+          <!--<td><img src="images/11.jpg" alt="" width="120" height="50" /></td>-->
+          <!--<td>3333</td>-->
+          <!--<td><div class="button-group"> <a class="button border-main" href="modProduct.html"><span class="icon-edit"></span> 修改</a>-->
+		  <!--<a class="button border-red" href="javascript:void(0)" onclick="return del(1,2)"><span class="icon-trash-o"></span> 删除</a> </div></td>-->
+        <!--</tr>-->
       <tr>
         <td colspan="8"><div class="pagelist"> <a href="">上一页</a> <span class="current">1</span><a href="">2</a><a href="">3</a><a href="">下一页</a><a href="">尾页</a> </div></td>
       </tr>

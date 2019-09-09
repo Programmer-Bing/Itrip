@@ -11,8 +11,17 @@
 <script src="js/jquery.js"></script>
 <script src="js/pintuer.js"></script>
 </head>
+<script type="text/javascript" src="scripts/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
 $(function(){
+
+    $.getJSON("productType","",function(json){
+        for (var i = 0; i <json.length ; i++) {
+            var tr="";
+            tr+="<option value='"+json[i].PT_id+"'>"+json[i].PT_name+"</option>"
+            $("#product").append(tr);
+        }
+    });
 $("#product").change(function(){
 	var pid=0;
 	pid=parseInt($(this).val());
@@ -32,8 +41,21 @@ $("#product").change(function(){
 		
 		tr+="<div class='form-group'><div class='label'><label for='sitename'>价格：</label></div>"
 		tr+="    <div class='field'><input type='text' class='input w50' name='Popular'id='opular' size='0' placeholder='请输入价格' data-validate='equired:请输入价格'/></div></div>"
-		
-		tr+="<div class='form-group'><div class='label'><label for='sitename'>评论数：</label></div>"
+
+        tr+="<div class='form-group'><div class='label'><label for='sitename'>城市：</label></div>"
+        tr+="    <div class='field'>"
+        tr+=    "<select name='citiesstates' id='citiesstates' class='input'  style='width:200px; line-height:17px;display:inline-block'>"
+        tr+="<option value='0'>选择</option>"
+        tr+="<option value='1'>冰岛</option>"
+        tr+="<option value='2'>阿克雷里</option>"
+        tr+="<option value='3'>布里斯班</option>"
+        tr+="<option value='4'>悉尼</option>"
+        tr+="<option value='5'>墨尔本</option>"
+        tr+="<option value='6'>圣灵群岛</option>"
+        tr+="<option value='7'>凯恩斯</option>"
+        tr+="</select></div></div>"
+
+        tr+="<div class='form-group'><div class='label'><label for='sitename'>评论数：</label></div>"
 		tr+="    <div class='field'><input type='text' class='input w50'name='Popular' id='Popular'size='50'placeholder='请输入评论数'data-validate='required:请输入评论数'/></div></div>"
 		
 		tr+="<div class='orm-group'><div class='label'><label for='sitename'>描述：</label></div>"
@@ -157,9 +179,6 @@ $("#product").change(function(){
         <div class="field">
           <select name="product" id="product" class="input"  style="width:200px; line-height:17px;display:inline-block">
             <option value="0">选择</option>
-            <option value="1">旅游产品</option>
-            <option value="2">酒店产品</option>
-			<option value="3">汽车产品</option>
           </select>     
         </div>
       </div>

@@ -56,19 +56,24 @@
                   		if(data.length>0){
                             $("#hint").text("手机号码已经注册")
 						}
+                  		else{
+                            $("#hint").text("")
+						}
 						if(data.length==0 ){
 
 						$.getJSON("/usercode",{"phone":phone},function (data) {
 
 						    $("#zhuce").click(function () {
-						        alert("注册点击")
+
                                 var checkCode=$("#checkCode").val();
 								$.getJSON("/addUser",{"phone":phone,"code":checkCode},function (data) {
 										if(data>0){
-										    alert("新增成功")
+
+											window.location="注册跳转.html?phone="+phone;
 										}
 										else{
-										    alert("新增失败")
+
+                                            $("#hint").text("验证码输入错误")
 										}
 								})
 

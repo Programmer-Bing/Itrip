@@ -1,5 +1,6 @@
 package com.cssl.pojo.controller;
 
+
 import com.cssl.pojo.HomePage_product;
 import com.cssl.pojo.service.HomePage_productService;
 import org.apache.ibatis.annotations.Param;
@@ -23,7 +24,7 @@ public class HomePage_productController {
     }
     /*吃喝玩乐*/
     @RequestMapping("findPartyingByCity")
-    public List<HomePage_product> findPartyingByCity( @RequestParam(required = false, value = "P_cid") Integer P_cid, @RequestParam(required = false, value = "Pt_id") Integer Pt_id){
+    public List<HomePage_product> findPartyingByCity(@RequestParam(required = false, value = "P_cid") Integer P_cid, @RequestParam(required = false, value = "Pt_id") Integer Pt_id){
         System.out.println("成功到服务者模块！！");
         Map<String, Object> map = new HashMap<>();
         map.put("P_cid", P_cid);
