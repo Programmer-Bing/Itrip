@@ -38,4 +38,20 @@ public class UserServiceImpl implements UserService {
     public String Cs2(String name) {
         return ud.Cs2(name);
     }
+
+    @Override
+    public Map<String,Object> PhoneEmail(String phone) {
+
+        return  ud.PhoneEmail(phone);
+    }
+
+    @Override
+    public int UpdatePhone(Map<String, Object> map) {
+        return ud.UpdatePhone(map);
+    }
+
+    @Override
+    public List<User> UserLogin(Map<String, Object> map) {
+        return ud.UserLogin(map);
+    }
 }

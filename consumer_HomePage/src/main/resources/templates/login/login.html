@@ -37,25 +37,51 @@
 		  $("#phoneLogin").click(function () {
 				var phonenumber=$("#phoneNum").val();
 				var phonePwd=$("#phonePwd").val();
-              var patrn=/^(\w){6,20}$/;
+               var patrn=/^(\w){6,20}$/;
 				if(phonenumber==null||phonenumber==""){
 					$("#hint0").text("手机号码不能为空")
+                    document.getElementById("phonenum123").style.border="1px red solid";
+					$("#phoneNum").focus();
 					return false;
+				}
+				else{
+                    document.getElementById("phonenum123").style.border="";
+                    $("#phoneNum").blur();
 				}
                 if(!(/^1(3|4|5|6|7|8|9)\d{9}$/.test(phonenumber))){
 
                   $("#hint0").text("手机号码有误，请重填")
+                    document.getElementById("phonenum123").style.border="1px red solid";
+                    $("#phoneNum").focus();
                   return false;
                 }
+                else{
+                    document.getElementById("phonenum123").style.border="";
+                    $("#phoneNum").blur();
+				}
 				if(phonePwd==null||phonePwd==""){
                     $("#hint0").text("密码不能为空")
+                    document.getElementById("pwd0").style.border="1px red solid";
+                    $("#phonePwd").focus();
 					return false;
 				}
+				else{
+                    document.getElementById("pwd0").style.border="";
+                    $("#phonePwd").blur();
+				}
+
                if(!patrn.exec(phonePwd)){
                   $("#hint0").text("密码输入格式不正确(6-20个字母,字符)")
+                   document.getElementById("pwd0").style.border="1px red solid";
+                   $("#phonePwd").focus();
                   return false;
                }else{
                    $("#hint0").text("")
+                   document.getElementById("pwd0").style.border="";
+                   $("#phonePwd").blur();
+                   $.getJSON("/loginUser",{"phone":phonenumber,"pwd":phonePwd},function (data) {
+
+                   })
 			   }
 
           })
@@ -69,22 +95,45 @@
 			  var pa2=/^[a-z]([a-zA-Z0-9_]{5,20})@([a-z0-9]{1,10})([.]{1})([a-z]{2,4})$/;
 			  if(email==null||email==""){
                   $("#hint1").text("邮箱不能为空")
+				  document.getElementById("emailnum").style.border="1px red solid";
+                  $("#email").focus();
                   return false;
                }
+			  else{
+                  document.getElementById("emailnum").style.border="";
+                  $("#email").blur();
+			  }
               if (!pa2.test(email)) {
                   $("#hint1").text("邮箱输入格式不正确")
+                  document.getElementById("emailnum").style.border="1px red solid";
+                  $("#email").focus();
                   return false;
+			  }
+              else{
+                  document.getElementById("emailnum").style.border="";
+                  $("#email").blur();
 			  }
 
               if(emailPwd==null||emailPwd==""){
                   $("#hint1").text("密码不能为空")
+                  document.getElementById("emailpwdnum").style.border="1px red solid";
+                  $("#email").focus();
                   return false;
               }
+              else{
+                  document.getElementById("emailpwdnum").style.border="";
+                  $("#email").blur();
+			  }
+
               if(!patrn.exec(emailPwd)){
                   $("#hint1").text("密码输入格式不正确(6-20个字母,字符)")
+                  document.getElementById("emailpwdnum").style.border="1px red solid";
+                  $("#email").focus();
                   return false;
               }else{
                   $("#hint1").text("")
+                  document.getElementById("emailpwdnum").style.border="";
+                  $("#email").blur();
               }
 
           })
@@ -129,6 +178,10 @@
       function  zhuce() {
 		  window.location="zhuce.html";
       }
+
+      function ftpwd() {
+		  window.location="找回密码.html";
+      }
   </script>
   <body>
 
@@ -166,8 +219,8 @@
 			<div id="logintype-next" style="display:block;">
 				<form id="phone__login" onsubmit="return false">
 					<!-- 手机号 -->
-					<div class="iptBox cus_input" style="margin-top:40px;padding:0;">
-						<select style="height:36px;width:80px;border:none;background:none;" id="regionCodePhoneNumNext" name="regionCodePhoneNumNext">
+					<div class="iptBox cus_input" style="margin-top:40px;">
+						<select style="height:36px;width:80px;border:none;background:none;" id="regionCodePhoneNumNext" name="regionCodePhoneNumNext" >
 							<option value="86" label="中国" selected="selected">+86</option>
 									<option value="61" label="澳大利亚">+61</option>
 									<option value="64" label="新西兰">+64</option>
@@ -346,7 +399,7 @@
 			<div id="loginphone" class="hide">
 				<!-- 手机号 -->
 				<form onsubmit="return false">
-					<div class="iptBox cus_input" style="margin-top:40px;padding:0;">
+					<div class="iptBox cus_input" style="margin-top:40px;padding:0;" id="phonenum123">
 						<select style="height:36px;width:80px;border:none;background:none;" id="phoneRegionCode" name="phoneRegionCode">
 							<option value="86" label="中国" selected="selected">+86</option>
 									<option value="61" label="澳大利亚">+61</option>
@@ -412,7 +465,7 @@
 						<i class="icon_phone"></i>
 					</div>
 					<!-- 输入密码 -->
-					<div class="iptBox inputPassword mt10 cus_input" phonepasshas=""> <!-- 有密码 -->
+					<div class="iptBox inputPassword mt10 cus_input" phonepasshas="" id="pwd0"> <!-- 有密码 -->
 						<input id="phonePwd" type="password" data-valid="required min[6] max[20]" data-name="密码" name="phonePwd" style="width:248px;" placeholder="密码" autocomplete="off">
 					</div>
 
@@ -434,7 +487,7 @@
 				<div class="oh mt10 forgatpassword">
 					<span style="color: orange;font-size: 15px" id="hint0"></span>
 					<span id="errTipPhone" class="warnning"></span>
-					<a class="forgetPass" href="javascript:;">忘记密码?</a>
+					<a class="forgetPass" href="javascript:;" onclick="ftpwd()">忘记密码?</a>
 				</div>
 				<!-- 手机登录第一步  -->
 				<a id="phoneLogin" href="javascript:;" class="btn-normal-blue mt20" phonelogin="">登录</a>
@@ -443,10 +496,10 @@
 			<!-- 邮件密码登录页面 -->
 			<div id="logintype-email" class="hide">
 				<form onsubmit="return false;" id="email__login">
-					<div class="iptBox mt20 cus_input">
+					<div class="iptBox mt20 cus_input" id="emailnum">
 						<input id="email" data-valid="required email" data-name="邮箱" type="text" name="email" style="width:248px;" placeholder="邮箱" autocomplete="off">
 					</div>
-					<div class="iptBox inputPassword mt10 cus_input">
+					<div class="iptBox inputPassword mt10 cus_input" id="emailpwdnum">
 						<input id="emailPwd" data-valid="required min[6] max[20]" data-name="密码" type="password" name="emailPwd" style="width:248px;" placeholder="密码" autocomplete="off">
 					</div>
 					<!-- 输入系统验证码 -->

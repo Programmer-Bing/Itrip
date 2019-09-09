@@ -48,6 +48,41 @@ public class UserController {
         return us.JudgeUser(phone);
     }
 
+    /***
+     *
+     * 根据号码拿邮箱
+     * @param phone
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET,value = "PhoneEmailUser")
+    public Map<String,Object> PhoneEmail(@RequestParam(value = "phone") String phone){
+        System.out.println("消费者来了查询邮箱");
+        return  us.PhoneEmail(phone);
+    }
+
+    /***
+     *
+     * 修改密码
+     * @param map
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST,value = "/UpdatePhoneUser")
+    public int UpdatePhone(@RequestBody  Map<String,Object> map){
+        System.out.println("消费者来修改密码");
+        return  us.UpdatePhone(map);
+    }
+
+    /***
+     *
+     * 手机密码登录
+     */
+    @RequestMapping(method = RequestMethod.POST,value = "/LoginPhoeUser")
+    public List<User> LoginPhone(@RequestBody  Map<String,Object> map){
+        System.out.println("消费者来登录");
+        return us.UserLogin(map);
+    }
+
+
 
 
 

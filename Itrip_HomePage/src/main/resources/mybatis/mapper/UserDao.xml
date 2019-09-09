@@ -26,4 +26,19 @@
 
     </select>
 
+    <select id="PhoneEmail" resultType="Map" parameterType="String">
+
+        SELECT   email    FROM USER WHERE Phone_number=#{phone}
+    </select>
+
+    <update id="UpdatePhone" parameterType="Map">
+
+        UPDATE USER SET PASSWORD=#{pwd} WHERE Phone_number=#{phone}
+    </update>
+
+    <select id="UserLogin" resultType="User" parameterType="Map">
+
+        SELECT  * FROM USER WHERE Account_number=#{phone} AND PASSWORD=#{password}
+    </select>
+
 </mapper>

@@ -55,6 +55,23 @@ public class FeginFactory implements FallbackFactory<HomePageClientService>{
 			public int addUser(Map<String,Object> map) {
 				return 0;
 			}
+
+
+			@Override
+			public Map<String,Object> PhoneEmail(String phone) {
+				return null;
+			}
+
+			@Override
+			public int UpdatePhone(Map<String, Object> map) {
+				return 0;
+			}
+
+
+			@Override
+			public List<User> LoginPhone(Map<String, Object> map) {
+				return null;
+			}
 		};
 	}
 }
