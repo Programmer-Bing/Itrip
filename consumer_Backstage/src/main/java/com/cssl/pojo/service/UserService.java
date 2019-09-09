@@ -21,4 +21,6 @@ public interface UserService {
     public List<Map<String,Object>> citiesstates();
     @RequestMapping("findProduct")
     public List<Map<String,Object>> findProduct(Map<String,Object> map);
+    @RequestMapping("productSize")
+    public int productSize();
 }
