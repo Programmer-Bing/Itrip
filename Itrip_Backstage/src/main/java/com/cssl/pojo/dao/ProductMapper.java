@@ -2,6 +2,7 @@ package com.cssl.pojo.dao;
 
 import com.cssl.pojo.po.ProductType;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,4 +19,6 @@ public interface ProductMapper {
     public List<Map<String,Object>> findProduct(Map<String,Object> map);
 
     public List<Map<String,Object>> citiesstates();
+
+    public int productSize();
 }

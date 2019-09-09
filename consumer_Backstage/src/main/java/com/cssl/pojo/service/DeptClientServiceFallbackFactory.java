@@ -34,6 +34,11 @@ public class DeptClientServiceFallbackFactory implements FallbackFactory<UserSer
             public List<Map<String, Object>> findProduct(Map<String, Object> map) {
                 return new ArrayList<>();
             }
+
+            @Override
+            public int productSize() {
+                return 0;
+            }
         };
     }
 }

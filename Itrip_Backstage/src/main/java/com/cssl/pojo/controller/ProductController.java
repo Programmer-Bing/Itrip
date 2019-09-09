@@ -31,6 +31,9 @@ public class ProductController {
         System.out.println("map参数:"+map);
         System.out.println("服务者:"+productService.findProduct(map));
         return productService.findProduct(map);
-
+    }
+    @RequestMapping("productSize")
+    public int productSize(){
+        return productService.productSize();
     }
 }
