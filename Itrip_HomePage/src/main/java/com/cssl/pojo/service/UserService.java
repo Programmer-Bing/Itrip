@@ -36,4 +36,6 @@ public interface UserService  {
 
     public  List<User> UserLogin(Map<String,Object> map);
 
+    public List<User> UserLoginEmail(Map<String,Object> map);
+
 }

@@ -54,4 +54,9 @@ public class UserServiceImpl implements UserService {
     public List<User> UserLogin(Map<String, Object> map) {
         return ud.UserLogin(map);
     }
+
+
+    public List<User> UserLoginEmail(Map<String,Object> map){
+        return ud.UserLoginEmail(map);
+    }
 }

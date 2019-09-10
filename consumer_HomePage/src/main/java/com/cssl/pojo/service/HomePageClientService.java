@@ -67,6 +67,15 @@ public interface HomePageClientService {
     @RequestMapping(method = RequestMethod.POST,value = "/LoginPhoeUser")
     public List<User> LoginPhone(@RequestBody Map<String,Object> map);
 
+    /***
+     *
+     * 邮箱登录
+     * @param map
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST,value = "/LoginEmailUser")
+    public List<User> UserLoginEmail(@RequestBody  Map<String,Object> map);
+
 
 
 

@@ -41,4 +41,9 @@
         SELECT  * FROM USER WHERE Account_number=#{phone} AND PASSWORD=#{password}
     </select>
 
+    <select id="UserLoginEmail" resultType="User" parameterType="Map">
+        select*from user where email=#{email}  and Password=#{password}
+
+    </select>
+
 </mapper>

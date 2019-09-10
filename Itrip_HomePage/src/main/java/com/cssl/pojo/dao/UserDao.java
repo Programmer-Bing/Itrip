@@ -56,6 +56,13 @@ public interface UserDao {
      */
     public List<User> UserLogin(Map<String,Object> map);
 
+    /***
+     * 邮箱登录
+     * @param map
+     * @return
+     */
+    public List<User> UserLoginEmail(Map<String,Object> map);
+
 
 
 

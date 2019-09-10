@@ -5,6 +5,8 @@ import com.cssl.pojo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -82,6 +84,32 @@ public class UserController {
         return us.UserLogin(map);
     }
 
+
+    //测试分布式session
+    @GetMapping("/getUser")
+    public String getUser(HttpServletRequest request, HttpSession session){
+
+        String name=(String)session.getAttribute("user");
+        if(name==null||name.isEmpty()){
+            name="session:"+System.currentTimeMillis();
+            session.setAttribute("userName",name);
+        }
+        System.out.println("访问的端口："+request.getServerPort()+":"+name);
+        return name;
+    }
+
+    /***
+     *
+     * 邮箱登录
+     */
+    @RequestMapping(method = RequestMethod.POST,value = "/LoginEmailUser")
+    public List<User> UserLoginEmail(@RequestBody Map<String,Object> map){
+
+        System.out.println("消费者来邮箱登录");
+        List<User> list = us.UserLoginEmail(map);
+
+        return  us.UserLoginEmail(map);
+    }
 
 
 

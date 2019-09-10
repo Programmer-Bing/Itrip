@@ -72,6 +72,11 @@ public class FeginFactory implements FallbackFactory<HomePageClientService>{
 			public List<User> LoginPhone(Map<String, Object> map) {
 				return null;
 			}
+
+			@Override
+			public List<User> UserLoginEmail(Map<String, Object> map) {
+				return null;
+			}
 		};
 	}
 }
