@@ -7,6 +7,6 @@ import java.util.Map;
 
 public interface UserService {
 
-    public List<Map<String,Object>> findAll();
+    public List<Map<String,Object>> findAll(Map<String,Object> map);
 
 }

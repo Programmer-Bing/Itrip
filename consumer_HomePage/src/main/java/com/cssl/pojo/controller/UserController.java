@@ -5,7 +5,6 @@ import com.cssl.pojo.service.HomePageClientService;
 import com.cssl.pojo.util.DunXing;
 import com.cssl.pojo.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 import redis.clients.jedis.Jedis;
 
@@ -128,15 +127,6 @@ public class UserController {
         return service.PhoneEmail(phone);
     }
 
-    /***
-     *
-     *
-     * 修改密码
-     * @param pwd
-     * @param rePwd
-     * @param phone
-     * @return
-     */
     @RequestMapping(value = "/UpdatePwd")
     public  int UpdatePhone(String pwd,String rePwd,String phone){
         System.out.println("来了修改密码");
@@ -155,80 +145,21 @@ public class UserController {
 
     }
 
-
-    /***
-     *
-     * 手机密码登录
-     * @param phone
-     * @param pwd
-     * @return
-     */
     @RequestMapping(value = "/loginUser")
-    public int loginUser(String phone,String pwd,HttpSession se){
+    public int loginUser(String phone,String pwd){
         System.out.println("来了登录");
-        //md5对密码加密
-        /*String password = DigestUtils.md5DigestAsHex(pwd.getBytes());
-        System.out.println("加密后的密码:"+password);*/
         Map<String,Object> map=new HashMap<>();
         map.put("phone",phone);
         map.put("password",pwd);
         List<User> list = service.LoginPhone(map);
 
-        if(list.size()>0){
-            User user=list.get(0);
-            System.out.println("中文名字: "+user.getChinese_Name());
-            se.setAttribute(se.getId(),user);
-            System.out.println("sessionid: "+se.getId());
-            User uu = (User) se.getAttribute(se.getId());
-            System.out.println("redis取出来的数据: "+uu.getChinese_Name());
-            int administration = list.get(0).getAdministration();
-            if(administration==1){
-                return  1;
-            }
-            else{
-                return  2;
-            }
+        System.out.println(" 长度: "+list.size());
+        System.out.println("管理员: "+list.get(0).getAdministration());
 
-        }
-        else{
-            System.out.println("密码输入错误");
-            return 0;
-        }
-
+        return  0;
     }
 
-    /***
-     *
-     * 邮箱登录
-     * @return
-     */
-    @RequestMapping("/loginEmail")
-    public int UserLoginEmail(String email,String password,HttpSession se){
 
-        System.out.println("来了邮箱登录: "+email+"邮箱密码: "+password);
-        Map<String,Object>  map=new HashMap<>();
-        map.put("email",email);
-        map.put("password",password);
-        List<User> list = service.UserLoginEmail(map);
-        if(list.size()>0){
-            User user=list.get(0);
-            System.out.println("邮箱登录成功");
-            se.setAttribute(se.getId(),user);
-            int administration = list.get(0).getAdministration();
-            if(administration==1){
-                return 1;
-            }
-            else{
-                return 2;
-            }
-        }
-        else{
-            System.out.println("邮箱登录失败");
-            return 0;
-        }
-
-
-    }
 
 
 
