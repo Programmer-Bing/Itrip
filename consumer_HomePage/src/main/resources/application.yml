@@ -15,7 +15,6 @@ spring:
     name: microservice-consumer
 
 eureka:
-  enabled: true
   client:
     register-with-eureka: true
     service-url: 

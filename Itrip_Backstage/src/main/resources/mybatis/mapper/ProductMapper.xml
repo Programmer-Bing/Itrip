@@ -37,4 +37,6 @@
     <select id="productSize" resultType="int">
         SELECT COUNT(*) FROM product
     </select>
+
+
 </mapper>

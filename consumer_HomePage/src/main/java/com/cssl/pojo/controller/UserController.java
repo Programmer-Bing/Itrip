@@ -107,57 +107,6 @@ public class UserController {
 
     }
 
-    /***
-     * 判断号码和邮箱
-     * @return
-     */
-    @RequestMapping(value = "/Determinethenumber")
-    public List<User> SelectPhoneEmail(@RequestParam  String phone){
-        System.out.println("来了判断号码");
-        List<User> list = service.JudgeUser(phone);
-        System.out.println(list.size());
-        return  list;
-    }
-
-
-    @RequestMapping(value = "/PhoneEmailUser")
-    public Map<String,Object> PhoneEmail(String phone){
-        System.out.println("来了拿邮箱:"+service.PhoneEmail(phone).get("email"));
-
-        return service.PhoneEmail(phone);
-    }
-
-    @RequestMapping(value = "/UpdatePwd")
-    public  int UpdatePhone(String pwd,String rePwd,String phone){
-        System.out.println("来了修改密码");
-        if(pwd.equals(rePwd)){
-            System.out.println("两次密码输入一致");
-            HashMap<String,Object> map=new HashMap();
-            map.put("phone",phone);
-            map.put("pwd",pwd);
-            return  service.UpdatePhone(map);
-
-        }
-        else{
-            System.out.println("密码输入不一致");
-            return  0;
-        }
-
-    }
-
-    @RequestMapping(value = "/loginUser")
-    public int loginUser(String phone,String pwd){
-        System.out.println("来了登录");
-        Map<String,Object> map=new HashMap<>();
-        map.put("phone",phone);
-        map.put("password",pwd);
-        List<User> list = service.LoginPhone(map);
-
-        System.out.println(" 长度: "+list.size());
-        System.out.println("管理员: "+list.get(0).getAdministration());
-
-        return  0;
-    }
 
 
 
