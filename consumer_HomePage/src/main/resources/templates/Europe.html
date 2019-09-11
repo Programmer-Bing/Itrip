@@ -62,10 +62,38 @@
             });
             //吃喝玩乐Ajax加载
             $.getJSON("findPartyingByCity",{"P_cid":"3","Pt_id":"1"},function (date) {
-                alert("进入了吃喝玩乐板块");
+          
             });
 
+            //拿数据
+            $.getJSON("/GetSession",function (data) {
+                    if(data!=null){
+
+                        document.getElementById("logzc").style.display="none";
+                        $("#username").text(data.english_Name);
+                        $("#user").css("display","block");
+                        document.getElementById("dtc").style.display="none";
+
+                    }
+
+
+            });
+
+            //退出登录
+            $("#btn_logout").click(function () {
+
+                $.getJSON("/logout",function (data) {
+                    window.location="../Europe.html"
+
+                        
+
+
+                })
+            })
+
         })
+
+
     </script>
 </head>
 <body>
@@ -84,7 +112,7 @@
     </div>
 </div>
 <!-- 弹窗 -->
-<div class="user_select_area hide">
+<div class="user_select_area hide" id="dtc">
     <div class="loadingFrame hide"></div>
     <div class="loadingChose hide">
         <div class="pos_r">
@@ -142,22 +170,24 @@
 						</a>
 					</span>
                     <span class="line">|</span>
-                    <span class="js_loginStatus" style="margin-left: 0px;">
+                    <span class="js_loginStatus" style="margin-left: 0px;" id="logzc">
+
 						<span><a class="blue" onclick="login()" href="javascript:void(0);"
                                  rel="nofollow">登录</a></span><span>/</span>
-						<span><a href="https://www.itrip.com/signup/index" rel="nofollow">注册</a></span>
+
+						<span><a href="login/zhuce.html" rel="nofollow">注册</a></span>
 					</span>
-                    <span class="js_loginStatus" style="display:none;margin-left:0px;">
+                    <span class="js_loginStatus" style="display:none;margin-left:0px;" id="user">
 						<span class="sw_syb fl pos_r" style="margin-left:0px;"><a class="blue display_name"
-                                                                                  href="https://www.itrip.com/user/index"></a><i
+                                                                                  href="login/个人中心个人信息.html" id="username"></a><i
                                 class="sw_sj"></i>
 							<dl class="down_list">
-								<dd class="js_myOrder"><a class="pos_r" href="https://www.itrip.com/user/orders"
+								<dd class="js_myOrder"><a class="pos_r" href="login/个人信息订单.html"
                                                           rel="nofollow">我的订单<label></label></a></dd>
-								<dd class="js_myFavor"><a class="pos_r" href="https://www.itrip.com/user/favor/all"
+								<dd class="js_myFavor"><a class="pos_r" href="login/个人中心我的收藏.html"
                                                           rel="nofollow">我的收藏 <label></label></a></dd>
-								<dd><a href="https://www.itrip.com/user/reward" rel="nofollow">我的奖金</a></dd>
-								<dd><a id="btn_logout" onclick="logout()" href="javascript:void(0);"
+								<dd><a href="login/个人中心我的奖金.html" rel="nofollow">我的奖金</a></dd>
+								<dd><a id="btn_logout" href="javascript:void(0);"
                                        rel="nofollow">退出登录</a></dd>
 							</dl>
 						</span>
@@ -1930,7 +1960,7 @@
         if ($('.linkonline .xiaoneng').length > 0) {
             $('.linkonline #au').click(function () {
                 //小能分配的缺省客服组id
-                if (checkLogin()) {
+                if (check()) {
                     settingid = isTest ? 'kf_9680_1458962349823' : 'kf_9680_1458959605873';
                     NTKF.im_openInPageChat(settingid);
                 }
@@ -1995,7 +2025,7 @@
             });
             //售前
             $('.linkonline #sale_before').click(function () {
-                if (checkLogin()) {
+                if (check()) {
                     settingid = 'kf_9680_1458959605873';
                     NTKF.im_openInPageChat(settingid);
                 }
@@ -2003,7 +2033,7 @@
             });
             //售后
             $('.linkonline #sale_after').click(function () {
-                if (checkLogin()) {
+                if (check()) {
                     settingid = 'kf_9680_1461738767319';
                     NTKF.im_openInPageChat(settingid);
                 }
@@ -2011,7 +2041,7 @@
             });
             //产品
             $('.linkonline #product').click(function () {
-                if (checkLogin()) {
+                if (check()) {
                     settingid = 'kf_9680_1458959605873';
                     NTKF.im_openInPageChat(settingid);
                 }
@@ -2019,7 +2049,7 @@
             });
             //已有订单
             $('.linkonline #has_order').click(function () {
-                if (checkLogin()) {
+                if (check()) {
                     settingid = 'kf_9680_1461738767319';
                     NTKF.im_openInPageChat(settingid);
                 }
@@ -2027,7 +2057,7 @@
             });
             //懒人服务
             $('.linkonline #vip_service').click(function () {
-                if (checkLogin()) {
+                if (check()) {
                     settingid = 'kf_9680_1471227292535';
                     NTKF.im_openInPageChat(settingid);
                 }
@@ -2387,7 +2417,7 @@
     </div>
 </div>
 <div class="app-turn"></div>
-<div class="appdownload compress">
+<div class="appdownload compress" >
     <div class="appdownload-content">
         <div class="closeapp">
             <i style="width:27px;height:27px;top:44px;"></i>
@@ -3235,7 +3265,7 @@ data-i-op-reviewid
         gio('send');
         <!--用户-->
         // 发送登录用户变量API
-        gio('people.set', "loginUserId", (getAreaIdCookies("uin") || ''));
+        gio('people.set', "UserId", (getAreaIdCookies("uin") || ''));
 
         // 发送访问用户变量API
         gio('visitor.set', "visitor_id", (getAreaIdCookies("gr_user_id") || ''));
@@ -3276,6 +3306,13 @@ data-i-op-reviewid
         })
         /*< !-- product_type -- >*/
     }
+</script>
+<script>
+    function  login() {
+        window.location="login/login.html";
+    }
+
+
 </script>
 <noscript>&lt; img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=1938846466375704&amp;ev=PageView&amp;noscript=1"

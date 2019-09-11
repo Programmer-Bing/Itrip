@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:wb="http://open.weibo.com/wb" xmlns:th="http://www.thymeleaf.org">
-  <head>
-  	<meta http-equiv="pragma" content="no-cache">
-    <meta http-equiv="cache-control" content="no-cache">
-    <meta http-equiv="expires" content="0">
+<head>
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
 	<meta http-equiv="X-UA-Compatible" content="edge">
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<meta name="description" content="">
@@ -11,202 +11,201 @@
 	<meta name="viewport" content="width=1200, initial-scale=0.8">
 	<meta name="applicable-device" content="pc">
 	<title>iTrip爱去 - 登录</title>
-	
+
 	<link rel="stylesheet" type="text/css" href="../js/lib/select2/select2.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/it_reset_201902190028.css">
 	<link rel="stylesheet" type="text/css" href="../css/it_login_201902190028.css">
-	  <script type="text/javascript" charset="utf-8" src="//g.alicdn.com/sd/ncpc/nc.js?t=2015052012"></script>
-  </head>
-  <script src="../js/jquery-1.8.3.js" type="text/javascript" ></script>
+	<script type="text/javascript" charset="utf-8" src="//g.alicdn.com/sd/ncpc/nc.js?t=2015052012"></script>
+</head>
+<script src="../js/jquery-1.8.3.js" type="text/javascript" ></script>
 
-  <script type="text/javascript">
-	  $(function () {
+<script type="text/javascript">
+    $(function () {
 
-	      $("#signup").click(function () {
-			   window.location="zhuce.html";
-          })
-          var dl=$("#phoneLoginNext").text();
+        $("#signup").click(function () {
+            window.location="zhuce.html";
+        })
+        var dl=$("#phoneLoginNext").text();
 
-	      $("#phoneLoginNext").click(function () {
+        $("#phoneLoginNext").click(function () {
 
-              var phone=$("#phoneNumNext").val();
-              if(phone==null||phone==""){
-                  $("#hint3").text("手机号不能为空");
-                  $("#phoneNumNext").focus();
-                  document.getElementById("phonenumber").style.border="1px solid red";
-                  return false;
+            var phone=$("#phoneNumNext").val();
+            if(phone==null||phone==""){
+                $("#hint3").text("手机号不能为空");
+                $("#phoneNumNext").focus();
+                document.getElementById("phonenumber").style.border="1px solid red";
+                return false;
 
-			  }
-              else{
-                  $("#phoneNumNext").blur();
-                  document.getElementById("phonenumber").style.border="";
-                  $("#hint3").text("");
-			  }
-              if(!(/^1(3|4|5|6|7|8|9)\d{9}$/.test(phone))){
+            }
+            else{
+                $("#phoneNumNext").blur();
+                document.getElementById("phonenumber").style.border="";
+                $("#hint3").text("");
+            }
+            if(!(/^1(3|4|5|6|7|8|9)\d{9}$/.test(phone))){
 
-                  $("#hint3").text("手机号码有误，请重填")
-                  document.getElementById("phonenumber").style.border="1px red solid";
-                  $("#phoneNumNext").focus();
-                  return false;
-              }
-              else{
-                  document.getElementById("phonenumber").style.border="";
-                  $("#phoneNumNext").blur();
-                  $("#hint3").text("")
-              }
-              $.getJSON("/UserRegistration",{"phone":phone},function (data) {
-				   if(data.length>0){
-                       document.getElementById("loginphone").style.display="block";
+                $("#hint3").text("手机号码有误，请重填")
+                document.getElementById("phonenumber").style.border="1px red solid";
+                $("#phoneNumNext").focus();
+                return false;
+            }
+            else{
+                document.getElementById("phonenumber").style.border="";
+                $("#phoneNumNext").blur();
+                $("#hint3").text("")
+            }
+            $.getJSON("/UserRegistration",{"phone":phone},function (data) {
+                if(data.length>0){
+                    document.getElementById("loginphone").style.display="block";
 
-                       document.getElementById("logintype-next").style.display="none";
-                       $("#phoneNum").val(phone);
-				   }
-				   else{
-                        $("#phoneNumNext").focus();
-                        document.getElementById("phonenumber").style.border="1px solid red";
-						$("#hint3").text("账号不存在,请检查之后再来登录");
-						return false;
-				   }
-              })
-
-
-          })
-
-		  $("#phoneLogin").click(function () {
-				var phonenumber=$("#phoneNum").val();
-				var phonePwd=$("#phonePwd").val();
-               var patrn=/^(\w){6,20}$/;
-				if(phonenumber==null||phonenumber==""){
-					$("#hint0").text("手机号码不能为空")
-                    document.getElementById("phonenum123").style.border="1px red solid";
-					$("#phoneNum").focus();
-					return false;
-				}
-				else{
-                    document.getElementById("phonenum123").style.border="";
-                    $("#phoneNum").blur();
-				}
-                if(!(/^1(3|4|5|6|7|8|9)\d{9}$/.test(phonenumber))){
-
-                  $("#hint0").text("手机号码有误，请重填")
-                    document.getElementById("phonenum123").style.border="1px red solid";
-                    $("#phoneNum").focus();
-                  return false;
+                    document.getElementById("logintype-next").style.display="none";
+                    $("#phoneNum").val(phone);
                 }
                 else{
-                    document.getElementById("phonenum123").style.border="";
-                    $("#phoneNum").blur();
-				}
-				if(phonePwd==null||phonePwd==""){
-                    $("#hint0").text("密码不能为空")
-                    document.getElementById("pwd0").style.border="1px red solid";
-                    $("#phonePwd").focus();
-					return false;
-				}
-				else{
-                    document.getElementById("pwd0").style.border="";
-                    $("#phonePwd").blur();
-				}
-
-               if(!patrn.exec(phonePwd)){
-                  $("#hint0").text("密码输入格式不正确(6-20个字母,字符)")
-                   document.getElementById("pwd0").style.border="1px red solid";
-                   $("#phonePwd").focus();
-                  return false;
-               }else{
-                   $("#hint0").text("")
-                   document.getElementById("pwd0").style.border="";
-                   $("#phonePwd").blur();
-                   $.getJSON("/loginUser",{"phone":phonenumber,"pwd":phonePwd},function (data) {
-							if(data==0){
-                                $("#hint0").text("账号或密码错误")
-							}
-							else if(data==1) {
-                                //管理员用户登录成功
-                                alert("管理员登录成功")
-							}
-							else if(data==2){
-                                //普通用户登录成功
-                                alert("普通登录成功")
-
-							}
-                   })
-			   }
-
-          })
+                    $("#phoneNumNext").focus();
+                    document.getElementById("phonenumber").style.border="1px solid red";
+                    $("#hint3").text("账号不存在,请注册之后再来登录");
+                    return false;
+                }
+            })
 
 
-		  $("#emailLogin").click(function () {
-			  var email = $("#email").val();
-			  var  emailPwd=$("#emailPwd").val();
-              var patrn=/^(\w){6,20}$/;
+        })
 
-			  var pa2=/^[a-z0-9]([a-zA-Z0-9_]{5,20})@([a-z0-9]{1,10})([.]{1})([a-z]{2,4})$/;
+        $("#phoneLogin").click(function () {
+            var phonenumber=$("#phoneNum").val();
+            var phonePwd=$("#phonePwd").val();
+            var patrn=/^(\w){6,20}$/;
+            if(phonenumber==null||phonenumber==""){
+                $("#hint0").text("手机号码不能为空")
+                document.getElementById("phonenum123").style.border="1px red solid";
+                $("#phoneNum").focus();
+                return false;
+            }
+            else{
+                document.getElementById("phonenum123").style.border="";
+                $("#phoneNum").blur();
+            }
+            if(!(/^1(3|4|5|6|7|8|9)\d{9}$/.test(phonenumber))){
 
-			  if(email==null||email==""){
-                  $("#hint1").text("邮箱不能为空")
-				  document.getElementById("emailnum").style.border="1px red solid";
-                  $("#email").focus();
-                  return false;
-               }
-			  else{
-                  document.getElementById("emailnum").style.border="";
-                  $("#email").blur();
-			  }
-              if (!pa2.test(email)) {
-                  $("#hint1").text("邮箱输入格式不正确")
-                  document.getElementById("emailnum").style.border="1px red solid";
-                  $("#email").focus();
-                  return false;
-			  }
-              else{
-                  document.getElementById("emailnum").style.border="";
-                  $("#email").blur();
-			  }
+                $("#hint0").text("手机号码有误，请重填")
+                document.getElementById("phonenum123").style.border="1px red solid";
+                $("#phoneNum").focus();
+                return false;
+            }
+            else{
+                document.getElementById("phonenum123").style.border="";
+                $("#phoneNum").blur();
+            }
+            if(phonePwd==null||phonePwd==""){
+                $("#hint0").text("密码不能为空")
+                document.getElementById("pwd0").style.border="1px red solid";
+                $("#phonePwd").focus();
+                return false;
+            }
+            else{
+                document.getElementById("pwd0").style.border="";
+                $("#phonePwd").blur();
+            }
 
-              if(emailPwd==null||emailPwd==""){
-                  $("#hint1").text("密码不能为空")
-                  document.getElementById("emailpwdnum").style.border="1px red solid";
-                  $("#email").focus();
-                  return false;
-              }
-              else{
-                  document.getElementById("emailpwdnum").style.border="";
-                  $("#email").blur();
-			  }
+            if(!patrn.exec(phonePwd)){
+                $("#hint0").text("密码输入格式不正确(6-20个字母,字符)")
+                document.getElementById("pwd0").style.border="1px red solid";
+                $("#phonePwd").focus();
+                return false;
+            }else{
+                $("#hint0").text("")
+                document.getElementById("pwd0").style.border="";
+                $("#phonePwd").blur();
+                $.getJSON("/loginUser",{"phone":phonenumber,"pwd":phonePwd},function (data) {
+                    if(data==0){
+                        $("#hint0").text("账号或密码错误")
+                    }
+                    else if(data==1) {
+                        //管理员用户登录成功
+                        alert("管理员登录成功")
+                    }
+                    else if(data==2){
+                        //普通用户登录成功
+                  		window.location="../Europe.html";
+                    }
+                })
+            }
 
-              if(!patrn.exec(emailPwd)){
-                  $("#hint1").text("密码输入格式不正确(6-20个字母,字符)")
-                  document.getElementById("emailpwdnum").style.border="1px red solid";
-                  $("#email").focus();
-                  return false;
-              }else{
-                  $("#hint1").text("")
-                  document.getElementById("emailpwdnum").style.border="";
-                  $("#email").blur();
-                  $.getJSON("/loginEmail",{"email":email,"password":emailPwd},function (data) {
-						if(data==0){
-                            $("#hint1").text("账号或密码不正确")
-						}else if(data==1){
-                       		//管理员用户
-							alert("管理员用户")
-						}else if(data==2){
-							//普通用户
-							alert("普通用户")
-
-						}
-                  })
-              }
-
-          })
-
-
+        })
 
 
+        $("#emailLogin").click(function () {
+            var email = $("#email").val();
+            var  emailPwd=$("#emailPwd").val();
+            var patrn=/^(\w){6,20}$/;
+
+            var pa2=/^[a-z0-9]([a-zA-Z0-9_]{5,20})@([a-z0-9]{1,10})([.]{1})([a-z]{2,4})$/;
+
+            if(email==null||email==""){
+                $("#hint1").text("邮箱不能为空")
+                document.getElementById("emailnum").style.border="1px red solid";
+                $("#email").focus();
+                return false;
+            }
+            else{
+                document.getElementById("emailnum").style.border="";
+                $("#email").blur();
+            }
+            if (!pa2.test(email)) {
+                $("#hint1").text("邮箱输入格式不正确")
+                document.getElementById("emailnum").style.border="1px red solid";
+                $("#email").focus();
+                return false;
+            }
+            else{
+                document.getElementById("emailnum").style.border="";
+                $("#email").blur();
+            }
+
+            if(emailPwd==null||emailPwd==""){
+                $("#hint1").text("密码不能为空")
+                document.getElementById("emailpwdnum").style.border="1px red solid";
+                $("#email").focus();
+                return false;
+            }
+            else{
+                document.getElementById("emailpwdnum").style.border="";
+                $("#email").blur();
+            }
+
+            if(!patrn.exec(emailPwd)){
+                $("#hint1").text("密码输入格式不正确(6-20个字母,字符)")
+                document.getElementById("emailpwdnum").style.border="1px red solid";
+                $("#email").focus();
+                return false;
+            }else{
+                $("#hint1").text("")
+                document.getElementById("emailpwdnum").style.border="";
+                $("#email").blur();
+                $.getJSON("/loginEmail",{"email":email,"password":emailPwd},function (data) {
+                    if(data==0){
+                        $("#hint1").text("账号或密码不正确")
+                    }else if(data==1){
+                        //管理员用户
+                        alert("管理员用户")
+                    }else if(data==2){
+                        //普通用户
+                        alert("普通用户")
+
+                    }
+                })
+            }
+
+        })
 
 
 
-          })
+
+
+
+
+    })
 
 
 
@@ -215,469 +214,469 @@
 
 
 
-	  function  emailLogin() {
+    function  emailLogin() {
 
-          document.getElementById("loginphone").style.display="none";
-          document.getElementById("logintype-next").style.display="none";
-		  document.getElementById("logintype-email").style.display="block";
-		  document.getElementById("email0").style.color="#56aaf0";
-		  document.getElementById("email0").style.borderBottom="#56aaf0 4px solid";
-          document.getElementById("number0").style.borderBottom="";
+        document.getElementById("loginphone").style.display="none";
+        document.getElementById("logintype-next").style.display="none";
+        document.getElementById("logintype-email").style.display="block";
+        document.getElementById("email0").style.color="#56aaf0";
+        document.getElementById("email0").style.borderBottom="#56aaf0 4px solid";
+        document.getElementById("number0").style.borderBottom="";
 
 
-      }
+    }
 
-      function  numberLogin() {
+    function  numberLogin() {
 
-          document.getElementById("logintype-next").style.display="block";
-          document.getElementById("logintype-email").style.display="none";
-          document.getElementById("number0").style.color="#56aaf0";
-          document.getElementById("number0").style.borderBottom="#56aaf0 4px solid";
-          document.getElementById("email0").style.borderBottom="";
+        document.getElementById("logintype-next").style.display="block";
+        document.getElementById("logintype-email").style.display="none";
+        document.getElementById("number0").style.color="#56aaf0";
+        document.getElementById("number0").style.borderBottom="#56aaf0 4px solid";
+        document.getElementById("email0").style.borderBottom="";
 
-      }
+    }
 
-      function  zhuce() {
-		  window.location="zhuce.html";
-      }
+    function  zhuce() {
+        window.location="zhuce.html";
+    }
 
-      function ftpwd() {
-		  window.location="找回密码.html";
-      }
-  </script>
-  <body>
+    function ftpwd() {
+        window.location="找回密码.html";
+    }
+</script>
+<body>
 
-  <div class="login_header">
-	  <div class="wrap" style="width:900px;">
-	  		<div class="logo fl pos_r">
-				<h1>
+<div class="login_header">
+	<div class="wrap" style="width:900px;">
+		<div class="logo fl pos_r">
+			<h1>
 				<a href="javascript:;">
 					<img src="../img/logo3.png" alt="iTrip爱去自由" style="margin:0px;position:relative;">
 				</a>
-				</h1>
-			</div>
-	  	</div>
-  </div>
-  <div class="login_cont">
-  	<div class="wrap clearfix" style="width:900px;background: url(../img/ad/left_back.jpg) left 150px no-repeat;">
-  		<div class="boxLoginRegister">
-		<div class="logo" id="img_logo"></div>
-		<div class="boxLoginRegisterCont" style="margin-top:20px;">
-			<div class="txtPanel" style="display:none;">
-				<span class="line"></span>
-				<span class="txt">设置昵称和密码</span>
-				<span class="line"></span>
-			</div>
-
-			<div class="titleBar" style="position:relative;">
-				<div class="pos_r" style="height:36px;">
-					<span class="cur loginForPhone"  id="number0" onclick="numberLogin()" style="border-bottom: #56aaf0 4px solid;">手机登录</span>
-					<span class="loginForEmail" onclick="emailLogin();"  id="email0"  >邮箱登录</span>
-					<i class="titleBarBot" style="right: 0px;"></i>
+			</h1>
+		</div>
+	</div>
+</div>
+<div class="login_cont">
+	<div class="wrap clearfix" style="width:900px;background: url(../img/ad/left_back.jpg) left 150px no-repeat;">
+		<div class="boxLoginRegister">
+			<div class="logo" id="img_logo"></div>
+			<div class="boxLoginRegisterCont" style="margin-top:20px;">
+				<div class="txtPanel" style="display:none;">
+					<span class="line"></span>
+					<span class="txt">设置昵称和密码</span>
+					<span class="line"></span>
 				</div>
-			</div>
-			
-			<!-- 默认下一步页面 -->
-			<div id="logintype-next" style="display:block;">
-				<form id="phone__login" onsubmit="return false">
+
+				<div class="titleBar" style="position:relative;">
+					<div class="pos_r" style="height:36px;">
+						<span class="cur loginForPhone"  id="number0" onclick="numberLogin()" style="border-bottom: #56aaf0 4px solid;">手机登录</span>
+						<span class="loginForEmail" onclick="emailLogin();"  id="email0"  >邮箱登录</span>
+						<i class="titleBarBot" style="right: 0px;"></i>
+					</div>
+				</div>
+
+				<!-- 默认下一步页面 -->
+				<div id="logintype-next" style="display:block;">
+					<form id="phone__login" onsubmit="return false">
+						<!-- 手机号 -->
+						<div class="iptBox cus_input" style="margin-top:40px;" id="phonenumber">
+							<select style="height:36px;width:80px;border:none;background:none;" id="regionCodePhoneNumNext" name="regionCodePhoneNumNext" >
+								<option value="86" label="中国" selected="selected">+86</option>
+								<option value="61" label="澳大利亚">+61</option>
+								<option value="64" label="新西兰">+64</option>
+								<option value="679" label="斐济">+679</option>
+								<option value="1" label="美国">+1</option>
+								<option value="00689" label="大溪地">+00689</option>
+								<option value="680" label="帕劳">+680</option>
+								<option value="00248" label="塞舌尔">+00248</option>
+								<option value="00230" label="毛里求斯">+00230</option>
+								<option value="001" label="塞班岛">+001</option>
+								<option value="960" label="马尔代夫">+960</option>
+								<option value="66" label="泰国">+66</option>
+								<option value="62" label="印度尼西亚">+62</option>
+								<option value="65" label="新加坡">+65</option>
+								<option value="60" label="马来西亚">+60</option>
+								<option value="44" label="英国">+44</option>
+								<option value="39" label="意大利">+39</option>
+								<option value="41" label="瑞士">+41</option>
+								<option value="354" label="冰岛">+354</option>
+								<option value="33" label="法国">+33</option>
+								<option value="49" label="德国">+49</option>
+								<option value="34" label="西班牙">+34</option>
+								<option value="379" label="梵蒂冈">+379</option>
+								<option value="351" label="葡萄牙">+351</option>
+								<option value="420" label="捷克">+420</option>
+								<option value="30" label="希腊">+30</option>
+								<option value="31" label="荷兰">+31</option>
+								<option value="352" label="卢森堡">+352</option>
+								<option value="353" label="爱尔兰">+353</option>
+								<option value="36" label="匈牙利">+36</option>
+								<option value="43" label="奥地利">+43</option>
+								<option value="32" label="比利时">+32</option>
+								<option value="377" label="摩纳哥">+377</option>
+								<option value="358" label="芬兰">+358</option>
+								<option value="47" label="挪威">+47</option>
+								<option value="45" label="丹麦">+45</option>
+								<option value="46" label="瑞典">+46</option>
+								<option value="385" label="克罗地亚">+385</option>
+								<option value="48" label="波兰">+48</option>
+								<option value="421" label="斯洛伐克">+421</option>
+								<option value="423" label="列支敦士登">+423</option>
+								<option value="00" label="欧洲">+00</option>
+								<option value="66" label="华欣">+66</option>
+								<option value="852" label="中国香港">+852</option>
+								<option value="886" label="中国台湾">+886</option>
+								<option value="386" label="斯洛文尼亚">+386</option>
+								<option value="0081" label="日本">+0081</option>
+								<option value="90" label="土耳其">+90</option>
+								<option value="356" label="马耳他">+356</option>
+								<option value="299" label="格陵兰岛">+299</option>
+								<option value="298" label="法罗群岛">+298</option>
+								<option value="1" label="加拿大">+1</option>
+								<option value="63" label="菲律宾">+63</option>
+								<option value="853" label="中国澳门">+853</option>
+								<option value="33" label="凡尔登">+33</option>
+								<option value="7" label="俄罗斯">+7</option>
+								<option value="212" label="摩洛哥">+212</option>
+								<option value="387" label="波黑">+387</option>
+								<option value="82" label="韩国">+82</option>
+							</select>
+							<input id="phoneNumNext" data-valid="required number" data-name="手机号" type="text" name="phoneNumNext" placeholder="手机号" style="width:150px;" autocomplete="off" style=" padding: 2px 5px;" maxlength="20">
+
+							<i class="icon_phone"></i>
+						</div>
+
+						<div id="pwd" style="margin-top: 15px;"></div>
+						<div id="hint" style="color: #5e77aa;text-align: right">
+
+						</div>
+
+						<div class="oh mt10 forgatpassword">
+							<span id="hint3" style="color: orange;font-size: 15px"></span>
+							<span id="errTiPhoneNumNext" class="warnning"></span>
+						</div>
+						<a id="phoneLoginNext" href="javascript:;" class="btn-normal-blue mt20" phoneloginnext="">下一步</a>
+						<p class="mt10" id="p10">还没有帐号？立即<a id="signup" href="javascript:;" class="blueLink">注册</a></p>
+						<!-- 手机登录第一步  -->
+					</form>
+				</div>
+
+				<!-- 手机短信校验页面 -->
+				<div id="logintype-sms" class="hide">
 					<!-- 手机号 -->
-					<div class="iptBox cus_input" style="margin-top:40px;" id="phonenumber">
-						<select style="height:36px;width:80px;border:none;background:none;" id="regionCodePhoneNumNext" name="regionCodePhoneNumNext" >
-							<option value="86" label="中国" selected="selected">+86</option>
-									<option value="61" label="澳大利亚">+61</option>
-									<option value="64" label="新西兰">+64</option>
-									<option value="679" label="斐济">+679</option>
-									<option value="1" label="美国">+1</option>
-									<option value="00689" label="大溪地">+00689</option>
-									<option value="680" label="帕劳">+680</option>
-									<option value="00248" label="塞舌尔">+00248</option>
-									<option value="00230" label="毛里求斯">+00230</option>
-									<option value="001" label="塞班岛">+001</option>
-									<option value="960" label="马尔代夫">+960</option>
-									<option value="66" label="泰国">+66</option>
-									<option value="62" label="印度尼西亚">+62</option>
-									<option value="65" label="新加坡">+65</option>
-									<option value="60" label="马来西亚">+60</option>
-									<option value="44" label="英国">+44</option>
-									<option value="39" label="意大利">+39</option>
-									<option value="41" label="瑞士">+41</option>
-									<option value="354" label="冰岛">+354</option>
-									<option value="33" label="法国">+33</option>
-									<option value="49" label="德国">+49</option>
-									<option value="34" label="西班牙">+34</option>
-									<option value="379" label="梵蒂冈">+379</option>
-									<option value="351" label="葡萄牙">+351</option>
-									<option value="420" label="捷克">+420</option>
-									<option value="30" label="希腊">+30</option>
-									<option value="31" label="荷兰">+31</option>
-									<option value="352" label="卢森堡">+352</option>
-									<option value="353" label="爱尔兰">+353</option>
-									<option value="36" label="匈牙利">+36</option>
-									<option value="43" label="奥地利">+43</option>
-									<option value="32" label="比利时">+32</option>
-									<option value="377" label="摩纳哥">+377</option>
-									<option value="358" label="芬兰">+358</option>
-									<option value="47" label="挪威">+47</option>
-									<option value="45" label="丹麦">+45</option>
-									<option value="46" label="瑞典">+46</option>
-									<option value="385" label="克罗地亚">+385</option>
-									<option value="48" label="波兰">+48</option>
-									<option value="421" label="斯洛伐克">+421</option>
-									<option value="423" label="列支敦士登">+423</option>
-									<option value="00" label="欧洲">+00</option>
-									<option value="66" label="华欣">+66</option>
-									<option value="852" label="中国香港">+852</option>
-									<option value="886" label="中国台湾">+886</option>
-									<option value="386" label="斯洛文尼亚">+386</option>
-									<option value="0081" label="日本">+0081</option>
-									<option value="90" label="土耳其">+90</option>
-									<option value="356" label="马耳他">+356</option>
-									<option value="299" label="格陵兰岛">+299</option>
-									<option value="298" label="法罗群岛">+298</option>
-									<option value="1" label="加拿大">+1</option>
-									<option value="63" label="菲律宾">+63</option>
-									<option value="853" label="中国澳门">+853</option>
-									<option value="33" label="凡尔登">+33</option>
-									<option value="7" label="俄罗斯">+7</option>
-									<option value="212" label="摩洛哥">+212</option>
-									<option value="387" label="波黑">+387</option>
-									<option value="82" label="韩国">+82</option>
-									</select>				
-						<input id="phoneNumNext" data-valid="required number" data-name="手机号" type="text" name="phoneNumNext" placeholder="手机号" style="width:150px;" autocomplete="off" style=" padding: 2px 5px;" maxlength="20">
-
-						<i class="icon_phone"></i>
+					<form onsubmit="return false" id="login_sms_code_form">
+						<div class="iptBox cus_input" style="margin-top:40px;padding:0;">
+							<select style="height:36px;width:80px;border:none;background:none;" id="regionCodePhoneNumSms" name="regionCodePhoneNumSms">
+								<option value="86" label="中国" selected="selected">+86</option>
+								<option value="61" label="澳大利亚">+61</option>
+								<option value="64" label="新西兰">+64</option>
+								<option value="679" label="斐济">+679</option>
+								<option value="1" label="美国">+1</option>
+								<option value="00689" label="大溪地">+00689</option>
+								<option value="680" label="帕劳">+680</option>
+								<option value="00248" label="塞舌尔">+00248</option>
+								<option value="00230" label="毛里求斯">+00230</option>
+								<option value="001" label="塞班岛">+001</option>
+								<option value="960" label="马尔代夫">+960</option>
+								<option value="66" label="泰国">+66</option>
+								<option value="62" label="印度尼西亚">+62</option>
+								<option value="65" label="新加坡">+65</option>
+								<option value="60" label="马来西亚">+60</option>
+								<option value="44" label="英国">+44</option>
+								<option value="39" label="意大利">+39</option>
+								<option value="41" label="瑞士">+41</option>
+								<option value="354" label="冰岛">+354</option>
+								<option value="33" label="法国">+33</option>
+								<option value="49" label="德国">+49</option>
+								<option value="34" label="西班牙">+34</option>
+								<option value="379" label="梵蒂冈">+379</option>
+								<option value="351" label="葡萄牙">+351</option>
+								<option value="420" label="捷克">+420</option>
+								<option value="30" label="希腊">+30</option>
+								<option value="31" label="荷兰">+31</option>
+								<option value="352" label="卢森堡">+352</option>
+								<option value="353" label="爱尔兰">+353</option>
+								<option value="36" label="匈牙利">+36</option>
+								<option value="43" label="奥地利">+43</option>
+								<option value="32" label="比利时">+32</option>
+								<option value="377" label="摩纳哥">+377</option>
+								<option value="358" label="芬兰">+358</option>
+								<option value="47" label="挪威">+47</option>
+								<option value="45" label="丹麦">+45</option>
+								<option value="46" label="瑞典">+46</option>
+								<option value="385" label="克罗地亚">+385</option>
+								<option value="48" label="波兰">+48</option>
+								<option value="421" label="斯洛伐克">+421</option>
+								<option value="423" label="列支敦士登">+423</option>
+								<option value="00" label="欧洲">+00</option>
+								<option value="66" label="华欣">+66</option>
+								<option value="852" label="中国香港">+852</option>
+								<option value="886" label="中国台湾">+886</option>
+								<option value="386" label="斯洛文尼亚">+386</option>
+								<option value="0081" label="日本">+0081</option>
+								<option value="90" label="土耳其">+90</option>
+								<option value="356" label="马耳他">+356</option>
+								<option value="299" label="格陵兰岛">+299</option>
+								<option value="298" label="法罗群岛">+298</option>
+								<option value="1" label="加拿大">+1</option>
+								<option value="63" label="菲律宾">+63</option>
+								<option value="853" label="中国澳门">+853</option>
+								<option value="33" label="凡尔登">+33</option>
+								<option value="7" label="俄罗斯">+7</option>
+								<option value="212" label="摩洛哥">+212</option>
+								<option value="387" label="波黑">+387</option>
+								<option value="82" label="韩国">+82</option>
+							</select>
+							<input id="phoneNumSms" data-valid="required number" data-name="手机号" type="text" name="phoneNumSms" placeholder="手机号" style="width:150px;" autocomplete="off" style=" padding: 2px 5px;" maxlength="20">
+							<i class="icon_phone"></i>
+						</div>
+						<!-- 输入系统验证码 -->
+						<div class="oh mt10 verfiycode_div_sms" phonepasshasnot=""> <!-- 无密码 -->
+							<div class="iptBox fl cus_input">
+								<input id="ipt_verifyCode_sms" data-valid="required max[4]" data-name="图形验证码" type="text" name="ipt_verifyCode_sms" style="width:120px;" placeholder="图形验证码" autocomplete="off">
+							</div>
+							<img src="../main/verifyCode.jpg" height="36" width="120" class="ml10 hand" border="0" title="看不清，请点我" id="img_verifycode_sms">
+						</div>
+						<!-- 获取手机校验码 -->
+						<div class="oh mt10 getPhoneCode" phonepasshasnot=""> <!-- 无密码 -->
+							<div class="iptBox fl cus_input">
+								<input id="phoneNumSmsCode" data-valid="required number max[6]" data-name="手机验证码" type="text" name="phoneNumSmsCode" style="width:120px;" placeholder="手机验证码" autocomplete="off">
+							</div>
+							<a id="sendSms" href="javascript:;" class="btn-normal-blue ml10" style="font-size: 12px;">获取验证码</a>
+						</div>
+					</form>
+					<div class="oh mt10 forgatpassword hide">
+						<p class="tl hide">
+							长时间收不到验证码，试试
+							<a href="javascript:void(0);" class="sendVoiceCode">
+								语音接听验证码
+							</a>
+						</p>
+						<span id="errTiPhoneNumSms" class="warnning"></span>
 					</div>
-
-					<div id="pwd" style="margin-top: 15px;"></div>
-					<div id="hint" style="color: #5e77aa;text-align: right">
-
-					</div>
-
-					<div class="oh mt10 forgatpassword">
-						<span id="hint3" style="color: orange;font-size: 15px"></span>
-						<span id="errTiPhoneNumNext" class="warnning"></span>
-					</div>
-					<a id="phoneLoginNext" href="javascript:;" class="btn-normal-blue mt20" phoneloginnext="">下一步</a>
-					<p class="mt10" id="p10">还没有帐号？立即<a id="signup" href="javascript:;" class="blueLink">注册</a></p>
 					<!-- 手机登录第一步  -->
-				</form>
-			</div>
-			
-			<!-- 手机短信校验页面 -->
-			<div id="logintype-sms" class="hide">
-				<!-- 手机号 -->
-				<form onsubmit="return false" id="login_sms_code_form">
-					<div class="iptBox cus_input" style="margin-top:40px;padding:0;">
-						<select style="height:36px;width:80px;border:none;background:none;" id="regionCodePhoneNumSms" name="regionCodePhoneNumSms">
-							<option value="86" label="中国" selected="selected">+86</option>
-									<option value="61" label="澳大利亚">+61</option>
-									<option value="64" label="新西兰">+64</option>
-									<option value="679" label="斐济">+679</option>
-									<option value="1" label="美国">+1</option>
-									<option value="00689" label="大溪地">+00689</option>
-									<option value="680" label="帕劳">+680</option>
-									<option value="00248" label="塞舌尔">+00248</option>
-									<option value="00230" label="毛里求斯">+00230</option>
-									<option value="001" label="塞班岛">+001</option>
-									<option value="960" label="马尔代夫">+960</option>
-									<option value="66" label="泰国">+66</option>
-									<option value="62" label="印度尼西亚">+62</option>
-									<option value="65" label="新加坡">+65</option>
-									<option value="60" label="马来西亚">+60</option>
-									<option value="44" label="英国">+44</option>
-									<option value="39" label="意大利">+39</option>
-									<option value="41" label="瑞士">+41</option>
-									<option value="354" label="冰岛">+354</option>
-									<option value="33" label="法国">+33</option>
-									<option value="49" label="德国">+49</option>
-									<option value="34" label="西班牙">+34</option>
-									<option value="379" label="梵蒂冈">+379</option>
-									<option value="351" label="葡萄牙">+351</option>
-									<option value="420" label="捷克">+420</option>
-									<option value="30" label="希腊">+30</option>
-									<option value="31" label="荷兰">+31</option>
-									<option value="352" label="卢森堡">+352</option>
-									<option value="353" label="爱尔兰">+353</option>
-									<option value="36" label="匈牙利">+36</option>
-									<option value="43" label="奥地利">+43</option>
-									<option value="32" label="比利时">+32</option>
-									<option value="377" label="摩纳哥">+377</option>
-									<option value="358" label="芬兰">+358</option>
-									<option value="47" label="挪威">+47</option>
-									<option value="45" label="丹麦">+45</option>
-									<option value="46" label="瑞典">+46</option>
-									<option value="385" label="克罗地亚">+385</option>
-									<option value="48" label="波兰">+48</option>
-									<option value="421" label="斯洛伐克">+421</option>
-									<option value="423" label="列支敦士登">+423</option>
-									<option value="00" label="欧洲">+00</option>
-									<option value="66" label="华欣">+66</option>
-									<option value="852" label="中国香港">+852</option>
-									<option value="886" label="中国台湾">+886</option>
-									<option value="386" label="斯洛文尼亚">+386</option>
-									<option value="0081" label="日本">+0081</option>
-									<option value="90" label="土耳其">+90</option>
-									<option value="356" label="马耳他">+356</option>
-									<option value="299" label="格陵兰岛">+299</option>
-									<option value="298" label="法罗群岛">+298</option>
-									<option value="1" label="加拿大">+1</option>
-									<option value="63" label="菲律宾">+63</option>
-									<option value="853" label="中国澳门">+853</option>
-									<option value="33" label="凡尔登">+33</option>
-									<option value="7" label="俄罗斯">+7</option>
-									<option value="212" label="摩洛哥">+212</option>
-									<option value="387" label="波黑">+387</option>
-									<option value="82" label="韩国">+82</option>
-									</select>	
-						<input id="phoneNumSms" data-valid="required number" data-name="手机号" type="text" name="phoneNumSms" placeholder="手机号" style="width:150px;" autocomplete="off" style=" padding: 2px 5px;" maxlength="20">
-						<i class="icon_phone"></i>
-					</div>
-					<!-- 输入系统验证码 -->
-					<div class="oh mt10 verfiycode_div_sms" phonepasshasnot=""> <!-- 无密码 -->
-						<div class="iptBox fl cus_input">
-							<input id="ipt_verifyCode_sms" data-valid="required max[4]" data-name="图形验证码" type="text" name="ipt_verifyCode_sms" style="width:120px;" placeholder="图形验证码" autocomplete="off">
-						</div>
-						<img src="../main/verifyCode.jpg" height="36" width="120" class="ml10 hand" border="0" title="看不清，请点我" id="img_verifycode_sms">
-					</div>
-					<!-- 获取手机校验码 -->
-					<div class="oh mt10 getPhoneCode" phonepasshasnot=""> <!-- 无密码 -->
-						<div class="iptBox fl cus_input">
-							<input id="phoneNumSmsCode" data-valid="required number max[6]" data-name="手机验证码" type="text" name="phoneNumSmsCode" style="width:120px;" placeholder="手机验证码" autocomplete="off">
-						</div>
-						<a id="sendSms" href="javascript:;" class="btn-normal-blue ml10" style="font-size: 12px;">获取验证码</a>
-					</div>
-				</form>
-				<div class="oh mt10 forgatpassword hide">
-					<p class="tl hide">
-						长时间收不到验证码，试试
-						<a href="javascript:void(0);" class="sendVoiceCode">
-							语音接听验证码
-						</a>
-					</p>
-					<span id="errTiPhoneNumSms" class="warnning"></span>
+					<a id="phoneLoginSms" href="javascript:;" class="btn-normal-blue mt20" phonelogin="">登录</a>
 				</div>
-				<!-- 手机登录第一步  -->
-				<a id="phoneLoginSms" href="javascript:;" class="btn-normal-blue mt20" phonelogin="">登录</a>
-			</div>
-			
-			<!-- 手机密码登录页面 -->
-			<div id="loginphone" class="hide">
-				<!-- 手机号 -->
-				<form onsubmit="return false">
-					<div class="iptBox cus_input" style="margin-top:40px;padding:0;" id="phonenum123">
-						<select style="height:36px;width:80px;border:none;background:none;" id="phoneRegionCode" name="phoneRegionCode">
-							<option value="86" label="中国" selected="selected">+86</option>
-									<option value="61" label="澳大利亚">+61</option>
-									<option value="64" label="新西兰">+64</option>
-									<option value="679" label="斐济">+679</option>
-									<option value="1" label="美国">+1</option>
-									<option value="00689" label="大溪地">+00689</option>
-									<option value="680" label="帕劳">+680</option>
-									<option value="00248" label="塞舌尔">+00248</option>
-									<option value="00230" label="毛里求斯">+00230</option>
-									<option value="001" label="塞班岛">+001</option>
-									<option value="960" label="马尔代夫">+960</option>
-									<option value="66" label="泰国">+66</option>
-									<option value="62" label="印度尼西亚">+62</option>
-									<option value="65" label="新加坡">+65</option>
-									<option value="60" label="马来西亚">+60</option>
-									<option value="44" label="英国">+44</option>
-									<option value="39" label="意大利">+39</option>
-									<option value="41" label="瑞士">+41</option>
-									<option value="354" label="冰岛">+354</option>
-									<option value="33" label="法国">+33</option>
-									<option value="49" label="德国">+49</option>
-									<option value="34" label="西班牙">+34</option>
-									<option value="379" label="梵蒂冈">+379</option>
-									<option value="351" label="葡萄牙">+351</option>
-									<option value="420" label="捷克">+420</option>
-									<option value="30" label="希腊">+30</option>
-									<option value="31" label="荷兰">+31</option>
-									<option value="352" label="卢森堡">+352</option>
-									<option value="353" label="爱尔兰">+353</option>
-									<option value="36" label="匈牙利">+36</option>
-									<option value="43" label="奥地利">+43</option>
-									<option value="32" label="比利时">+32</option>
-									<option value="377" label="摩纳哥">+377</option>
-									<option value="358" label="芬兰">+358</option>
-									<option value="47" label="挪威">+47</option>
-									<option value="45" label="丹麦">+45</option>
-									<option value="46" label="瑞典">+46</option>
-									<option value="385" label="克罗地亚">+385</option>
-									<option value="48" label="波兰">+48</option>
-									<option value="421" label="斯洛伐克">+421</option>
-									<option value="423" label="列支敦士登">+423</option>
-									<option value="00" label="欧洲">+00</option>
-									<option value="66" label="华欣">+66</option>
-									<option value="852" label="中国香港">+852</option>
-									<option value="886" label="中国台湾">+886</option>
-									<option value="386" label="斯洛文尼亚">+386</option>
-									<option value="0081" label="日本">+0081</option>
-									<option value="90" label="土耳其">+90</option>
-									<option value="356" label="马耳他">+356</option>
-									<option value="299" label="格陵兰岛">+299</option>
-									<option value="298" label="法罗群岛">+298</option>
-									<option value="1" label="加拿大">+1</option>
-									<option value="63" label="菲律宾">+63</option>
-									<option value="853" label="中国澳门">+853</option>
-									<option value="33" label="凡尔登">+33</option>
-									<option value="7" label="俄罗斯">+7</option>
-									<option value="212" label="摩洛哥">+212</option>
-									<option value="387" label="波黑">+387</option>
-									<option value="82" label="韩国">+82</option>
-									</select>					
-						<input id="phoneNum" type="text" data-valid="required number" data-name="手机号" name="phoneNum" placeholder="手机号" style="width:150px;" autocomplete="off" style=" padding: 2px 5px;" maxlength="20">
-						<i class="icon_phone"></i>
-					</div>
-					<!-- 输入密码 -->
-					<div class="iptBox inputPassword mt10 cus_input" phonepasshas="" id="pwd0"> <!-- 有密码 -->
-						<input id="phonePwd" type="password" data-valid="required min[6] max[20]" data-name="密码" name="phonePwd" style="width:248px;" placeholder="密码" autocomplete="off">
-					</div>
 
-
-					<!-- 输入系统验证码 -->
-					<div class="oh">
-						<div  style="width:157px; margin-top: 10px; margin-bottom: 5px">
-							<input type="hidden" id="sessionId" name="sessionId"/>
-							<input type="hidden" id="sig" name="sig"/>
-							<input type="hidden" id="token" name="token"/>
-							<input type="hidden" id="scene" name="scene"/>
-
-							<div id="your-dom-id" class="nc-container" ></div>
+				<!-- 手机密码登录页面 -->
+				<div id="loginphone" class="hide">
+					<!-- 手机号 -->
+					<form onsubmit="return false">
+						<div class="iptBox cus_input" style="margin-top:40px;padding:0;" id="phonenum123">
+							<select style="height:36px;width:80px;border:none;background:none;" id="phoneRegionCode" name="phoneRegionCode">
+								<option value="86" label="中国" selected="selected">+86</option>
+								<option value="61" label="澳大利亚">+61</option>
+								<option value="64" label="新西兰">+64</option>
+								<option value="679" label="斐济">+679</option>
+								<option value="1" label="美国">+1</option>
+								<option value="00689" label="大溪地">+00689</option>
+								<option value="680" label="帕劳">+680</option>
+								<option value="00248" label="塞舌尔">+00248</option>
+								<option value="00230" label="毛里求斯">+00230</option>
+								<option value="001" label="塞班岛">+001</option>
+								<option value="960" label="马尔代夫">+960</option>
+								<option value="66" label="泰国">+66</option>
+								<option value="62" label="印度尼西亚">+62</option>
+								<option value="65" label="新加坡">+65</option>
+								<option value="60" label="马来西亚">+60</option>
+								<option value="44" label="英国">+44</option>
+								<option value="39" label="意大利">+39</option>
+								<option value="41" label="瑞士">+41</option>
+								<option value="354" label="冰岛">+354</option>
+								<option value="33" label="法国">+33</option>
+								<option value="49" label="德国">+49</option>
+								<option value="34" label="西班牙">+34</option>
+								<option value="379" label="梵蒂冈">+379</option>
+								<option value="351" label="葡萄牙">+351</option>
+								<option value="420" label="捷克">+420</option>
+								<option value="30" label="希腊">+30</option>
+								<option value="31" label="荷兰">+31</option>
+								<option value="352" label="卢森堡">+352</option>
+								<option value="353" label="爱尔兰">+353</option>
+								<option value="36" label="匈牙利">+36</option>
+								<option value="43" label="奥地利">+43</option>
+								<option value="32" label="比利时">+32</option>
+								<option value="377" label="摩纳哥">+377</option>
+								<option value="358" label="芬兰">+358</option>
+								<option value="47" label="挪威">+47</option>
+								<option value="45" label="丹麦">+45</option>
+								<option value="46" label="瑞典">+46</option>
+								<option value="385" label="克罗地亚">+385</option>
+								<option value="48" label="波兰">+48</option>
+								<option value="421" label="斯洛伐克">+421</option>
+								<option value="423" label="列支敦士登">+423</option>
+								<option value="00" label="欧洲">+00</option>
+								<option value="66" label="华欣">+66</option>
+								<option value="852" label="中国香港">+852</option>
+								<option value="886" label="中国台湾">+886</option>
+								<option value="386" label="斯洛文尼亚">+386</option>
+								<option value="0081" label="日本">+0081</option>
+								<option value="90" label="土耳其">+90</option>
+								<option value="356" label="马耳他">+356</option>
+								<option value="299" label="格陵兰岛">+299</option>
+								<option value="298" label="法罗群岛">+298</option>
+								<option value="1" label="加拿大">+1</option>
+								<option value="63" label="菲律宾">+63</option>
+								<option value="853" label="中国澳门">+853</option>
+								<option value="33" label="凡尔登">+33</option>
+								<option value="7" label="俄罗斯">+7</option>
+								<option value="212" label="摩洛哥">+212</option>
+								<option value="387" label="波黑">+387</option>
+								<option value="82" label="韩国">+82</option>
+							</select>
+							<input id="phoneNum" type="text" data-valid="required number" data-name="手机号" name="phoneNum" placeholder="手机号" style="width:150px;" autocomplete="off" style=" padding: 2px 5px;" maxlength="20">
+							<i class="icon_phone"></i>
+						</div>
+						<!-- 输入密码 -->
+						<div class="iptBox inputPassword mt10 cus_input" phonepasshas="" id="pwd0"> <!-- 有密码 -->
+							<input id="phonePwd" type="password" data-valid="required min[6] max[20]" data-name="密码" name="phonePwd" style="width:248px;" placeholder="密码" autocomplete="off">
 						</div>
 
-					</div>
-					<div style="color: orange;margin-top: 15px;font-size: 15px"><p id="ts"></p></div>
-				</form>
-				<div class="oh mt10 forgatpassword">
-					<span style="color: orange;font-size: 15px" id="hint0"></span>
-					<span id="errTipPhone" class="warnning"></span>
-					<a class="forgetPass" href="javascript:;" onclick="ftpwd()">忘记密码?</a>
-				</div>
-				<!-- 手机登录第一步  -->
-				<a id="phoneLogin" href="javascript:;" class="btn-normal-blue mt20" phonelogin="">登录</a>
-			</div>
 
-			<!-- 邮件密码登录页面 -->
-			<div id="logintype-email" class="hide">
-				<form onsubmit="return false;" id="email__login">
-					<div class="iptBox mt20 cus_input" id="emailnum">
-						<input id="email" data-valid="required email" data-name="邮箱" type="text" name="email" style="width:248px;" placeholder="邮箱" autocomplete="off">
-					</div>
-					<div class="iptBox inputPassword mt10 cus_input" id="emailpwdnum">
-						<input id="emailPwd" data-valid="required min[6] max[20]" data-name="密码" type="password" name="emailPwd" style="width:248px;" placeholder="密码" autocomplete="off">
-					</div>
-					<!-- 输入系统验证码 -->
-					<div class="oh mt10 verfiycode_div_e hide" id="verfiycode_div_e" phonepasshasnot=""> <!-- 无密码 -->
+						<!-- 输入系统验证码 -->
+						<div class="oh">
+							<div  style="width:157px; margin-top: 10px; margin-bottom: 5px">
+								<input type="hidden" id="sessionId" name="sessionId"/>
+								<input type="hidden" id="sig" name="sig"/>
+								<input type="hidden" id="token" name="token"/>
+								<input type="hidden" id="scene" name="scene"/>
 
-					</div>
+								<div id="your-dom-id" class="nc-container" ></div>
+							</div>
+
+						</div>
+						<div style="color: orange;margin-top: 15px;font-size: 15px"><p id="ts"></p></div>
+					</form>
 					<div class="oh mt10 forgatpassword">
-						<span style="color: orange;font-size: 15px" id="hint1"></span>
-						<span id="errTiEmail" class="warnning"></span>
-						<a class="forgetPass" href="javascript:;">忘记密码?</a>
+						<span style="color: orange;font-size: 15px" id="hint0"></span>
+						<span id="errTipPhone" class="warnning"></span>
+						<a class="forgetPass" href="javascript:;" onclick="ftpwd()">忘记密码?</a>
 					</div>
-					<a id="emailLogin" href="javascript:;" class="btn-normal-blue mt20" phonepasshas="">登录</a>
-					<p class="mt10">还没有帐号？立即<a id="signup2" href="javascript:;" class="blueLink" onclick="zhuce()">注册</a></p>
+					<!-- 手机登录第一步  -->
+					<a id="phoneLogin" href="javascript:;" class="btn-normal-blue mt20" phonelogin="">登录</a>
+				</div>
+
+				<!-- 邮件密码登录页面 -->
+				<div id="logintype-email" class="hide">
+					<form onsubmit="return false;" id="email__login">
+						<div class="iptBox mt20 cus_input" id="emailnum">
+							<input id="email" data-valid="required email" data-name="邮箱" type="text" name="email" style="width:248px;" placeholder="邮箱" autocomplete="off">
+						</div>
+						<div class="iptBox inputPassword mt10 cus_input" id="emailpwdnum">
+							<input id="emailPwd" data-valid="required min[6] max[20]" data-name="密码" type="password" name="emailPwd" style="width:248px;" placeholder="密码" autocomplete="off">
+						</div>
+						<!-- 输入系统验证码 -->
+						<div class="oh mt10 verfiycode_div_e hide" id="verfiycode_div_e" phonepasshasnot=""> <!-- 无密码 -->
+
+						</div>
+						<div class="oh mt10 forgatpassword">
+							<span style="color: orange;font-size: 15px" id="hint1"></span>
+							<span id="errTiEmail" class="warnning"></span>
+							<a class="forgetPass" href="javascript:;">忘记密码?</a>
+						</div>
+						<a id="emailLogin" href="javascript:;" class="btn-normal-blue mt20" phonepasshas="">登录</a>
+						<p class="mt10">还没有帐号？立即<a id="signup2" href="javascript:;" class="blueLink" onclick="zhuce()">注册</a></p>
+					</form>
+				</div>
+
+				<!-- 设置昵称和密码页面 -->
+				<form onsubmit="return false;" id="login_set_pwd">
+					<div id="logintype-nickPwd" class="hide">
+						<!-- 显示设置昵称和密码 -->
+						<div class="setNickAndPassword">
+							<div class="oh mt10 iptBox cus_input">
+								<span class="sortLabel">设定昵称</span>
+								<input id="nickName" type="text" name="nickName" style="width:180px;" data-valid="required max[20]" data-name="昵称" placeholder="昵称(最大长度20位字符)" autocomplete="off">
+							</div>
+							<div class="oh mt10 iptBox cus_input">
+								<span class="sortLabel">设定密码</span>
+								<input id="setpwd" type="password" name="setpwd" data-valid="required min[6] max[20]" data-name="密码" style="width:180px;" placeholder="6-20位,字母与数字组合" autocomplete="off">
+							</div>
+							<div class="oh mt10 iptBox cus_input">
+								<span class="sortLabel">再次输入</span>
+								<input id="rePwd" type="password" name="rePwd" style="width:180px;" data-valid="required rePwd" data-name="确认密码" placeholder="请再次输入" autocomplete="off">
+							</div>
+							<div class="oh mt10 forgatpassword">
+								<span id="errNickTip" class="warnning" style="padding:0;line-height: 1"></span>
+							</div>
+							<a id="setNickAndPasswordDone" href="javascript:;" class="btn-normal-blue mt20">完成</a>
+						</div>
+						<p style="margin-top: 10px;line-height:1.5;"><a id="phoneJumpOver" href="javascript:;" style="color:#4ea9f2;">下次关联</a></p>
+						<p>不设置密码仅可使用短信验证码登录！</p>
+					</div>
 				</form>
-			</div>
-			
-			<!-- 设置昵称和密码页面 -->
-			<form onsubmit="return false;" id="login_set_pwd">
-			<div id="logintype-nickPwd" class="hide">
-				<!-- 显示设置昵称和密码 -->
-            	<div class="setNickAndPassword">
-		            <div class="oh mt10 iptBox cus_input">
-		                <span class="sortLabel">设定昵称</span>
-		                <input id="nickName" type="text" name="nickName" style="width:180px;" data-valid="required max[20]" data-name="昵称" placeholder="昵称(最大长度20位字符)" autocomplete="off">
-		            </div>
-		            <div class="oh mt10 iptBox cus_input">
-		                <span class="sortLabel">设定密码</span>
-		                <input id="setpwd" type="password" name="setpwd" data-valid="required min[6] max[20]" data-name="密码" style="width:180px;" placeholder="6-20位,字母与数字组合" autocomplete="off">
-		            </div>
-		            <div class="oh mt10 iptBox cus_input">
-		                <span class="sortLabel">再次输入</span>
-		                <input id="rePwd" type="password" name="rePwd" style="width:180px;" data-valid="required rePwd" data-name="确认密码" placeholder="请再次输入" autocomplete="off">
-		            </div>
-		            <div class="oh mt10 forgatpassword">
-						<span id="errNickTip" class="warnning" style="padding:0;line-height: 1"></span>
-					</div>
-					<a id="setNickAndPasswordDone" href="javascript:;" class="btn-normal-blue mt20">完成</a>
-	            </div>
-				<p style="margin-top: 10px;line-height:1.5;"><a id="phoneJumpOver" href="javascript:;" style="color:#4ea9f2;">下次关联</a></p>
-				<p>不设置密码仅可使用短信验证码登录！</p>
-			</div>
-			</form>
-			
-			<!-- 关联手机号码页面 -->
-			<div id="logintype-relePhone" class="hide">
-				<p class="associate-title">请先关联手机号</p>
-				<p class="associate-txt">探测到您的账号存在安全风险，建议关联手机号提高安全性！</p>
+
+				<!-- 关联手机号码页面 -->
+				<div id="logintype-relePhone" class="hide">
+					<p class="associate-title">请先关联手机号</p>
+					<p class="associate-txt">探测到您的账号存在安全风险，建议关联手机号提高安全性！</p>
 					<form onsubmit="return false">
 						<div class="iptBox cus_input" style="margin-top:20px;padding:0;">
 							<select style="height:36px;width:80px;border:none;background:none;" id="relePhoneRegionCode" name="relePhoneRegionCode">
 								<option value="86" label="中国" selected="selected">+86</option>
-										<option value="61" label="澳大利亚">+61</option>
-										<option value="64" label="新西兰">+64</option>
-										<option value="679" label="斐济">+679</option>
-										<option value="1" label="美国">+1</option>
-										<option value="00689" label="大溪地">+00689</option>
-										<option value="680" label="帕劳">+680</option>
-										<option value="00248" label="塞舌尔">+00248</option>
-										<option value="00230" label="毛里求斯">+00230</option>
-										<option value="001" label="塞班岛">+001</option>
-										<option value="960" label="马尔代夫">+960</option>
-										<option value="66" label="泰国">+66</option>
-										<option value="62" label="印度尼西亚">+62</option>
-										<option value="65" label="新加坡">+65</option>
-										<option value="60" label="马来西亚">+60</option>
-										<option value="44" label="英国">+44</option>
-										<option value="39" label="意大利">+39</option>
-										<option value="41" label="瑞士">+41</option>
-										<option value="354" label="冰岛">+354</option>
-										<option value="33" label="法国">+33</option>
-										<option value="49" label="德国">+49</option>
-										<option value="34" label="西班牙">+34</option>
-										<option value="379" label="梵蒂冈">+379</option>
-										<option value="351" label="葡萄牙">+351</option>
-										<option value="420" label="捷克">+420</option>
-										<option value="30" label="希腊">+30</option>
-										<option value="31" label="荷兰">+31</option>
-										<option value="352" label="卢森堡">+352</option>
-										<option value="353" label="爱尔兰">+353</option>
-										<option value="36" label="匈牙利">+36</option>
-										<option value="43" label="奥地利">+43</option>
-										<option value="32" label="比利时">+32</option>
-										<option value="377" label="摩纳哥">+377</option>
-										<option value="358" label="芬兰">+358</option>
-										<option value="47" label="挪威">+47</option>
-										<option value="45" label="丹麦">+45</option>
-										<option value="46" label="瑞典">+46</option>
-										<option value="385" label="克罗地亚">+385</option>
-										<option value="48" label="波兰">+48</option>
-										<option value="421" label="斯洛伐克">+421</option>
-										<option value="423" label="列支敦士登">+423</option>
-										<option value="00" label="欧洲">+00</option>
-										<option value="66" label="华欣">+66</option>
-										<option value="852" label="中国香港">+852</option>
-										<option value="886" label="中国台湾">+886</option>
-										<option value="386" label="斯洛文尼亚">+386</option>
-										<option value="0081" label="日本">+0081</option>
-										<option value="90" label="土耳其">+90</option>
-										<option value="356" label="马耳他">+356</option>
-										<option value="299" label="格陵兰岛">+299</option>
-										<option value="298" label="法罗群岛">+298</option>
-										<option value="1" label="加拿大">+1</option>
-										<option value="63" label="菲律宾">+63</option>
-										<option value="853" label="中国澳门">+853</option>
-										<option value="33" label="凡尔登">+33</option>
-										<option value="7" label="俄罗斯">+7</option>
-										<option value="212" label="摩洛哥">+212</option>
-										<option value="387" label="波黑">+387</option>
-										<option value="82" label="韩国">+82</option>
-										</select>
+								<option value="61" label="澳大利亚">+61</option>
+								<option value="64" label="新西兰">+64</option>
+								<option value="679" label="斐济">+679</option>
+								<option value="1" label="美国">+1</option>
+								<option value="00689" label="大溪地">+00689</option>
+								<option value="680" label="帕劳">+680</option>
+								<option value="00248" label="塞舌尔">+00248</option>
+								<option value="00230" label="毛里求斯">+00230</option>
+								<option value="001" label="塞班岛">+001</option>
+								<option value="960" label="马尔代夫">+960</option>
+								<option value="66" label="泰国">+66</option>
+								<option value="62" label="印度尼西亚">+62</option>
+								<option value="65" label="新加坡">+65</option>
+								<option value="60" label="马来西亚">+60</option>
+								<option value="44" label="英国">+44</option>
+								<option value="39" label="意大利">+39</option>
+								<option value="41" label="瑞士">+41</option>
+								<option value="354" label="冰岛">+354</option>
+								<option value="33" label="法国">+33</option>
+								<option value="49" label="德国">+49</option>
+								<option value="34" label="西班牙">+34</option>
+								<option value="379" label="梵蒂冈">+379</option>
+								<option value="351" label="葡萄牙">+351</option>
+								<option value="420" label="捷克">+420</option>
+								<option value="30" label="希腊">+30</option>
+								<option value="31" label="荷兰">+31</option>
+								<option value="352" label="卢森堡">+352</option>
+								<option value="353" label="爱尔兰">+353</option>
+								<option value="36" label="匈牙利">+36</option>
+								<option value="43" label="奥地利">+43</option>
+								<option value="32" label="比利时">+32</option>
+								<option value="377" label="摩纳哥">+377</option>
+								<option value="358" label="芬兰">+358</option>
+								<option value="47" label="挪威">+47</option>
+								<option value="45" label="丹麦">+45</option>
+								<option value="46" label="瑞典">+46</option>
+								<option value="385" label="克罗地亚">+385</option>
+								<option value="48" label="波兰">+48</option>
+								<option value="421" label="斯洛伐克">+421</option>
+								<option value="423" label="列支敦士登">+423</option>
+								<option value="00" label="欧洲">+00</option>
+								<option value="66" label="华欣">+66</option>
+								<option value="852" label="中国香港">+852</option>
+								<option value="886" label="中国台湾">+886</option>
+								<option value="386" label="斯洛文尼亚">+386</option>
+								<option value="0081" label="日本">+0081</option>
+								<option value="90" label="土耳其">+90</option>
+								<option value="356" label="马耳他">+356</option>
+								<option value="299" label="格陵兰岛">+299</option>
+								<option value="298" label="法罗群岛">+298</option>
+								<option value="1" label="加拿大">+1</option>
+								<option value="63" label="菲律宾">+63</option>
+								<option value="853" label="中国澳门">+853</option>
+								<option value="33" label="凡尔登">+33</option>
+								<option value="7" label="俄罗斯">+7</option>
+								<option value="212" label="摩洛哥">+212</option>
+								<option value="387" label="波黑">+387</option>
+								<option value="82" label="韩国">+82</option>
+							</select>
 							<input id="relePhoneNum" data-valid="required number" data-name="手机号码" type="text" name="relePhoneNum" placeholder="请输入手机号" style="width:130px;" autocomplete="off" style=" padding: 2px 5px;" maxlength="20">
 							<i class="icon_phone"></i>
-						</div>			
+						</div>
 						<!-- 获取手机校验码 -->
 						<div class="oh mt10 getPhoneCode" phonepasshasnot=""> <!-- 无密码 -->
 							<div class="iptBox fl cus_input">
@@ -697,67 +696,67 @@
 					</div>
 					<a id="emailRelePhonNum" href="javascript:;" class="btn-normal-blue mt20">确定</a>
 					<p style="margin-top: 10px;line-height:1.5;"><a id="emailJumpOver" href="javascript:;" style="color:#4ea9f2;">下次关联</a></p>
-			</div>
-			<div class="mt10 otheruser ">
-						<div class="txtPanel">
-							<span class="line"></span>
-							<span class="txt">使用其他帐号登录</span>
-							<span class="line"></span>
-						</div>
-						<div class="tc mt10">
-							<span class="QQ_login" id="qqLoginBtn" title="QQ登录"></span>
-							<a class="WB_login" title="微博登录" id="btn_weibo"></a>
-							<a class="WX_login" title="微信登录" id="btn_wx"></a>
-							</div>
+				</div>
+				<div class="mt10 otheruser ">
+					<div class="txtPanel">
+						<span class="line"></span>
+						<span class="txt">使用其他帐号登录</span>
+						<span class="line"></span>
+					</div>
+					<div class="tc mt10">
+						<span class="QQ_login" id="qqLoginBtn" title="QQ登录"></span>
+						<a class="WB_login" title="微博登录" id="btn_weibo"></a>
+						<a class="WX_login" title="微信登录" id="btn_wx"></a>
 					</div>
 				</div>
+			</div>
+		</div>
 	</div>
-	</div>
-	</div>
+</div>
 
 
 
-	<style>
-.rightBar .linkphone a:hover {text-decoration:underline;}
-.rightBar .linkqq a{margin-bottom:0px !important; color: #fff;padding-left:10px;}
-.rightBar .linkqq a:hover{background: #4d9def !important;}
-.rightBar .linkqq,.linkonline { display: block; text-decoration: none; position: relative; margin-bottom: 0px; overflow: hidden;padding-bottom:5px; }
-.rightBar .linkqq div.del { background: #4d9def; width: 66px;display: block; line-height: 35px; text-align: left; position: absolute; top: 0; right: 30px; z-index: 9; opacity: 0; filter: alpha(opacity=0); transform: translateX(-10px); transition: all .3s ease-in-out; }
-.rightBar .linkqq div.del span { border: 5px transparent solid; border-left-color: #4D9DEF; position: absolute; right: 0; top: 12px; }
-.rightBar .linkqq i,.linkonline i{ position: absolute; right: 0; top: 0; margin: 0; z-index: 10; }
-.rightBar .linkqq:hover,.linkonline:hover,.right-qrcode:hover { overflow: visible; background: #2972bc; }
-.rightBar .linkqq:hover div.del,.linkonline:hover div.del,.right-qrcode:hover div.del{ transform: translateX(0); opacity: 1; filter: alpha(opacity=100); }
-.rightBar .linkqq:hover div.del span,.linkonline:hover .del span,.right-qrcode:hover .del span{ right: -10px; }
-.rightBar .linkhd{display: block;position: absolute;top: 0;right: 0;width: 30px;height: 160px;background:url(../img/rukou.jpg); }
-.rightBar .linkhd:hover{background:url(../img/rukou.jpg);}
-.right-qrcode{position: relative; padding: 10px 0; height: 35px; cursor: pointer; overflow: hidden;}
-.right-qrcode .iconfont{margin: 0; top:8px; font-size: 24px; color: #fff;}
-.right-qrcode div.del{ background: #fff; width: 165px; padding:0; box-shadow: 0px 0px 3px #eee;}
-.rightBar .right-qrcode div.hide{display: none;}
-.rightBar .right-qrcode div.del span { border: 5px transparent solid; border-left-color: #fff; position: absolute; right: -10px; top: 12px; }
-.rightBar .right-qrcode div.del .text {
-	position: absolute;
-    left: 0;
-    bottom: 20px;
-    width: 100%;
-    font-size: 14px;
-    line-height: 24px;
-    color: #000;
-    background-color: #fff;
-	text-align: center;
-}
+<style>
+	.rightBar .linkphone a:hover {text-decoration:underline;}
+	.rightBar .linkqq a{margin-bottom:0px !important; color: #fff;padding-left:10px;}
+	.rightBar .linkqq a:hover{background: #4d9def !important;}
+	.rightBar .linkqq,.linkonline { display: block; text-decoration: none; position: relative; margin-bottom: 0px; overflow: hidden;padding-bottom:5px; }
+	.rightBar .linkqq div.del { background: #4d9def; width: 66px;display: block; line-height: 35px; text-align: left; position: absolute; top: 0; right: 30px; z-index: 9; opacity: 0; filter: alpha(opacity=0); transform: translateX(-10px); transition: all .3s ease-in-out; }
+	.rightBar .linkqq div.del span { border: 5px transparent solid; border-left-color: #4D9DEF; position: absolute; right: 0; top: 12px; }
+	.rightBar .linkqq i,.linkonline i{ position: absolute; right: 0; top: 0; margin: 0; z-index: 10; }
+	.rightBar .linkqq:hover,.linkonline:hover,.right-qrcode:hover { overflow: visible; background: #2972bc; }
+	.rightBar .linkqq:hover div.del,.linkonline:hover div.del,.right-qrcode:hover div.del{ transform: translateX(0); opacity: 1; filter: alpha(opacity=100); }
+	.rightBar .linkqq:hover div.del span,.linkonline:hover .del span,.right-qrcode:hover .del span{ right: -10px; }
+	.rightBar .linkhd{display: block;position: absolute;top: 0;right: 0;width: 30px;height: 160px;background:url(../img/rukou.jpg); }
+	.rightBar .linkhd:hover{background:url(../img/rukou.jpg);}
+	.right-qrcode{position: relative; padding: 10px 0; height: 35px; cursor: pointer; overflow: hidden;}
+	.right-qrcode .iconfont{margin: 0; top:8px; font-size: 24px; color: #fff;}
+	.right-qrcode div.del{ background: #fff; width: 165px; padding:0; box-shadow: 0px 0px 3px #eee;}
+	.rightBar .right-qrcode div.hide{display: none;}
+	.rightBar .right-qrcode div.del span { border: 5px transparent solid; border-left-color: #fff; position: absolute; right: -10px; top: 12px; }
+	.rightBar .right-qrcode div.del .text {
+		position: absolute;
+		left: 0;
+		bottom: 20px;
+		width: 100%;
+		font-size: 14px;
+		line-height: 24px;
+		color: #000;
+		background-color: #fff;
+		text-align: center;
+	}
 
-.vip_nav{position:relative;right:0;width:30px;height:160px;margin-bottom:15px;}
-.vip_nav div,.vip_nav img{height:160px;}
-.vip_nav_info{float:right;background-color:transparent;cursor:pointer;display:inline-block;}
-.vip_nav_index{float:left;display:none;cursor:pointer;position: absolute;right:51px;}
+	.vip_nav{position:relative;right:0;width:30px;height:160px;margin-bottom:15px;}
+	.vip_nav div,.vip_nav img{height:160px;}
+	.vip_nav_info{float:right;background-color:transparent;cursor:pointer;display:inline-block;}
+	.vip_nav_index{float:left;display:none;cursor:pointer;position: absolute;right:51px;}
 
-#rightbar-linktop{margin-bottom:0;}
+	#rightbar-linktop{margin-bottom:0;}
 </style>
 <div class="rightBar">
 	<div class="vip_nav clearfix" style="margin-bottom:0;">
 		<div class="vip_nav_info">
-		   <img src="../img/header/vip_rightbar_v1.png">
+			<img src="../img/header/vip_rightbar_v1.png">
 		</div>
 		<div class="vip_nav_index">
 			<img src="../img/header/vip_info_v1.png">
@@ -795,7 +794,7 @@
 				<p>电话咨询</p>
 				<p>400-008-8177（仅限国内拨打）</p>
 				<p>86-028-85223501（定制服务专线）</p>
-				<span style="top:60px;"></span> 
+				<span style="top:60px;"></span>
 			</div>
 		</div>
 		<i class="icon icon_right_phone" style="top:15px;"></i>
@@ -841,78 +840,78 @@
 			<input type="text" placeholder="验证码" maxlength="6" style="width:100px;height: 25px;" name="verifyCode">
 			<input type="hidden" id="showCode">
 		</div>
-			<img height="36" width="110" class="ml10 hand" border="0" title="看不清，请点我" id="img_verifycode_feedback">
-	</div>	
+		<img height="36" width="110" class="ml10 hand" border="0" title="看不清，请点我" id="img_verifycode_feedback">
+	</div>
 	<div class="oh mt10">
 		<span id="errTip" class="warnning" style="color: #fda814; line-height: 21px; "></span>
-	</div>		
+	</div>
 	<div class="oh mt10">
 		<a href="javascript:;" class="btn-normal-blue fr w90" id="save">提交</a>
 		<a href="javascript:;" class="btn-white fr w90 mr10" id="cancelBut">取消</a>
 	</div>
-</div>	
+</div>
 <div class="dialog_Feedback black hide" id="feedbackErrorDialog">
-    <div class="mod_layer_title bold f14">
-        <h3>提示</h3>
-    </div>
-    <div class="mod_layer_cont">
-        <div class="error_tip oh ml20 f14">
-            <p>感谢您的反馈，我们尽快答复您！</p>
-        </div>
-    </div>
+	<div class="mod_layer_title bold f14">
+		<h3>提示</h3>
+	</div>
+	<div class="mod_layer_cont">
+		<div class="error_tip oh ml20 f14">
+			<p>感谢您的反馈，我们尽快答复您！</p>
+		</div>
+	</div>
 </div>
 <div class="dialog_Feedback black hide" id="qaErrorDialog">
-    <div class="mod_layer_title bold f14">
-        <h3>提示</h3>
-    </div>
-    <div class="mod_layer_cont">
-        <div class="error_tip oh ml20 f14">
-            <p>提交成功，我们尽快答复您！</p>
-        </div>
-    </div>
+	<div class="mod_layer_title bold f14">
+		<h3>提示</h3>
+	</div>
+	<div class="mod_layer_cont">
+		<div class="error_tip oh ml20 f14">
+			<p>提交成功，我们尽快答复您！</p>
+		</div>
+	</div>
 </div>
 
-  <script type="text/javascript">
-      var nc_token = ["FFFF0N00000000008369", (new Date()).getTime(), Math.random()].join(':');
-      var NC_Opt =
-          {
-              renderTo: "#your-dom-id",
-              appkey: "FFFF0N00000000008369",
-              scene: "nc_register",
-              token: nc_token,
-              customWidth: 300,
-              trans:{"key1":"code0"},
-              elementID: ["usernameID"],
-              is_Opt: 0,
-              language: "cn",
-              isEnabled: true,
-              timeout: 3000,
-              times:5,
-              apimap: {
-                  // 'analyze': '//a.com/nocaptcha/analyze.jsonp',
-                  // 'get_captcha': '//b.com/get_captcha/ver3',
-                  // 'get_captcha': '//pin3.aliyun.com/get_captcha/ver3'
-                  // 'get_img': '//c.com/get_img',
-                  // 'checkcode': '//d.com/captcha/checkcode.jsonp',
-                  // 'umid_Url': '//e.com/security/umscript/3.2.1/um.js',
-                  // 'uab_Url': '//aeu.alicdn.com/js/uac/909.js',
-                  // 'umid_serUrl': 'https://g.com/service/um.json'
-              },
-              callback: function (data) {
-                  window.console && console.log(nc_token)
-                  window.console && console.log(data.csessionid)
-                  window.console && console.log(data.sig)
-              }
-          }
-      var nc = new noCaptcha(NC_Opt)
-      nc.upLang('cn', {
-          _startTEXT: "请按住滑块，拖动到最右边",
-          _yesTEXT: "验证通过",
-          _error300: "哎呀，出错了，点击<a href=\"javascript:__nc.reset()\">刷新</a>再来一次",
-          _errorNetwork: "网络不给力，请<a href=\"javascript:__nc.reset()\">点击刷新</a>",
-      })
+<script type="text/javascript">
+    var nc_token = ["FFFF0N00000000008369", (new Date()).getTime(), Math.random()].join(':');
+    var NC_Opt =
+        {
+            renderTo: "#your-dom-id",
+            appkey: "FFFF0N00000000008369",
+            scene: "nc_register",
+            token: nc_token,
+            customWidth: 300,
+            trans:{"key1":"code0"},
+            elementID: ["usernameID"],
+            is_Opt: 0,
+            language: "cn",
+            isEnabled: true,
+            timeout: 3000,
+            times:5,
+            apimap: {
+                // 'analyze': '//a.com/nocaptcha/analyze.jsonp',
+                // 'get_captcha': '//b.com/get_captcha/ver3',
+                // 'get_captcha': '//pin3.aliyun.com/get_captcha/ver3'
+                // 'get_img': '//c.com/get_img',
+                // 'checkcode': '//d.com/captcha/checkcode.jsonp',
+                // 'umid_Url': '//e.com/security/umscript/3.2.1/um.js',
+                // 'uab_Url': '//aeu.alicdn.com/js/uac/909.js',
+                // 'umid_serUrl': 'https://g.com/service/um.json'
+            },
+            callback: function (data) {
+                window.console && console.log(nc_token)
+                window.console && console.log(data.csessionid)
+                window.console && console.log(data.sig)
+            }
+        }
+    var nc = new noCaptcha(NC_Opt)
+    nc.upLang('cn', {
+        _startTEXT: "请按住滑块，拖动到最右边",
+        _yesTEXT: "验证通过",
+        _error300: "哎呀，出错了，点击<a href=\"javascript:__nc.reset()\">刷新</a>再来一次",
+        _errorNetwork: "网络不给力，请<a href=\"javascript:__nc.reset()\">点击刷新</a>",
+    })
 
-  </script>
+</script>
 
 </body>
 </html>

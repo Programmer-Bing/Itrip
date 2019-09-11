@@ -5,11 +5,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
-
+import org.springframework.session.data.redis.RedisFlushMode;
 
 @SpringBootApplication
-@EnableEurekaClient
-@EnableRedisHttpSession
+@EnableEurekaClient()
+@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 3000,redisFlushMode = RedisFlushMode.IMMEDIATE)
 //开启Feign支持
 @EnableFeignClients
 public class DeptConsumerFeign80_App {
