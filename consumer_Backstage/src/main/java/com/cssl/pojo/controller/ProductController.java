@@ -39,18 +39,25 @@ public class ProductController {
 
         String pageNumber=(String)map.get("pageNumber");
         Map<String,Object> map1=new HashMap<>();
+        Map<String,Object> map2=new HashMap<>();
+        map2.put("index",null);
+        map2.put("size",null);
+        map2.put("title",(String)map.get("title"));
+        map2.put("pt_id",(String)map.get("pt_id"));
+        map2.put("p_cid",(String)map.get("p_cid"));
 
         int pageIndex=Integer.parseInt(pageNumber);  //当前页数
         int pageSize=3;   //每页显示数量
-        List list=userService.findProduct(null);
+        List list=userService.findProduct(map2);
+        int total=list.size();  //获取总数据量
 
         map1.put("index",(pageIndex-1)*pageSize);
         map1.put("size",pageSize);
+        map1.put("title",(String)map.get("title"));
         map1.put("pt_id",(String)map.get("pt_id"));
         map1.put("p_cid",(String)map.get("p_cid"));
-        int total=list.size(); //获取总数据量
-
         System.out.println("total:"+total);
+
         int pages=total%pageSize==0?total/pageSize:total/pageSize+1;  //获取总页数
         List list2=userService.findProduct(map1);
         System.out.println("list2:"+list2);

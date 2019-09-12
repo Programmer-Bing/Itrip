@@ -28,4 +28,14 @@ public interface UserService  {
 
     public String Cs2(String name);
 
+
+    public Map<String,Object> PhoneEmail(String phone);
+
+
+    public int UpdatePhone(Map<String,Object> map);
+
+    public  List<User> UserLogin(Map<String,Object> map);
+
+    public List<User> UserLoginEmail(Map<String,Object> map);
+
 }

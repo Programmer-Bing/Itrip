@@ -45,6 +45,40 @@ public interface HomePageClientService {
     public List<User> JudgeUser(@RequestParam(value = "phone") String phone);
 
 
+    /***
+     * 根据号码拿邮箱
+     */
+    @RequestMapping(method = RequestMethod.GET,value = "PhoneEmailUser")
+    public Map<String,Object> PhoneEmail(@RequestParam(value = "phone") String phone);
+
+
+    /***
+     * 用户修改密码
+     */
+    @RequestMapping(method = RequestMethod.POST,value = "/UpdatePhoneUser")
+    public int UpdatePhone(@RequestBody  Map<String,Object> map);
+
+    /***
+     *
+     * 手机密码登录
+     * @param
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST,value = "/LoginPhoeUser")
+    public List<User> LoginPhone(@RequestBody Map<String,Object> map);
+
+    /***
+     *
+     * 邮箱登录
+     * @param map
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST,value = "/LoginEmailUser")
+    public List<User> UserLoginEmail(@RequestBody  Map<String,Object> map);
+
+
+
+
 
 
 }

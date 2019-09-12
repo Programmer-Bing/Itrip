@@ -2,7 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cssl.pojo.dao.UserMapper">
-    <select id="findAll" resultType="map">
+    <select id="findAll" resultType="map" parameterType="map">
         SELECT * FROM  `user`
+    <trim prefix="where" prefixOverrides="or||and">
+    <if test="chinese_name!='null' and chinese_name!=''">
+        Chinese_Name like concat('%',#{chinese_name},'%')
+    </if>
+    <if test="english_name!='null' and english_name!=''">
+         and English_Name like concat('%',#{english_name},'%')
+    </if>
+    </trim>
+    <if test="index!=null and size!=null">
+        LIMIT #{index},#{size}
+    </if>
     </select>
 </mapper>

@@ -20,8 +20,7 @@ public class DeptClientServiceFallbackFactory implements FallbackFactory<UserSer
             }
 
             @Override
-            public List<Map<String,Object>> findAll() {
-                System.out.println("查询失败了");
+            public List<Map<String, Object>> findAll(Map<String, Object> map) {
                 return new ArrayList<>();
             }
 
@@ -33,6 +32,11 @@ public class DeptClientServiceFallbackFactory implements FallbackFactory<UserSer
             @Override
             public List<Map<String, Object>> findProduct(Map<String, Object> map) {
                 return new ArrayList<>();
+            }
+
+            @Override
+            public int productSize() {
+                return 0;
             }
         };
     }

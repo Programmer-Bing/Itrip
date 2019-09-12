@@ -18,8 +18,8 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public List<Map<String,Object>> findAll() {
-        return userMapper.findAll();
+    public List<Map<String,Object>> findAll(Map<String,Object> map) {
+        return userMapper.findAll(map);
     }
 
 }

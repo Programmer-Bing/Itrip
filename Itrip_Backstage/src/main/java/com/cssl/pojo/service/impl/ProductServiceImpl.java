@@ -32,4 +32,9 @@ public class ProductServiceImpl implements ProductService {
     public List<Map<String, Object>> findProduct(Map<String, Object> map) {
         return productMapper.findProduct(map);
     }
+
+    @Override
+    public int productSize() {
+        return productMapper.productSize();
+    }
 }

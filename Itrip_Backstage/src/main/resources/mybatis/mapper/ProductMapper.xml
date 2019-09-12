@@ -19,10 +19,13 @@
     <select id="findProduct" parameterType="map" resultType="map">
         SELECT * FROM product
     <trim prefix="where" prefixOverrides="or||and">
-    <if test="pt_id!=null and pt_id!=0 and pt_id!=''">
+    <if test="title!='' and title!='null'">
+    and Product_Name like concat('%',#{title},'%')
+    </if>
+    <if test="pt_id!=null and pt_id!=0">
     and pt_id=#{pt_id}
     </if>
-    <if test="p_cid!=null and p_cid!=0 and p_cid!=''">
+    <if test="p_cid!=null and p_cid!=0">
     and p_cid=#{p_cid}
     </if>
     </trim>
@@ -30,4 +33,10 @@
         LIMIT #{index},#{size}
     </if>
     </select>
+
+    <select id="productSize" resultType="int">
+        SELECT COUNT(*) FROM product
+    </select>
+
+
 </mapper>

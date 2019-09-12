@@ -19,7 +19,6 @@ eureka:
     register-with-eureka: true
     service-url:
       defaultZone: http://127.0.0.1:6001/eureka/
-    enabled: true
   instance:
     instance-id: backstage-consumer-80
     prefer-ip-address: true     #访问路径可以显示IP地址
