@@ -14,11 +14,19 @@ public interface ProductMapper {
 
     public List<Map<String,Object>> productType();
 
-    public int addProduct(Map<String,Object> map);
-
     public List<Map<String,Object>> findProduct(Map<String,Object> map);
 
     public List<Map<String,Object>> citiesstates();
 
     public int productSize();
+
+    public int addProduct(Map<String,Object> map);
+
+    public int addtourismproducts(Map<String,Object> map);
+
+    public Map<String,Object> selectP_id(String product_name);
+
+    public int addhotel(Map<String,Object> map);
+
+    public int selProCount(Map<String,Object> map);
 }
