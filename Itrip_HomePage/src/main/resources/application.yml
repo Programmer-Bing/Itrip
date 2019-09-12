@@ -13,7 +13,7 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://39.107.103.69:3306/itrip?useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://39.107.103.69/itrip?useUnicode=true&characterEncoding=utf8
     username: root
     password: ailvxing@123
     dbcp2:
@@ -42,7 +42,7 @@ eureka:
     service-url:
       #defaultZone: http://localhost:6001/eureka
       #Eureka服务器集群
-      defaultZone: http://localhost:6001/eureka/
+      defaultZone: http://localhost:6001/eureka
   instance:
     instance-id: microservice-dept8001
     prefer-ip-address: true     #访问路径可以显示IP地址
