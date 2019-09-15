@@ -63,6 +63,33 @@ public interface UserDao {
      */
     public List<User> UserLoginEmail(Map<String,Object> map);
 
+    /***
+     *
+     *
+     *修改用户信息
+     * @return
+     */
+    public int UpdateUser(User uu);
+
+
+    /***
+     *
+     * 根据用户昵称查询用户
+     */
+    public List<User> SelectUserName(@PathVariable  String name);
+
+
+    /***
+     *
+     *
+     * 修改电话
+     */
+    public int UpdatePhonePerson(Map<String,Object> map);
+
+
+
+
+
 
 
 

@@ -59,4 +59,19 @@ public class UserServiceImpl implements UserService {
     public List<User> UserLoginEmail(Map<String,Object> map){
         return ud.UserLoginEmail(map);
     }
+
+    @Override
+    public int UpdateUser(User uu) {
+        return ud.UpdateUser(uu);
+    }
+
+    @Override
+    public List<User> SelectUserName(String name) {
+        return ud.SelectUserName(name);
+    }
+
+    @Override
+    public int UpdatePhonePerson(Map<String, Object> map) {
+        return ud.UpdatePhonePerson(map);
+    }
 }

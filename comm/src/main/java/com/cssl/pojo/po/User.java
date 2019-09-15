@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -29,7 +30,7 @@ public class User implements Serializable {
     private String Gender; //用户的性别
 
 
-    private Date Birthday; //用户的生日
+    private String Birthday; //用户的生日
 
 
     private String Phone_number; //用户的电话

@@ -77,6 +77,17 @@ public interface HomePageClientService {
     public List<User> UserLoginEmail(@RequestBody  Map<String,Object> map);
 
 
+    @RequestMapping(method = RequestMethod.POST,value = "/UpdateUserMsg")
+    public int UpdateUser(@RequestBody User uu);
+
+
+    @RequestMapping(method = RequestMethod.GET,value = "/SecectUserNamexx")
+    public List<User> SelectUserName(@RequestParam(value = "name") String name);
+
+
+    @RequestMapping(method = RequestMethod.POST,value = "/UpdatePhonePerson")
+    public int UpdatePhonePerson(@RequestBody  Map<String, Object> map);
+
 
 
 

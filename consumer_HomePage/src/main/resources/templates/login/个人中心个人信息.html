@@ -8,8 +8,8 @@
 	<meta name="viewport" content="width=1200, initial-scale=0.8">
 	<meta name="applicable-device" content="pc">
 	<title>iTrip爱去 - 用户中心 | 个人信息</title>
-	<script src="../js/http/kuayu.js" type="text/javascript"></script>
-	<script src="../js/jquery-1.8.3.js"></script>
+	<!--<script src="../js/http/kuayu.js" type="text/javascript"></script>-->
+
 	<link rel="shortcut icon" href="https://pic.itrip.com/img/favicon.ico">
 	<link rel="stylesheet" href="../个人中心个人信息_files/al_datepicker.css">
 	<link rel="stylesheet" type="text/css" href="../个人中心个人信息_files/jquery.Jcrop.min.css">
@@ -17,7 +17,50 @@
 	<link rel="stylesheet" type="text/css" href="../个人中心个人信息_files/select2.min.css">
 	<link rel="stylesheet" type="text/css" href="../个人中心个人信息_files/it_uc_201902190028.css">
 	<link rel="stylesheet" type="text/css" href="../个人中心个人信息_files/validationEngine.jquery.css">
+	<script src="../js/jquery-1.8.3.js" type="text/javascript"></script>
+	<script type="text/javascript">
 
+        $(function () {
+
+            //拿数据
+            $.getJSON("/GetSession",function (data) {
+                if(data!=null){
+
+                    document.getElementById("logzc").style.display="none";
+                    $("#username").text(data.chinese_Name);
+
+
+                }
+
+
+            });
+
+
+            //鼠标悬停事件
+            $("#user").mousemove(function () {
+                $(".down_list").css("display","block");
+            })
+            $("#user").mouseout(function () {
+                $(".down_list").css("display","none");
+            })
+
+
+            //退出登录
+            $("#btn_logout").click(function () {
+
+                $.getJSON("/logout",function (data) {
+                    window.location="../Europe.html"
+                })
+            })
+
+        })
+
+
+
+
+
+
+	</script>
 <body>
 
 <div id="nTalk_post_hiddenElement"
@@ -68,14 +111,14 @@
 						</a>
 					</span>
 				<span class="line">|</span>
-				<span class="js_loginStatus" style="display:none;margin-left:0px;">
+				<span class="js_loginStatus" style="display:none;margin-left:0px;" id="logzc">
 						<span><a class="blue" href="javascript:void(0);" onclick="login()"
 								 rel="nofollow">登录</a></span><span>/</span>
 						<span><a href="https://www.itrip.com/signup/index" rel="nofollow">注册</a></span>
 					</span>
-				<span class="js_loginStatus" style="margin-left: 0px;">
+				<span class="js_loginStatus" style="margin-left: 0px;" id="user">
 						<span class="sw_syb fl pos_r" style="margin-left:0px;"><a class="blue display_name"
-																				  href="https://www.itrip.com/user/index">xx</a><i
+																				  href="爱去旅行个人信息主页面.html" id="username">xx</a><i
 								class="sw_sj"></i>
 							<dl class="down_list">
 								<dd class="js_myOrder"><a href="https://www.itrip.com/user/orders" rel="nofollow"
@@ -381,19 +424,18 @@
 </div>
 
 <!-- td: 更新手机 -->
-<div class="dialog_phone_update hide">
+<div class="dialog" style="position: fixed; left: 50%; top: 50%; margin-left: -188px; margin-top: -146px; z-index: 99;"><span class="close" id="cc"  style="display: none"></span><div class="dialog-box"><div class="dialog-cont"><div class="dialog_phone_update hide" id="uphide">
 	<div data-form="">
 		<p class="f16 enter-phone " style="border-bottom:1px #E5E5E5 solid;padding-bottom:10px;">
-			手机：<span data-show-phone="" style="margin-left:5px;">17608486293</span>
+			手机：<span data-show-phone="" style="margin-left:5px;" id="phonenumber">17608486293</span>
 		</p>
-		<form action="https://www.itrip.com/main/user/bindPhone" class="action_update_phone" method="post">
+		<form  class="action_update_phone" method="post">
 			<div class="horiz mt25 f14">
 				<ul>
 					<li class="w90 tr pb20"><span class="orange">*</span>手机：</li>
 					<li>
 						<div class="iptBox" style="padding:0;">
-							<select class="regionCodePhoneNumNext"
-									style="height:36px;width:70px;border:none;background:none;" name="phoneRegionCode">
+							<select class="regionCodePhoneNumNext" style="height: 36px; width: 70px; border: none; background: none; display: none;" name="phoneRegionCode" tabindex="-1">
 								<option value="86" label="中国" selected="selected">+86</option>
 								<option value="61" label="澳大利亚">+61</option>
 								<option value="64" label="新西兰">+64</option>
@@ -453,9 +495,8 @@
 								<option value="212" label="摩洛哥">+212</option>
 								<option value="387" label="波黑">+387</option>
 								<option value="82" label="韩国">+82</option>
-							</select>
-							<input class="phoneNumNext validate[required,custom[phone]]" type="text" name="phoneNum"
-								   placeholder="手机号" style="width:150px;" autocomplete="off" maxlength="20">
+							</select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 150px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-phoneRegionCode-4w-container"><span class="select2-selection__rendered" id="select2-phoneRegionCode-4w-container" title="+86">+86</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+							<input class="phoneNumNext validate[required,custom[phone]]" id="phoneNum" type="text" name="phoneNum" placeholder="手机号" style="width:150px;" autocomplete="off" maxlength="20" >
 							<i class="icon_phone"></i>
 						</div>
 					</li>
@@ -466,60 +507,55 @@
 						<div class="oh">
 							<div class="iptBox fl" id="verifyCode" style="width:92px;">
 								<!-- validate[required,custom[number]] -->
-								<input type="text" name="smsCode" placeholder="验证码" maxlength="6"
-									   class="ml10 verifyCode_phone validate[required,custom[number]]"
-									   style="width:92px;" autocomplete="off">
+								<input type="text" name="smsCode" id="smsCode" placeholder="验证码" maxlength="6" class="ml10 verifyCode_phone validate[required,custom[number]]" style="width:92px;" autocomplete="off">
 							</div>
-							<span class="btn-normal-blue fl getPhoneCode" style="padding: 0 10px;margin-left: 10px;"
-								  data-send-smscode="">获取验证码</span>
+							<span class="btn-normal-blue fl getPhoneCode" id="sumbithq" style="padding: 0 10px;margin-left: 10px;" data-send-smscode="">获取验证码</span>
 							<span class="tipMsg hide"></span>
+
 						</div>
 					</li>
 				</ul>
 			</div>
 			<p>
-				<input type="submit" class="btn-orange center mt20 phoneModifySend" value="确定" style="border:none;">
+				<span id="hint1" style="font-size: 15px;color: orange;margin-left: 46px"></span>
+				<input type="button" class="btn-orange center mt20 phoneModifySend" id="confirm" value="确定" style="border:none;">
 			</p>
 		</form>
 	</div>
+
+
+
 </div>
-<div class="dialog_email_update hide">
-	<div data-form="">
-		<p class="f16 hide" style="border-bottom:1px #E5E5E5 solid;padding-bottom:10px;">
-			邮箱：<span data-show-email="" style="margin-left:5px;"></span>
-		</p>
-		<form action="https://www.itrip.com/main/user/bindEmail" class="action_update_email" method="post">
-			<div class="horiz mt25">
-				<ul class="mt10 f14">
-					<li class="tr pb20" style="width:50px;">邮箱：</li>
-					<li>
-						<div class="oh">
-							<div class="iptBox fl" id="verifyCode1" style="width:200px;">
-								<input class="validate[required,custom[email]] email-text" type="text" name="email"
-									   placeholder="邮箱" maxlength="30" style="width:200px;" autocomplete="off">
-							</div>
-						</div>
-					</li>
-				</ul>
-			</div>
-			<p>
-				<input type="submit" class="emailModifySend btn-orange center mt20" value="确定"
-					   style="border:none;cursor:pointer">
-			</p>
-		</form>
-	</div>
-</div>
+	<div class="dialog-light"  style="display: none" ><div class="dialog-light-title"><span class="dialog-light-title-l"></span><span class="dialog-light-title-c">提示</span><span class="dialog-light-title-r"></span></div><div class="dialog-light-cont"><div style="width:420px;height:80px;font-size:14px;text-align:center;">
+		<div>
+			修改关联手机后，您需要使用新手机号登录，原有手机号将无法登录。是否继续修改？
+		</div>
+		<div style="margin-top: 10px;">
+			<input data-dialog-confirm="1568428442277dhvy" id="update"  type="button" value="修改">
+
+		</div>
+	</div></div></div>
+
+	<div class="dialog_cont alertMsg" id="jb" style="padding: 50px; width: 350px; display: none;"><span  id="jbb" class="close" style="display:none;"></span><p class="f16 mb25 mt20 mb30 tc">基本信息修改成功!</p></div>
+
+
+
+
+</div></div></div>
+
 
 
 <input type="hidden" id="getUserInfoUrl" value="https://www.itrip.com/user/getBaseInfo">
 <!--个人信息修改-->
 <div class="dialog"
 	 style="position: fixed; left: 50%; top: 50%; margin-left: -285.5px; margin-top: -215px; z-index: 99">
-	<span class="close" style="display: none"></span>
+	<span class="close" id="updatexx" style="display:none;" ></span>
 	<div class="dialog-box">
 		<div class="dialog-cont">
+
+
 			<div class="dialog_basic_info hide" style="display: none">
-				<form action="https://www.itrip.com/user/updateBaseInfo" id="userBaseInforModifierForm" method="post">
+				<form action="" id="userBaseInforModifierForm" method="post">
 					<input type="hidden" name="userId" value="700054">
 					<p class="f16" style="border-bottom:1px #E5E5E5 solid;padding-bottom:10px;">基本信息</p>
 					<div class="horiz mt25">
@@ -549,8 +585,8 @@
 							<li>
 								<select class="ipt" style="width:150px;" id="sex" name="sex">
 									<option value="-1">===请选择===</option>
-									<option value="0" selected="">男</option>
-									<option value="1">女</option>
+									<option value="0" selected="selected" >男</option>
+									<option value="1" id="nv">女</option>
 								</select>
 							</li>
 						</ul>
@@ -559,21 +595,26 @@
 							<li>
 								<div class="ipt fl date">
 									<input type="text" class="birthday hasDatepicker" style="height:30px;" value=""
-										   readonly="readonly" autocomplete="off" name="birthDay" id="dp1568104389516">
+										   readonly="readonly" autocomplete="off" name="birthDay" id="test1">
 									<span class="icon icon_Calendar"></span>
 								</div>
 							</li>
 						</ul>
 					</div>
 					<div class="oh mt30">
-						<input id="baseInfoSubmit" type="submit" class="btn-orange center f14 hand" value="提交"
+						<input id="baseInfoSubmit" type="button" class="btn-orange center f14 hand" value="提交"
 							   style="width:165px;line-height:40px;border: none;">
 					</div>
 				</form>
 			</div>
+
+
 		</div>
 	</div>
 </div>
+
+
+
 
 <div class="dialog_change_password w560 hide">
 	<input type="hidden" value="https://www.itrip.com/user/resetPassword" id="form_action_url">
@@ -951,6 +992,7 @@
 		</div>
 	</div>
 </div>
+
 <div class="dialog_Feedback black hide" id="qaErrorDialog">
 	<div class="mod_layer_title bold f14">
 		<h3>提示</h3>
@@ -964,6 +1006,15 @@
 
 
 </div>
+
+
+<script src="../layDate-v5.0.9/layDate-v5.0.9/laydate/laydate.js"></script>
+<script>
+    //执行一个laydate实例
+    laydate.render({
+        elem: '#test1' //指定元素
+    });
+</script>
 <script>
     $(".change_BisicInfo").click(function () {
         var div = "<div class=\"dialogMask\"></div>";
@@ -981,8 +1032,172 @@
 <script type="text/javascript">
 
 	$(function () {
+			$(".change_BisicInfo").click(function () {
+				//个人信息修改
+			    $.getJSON("/PersonCenterSelect",function (data) {
+						$("#nameZh").val(data.chinese_Name);
+					     var ename=data.english_Name;
+					     var name=ename.split(" ");
+					    $("#givenNameEn").val(name[0])
 
 
+						$("#familyNameEn").val(name[1]);
+					    $("#nickName").val(data.user_name);
+					    var sex=data.gender;
+
+					    if(sex!="男"){
+							$("#sex").val("1");
+						}
+					    var da=$("#test1").val(data.birthday);
+
+
+
+
+
+                })
+            })
+
+		//修改
+		$("#baseInfoSubmit").click(function () {
+			     	var aa= $(".show-phone").text();
+
+					var namezh=$("#nameZh").val();
+					var givenNameEn=$("#givenNameEn").val();
+					var familyNameEn=$("#familyNameEn").val();
+					var nickName=$("#nickName").val();
+					var sex=$("#sex").val();
+					var birthDay=$("#test1").val();
+
+					$.getJSON("/UpdateUser",{"nameZh":namezh,"givenNameEn":givenNameEn,"familyNameEn":familyNameEn,"nickName":nickName,"sex":sex,"birthDay":birthDay},function (data) {
+						if(data!=null){
+						   $("#updatexx").css("display","none")
+                            $(".dialog_basic_info.hide").css("display", "none");
+                            $(".close").css("display","none");
+                            $(".dialogMask").remove();
+                            var div = "<div class=\"dialogMask\"></div>";
+                            $("body").append(div);
+							$("#jb").css("display","block");
+                            $("#jbb").css("display","block");
+                            $(".close").click(function () {
+                                $(".close").css("display","none");
+
+                                $(".dialogMask").remove();
+                                $(".dialog_cont.alertMsg").remove();
+                                $("#userNameZh").text(data.chinese_Name);
+                                $("#userNameEn").text(data.english_Name);
+                                $("#usernickName").text(data.user_name);
+                                $("#userBirthDay").text(data.birthday);
+                                $("#userSex").text(data.gender);
+                            })
+
+						}
+
+                    })
+
+        })
+
+		$.getJSON("/SelectUser",function (data) {
+
+            $("#userNameZh").text(data[0].chinese_Name);
+            $("#userNameEn").text(data[0].english_Name);
+            $("#usernickName").text(data[0].user_name);
+            $("#userBirthDay").text(data[0].birthday);
+            $("#userSex").text(data[0].gender);
+
+        })
+
+
+
+		//拿手机号
+		$.getJSON("/xsphone",function (data) {
+
+
+			$(".show-phone").text(data.phone_number);
+        })
+		//更新手机
+		$(".update-phone").click(function () {
+
+            var div = "<div class=\"dialogMask\"></div>";
+            $("body").append(div);
+            $("#cc").css("display","block")
+			$(".dialog-light").css("display","block");
+
+			$(".close").click(function () {
+                $(".close").css("display","none");
+                $(".dialog-light").css("display","none");
+            })
+			$("#update").click(function () {
+                var text = $(".show-phone").text();
+
+                $("#phonenumber").text(text);
+                $(".dialog-light").css("display","none");
+                $(".close").css("display","none");
+                $("#uphide").css("display","block");
+                $("#cc").css("display","block");
+                $("#cc").click(function () {
+                    $("#cc").css("display","none");
+                    $("#uphide").css("display","none");
+                })
+            })
+				//获取验证码
+				$("#sumbithq").click(function () {
+
+					var phone=$("#phoneNum").val();
+
+					var phonenumber=$("#phonenumber").text();
+					if(phone==null||phone==""){
+						$("#hint1").text("手机号不能为空!")
+						return false;
+					}
+					else{
+
+                        $("#hint1").text("")
+					}
+					$.getJSON("/usercode",{"phone":phone},function (data) {
+						//获取验证码
+
+                    })
+
+
+
+                })
+
+				$("#confirm").click(function () {
+
+                    var phone=$("#phoneNum").val();
+
+
+
+                    if(phone==null||phone==""){
+                        $("#hint1").text("手机号不能为空!")
+                        return false;
+                    }
+
+
+                    var smsCode=$("#smsCode").val();
+                    if(smsCode==null||smsCode==""){
+                        $("#hint1").text("验证码不能为空!")
+                        return false;
+                    }
+                    else{
+                        $("#hint1").text("")
+                    }
+                    var phone2=$("#phonenumber").text();
+                    $.getJSON("/UpdatePhone",{"phone":phone,"ophone":phone2,"smsCode":smsCode},function (data) {
+							if(data>=0){
+                                $("#cc").css("display","none");
+
+                                $("#uphide").css("display","none");
+                                $(".show-phone").text(phone);
+                                $(".dialogMask").remove();
+							}
+
+                    })
+                })
+
+
+
+            })
 
     })
 </script>

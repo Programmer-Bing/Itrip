@@ -111,6 +111,42 @@ public class UserController {
         return  us.UserLoginEmail(map);
     }
 
+    /***
+     *
+     *
+     * 修改用户信息
+     */
+    @RequestMapping(method = RequestMethod.POST,value = "/UpdateUserMsg")
+    public int UpdateUser(@RequestBody User uu){
+
+        System.out.println("消费者来修改用户信息");
+        return  us.UpdateUser(uu);
+    }
+
+    /****
+     *
+     *
+     * 根据昵称查询用户
+     * @param name
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET,value = "/SecectUserNamexx")
+    public List<User> SelectUserName(@RequestParam(value = "name") String name) {
+        System.out.println("消费者查询姓名");
+        return us.SelectUserName(name);
+    }
+
+    /***
+     *
+     * 修改电话
+     * @param map
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST,value = "/UpdatePhonePerson")
+    public int UpdatePhonePerson(@RequestBody  Map<String, Object> map) {
+        System.out.println("消费者修改电话");
+        return us.UpdatePhonePerson(map);
+    }
 
 
 
