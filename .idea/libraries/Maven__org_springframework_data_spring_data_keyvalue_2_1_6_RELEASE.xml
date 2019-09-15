@@ -1,6 +1,7 @@
 <component name="libraryTable">
   <library name="Maven: org.springframework.data:spring-data-keyvalue:2.1.6.RELEASE">
     <CLASSES>
+<<<<<<< HEAD
       <root url="jar://E:/MavenRepository2/org/springframework/data/spring-data-keyvalue/2.1.6.RELEASE/spring-data-keyvalue-2.1.6.RELEASE.jar!/" />
     </CLASSES>
     <JAVADOC>
@@ -8,6 +9,15 @@
     </JAVADOC>
     <SOURCES>
       <root url="jar://E:/MavenRepository2/org/springframework/data/spring-data-keyvalue/2.1.6.RELEASE/spring-data-keyvalue-2.1.6.RELEASE-sources.jar!/" />
+=======
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-keyvalue/2.1.6.RELEASE/spring-data-keyvalue-2.1.6.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-keyvalue/2.1.6.RELEASE/spring-data-keyvalue-2.1.6.RELEASE-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-keyvalue/2.1.6.RELEASE/spring-data-keyvalue-2.1.6.RELEASE-sources.jar!/" />
+>>>>>>> origin/master
     </SOURCES>
   </library>
 </component>

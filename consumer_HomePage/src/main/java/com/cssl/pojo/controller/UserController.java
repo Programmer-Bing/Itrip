@@ -4,14 +4,11 @@ import com.cssl.pojo.po.User;
 import com.cssl.pojo.service.HomePageClientService;
 import com.cssl.pojo.util.DunXing;
 import com.cssl.pojo.util.RedisUtil;
-import javafx.scene.input.DataFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import redis.clients.jedis.Jedis;
 
 import javax.servlet.http.HttpSession;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,7 +30,7 @@ public class UserController {
 
 
     @RequestMapping(value ="/usercode")
-    public String Usercode(@RequestParam String phone,HttpSession se) throws Exception{
+    public String Usercode(@RequestParam String phone) throws Exception{
         System.out.println("手机号码: "+phone);
         DunXing dd=new DunXing();
 
@@ -41,7 +38,7 @@ public class UserController {
         //int dx = dd.DX(phone);
 
         String dx="123456";
-        ru.SetKey(phone,dx);
+        ru.SetKey("code",dx);
         System.out.println("短信验证码"+dx);
 
 
@@ -68,7 +65,7 @@ public class UserController {
     @RequestMapping(value = "/addUser")
     public int addUser(@RequestParam String phone,@RequestParam String code){
         System.out.println("添加:");
-        String coderedis = ru.getKey(phone);
+        String coderedis = ru.getKey("code");
         System.out.println("redis取出来的验证码: "+coderedis);
         if(code.equals(coderedis)){
             System.out.println("验证码输入正确");
@@ -180,7 +177,7 @@ public class UserController {
         map.put("phone",phone);
         map.put("password",pwd);
         List<User> list = service.LoginPhone(map);
-        System.out.println("长度:  "+list.size());
+
         if(list.size()>0){
             User user=list.get(0);
             System.out.println("中文名字: "+user.getChinese_Name());
@@ -272,125 +269,6 @@ public class UserController {
 
     }
 
-
-
-    /****
-     *
-     *
-     * 个人中心个人信息展示
-     */
-    @RequestMapping("/PersonCenterSelect")
-    public User PersonCenterSelect(HttpSession se) throws  Exception{
-
-        User user =(User)se.getAttribute(se.getId());
-
-        if(user!=null){
-            System.out.println("拿到数据: 生日:"+user.getBirthday());
-        }
-
-
-        return  user;
-    }
-
-    /***
-     *
-     * 个人修改用户数据
-     * @param
-     * @return
-     */
-    @RequestMapping("/UpdateUser")
-    public User UpdateUser(String nameZh,String givenNameEn,String familyNameEn,String nickName,int sex,String birthDay,HttpSession se){
-        String EnglishName=givenNameEn+" "+familyNameEn;
-        System.out.println("来了修改用户信息:  "+sex);
-        User uu=new User();
-        uu.setBirthday(birthDay);
-        uu.setChinese_Name(nameZh);
-        uu.setEnglish_Name(EnglishName);
-        uu.setUser_name(nickName);
-
-        if(sex==0){
-            uu.setGender("男");
-        }
-        else if(sex==1){
-            uu.setGender("女");
-        }
-        User user =(User) se.getAttribute(se.getId());
-        uu.setPhone_number(user.getPhone_number());
-        service.UpdateUser(uu);
-        return  uu;
-    }
-
-
-    /**
-     *
-     * 个人中心个人信息显示信息
-     */
-    @RequestMapping("/SelectUser")
-    public List<User> SelectUser(HttpSession se){
-
-        User user = (User) se.getAttribute(se.getId());
-        String phone=user.getPhone_number();
-        List<User> list = service.JudgeUser(phone);
-
-        return  list;
-    }
-
-
-    /***
-     *
-     * 账号与密码手机号显示
-     */
-    @RequestMapping("/xsphone")
-    public User ShowPersonxx(HttpSession se){
-        System.out.println("显示账号密码: "+se.getId());
-
-        User user =(User) se.getAttribute(se.getId());
-
-        String phone = ru.getKey(user.getUser_name());
-        if(phone==null){
-            return  user;
-        }
-        else{
-            User uu=new User();
-            uu.setPhone_number(phone);
-            return  uu;
-        }
-
-    }
-
-    /***
-     *
-     * 个人中心修改手机号
-     * @return
-     */
-    @RequestMapping("/UpdatePhone")
-    public int  UpdatePhonexx(String phone,String smsCode,String ophone,HttpSession se){
-        System.out.println("打字: "+phone);
-        String cede=ru.getKey(phone);
-        if(cede.equals(smsCode)){
-            //验证码输入正确
-            Map<String,Object> map=new HashMap<>();
-            map.put("newPhone",phone);
-            map.put("oPhone",ophone);
-
-            int i = service.UpdatePhonePerson(map);
-            if(i>=0){
-                //修改成功
-                System.out.println("返回的数: "+i);
-                String code=se.getId();
-                ru.SetKey(code,phone);
-                return  i;
-            }
-            else{
-                return  0;
-            }
-        }
-        else{
-            System.out.println("验证码有误");
-            return  0;
-        }
-
-    }
 
 
 }

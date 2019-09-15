@@ -1,5 +1,6 @@
 package com.cssl.pojo.service;
 
+import com.cssl.pojo.po.Page;
 import com.cssl.pojo.po.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,12 +16,31 @@ public interface UserService {
 
     @RequestMapping(method = RequestMethod.GET,value = "productType")
     public List<Map<String,Object>> productType();
+
     @RequestMapping("findAll")
-    public List<Map<String,Object>> findAll(Map<String,Object> map);
+    public Page findAll(Map<String,Object> map);
+
     @RequestMapping(method = RequestMethod.GET,value = "citiesstates")
     public List<Map<String,Object>> citiesstates();
-    @RequestMapping(method = RequestMethod.GET,value = "findProduct")
-    public List<Map<String,Object>> findProduct(Map<String,Object> map);
+
+    @RequestMapping("findProduct")
+    public Page findProduct(Map<String,Object> map);
+
     @RequestMapping(method = RequestMethod.GET,value = "productSize")
     public int productSize();
+
+    @RequestMapping("addProduct")
+    public int addProduct(Map<String,Object> map);
+
+    @RequestMapping("addtourismproducts")
+    public int addtourismproducts(Map<String,Object> map);
+
+    @RequestMapping("selectP_id")
+    public Map<String,Object> selectP_id(String product_Name);
+
+    @RequestMapping("addhotel")
+    public int addhotel(Map<String,Object> map);
+
+    @RequestMapping("selProCount")
+    public int selProCount(Map<String,Object> map);
 }

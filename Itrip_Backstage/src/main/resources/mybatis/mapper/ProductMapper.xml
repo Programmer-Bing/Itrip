@@ -8,10 +8,6 @@
         SELECT * FROM producttype
     </select>
 
-    <insert id="addProduct" parameterType="map">
-
-    </insert>
-
     <select id="citiesstates" resultType="map">
         SELECT * FROM citiesstates
     </select>
@@ -38,5 +34,23 @@
         SELECT COUNT(*) FROM product
     </select>
 
+    <insert id="addProduct" parameterType="map">
+        INSERT INTO product(Product_Name,Pt_id,P_cid,P_imgpath,P_price)VALUES(#{product_name},#{pt_id},#{p_cid},#{p_imgpath},#{p_price})
+    </insert>
 
+    <select id="selectP_id" parameterType="String" resultType="map">
+        SELECT * FROM product WHERE product_name=#{product_name}
+    </select>
+
+    <insert id="addtourismproducts" parameterType="map">
+        INSERT INTO tourismproducts(tp_name,Days_play,purchases_Number,price,comments_Number,describes,Collectors_Number,Strategy,Expensestatement,ReservationNotes,itrip,Product_id,picture) VALUES(#{tp_name},#{Days_play},#{purchases_Number},#{price},#{comments_Number},#{describes},#{Collectors_Number},#{Strategy},#{Expensestatement},#{ReservationNotes},#{itrip},#{Product_id},#{picture})
+    </insert>
+
+    <insert id="addhotel" parameterType="map">
+        INSERT INTO hotel(h_name,Product_id,purchases_Number,Star_class,cs_id,describes,Specific_address,score,Reservation_Notes,picture1,tips)VALUES(#{h_name},#{Product_id},#{purchases_Number},#{Star_class},#{cs_id},#{describes},#{Specific_address},#{score},#{Reservation_Notes},#{picture1},#{tips})
+    </insert>
+
+    <select id="selProCount" resultType="int" parameterType="map">
+        SELECT COUNT(*) FROM product WHERE product_name=#{product_name} and p_cid=#{p_cid}
+    </select>
 </mapper>

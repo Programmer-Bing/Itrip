@@ -37,4 +37,29 @@ public class ProductServiceImpl implements ProductService {
     public int productSize() {
         return productMapper.productSize();
     }
+
+    @Override
+    public int addProduct(Map<String, Object> map) {
+        return productMapper.addProduct(map);
+    }
+
+    @Override
+    public int addtourismproducts(Map<String, Object> map) {
+        return productMapper.addtourismproducts(map);
+    }
+
+    @Override
+    public Map<String, Object> selectP_id(String product_name) {
+        return productMapper.selectP_id(product_name);
+    }
+
+    @Override
+    public int addhotel(Map<String, Object> map) {
+        return productMapper.addhotel(map);
+    }
+
+    @Override
+    public int selProCount(Map<String, Object> map) {
+        return productMapper.selProCount(map);
+    }
 }
