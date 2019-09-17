@@ -328,10 +328,10 @@
 <!--标题-->
 <div class="wrap" style="margin-top:5px;">
     <div class="clearfix">
-        <div class="breadcrumb fl clearfix oh" style="padding-left:0;">
-            <a href="https://www.itrip.com/yidali/wanle">意大利</a> &gt;
-            <a href="https://www.itrip.com/foluolunsa/wanle">佛罗伦萨</a> &gt;
-            意大利圣吉米尼亚诺+托斯卡纳+基安蒂+锡耶纳中文一日游（午餐品酒+英文可选+佛罗伦萨往返）
+        <div class="breadcrumb fl clearfix oh" style="padding-left:0;" th:text="${ProductDetails.tp_name}+'nmb'">
+            <!-- <a href="https://www.itrip.com/yidali/wanle">意大利</a> &gt;
+             <a href="https://www.itrip.com/foluolunsa/wanle">佛罗伦萨</a> &gt;-->
+            <!--意大利圣吉米尼亚诺+托斯卡纳+基安蒂+锡耶纳中文一日游（午餐品酒+英文可选+佛罗伦萨往返）-->
         </div>
     </div>
     <h1 class="tit_tour bold f28 mt15">意大利圣吉米尼亚诺+托斯卡纳+基安蒂+锡耶纳中文一日游（午餐品酒+英文可选+佛罗伦萨往返）</h1>
@@ -3292,6 +3292,7 @@
     <!--蓝色部分的货币切换-->
     <script type="text/javascript">
         var PRE_CID, CUR_CID;
+
         function changeCurrency(cid) {
             var code = exRates[cid].code;
             var symbol = exRates[cid].symbol;
@@ -3306,6 +3307,7 @@
                 $(this).empty().text(price.toFixed(2));
             });
         }
+
         // 页面事件 货币切换
         $('.money_sw a').click(function () {
             PRE_CID = CUR_CID;
@@ -4989,8 +4991,12 @@ data-i-op-reviewid
                         <div class="coupon-item-inner">
                             <div class="coupon-left">
                                 <div class="coupon-discount-wrap">
-                                    <p class="coupon-discount"><strong><span data-symblo="symblo">€</span><span  data-currencyid="20" data-price="3" data-price-type="start" data-discount-type="price" class="yhjmony">3</span></strong></p>
-                                    <p class="coupon-discount-desc">满<span data-symblo="symblo">€</span><span data-currencyid="20" data-price="128" data-price-type="start" data-discount-type="price" class="yhjmony">128</span></p>
+                                    <p class="coupon-discount"><strong><span data-symblo="symblo">€</span><span
+                                            data-currencyid="20" data-price="3" data-price-type="start"
+                                            data-discount-type="price" class="yhjmony">3</span></strong></p>
+                                    <p class="coupon-discount-desc">满<span data-symblo="symblo">€</span><span
+                                            data-currencyid="20" data-price="128" data-price-type="start"
+                                            data-discount-type="price" class="yhjmony">128</span></p>
                                 </div>
                             </div>
                             <div class="coupon-info">
@@ -5039,8 +5045,12 @@ data-i-op-reviewid
                         <div class="coupon-item-inner">
                             <div class="coupon-left">
                                 <div class="coupon-discount-wrap">
-                                    <p class="coupon-discount"><strong><span data-symblo="symblo">€</span><span  data-currencyid="20" data-price="1" data-price-type="start" data-discount-type="price" class="yhjmony">1</span></strong></p>
-                                    <p class="coupon-discount-desc">满<span data-symblo="symblo">€</span><span data-currencyid="20" data-price="1" data-price-type="start" data-discount-type="price" class="yhjmony">1</span></p>
+                                    <p class="coupon-discount"><strong><span data-symblo="symblo">€</span><span
+                                            data-currencyid="20" data-price="1" data-price-type="start"
+                                            data-discount-type="price" class="yhjmony">1</span></strong></p>
+                                    <p class="coupon-discount-desc">满<span data-symblo="symblo">€</span><span
+                                            data-currencyid="20" data-price="1" data-price-type="start"
+                                            data-discount-type="price" class="yhjmony">1</span></p>
                                 </div>
                             </div>
                             <div class="coupon-info">

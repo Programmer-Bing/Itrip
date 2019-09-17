@@ -3,20 +3,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.cssl.pojo.dao.HomePage_productDao">
-
-    <!--<select id="findAll" resultType="homepage_product">
-        SELECT p.P_id AS "product_id",p.P_name AS "product_name",p.P_imgpath AS "product_imgPath",p.P_price AS "product_price"
-        FROM product p
-    </select>
-    <select id="findByCPT" resultType="homepage_product" parameterType="map">
-        SELECT p.P_id AS "product_id",p.P_name AS "product_name",p.P_imgpath AS "product_imgPath",p.P_price AS "product_price",
-               c.Country_name AS "Country_name",pt.PT_name AS "ProductType_name" FROM product p INNER JOIN country c ON p.P_cid=c.Country_id
-                                                                                                INNER JOIN preducttype pt ON p.P_ptid=pt.PT_id
-        <trim prefixOverrides="AND || OR" prefix="where">
-            <if test="Country_name!=null and Country_name!=''"> and Country_name = #{Countrt_name}</if>
-            <if test="ProductType_name!=null and ProductType_name!=''"> and PT_name = #{ProductType_name}</if>
-        </trim>
-    </select>-->
     <!--查特价商品-->
     <select id="findBargains" parameterType="int" resultType="homepage_product">
         SELECT p.`Product_id`   AS "product_id",
@@ -30,7 +16,7 @@
                  INNER JOIN largeplate l ON s.`lp_id` = l.`lp_id`
         WHERE l.`lp_id` = #{lp_id};
     </select>
-    <!--根据所属城市和所属种类-->
+    <!--根据所属城市和所属种类(所属城市唯一)-->
     <select id="findPartyingByCity" parameterType="map" resultType="homepage_product">
         SELECT p.`Product_id` AS "product_id",p.`Product_Name` AS "product_name",p.P_imgpath AS
         "product_imgPath",p.P_price AS "product_price"
@@ -40,5 +26,38 @@
             <if test="Pt_id!=null and Pt_id!=''">and p.Pt_id = #{Pt_id}</if>
         </trim>
         limit 6;
+    </select>
+    <!--根据所属城市和所属种类(所属城市不唯一)-->
+    <select id="findPartyingByCities" parameterType="map" resultType="homepage_product">
+        SELECT
+        p.`Product_id` AS "product_id",
+        p.`Product_Name` AS "product_name",
+        p.P_imgpath AS "product_imgPath",
+        p.P_price AS "product_price"
+        FROM
+        product p
+        WHERE p.P_cid IN
+        <foreach collection="P_cid" item="name" index="index" open="(" close=")" separator=",">
+            #{name}
+        </foreach>
+        AND p.Pt_id = #{Pt_id}
+        LIMIT 6 ;
+    </select>
+    <!--特价商品-->
+    <select id="findSellwell" resultType="homepage_product">
+        SELECT p.`Product_id`   AS "product_id",
+               p.`Product_Name` AS "product_name",
+               p.P_imgpath      AS "product_imgPath",
+               p.P_price        AS "product_price"
+        FROM tourismproducts t
+                 INNER JOIN product p ON t.`Product_id` = p.`Product_id`
+        ORDER BY purchases_Number LIMIT 2
+    </select>
+    <!--跟据商品id查商品详情-->
+    <select id="findProductDetails" resultType="productdetails" parameterType="Integer">
+        SELECT t.*
+        FROM tourismproducts t
+                 INNER JOIN product p ON t.`Product_id` = p.`Product_id`
+        WHERE p.`Product_id` = #{Product_id};
     </select>
 </mapper>
