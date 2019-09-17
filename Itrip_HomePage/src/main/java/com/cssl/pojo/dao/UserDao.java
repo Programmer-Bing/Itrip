@@ -35,4 +35,62 @@ public interface UserDao {
 
 
     public String Cs2(String name);
+
+    /***
+     * 根据号码查邮箱
+     * @param
+     * @return
+     */
+    public Map<String,Object> PhoneEmail(String phone);
+
+
+    /***
+     *
+     * 修改密码
+     */
+    public int UpdatePhone(Map<String,Object> map);
+
+    /***
+     * 手机密码登录
+     *
+     */
+    public List<User> UserLogin(Map<String,Object> map);
+
+    /***
+     * 邮箱登录
+     * @param map
+     * @return
+     */
+    public List<User> UserLoginEmail(Map<String,Object> map);
+
+    /***
+     *
+     *
+     *修改用户信息
+     * @return
+     */
+    public int UpdateUser(User uu);
+
+
+    /***
+     *
+     * 根据用户昵称查询用户
+     */
+    public List<User> SelectUserName(@PathVariable  String name);
+
+
+    /***
+     *
+     *
+     * 修改电话
+     */
+    public int UpdatePhonePerson(Map<String,Object> map);
+
+
+
+
+
+
+
+
 }

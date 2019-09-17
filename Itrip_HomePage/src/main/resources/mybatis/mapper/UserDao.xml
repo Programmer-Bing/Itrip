@@ -26,4 +26,41 @@
 
     </select>
 
+    <select id="PhoneEmail" resultType="Map" parameterType="String">
+
+        SELECT   email    FROM USER WHERE Phone_number=#{phone}
+    </select>
+
+    <update id="UpdatePhone" parameterType="Map">
+
+        UPDATE USER SET PASSWORD=#{pwd} WHERE Phone_number=#{phone}
+    </update>
+
+    <select id="UserLogin" resultType="User" parameterType="Map">
+
+        SELECT  * FROM USER WHERE Phone_number=#{phone} AND PASSWORD=#{password}
+    </select>
+
+    <select id="UserLoginEmail" resultType="User" parameterType="Map">
+        select*from user where email=#{email}  and Password=#{password}
+
+    </select>
+
+    <update id="UpdateUser" parameterType="User">
+
+
+        update user set user_name=#{user_name},English_Name=#{English_Name},Chinese_Name=#{Chinese_Name},Gender=#{Gender},Birthday=#{Birthday} where Phone_number=#{Phone_number}
+    </update>
+
+    <select id="SelectUserName" parameterType="String" resultType="User">
+
+
+        SELECT*FROM USER WHERE user_name=#{name}
+    </select>
+
+    <update id="UpdatePhonePerson" parameterType="Map">
+
+
+        UPDATE USER SET Phone_number=#{newPhone} WHERE Phone_number=#{oPhone}
+    </update>
 </mapper>

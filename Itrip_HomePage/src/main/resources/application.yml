@@ -13,28 +13,28 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://39.107.103.69/itrip?useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://127.0.0.1:3306/itrip?useUnicode=true&characterEncoding=utf8 #39.107.103.69
     username: root
-    password: ailvxing@123
+    password: root #ailvxing@123
     dbcp2:
       min-idle: 5
       initial-size: 5
-      max-total: 10
-      max-wait-millis: 100000000000
+      max-total: 5
+      max-wait-millis: 200
 
-  #用于分布式存储
-#  redis:
-#    port: 6379
-#    database: 0
-#    host: 127.0.0.1
-#    password:
-#    timeout: 10s
-#    jedis:
-#      pool:
-#        max-active: 8
-#        max-wait: -1
-#        max-idle: 5
-#        min-idle: -1
+   #用于分布式存储
+  redis:
+    port: 6379
+    database: 0
+    host: 127.0.0.1
+    password:
+    timeout: 10s
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 5
+        min-idle: -1
 
 
 eureka:
@@ -42,7 +42,7 @@ eureka:
     service-url:
       #defaultZone: http://localhost:6001/eureka
       #Eureka服务器集群
-      defaultZone: http://localhost:6001/eureka
+      defaultZone: http://localhost:6001/eureka/
   instance:
     instance-id: microservice-dept8001
     prefer-ip-address: true     #访问路径可以显示IP地址
