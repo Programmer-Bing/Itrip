@@ -31,6 +31,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> JudgeUser(String phone) {
+        System.out.println("kkkk"+phone);
+
         return ud.JudgeUser(phone);
     }
 
