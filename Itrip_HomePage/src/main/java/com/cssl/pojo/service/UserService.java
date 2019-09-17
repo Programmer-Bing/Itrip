@@ -45,6 +45,10 @@ public interface UserService  {
 
     public int UpdatePhonePerson(Map<String,Object> map);
 
+    public int UpdatePassword(Map<String,Object> map);
+
+    public int UpdatePicture(Map<String,Object> map);
+
 
 
 }

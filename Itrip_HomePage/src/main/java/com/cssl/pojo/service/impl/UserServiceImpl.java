@@ -74,4 +74,15 @@ public class UserServiceImpl implements UserService {
     public int UpdatePhonePerson(Map<String, Object> map) {
         return ud.UpdatePhonePerson(map);
     }
+
+
+    @Override
+    public int UpdatePassword(Map<String, Object> map) {
+        return ud.UpdatePassword(map);
+    }
+
+    @Override
+    public int UpdatePicture(Map<String, Object> map) {
+        return ud.UpdatePicture(map);
+    }
 }

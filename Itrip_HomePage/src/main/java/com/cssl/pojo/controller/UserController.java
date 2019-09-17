@@ -148,6 +148,29 @@ public class UserController {
         return us.UpdatePhonePerson(map);
     }
 
+    /***
+     *
+     * 修改密码
+     * @param map
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST,value = "/UpdatePassword")
+    public int UpdatePassword(@RequestBody  Map<String, Object> map) {
+        System.out.println("消费者来修改密码");
+        return us.UpdatePassword(map);
+    }
+
+    /***
+     *
+     * 修改图片
+     *
+     */
+    @RequestMapping(method = RequestMethod.POST,value = "/UpdatePicture")
+    public int UpdatePicture(@RequestBody  Map<String, Object> map){
+
+        System.out.println("消费者来到修改图片");
+        return  us.UpdatePicture(map);
+    }
 
 
 }

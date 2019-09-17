@@ -1,6 +1,7 @@
 package com.cssl.pojo.service;
 
 import com.cssl.pojo.HomePage_product;
+import com.cssl.pojo.po.Orders;
 import com.cssl.pojo.po.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
@@ -88,8 +89,15 @@ public interface HomePageClientService {
     @RequestMapping(method = RequestMethod.POST,value = "/UpdatePhonePerson")
     public int UpdatePhonePerson(@RequestBody  Map<String, Object> map);
 
+    @RequestMapping(method = RequestMethod.POST,value = "/UpdatePassword")
+    public int UpdatePassword(@RequestBody  Map<String, Object> map);
 
 
+    @RequestMapping(method = RequestMethod.POST,value = "/UpdatePicture")
+    public int UpdatePicture(@RequestBody  Map<String, Object> map);
 
+
+    @RequestMapping(method = RequestMethod.GET,value = "/SelectUserID")
+    public List<Orders> SelectUser(@RequestParam(value = "1") int id);
 
 }

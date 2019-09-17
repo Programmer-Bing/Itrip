@@ -87,6 +87,25 @@ public interface UserDao {
     public int UpdatePhonePerson(Map<String,Object> map);
 
 
+    /***
+     *
+     * 修改密码
+     */
+    public int UpdatePassword(Map<String,Object> map);
+
+
+    /****
+     *
+     * 修改图片
+     */
+    public int UpdatePicture(Map<String,Object> map);
+
+
+
+
+
+
+
 
 
 

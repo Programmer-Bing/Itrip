@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.cssl.pojo.HomePage_product;
+import com.cssl.pojo.po.Orders;
 import com.cssl.pojo.po.User;
 import org.springframework.stereotype.Component;
 
@@ -91,6 +92,22 @@ public class FeginFactory implements FallbackFactory<HomePageClientService>{
 			@Override
 			public int UpdatePhonePerson(Map<String, Object> map) {
 				return 0;
+			}
+
+			@Override
+			public int UpdatePassword(Map<String, Object> map) {
+				return 0;
+			}
+
+			@Override
+			public int UpdatePicture(Map<String, Object> map) {
+				return 0;
+			}
+
+
+			@Override
+			public List<Orders> SelectUser(int id) {
+				return null;
 			}
 		};
 	}
