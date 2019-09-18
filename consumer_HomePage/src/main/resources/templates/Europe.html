@@ -23,15 +23,15 @@
     <script>
         $(function () {
             //特价商品Ajax加载
-            $.getJSON("findBargains",{"lp_id":"3"},function (date) {
-                for (i=0;i<2;i++){
+            $.getJSON("findBargains", {"lp_id": "3"}, function (date) {
+                for (i = 0; i < 2; i++) {
                     var li = "";
-                    li +=  "<li data-i-op=\"3684\">" ;
+                    li += "<li data-i-op=\"3684\">";
                     li += "<a name=\"__AD_module_2_12_3684\" href=\"https://www.itrip.com/p16022\" target=\"_blank\"";
                     li += "data-i-op=\"3684\" data-i-op-href=\"\">";
                     li += "<img width=\"218\" height=\"138\" class=\"lazy\" style=\"display: block;\"";
-                    li += "alt='"+date[i].product_name+"'";
-                    li += "src=\"//pic2.itrip.com/p/20190725150827-standard-621.jpg?imageView2/5/w/218/h/138/q/100\"";
+                    li += "alt='" + date[i].product_name + "'";
+                    li += "src='" + date[i].product_imgPath + "'";
                     li += "border=\"0\" data-i-op=\"3684\"";
                     li += "data-original=\"//pic2.itrip.com/p/20190725150827-standard-621.jpg?imageView2/5/w/218/h/138/q/100\"";
                     li += "data-i-op-img=\"\">";
@@ -42,16 +42,16 @@
                     li += "title=\"\"+date[i].product_name+\"\"";
                     li += "href=\"https://www.itrip.com/p16022\" target=\"_blank\" data-i-op=\"3684\"";
                     li += "data-i-op-href=\"\" data-i-op-titile=\"\">";
-                    li += ""+date[i].product_name+"</a>";
+                    li += "" + date[i].product_name + "</a>";
                     li += "</p>";
                     li += " <p class=\"oh mt5 price_label\">";
                     li += "<span class=\"fr pri \">";
                     li += "<label class=\"js_curCode f12\">RMB</label>&nbsp;";
-                    li += "<label class=\"js_curMonery_exten f16\" data-i-op=\"3684\"";
+                    li += "<label class=\"js_curMonery_exten f16 ml5\" data-i-op=\"3684\"";
                     li += "data-price=\"376.5454\"";
                     li += "data-exrates=\"{9=4.74, 10=4.52, 11=3.16, 12=1.0, 13=6.88, 14=0.23, 15=5.0E-4, 17=5.01, 16=1.6, 21=8.6016, 20=7.8646,";
                     li += "23=0.06, 22=7.0395, 25=0.73, 24=0.79, 27=1.03, 26=0.31}\"";
-                    li += "data-cid=\"21\" data-i-op-price=\"\">"+date[i].product_price+"</label><label";
+                    li += "data-cid=\"21\" data-i-op-price=\"\">" + date[i].product_price + "</label><label";
                     li += "class=\"f12\">&nbsp;起</label>";
                     li += "</span>";
                     li += "</p>";
@@ -60,11 +60,155 @@
                     $("#Special").append(li);
                 }
             });
-            //吃喝玩乐Ajax加载
-            $.getJSON("findPartyingByCity",{"P_cid":"3","Pt_id":"1"},function (date) {
-          
+            //热销商品Ajax加载
+            $.getJSON("findSellwell", "", function (date) {
+                for (i = 0; i < date.length; i++) {
+                    var li = "";
+                    li += "<li data-i-op=\"3684\">";
+                    li += "<a name=\"__AD_module_2_12_3684\" href=\"https://www.itrip.com/p16022\" target=\"_blank\"";
+                    li += "data-i-op=\"3684\" data-i-op-href=\"\">";
+                    li += "<img width=\"218\" height=\"138\" class=\"lazy\" style=\"display: block;\"";
+                    li += "alt='" + date[i].product_name + "'";
+                    li += "src='" + date[i].product_imgPath + "'";
+                    li += "border=\"0\" data-i-op=\"3684\"";
+                    li += "data-original=\"//pic2.itrip.com/p/20190725150827-standard-621.jpg?imageView2/5/w/218/h/138/q/100\"";
+                    li += "data-i-op-img=\"\">";
+                    li += "</a>";
+                    li += "<div class=\"proinfo oh\">";
+                    li += "<p class=\"f14 mt10 oh\" style=\"height:42px;\">";
+                    li += "<a name=\"__AD_module_2_12_3684\"";
+                    li += "title=\"\"+date[i].product_name+\"\"";
+                    li += "href=\"https://www.itrip.com/p16022\" target=\"_blank\" data-i-op=\"3684\"";
+                    li += "data-i-op-href=\"\" data-i-op-titile=\"\">";
+                    li += "" + date[i].product_name + "</a>";
+                    li += "</p>";
+                    li += " <p class=\"oh mt5 price_label\">";
+                    li += "<span class=\"fr pri \">";
+                    li += "<label class=\"js_curCode f12\">RMB</label>&nbsp;";
+                    li += "<label class=\"js_curMonery_exten f16 ml5\" data-i-op=\"3684\"";
+                    li += "data-price=\"376.5454\"";
+                    li += "data-exrates=\"{9=4.74, 10=4.52, 11=3.16, 12=1.0, 13=6.88, 14=0.23, 15=5.0E-4, 17=5.01, 16=1.6, 21=8.6016, 20=7.8646,";
+                    li += "23=0.06, 22=7.0395, 25=0.73, 24=0.79, 27=1.03, 26=0.31}\"";
+                    li += "data-cid=\"21\" data-i-op-price=\"\">" + date[i].product_price + "</label><label";
+                    li += "class=\"f12\">&nbsp;起</label>";
+                    li += "</span>";
+                    li += "</p>";
+                    li += "</div>";
+                    li += "<div class=\"bor\"></div></li>";
+                    $("#Hot-sale").append(li);
+                }
             });
+            //意大利吃喝玩乐
+            loading($("#E_Italy").val(), $("#partying").attr("value"), "#show1 .partying");
+            //冰岛 吃喝玩乐
+            loading($("#E_Iceland").val(), $("#partying").attr("value"), "#show2 .Iceland");
+            //瑞士 吃喝玩乐
+            loading($("#E_Switzerland").val(), $("#partying").attr("value"), "#show3 .Switzerland");
+            //法国 吃喝玩乐
+            loading($("#E_France").val(), $("#partying").attr("value"), "#show4 .France");
+            //英国 超值卡卷
+            loading($("#S_Britain").val(), $("#cardvolume").attr("value"), "#Card_show1 .Britain");
+            //法意瑞 超值卡卷
+            var citynum = new Array();
+            citynum[0] = $("#E_France").val();
+            citynum[1] = $("#E_Italy").val();
+            citynum[2] = $("#E_Switzerland").val();
+            loading2(citynum, $("#cardvolume").attr("value"), "#Card_show2 .FAYiRui");
+            //西葡 超值卡卷
+            var citynum2 = new Array();
+            citynum2[0] = $("#Spain").attr("value");
+            citynum2[1] = $("#Portugal").attr("value");
+            loading2(citynum2, $("#Localandregiment").attr("value"), "#Card_show3 .SpainPortugal");
+            //法意瑞 当地跟团
+            loading2(citynum, $("#Localandregiment").attr("value"), "#Local_show1 .FAYiRui");
+            //英国 当地跟团
+            loading($("#L_Britain").val(), $("#Localandregiment").attr("value"), "#Local_show2 .Britain")
+            //冰岛 当地跟团
+            loading($("#L_Iceland").val(), $("#Localandregiment").attr("value"), "#Local_show3 .Iceland");
 
+            //唯一一个城市
+            function loading(pcid, ptid, show) {
+                //板块Ajax加载
+                $.getJSON("findPartyingByCity", {"P_cid": pcid, "Pt_id": ptid}, function (date) {
+                    for (i = 0; i < date.length; i++) {
+                        var li = "";
+                        li += "<li data-i-op=\"3684\">";
+                        li += "<a name=\"__AD_module_2_12_3684\" href=\"https://www.itrip.com/p16022\" target=\"_blank\"";
+                        li += "data-i-op=\"3684\" data-i-op-href=\"\">";
+                        li += "<img width=\"218\" height=\"138\" class=\"lazy\" style=\"display: block;\"";
+                        li += "alt='" + date[i].product_name + "'";
+                        li += "src='" + date[i].product_imgPath + "'";
+                        li += "border=\"0\" data-i-op=\"3684\"";
+                        li += "data-original=\"//pic2.itrip.com/p/20190725150827-standard-621.jpg?imageView2/5/w/218/h/138/q/100\"";
+                        li += "data-i-op-img=\"\">";
+                        li += "</a>";
+                        li += "<div class=\"proinfo oh\">";
+                        li += "<p class=\"f14 mt10 oh\" style=\"height:42px;\">";
+                        li += "<a name=\"__AD_module_2_12_3684\"";
+                        li += "title=\"\"+date[i].product_name+\"\"";
+                        li += "href=\"https://www.itrip.com/p16022\" target=\"_blank\" data-i-op=\"3684\"";
+                        li += "data-i-op-href=\"\" data-i-op-titile=\"\">";
+                        li += "" + date[i].product_name + "</a>";
+                        li += "</p>";
+                        li += " <p class=\"oh mt5 price_label\">";
+                        li += "<span class=\"fr pri \">";
+                        li += "<label class=\"js_curCode f12\">RMB</label>&nbsp;";
+                        li += "<label class=\"js_curMonery_exten f16 ml5\" data-i-op=\"3684\"";
+                        li += "data-price=\"376.5454\"";
+                        li += "data-exrates=\"{9=4.74, 10=4.52, 11=3.16, 12=1.0, 13=6.88, 14=0.23, 15=5.0E-4, 17=5.01, 16=1.6, 21=8.6016, 20=7.8646,";
+                        li += "23=0.06, 22=7.0395, 25=0.73, 24=0.79, 27=1.03, 26=0.31}\"";
+                        li += "data-cid=\"21\" data-i-op-price=\"\">" + date[i].product_price + "</label><label";
+                        li += "class=\"f12\">&nbsp;起</label>";
+                        li += "</span>";
+                        li += "</p>";
+                        li += "</div>";
+                        li += "<div class=\"bor\"></div></li>";
+                        $(show).append(li);
+                    }
+                });
+            }
+
+            //多个城市
+            function loading2(pcid, ptid, show) {
+                //板块Ajax加载
+                $.getJSON("findPartyingByCities", {"P_cid": JSON.stringify(pcid), "Pt_id": ptid}, function (date) {
+                    for (i = 0; i < date.length; i++) {
+                        var li = "";
+                        li += "<li data-i-op=\"3684\">";
+                        li += "<a name=\"__AD_module_2_12_3684\" href=\"https://www.itrip.com/p16022\" target=\"_blank\"";
+                        li += "data-i-op=\"3684\" data-i-op-href=\"\">";
+                        li += "<img width=\"218\" height=\"138\" class=\"lazy\" style=\"display: block;\"";
+                        li += "alt='" + date[i].product_name + "'";
+                        li += "src='" + date[i].product_imgPath + "'";
+                        li += "border=\"0\" data-i-op=\"3684\"";
+                        li += "data-original=\"//pic2.itrip.com/p/20190725150827-standard-621.jpg?imageView2/5/w/218/h/138/q/100\"";
+                        li += "data-i-op-img=\"\">";
+                        li += "</a>";
+                        li += "<div class=\"proinfo oh\">";
+                        li += "<p class=\"f14 mt10 oh\" style=\"height:42px;\">";
+                        li += "<a name=\"__AD_module_2_12_3684\"";
+                        li += "title=\"\"+date[i].product_name+\"\"";
+                        li += "href=\"https://www.itrip.com/p16022\" target=\"_blank\" data-i-op=\"3684\"";
+                        li += "data-i-op-href=\"\" data-i-op-titile=\"\">";
+                        li += "" + date[i].product_name + "</a>";
+                        li += "</p>";
+                        li += " <p class=\"oh mt5 price_label\">";
+                        li += "<span class=\"fr pri \">";
+                        li += "<label class=\"js_curCode f12\">RMB</label>&nbsp;";
+                        li += "<label class=\"js_curMonery_exten f16 ml5\" data-i-op=\"3684\"";
+                        li += "data-price=\"376.5454\"";
+                        li += "data-exrates=\"{9=4.74, 10=4.52, 11=3.16, 12=1.0, 13=6.88, 14=0.23, 15=5.0E-4, 17=5.01, 16=1.6, 21=8.6016, 20=7.8646,";
+                        li += "23=0.06, 22=7.0395, 25=0.73, 24=0.79, 27=1.03, 26=0.31}\"";
+                        li += "data-cid=\"21\" data-i-op-price=\"\">" + date[i].product_price + "</label><label";
+                        li += "class=\"f12\">&nbsp;起</label>";
+                        li += "</span>";
+                        li += "</p>";
+                        li += "</div>";
+                        li += "<div class=\"bor\"></div></li>";
+                        $(show).append(li);
+                    }
+                })
+            }
             //拿数据
             $.getJSON("/GetSession",function (data) {
                     if(data!=null){
@@ -85,7 +229,7 @@
                 $.getJSON("/logout",function (data) {
                     window.location="../Europe.html"
 
-                        
+
 
 
                 })
@@ -112,7 +256,7 @@
     </div>
 </div>
 <!-- 弹窗 -->
-<div class="user_select_area hide" id="dtc">
+<div class="user_select_area hide">
     <div class="loadingFrame hide"></div>
     <div class="loadingChose hide">
         <div class="pos_r">
@@ -170,24 +314,22 @@
 						</a>
 					</span>
                     <span class="line">|</span>
-                    <span class="js_loginStatus" style="margin-left: 0px;" id="logzc">
-
+                    <span class="js_loginStatus" style="margin-left: 0px;">
 						<span><a class="blue" onclick="login()" href="javascript:void(0);"
                                  rel="nofollow">登录</a></span><span>/</span>
-
-						<span><a href="login/zhuce.html" rel="nofollow">注册</a></span>
+						<span><a href="https://www.itrip.com/signup/index" rel="nofollow">注册</a></span>
 					</span>
-                    <span class="js_loginStatus" style="display:none;margin-left:0px;" id="user">
+                    <span class="js_loginStatus" style="display:none;margin-left:0px;">
 						<span class="sw_syb fl pos_r" style="margin-left:0px;"><a class="blue display_name"
-                                                                                  href="login/个人中心个人信息.html" id="username"></a><i
+                                                                                  href="https://www.itrip.com/user/index"></a><i
                                 class="sw_sj"></i>
 							<dl class="down_list">
-								<dd class="js_myOrder"><a class="pos_r" href="login/个人信息订单.html"
+								<dd class="js_myOrder"><a class="pos_r" href="https://www.itrip.com/user/orders"
                                                           rel="nofollow">我的订单<label></label></a></dd>
-								<dd class="js_myFavor"><a class="pos_r" href="login/个人中心我的收藏.html"
+								<dd class="js_myFavor"><a class="pos_r" href="https://www.itrip.com/user/favor/all"
                                                           rel="nofollow">我的收藏 <label></label></a></dd>
-								<dd><a href="login/个人中心我的奖金.html" rel="nofollow">我的奖金</a></dd>
-								<dd><a id="btn_logout" href="javascript:void(0);"
+								<dd><a href="https://www.itrip.com/user/reward" rel="nofollow">我的奖金</a></dd>
+								<dd><a id="btn_logout" onclick="logout()" href="javascript:void(0);"
                                        rel="nofollow">退出登录</a></dd>
 							</dl>
 						</span>
@@ -212,80 +354,81 @@
 						 <a class="money_sw_box_txt" style="border:1px transparent solid;"
                             onclick="window.event.preventDefault(); window.event.stopPropagation(); return false;"
                             href="javascript:;" data-id="12">
-							<label class="sw_syb fl blue">RMB</label>
+							<label class="sw_syb fl blue" id="rmb">RMB</label>
 							<i class="sw_sj"></i>
 						</a>
-						<div class="money_sw hide">
-							<a data-id="12">
-									<label class="fl sw_txt">人民币元</label>
-									<label class="fl sw_syb">RMB</label>
-								</a>
-							<a data-id="20">
-									<label class="fl sw_txt">欧元</label>
-									<label class="fl sw_syb">EUR</label>
-								</a>
-							<a data-id="9">
-									<label class="fl sw_txt">澳大利亚元</label>
-									<label class="fl sw_syb">AUD</label>
-								</a>
-							<a data-id="21">
-									<label class="fl sw_txt">英镑</label>
-									<label class="fl sw_syb">GBP</label>
-								</a>
-							<a data-id="10">
-									<label class="fl sw_txt">新西兰元</label>
-									<label class="fl sw_syb">NZD</label>
-								</a>
-							<a data-id="11">
-									<label class="fl sw_txt">斐济元</label>
-									<label class="fl sw_syb">FJD</label>
-								</a>
-							<a data-id="17">
-									<label class="fl sw_txt">新币</label>
-									<label class="fl sw_syb">SGD</label>
-								</a>
-							<a data-id="16">
-									<label class="fl sw_txt">马来西亚币</label>
-									<label class="fl sw_syb">MYR</label>
-								</a>
-							<a data-id="15">
-									<label class="fl sw_txt">印尼盾</label>
-									<label class="fl sw_syb">IDR</label>
-								</a>
-							<a data-id="14">
-									<label class="fl sw_txt">泰铢</label>
-									<label class="fl sw_syb">THB</label>
-								</a>
-							<a data-id="13">
-									<label class="fl sw_txt">美元</label>
-									<label class="fl sw_syb">USD</label>
-								</a>
-							<a data-id="22">
-									<label class="fl sw_txt">瑞士法郎</label>
-									<label class="fl sw_syb">CHF</label>
-								</a>
-							<a data-id="23">
-									<label class="fl sw_txt">冰岛克朗</label>
-									<label class="fl sw_syb">ISK</label>
-								</a>
-							<a data-id="24">
-									<label class="fl sw_txt">挪威克朗</label>
-									<label class="fl sw_syb">NOK</label>
-								</a>
-							<a data-id="25">
-									<label class="fl sw_txt">瑞典克朗</label>
-									<label class="fl sw_syb">SEK</label>
-								</a>
-							<a data-id="26">
-									<label class="fl sw_txt">捷克克朗</label>
-									<label class="fl sw_syb">CZK</label>
-								</a>
-							<a data-id="27">
-									<label class="fl sw_txt">丹麦克朗</label>
-									<label class="fl sw_syb">DKK</label>
-								</a>
-							</div>
-					</span>
+                        <!--外汇-->
+                        <div class="money_sw hide">
+                            <a data-id="12">
+                                    <label class="fl sw_txt">人民币元</label>
+                                    <label class="fl sw_syb">RMB</label>
+                                </a>
+                            <a data-id="20">
+                                    <label class="fl sw_txt">欧元</label>
+                                    <label class="fl sw_syb">EUR</label>
+                                </a>
+                            <a data-id="9">
+                                    <label class="fl sw_txt">澳大利亚元</label>
+                                    <label class="fl sw_syb">AUD</label>
+                                </a>
+                            <a data-id="21">
+                                    <label class="fl sw_txt">英镑</label>
+                                    <label class="fl sw_syb">GBP</label>
+                                </a>
+                            <a data-id="10">
+                                    <label class="fl sw_txt">新西兰元</label>
+                                    <label class="fl sw_syb">NZD</label>
+                                </a>
+                            <a data-id="11">
+                                    <label class="fl sw_txt">斐济元</label>
+                                    <label class="fl sw_syb">FJD</label>
+                                </a>
+                            <a data-id="17">
+                                    <label class="fl sw_txt">新币</label>
+                                    <label class="fl sw_syb">SGD</label>
+                                </a>
+                            <a data-id="16">
+                                    <label class="fl sw_txt">马来西亚币</label>
+                                    <label class="fl sw_syb">MYR</label>
+                                </a>
+                            <a data-id="15">
+                                    <label class="fl sw_txt">印尼盾</label>
+                                    <label class="fl sw_syb">IDR</label>
+                                </a>
+                            <a data-id="14">
+                                    <label class="fl sw_txt">泰铢</label>
+                                    <label class="fl sw_syb">THB</label>
+                                </a>
+                            <a data-id="13">
+                                    <label class="fl sw_txt">美元</label>
+                                    <label class="fl sw_syb">USD</label>
+                                </a>
+                            <a data-id="22">
+                                    <label class="fl sw_txt">瑞士法郎</label>
+                                    <label class="fl sw_syb">CHF</label>
+                                </a>
+                            <a data-id="23">
+                                    <label class="fl sw_txt">冰岛克朗</label>
+                                    <label class="fl sw_syb">ISK</label>
+                                </a>
+                            <a data-id="24">
+                                    <label class="fl sw_txt">挪威克朗</label>
+                                    <label class="fl sw_syb">NOK</label>
+                                </a>
+                            <a data-id="25">
+                                    <label class="fl sw_txt">瑞典克朗</label>
+                                    <label class="fl sw_syb">SEK</label>
+                                </a>
+                            <a data-id="26">
+                                    <label class="fl sw_txt">捷克克朗</label>
+                                    <label class="fl sw_syb">CZK</label>
+                                </a>
+                            <a data-id="27">
+                                    <label class="fl sw_txt">丹麦克朗</label>
+                                    <label class="fl sw_syb">DKK</label>
+                                </a>
+                            </div>
+                    </span>
                 </div>
             </div>
         </div>
@@ -301,7 +444,6 @@
                          src="//pic.itrip.com/img/logo3.png">
                 </a>
             </div>
-
             <div class="fl siteTopSearch mt10">
                 <input class="areaSearchUrl1" type="hidden" value="https://www.itrip.com/xibanya/wanle"
                        data-placeholder="西班牙">
@@ -722,37 +864,37 @@
             </ul>
         </div>
         <div class="bannerBar horiz">
-           <!-- <ul style="width:960px;text-align: center;">
-                &lt;!&ndash;<li class="cur"><label data-i-op="9324" data-i-op-titile="">种草芬兰极光</label><span></span></li>
-                <li><label data-i-op="9405" data-i-op-titile="">少女峰的浪漫旅行</label><span></span></li>
-                <li><label data-i-op="9406" data-i-op-titile="">坐拥超值卡券</label><span></span></li>
-                <li><label data-i-op="9323" data-i-op-titile="">遇见——阿姆斯特丹</label><span></span></li>&ndash;&gt;
-            </ul>-->
+            <!-- <ul style="width:960px;text-align: center;">
+                 &lt;!&ndash;<li class="cur"><label data-i-op="9324" data-i-op-titile="">种草芬兰极光</label><span></span></li>
+                 <li><label data-i-op="9405" data-i-op-titile="">少女峰的浪漫旅行</label><span></span></li>
+                 <li><label data-i-op="9406" data-i-op-titile="">坐拥超值卡券</label><span></span></li>
+                 <li><label data-i-op="9323" data-i-op-titile="">遇见——阿姆斯特丹</label><span></span></li>&ndash;&gt;
+             </ul>-->
         </div>
     </div>
     <div class="bannerBox">
-       <!-- <ul>
-            <li style='background-image: url("https://pic2.itrip.com/p/20190305162342-54.jpg?imageView2/1/q/90"); display: none; opacity: 0; background-size: auto 100%;'
-                data-i-op="9324" data-i-op-img=""><a name="__AD_slide_banner_2_9324"
-                                                     href="https://www.itrip.com/fenlan/wanle" target="_blank"
-                                                     data-i-op="9324" data-i-op-href=""></a></li>
-            <li style='background-image: url("https://pic2.itrip.com/p/20190322173858-325.jpg?imageView2/1/q/90"); display: none; opacity: 0; background-size: auto 100%;'
-                data-i-op="9405" data-i-op-img=""><a name="__AD_slide_banner_2_9405"
-                                                     href="https://www.itrip.com/sulishi/wanle" target="_blank"
-                                                     data-i-op="9405" data-i-op-href=""></a></li>
-            <li class="cur"
-                style='background-image: url("https://pic2.itrip.com/p/20190322173816-668.jpg?imageView2/1/q/90"); display: list-item; opacity: 1; background-size: auto 100%;'
-                data-i-op="9406" data-i-op-img=""><a name="__AD_slide_banner_2_9406"
-                                                     href="https://www.itrip.com/ouzhou/w-a525" target="_blank"
-                                                     data-i-op="9406" data-i-op-href=""></a></li>
-            <li style='background-image: url("https://pic2.itrip.com/p/20190305161925-550.jpg?imageView2/1/q/90"); display: none; opacity: 0; background-size: auto 100%;'
-                data-i-op="9323" data-i-op-img=""><a name="__AD_slide_banner_2_9323"
-                                                     href="https://www.itrip.com/amusitedan/wanle" target="_blank"
-                                                     data-i-op="9323" data-i-op-href=""></a></li>
-        </ul>-->
+        <!-- <ul>
+             <li style='background-image: url("https://pic2.itrip.com/p/20190305162342-54.jpg?imageView2/1/q/90"); display: none; opacity: 0; background-size: auto 100%;'
+                 data-i-op="9324" data-i-op-img=""><a name="__AD_slide_banner_2_9324"
+                                                      href="https://www.itrip.com/fenlan/wanle" target="_blank"
+                                                      data-i-op="9324" data-i-op-href=""></a></li>
+             <li style='background-image: url("https://pic2.itrip.com/p/20190322173858-325.jpg?imageView2/1/q/90"); display: none; opacity: 0; background-size: auto 100%;'
+                 data-i-op="9405" data-i-op-img=""><a name="__AD_slide_banner_2_9405"
+                                                      href="https://www.itrip.com/sulishi/wanle" target="_blank"
+                                                      data-i-op="9405" data-i-op-href=""></a></li>
+             <li class="cur"
+                 style='background-image: url("https://pic2.itrip.com/p/20190322173816-668.jpg?imageView2/1/q/90"); display: list-item; opacity: 1; background-size: auto 100%;'
+                 data-i-op="9406" data-i-op-img=""><a name="__AD_slide_banner_2_9406"
+                                                      href="https://www.itrip.com/ouzhou/w-a525" target="_blank"
+                                                      data-i-op="9406" data-i-op-href=""></a></li>
+             <li style='background-image: url("https://pic2.itrip.com/p/20190305161925-550.jpg?imageView2/1/q/90"); display: none; opacity: 0; background-size: auto 100%;'
+                 data-i-op="9323" data-i-op-img=""><a name="__AD_slide_banner_2_9323"
+                                                      href="https://www.itrip.com/amusitedan/wanle" target="_blank"
+                                                      data-i-op="9323" data-i-op-href=""></a></li>
+         </ul>-->
     </div>
 
-
+<!--轮播图-->
     <script>
         var bannerInfo = [];
 
@@ -760,7 +902,7 @@
 
         bannerObj.b_img = '//pic2.itrip.com' + '/p/' + '20190305162342-54.jpg?imageView2/1/q/90';
 
-       /*bannerObj.s_img = '//pic2.itrip.com' + '/p/' + '20190305162342-54.jpg?imageView2/1/q/90';*/
+        /*bannerObj.s_img = '//pic2.itrip.com' + '/p/' + '20190305162342-54.jpg?imageView2/1/q/90';*/
 
 
         bannerObj.href = "target=\"_blank\"";
@@ -849,9 +991,7 @@
                     </div>
                     <!-- 特价商品区 -->
                     <div class="list_ad mt15">
-                        <ul id="Special">
-
-                        </ul>
+                        <ul id="Special"></ul>
                     </div>
                 </div>
                 <div class="fr w440">
@@ -929,112 +1069,23 @@
                 <div class="fr pro_fr">
                     <!-- 意大利 -->
                     <div class="pro_lb list_ad" id="show1">
-                        <ul>
-                            <li>
-                                <a name="__AD_module_3_52_3904" class="img" href="https://www.itrip.com/p24767"
-                                   target="_blank">
-                                    <img width="208" height="138" class="lazy1"
-                                         alt="【西西里的岸边天堂】意大利 阿格里真托 神庙之谷+土耳其阶梯一日游(8人小团+豪华小巴+酒店接送+酒水小吃)"
-                                         src="//pic.itrip.com/img/loading2.gif" border="0"
-                                         data-original="//pic2.itrip.com/p/20190417194953-standard-426.jpg?imageView2/5/w/208/h/138/q/100">
-                                    <div class="proinfo oh">
-                                        <p class="f14 mt10 oh" style="height:42px;">
-                                            【西西里的岸边天堂】意大利 阿格里真托 神庙之谷+土耳其阶梯一日游(8人小团+豪华小巴+酒店接送+酒水小吃)</p>
-                                        <p class="oh mt5">
-											<span class="fr pri price_label">
-												<label class="js_curCode f12">RMB</label>
-												<label class="js_curMonery_exten f16 ml5" data-price="71.7262"
-                                                       data-exrates="{9=4.74, 10=4.52, 11=3.16, 12=1.0, 13=6.88, 14=0.23, 15=5.0E-4, 17=5.01, 16=1.6, 21=8.6016, 20=7.8646, 23=0.06, 22=7.0395, 25=0.73, 24=0.79, 27=1.03, 26=0.31}"
-                                                       data-cid="20">564.10</label><label class="f12">&nbsp;起</label>
-											</span>
-                                        </p>
-                                    </div>
-                                    <div class="bor_img"></div>
-                                </a>
-                            </li>
+                        <ul class="partying">
                         </ul>
                     </div>
                     <!-- 冰岛 -->
                     <div class="pro_lb list_ad" id="show2" style="display:none;">
-                        <ul>
-                            <li>
-                                <a name="__AD_module_3_51_3898" class="img" href="https://www.itrip.com/p15379"
-                                   target="_blank">
-                                    <img width="208" height="138" class="lazy1"
-                                         alt="【追光远行】冰岛追寻神秘北极光夜游之旅 (可选中文导游+未看到免费再看一次）"
-                                         src="//pic.itrip.com/img/loading2.gif" border="0"
-                                         data-original="//pic2.itrip.com/p/20171120141340-standard-15.jpg?imageView2/5/w/208/h/138/q/100">
-                                    <div class="icon_count" style="position:absolute;top:-1px; left:5px;">
-                                        <img style="width: 70px;" src="//pic2.itrip.com/p/20190711141445-879.png">
-                                    </div>
-                                    <div class="proinfo oh">
-                                        <p class="f14 mt10 oh" style="height:42px;">
-                                            【追光远行】冰岛追寻神秘北极光夜游之旅 (可选中文导游+未看到免费再看一次）</p>
-                                        <p class="oh mt5">
-											<span class="fr pri price_label">
-												<label class="js_curCode f12">RMB</label>
-												<label class="js_curMonery_exten f16 ml5" data-price="2561.892"
-                                                       data-exrates="{9=4.74, 10=4.52, 11=3.16, 12=1.0, 13=6.88, 14=0.23, 15=5.0E-4, 17=5.01, 16=1.6, 21=8.6016, 20=7.8646, 23=0.06, 22=7.0395, 25=0.73, 24=0.79, 27=1.03, 26=0.31}"
-                                                       data-cid="23">153.71</label><label class="f12">&nbsp;起</label>
-											</span>
-                                        </p>
-                                    </div>
-                                    <div class="bor_img"></div>
-                                </a>
-                            </li>
+                        <ul class="Iceland">
                         </ul>
                     </div>
                     <!-- 瑞士 -->
                     <div class="pro_lb list_ad" id="show3" style="display:none;">
-                        <ul>
-                            <li>
-                                <a name="__AD_module_3_55_3923" class="img" href="https://www.itrip.com/p21829"
-                                   target="_blank">
-                                    <img width="208" height="138" class="lazy1" alt="【朝曦晨光】瑞士阿尔卑斯冰川霞慕尼+勃朗峰一日游(日内瓦往返)"
-                                         src="//pic.itrip.com/img/loading2.gif" border="0"
-                                         data-original="//pic2.itrip.com/p/20190311175407-standard-589.jpg?imageView2/5/w/208/h/138/q/100">
-                                    <div class="proinfo oh">
-                                        <p class="f14 mt10 oh" style="height:42px;">
-                                            【朝曦晨光】瑞士阿尔卑斯冰川霞慕尼+勃朗峰一日游(日内瓦往返)</p>
-                                        <p class="oh mt5">
-											<span class="fr pri price_label">
-												<label class="js_curCode f12">RMB</label>
-												<label class="js_curMonery_exten f16 ml5" data-price="119.4336"
-                                                       data-exrates="{9=4.74, 10=4.52, 11=3.16, 12=1.0, 13=6.88, 14=0.23, 15=5.0E-4, 17=5.01, 16=1.6, 21=8.6016, 20=7.8646, 23=0.06, 22=7.0395, 25=0.73, 24=0.79, 27=1.03, 26=0.31}"
-                                                       data-cid="22">840.75</label><label class="f12">&nbsp;起</label>
-											</span>
-                                        </p>
-                                    </div>
-                                    <div class="bor_img"></div>
-                                </a>
-                            </li>
+                        <ul class="Switzerland">
                         </ul>
                     </div>
                     <!-- 法国 -->
                     <div class="pro_lb list_ad" id="show4" style="display:none;">
-                        <ul>
-                            <li>
-                                <a name="__AD_module_3_54_3917" class="img" href="https://www.itrip.com/p15224"
-                                   target="_blank">
-                                    <img width="208" height="138" class="lazy1"
-                                         alt="【圣地巡礼】法国圣米歇尔山一日游 (中/英文导游+午餐可选+三大圣地之一）"
-                                         src="//pic.itrip.com/img/loading2.gif" border="0"
-                                         data-original="//pic2.itrip.com/p/20190311170113-standard-425.jpg?imageView2/5/w/208/h/138/q/100">
-                                    <div class="proinfo oh">
-                                        <p class="f14 mt10 oh" style="height:42px;">
-                                            【圣地巡礼】法国圣米歇尔山一日游 (中/英文导游+午餐可选+三大圣地之一）</p>
-                                        <p class="oh mt5">
-											<span class="fr pri price_label">
-												<label class="js_curCode f12">RMB</label>
-												<label class="js_curMonery_exten f16 ml5" data-price="109.9756"
-                                                       data-exrates="{9=4.74, 10=4.52, 11=3.16, 12=1.0, 13=6.88, 14=0.23, 15=5.0E-4, 17=5.01, 16=1.6, 21=8.6016, 20=7.8646, 23=0.06, 22=7.0395, 25=0.73, 24=0.79, 27=1.03, 26=0.31}"
-                                                       data-cid="20">864.91</label><label class="f12">&nbsp;起</label>
-											</span>
-                                        </p>
-                                    </div>
-                                    <div class="bor_img"></div>
-                                </a>
-                            </li>
+                        <ul class="France">
+
                         </ul>
                     </div>
                 </div>
@@ -1204,15 +1255,22 @@
                     <div class="pro_lb list_ad" id="Local_show2" style="display:none;">
                         <ul>
                             <li>
-                                <a name="__AD_module_5_26_7242" class="img" href="https://www.itrip.com/p13127" target="_blank">
-                                    <img width="208" height="138" class="lazy1" style="display: block;" alt="【萍水一聚】英国苏格兰高地天空岛中文三日游（赠爱丁堡游+格拉斯哥/爱丁堡接送+宿威廉堡） " src="//pic2.itrip.com/p/20190429152624-standard-768.jpg?imageView2/5/w/208/h/138/q/100" border="0" data-original="//pic2.itrip.com/p/20190429152624-standard-768.jpg?imageView2/5/w/208/h/138/q/100">
+                                <a name="__AD_module_5_26_7242" class="img" href="https://www.itrip.com/p13127"
+                                   target="_blank">
+                                    <img width="208" height="138" class="lazy1" style="display: block;"
+                                         alt="【萍水一聚】英国苏格兰高地天空岛中文三日游（赠爱丁堡游+格拉斯哥/爱丁堡接送+宿威廉堡） "
+                                         src="//pic2.itrip.com/p/20190429152624-standard-768.jpg?imageView2/5/w/208/h/138/q/100"
+                                         border="0"
+                                         data-original="//pic2.itrip.com/p/20190429152624-standard-768.jpg?imageView2/5/w/208/h/138/q/100">
                                     <div class="proinfo oh">
                                         <p class="f14 mt10 oh" style="height:42px;">
                                             【萍水一聚】英国苏格兰高地天空岛中文三日游（赠爱丁堡游+格拉斯哥/爱丁堡接送+宿威廉堡） </p>
                                         <p class="oh mt5">
 											<span class="fr pri price_label">
 												<label class="js_curCode f12">RMB</label>
-												<label class="js_curMonery_exten f16 ml5" data-price="166.6" data-exrates="{9=4.74, 10=4.52, 11=3.16, 12=1.0, 13=6.88, 14=0.23, 15=5.0E-4, 17=5.01, 16=1.6, 21=8.6016, 20=7.8646, 23=0.06, 22=7.0395, 25=0.73, 24=0.79, 27=1.03, 26=0.31}" data-cid="21">1433.03</label><label class="f12">&nbsp;起</label>
+												<label class="js_curMonery_exten f16 ml5" data-price="166.6"
+                                                       data-exrates="{9=4.74, 10=4.52, 11=3.16, 12=1.0, 13=6.88, 14=0.23, 15=5.0E-4, 17=5.01, 16=1.6, 21=8.6016, 20=7.8646, 23=0.06, 22=7.0395, 25=0.73, 24=0.79, 27=1.03, 26=0.31}"
+                                                       data-cid="21">1433.03</label><label class="f12">&nbsp;起</label>
 											</span>
                                         </p></div>
                                     <div class="bor_img"></div>
@@ -1960,7 +2018,7 @@
         if ($('.linkonline .xiaoneng').length > 0) {
             $('.linkonline #au').click(function () {
                 //小能分配的缺省客服组id
-                if (check()) {
+                if (checkLogin()) {
                     settingid = isTest ? 'kf_9680_1458962349823' : 'kf_9680_1458959605873';
                     NTKF.im_openInPageChat(settingid);
                 }
@@ -2025,7 +2083,7 @@
             });
             //售前
             $('.linkonline #sale_before').click(function () {
-                if (check()) {
+                if (checkLogin()) {
                     settingid = 'kf_9680_1458959605873';
                     NTKF.im_openInPageChat(settingid);
                 }
@@ -2033,7 +2091,7 @@
             });
             //售后
             $('.linkonline #sale_after').click(function () {
-                if (check()) {
+                if (checkLogin()) {
                     settingid = 'kf_9680_1461738767319';
                     NTKF.im_openInPageChat(settingid);
                 }
@@ -2041,7 +2099,7 @@
             });
             //产品
             $('.linkonline #product').click(function () {
-                if (check()) {
+                if (checkLogin()) {
                     settingid = 'kf_9680_1458959605873';
                     NTKF.im_openInPageChat(settingid);
                 }
@@ -2049,7 +2107,7 @@
             });
             //已有订单
             $('.linkonline #has_order').click(function () {
-                if (check()) {
+                if (checkLogin()) {
                     settingid = 'kf_9680_1461738767319';
                     NTKF.im_openInPageChat(settingid);
                 }
@@ -2057,7 +2115,7 @@
             });
             //懒人服务
             $('.linkonline #vip_service').click(function () {
-                if (check()) {
+                if (checkLogin()) {
                     settingid = 'kf_9680_1471227292535';
                     NTKF.im_openInPageChat(settingid);
                 }
@@ -2105,7 +2163,6 @@
         $(".vip_nav_index").click(function () {
             window.open("https://www.itrip.com/vip?source=navright");
         });
-
         noticeToggle();
     });
 </script>
@@ -2143,17 +2200,18 @@
         $.cookie('promotionId' + promotionArea, promotionId + 1, {expires: 1});
     }
 
-    // 进入促销页面
-    // function gotoPromotionPage() {
-    //     var url = promLink.attr("data-url");
-    //     setClickPromtionRecord();
-    //     setTimeout(() = > {
-    //         window.location.href = url;
-    // },
-    //     20
-    // )
-    //     ;
-    // }
+    进入促销页面
+
+    /* function gotoPromotionPage() {
+         var url = promLink.attr("data-url");
+         setClickPromtionRecord();
+         setTimeout(() = > {
+             window.location.href = url;
+     },
+         20
+     )
+         ;
+     }*/
 
     // 关闭促销弹窗
     function closePromotionImage() {
@@ -2417,7 +2475,7 @@
     </div>
 </div>
 <div class="app-turn"></div>
-<div class="appdownload compress" >
+<div class="appdownload compress">
     <div class="appdownload-content">
         <div class="closeapp">
             <i style="width:27px;height:27px;top:44px;"></i>
@@ -2560,10 +2618,8 @@
 <script src="//static.itrip.com/js/lib/des/des.js" type="text/javascript"></script>
 <script src="//cdn.bootcss.com/dot/2.0.0-beta.0/doT.js"></script>
 <script type="text/javascript">
-    /*
-data-i-op-address:
-data-i-op-reviewid
- */
+    data - i - op - address
+    data - i - op - reviewid
     (function () {
         var timer = 0;
         var pic2_home = pic2Home;
@@ -2788,11 +2844,11 @@ data-i-op-reviewid
                 });
             },
             //banner
+            //货币转换
             refresh: function (res) {
                 //data-i-op-title //
                 //data-i-op-img:
                 //data-i-op-productid:
-
                 var item,
                     content,
                     invalidId,
@@ -2807,11 +2863,11 @@ data-i-op-reviewid
                         item.productReviewIconUrls = icons;
                         item.activityTypePromotion = res.activityTypePromotion;
                         item.inventoryEnabled = res.inventoryEnabled;
-                        /* if($("[data-i-op='"+invalidId+"']").eq(0).parents(".pro_list").length > 0){
-	          		interText = doT.template($("#modProduct").text());
-	          	}else{
-	          		interText = doT.template($("#saleProduct").text());
-	          	}  */
+                        if ($("[data-i-op='" + invalidId + "']").eq(0).parents(".pro_list").length > 0) {
+                            interText = doT.template($("#modProduct").text());
+                        } else {
+                            interText = doT.template($("#saleProduct").text());
+                        }
                         interText = doT.template($("#saleProduct").text());
                         $("li[data-i-op='" + invalidId + "']").html(interText(item));
                     } else {
@@ -2867,6 +2923,7 @@ data-i-op-reviewid
                     skip_invisible: true
                 });
             },
+            //货币转换
             calPrice: function (obj, money, fromCurrencyId) {
                 var toCurrency = $(".money_sw_box_txt").attr("data-id");
                 var allExRates = obj.attr('data-exRates');
@@ -3265,7 +3322,7 @@ data-i-op-reviewid
         gio('send');
         <!--用户-->
         // 发送登录用户变量API
-        gio('people.set', "UserId", (getAreaIdCookies("uin") || ''));
+        gio('people.set', "loginUserId", (getAreaIdCookies("uin") || ''));
 
         // 发送访问用户变量API
         gio('visitor.set', "visitor_id", (getAreaIdCookies("gr_user_id") || ''));
@@ -3307,13 +3364,6 @@ data-i-op-reviewid
         /*< !-- product_type -- >*/
     }
 </script>
-<script>
-    function  login() {
-        window.location="login/login.html";
-    }
-
-
-</script>
 <noscript>&lt; img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=1938846466375704&amp;ev=PageView&amp;noscript=1"
     /&gt;
@@ -3325,5 +3375,277 @@ data-i-op-reviewid
 <div><img width="1" height="1" style="border-style:none;display:none;" alt=""
           src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/949765398/?value=0&amp;guid=ON&amp;script=0">
 </div>
+<script type="text/javascript">
+    var check = setInterval(checkUserOnline, 10);
+    var flag = $("label[class='sw_syb fl blue']").text(); //币种
+    var flag2 = $("label.js_curCode.f12").text();//商品上的币种
+    var oldmoney = "";
+
+    function checkUserOnline() {
+        $("label.js_curCode.f12").text(flag);
+        flag = $("label[class='sw_syb fl blue']").text();
+        flag2 = $("label.js_curCode.f12").eq(0).text();
+        if (flag == "RMB") {
+            document.cookie = "currency = " + flag;
+            //var cookie = document.cookie;
+            if (flag2 != flag) {
+                var price = document.getElementsByClassName("js_curMonery_exten f16 ml5");
+                for (var i = 0; i < price.length; i++) {
+                    var money = price[i].innerHTML;
+                    ForeignToRMB(flag2, money);
+                    var newmoney = Math.round(oldmoney * 1 * 100) / 100;
+                    price[i].innerHTML = newmoney;
+                }
+            }
+        }
+        if (flag == "EUR") {
+            document.cookie = "currency = " + flag;
+            if (flag2 != flag) {
+                var price = document.getElementsByClassName("js_curMonery_exten f16 ml5");
+                for (var i = 0; i < price.length; i++) {
+                    var money = price[i].innerHTML;
+                    ForeignToRMB(flag2, money);
+                    var newmoney = Math.round(oldmoney / 7.8646 * 100) / 100;
+                    price[i].innerHTML = newmoney;
+                }
+            }
+        }
+        if (flag == "AUD") {
+            document.cookie = "currency = " + flag;
+            if (flag2 != flag) {
+                var price = document.getElementsByClassName("js_curMonery_exten f16 ml5");
+                for (var i = 0; i < price.length; i++) {
+                    var money = price[i].innerHTML;
+                    ForeignToRMB(flag2, money);
+                    var newmoney = Math.round(oldmoney / 4.74 * 100) / 100;
+                    price[i].innerHTML = newmoney;
+                }
+            }
+        }
+        if (flag == "GBP") {
+            document.cookie = "currency = " + flag;
+            if (flag2 != flag) {
+                var price = document.getElementsByClassName("js_curMonery_exten f16 ml5");
+                for (var i = 0; i < price.length; i++) {
+                    var money = price[i].innerHTML;
+                    ForeignToRMB(flag2, money);
+                    var newmoney = Math.round(oldmoney / 8.6016 * 100) / 100;
+                    price[i].innerHTML = newmoney;
+                }
+            }
+        }
+        if (flag == "NZD") {
+            document.cookie = "currency = " + flag;
+            if (flag2 != flag) {
+                var price = document.getElementsByClassName("js_curMonery_exten f16 ml5");
+                for (var i = 0; i < price.length; i++) {
+                    var money = price[i].innerHTML;
+                    ForeignToRMB(flag2, money);
+                    var newmoney = Math.round(oldmoney / 4.52 * 100) / 100;
+                    price[i].innerHTML = newmoney;
+                }
+            }
+        }
+        if (flag == "FJD") {
+            document.cookie = "currency = " + flag;
+            if (flag2 != flag) {
+                var price = document.getElementsByClassName("js_curMonery_exten f16 ml5");
+                for (var i = 0; i < price.length; i++) {
+                    var money = price[i].innerHTML;
+                    ForeignToRMB(flag2, money);
+                    var newmoney = Math.round(oldmoney / 3.16 * 100) / 100;
+                    price[i].innerHTML = newmoney;
+                }
+            }
+        }
+        if (flag == "SGD") {
+            document.cookie = "currency = " + flag;
+            if (flag2 != flag) {
+                var price = document.getElementsByClassName("js_curMonery_exten f16 ml5");
+                for (var i = 0; i < price.length; i++) {
+                    var money = price[i].innerHTML;
+                    ForeignToRMB(flag2, money);
+                    var newmoney = Math.round(oldmoney / 5.01 * 100) / 100;
+                    price[i].innerHTML = newmoney;
+                }
+            }
+        }
+        if (flag == "MYR") {
+            document.cookie = "currency = " + flag;
+            if (flag2 != flag) {
+                var price = document.getElementsByClassName("js_curMonery_exten f16 ml5");
+                for (var i = 0; i < price.length; i++) {
+                    var money = price[i].innerHTML;
+                    ForeignToRMB(flag2, money);
+                    var newmoney = Math.round(oldmoney / 1.6 * 100) / 100;
+                    price[i].innerHTML = newmoney;
+                }
+            }
+        }
+        if (flag == "IDR") {
+            document.cookie = "currency = " + flag;
+            if (flag2 != flag) {
+                var price = document.getElementsByClassName("js_curMonery_exten f16 ml5");
+                for (var i = 0; i < price.length; i++) {
+                    var money = price[i].innerHTML;
+                    ForeignToRMB(flag2, money);
+                    var newmoney = Math.round(oldmoney * 1999.99 * 100) / 100;
+                    price[i].innerHTML = newmoney;
+                }
+            }
+        }
+        if (flag == "THB") {
+            document.cookie = "currency = " + flag;
+            if (flag2 != flag) {
+                var price = document.getElementsByClassName("js_curMonery_exten f16 ml5");
+                for (var i = 0; i < price.length; i++) {
+                    var money = price[i].innerHTML;
+                    ForeignToRMB(flag2, money);
+                    var newmoney = Math.round(oldmoney / 0.23 * 100) / 100;
+                    price[i].innerHTML = newmoney;
+                }
+            }
+        }
+        if (flag == "USD") {
+            document.cookie = "currency = " + flag;
+            if (flag2 != flag) {
+                var price = document.getElementsByClassName("js_curMonery_exten f16 ml5");
+                for (var i = 0; i < price.length; i++) {
+                    var money = price[i].innerHTML;
+                    ForeignToRMB(flag2, money);
+                    var newmoney = Math.round(oldmoney / 6.88 * 100) / 100;
+                    price[i].innerHTML = newmoney;
+                }
+            }
+        }
+        if (flag == "GHF") {
+            document.cookie = "currency = " + flag;
+            if (flag2 != flag) {
+                var price = document.getElementsByClassName("js_curMonery_exten f16 ml5");
+                for (var i = 0; i < price.length; i++) {
+                    var money = price[i].innerHTML;
+                    ForeignToRMB(flag2, money);
+                    var newmoney = Math.round(oldmoney / 7.0395 * 100) / 100;
+                    price[i].innerHTML = newmoney;
+                }
+            }
+        }
+        if (flag == "ISK") {
+            document.cookie = "currency = " + flag;
+            if (flag2 != flag) {
+                var price = document.getElementsByClassName("js_curMonery_exten f16 ml5");
+                for (var i = 0; i < price.length; i++) {
+                    var money = price[i].innerHTML;
+                    ForeignToRMB(flag2, money);
+                    var newmoney = Math.round(oldmoney / 0.06 * 100) / 100;
+                    price[i].innerHTML = newmoney;
+                }
+            }
+        }
+        if (flag == "NOK") {
+            document.cookie = "currency = " + flag;
+            if (flag2 != flag) {
+                var price = document.getElementsByClassName("js_curMonery_exten f16 ml5");
+                for (var i = 0; i < price.length; i++) {
+                    var money = price[i].innerHTML;
+                    ForeignToRMB(flag2, money);
+                    var newmoney = Math.round(oldmoney / 0.79 * 100) / 100;
+                    price[i].innerHTML = newmoney;
+                }
+            }
+        }
+        if (flag == "SEK") {
+            document.cookie = "currency = " + flag;
+            if (flag2 != flag) {
+                var price = document.getElementsByClassName("js_curMonery_exten f16 ml5");
+                for (var i = 0; i < price.length; i++) {
+                    var money = price[i].innerHTML;
+                    ForeignToRMB(flag2, money);
+                    var newmoney = Math.round(oldmoney / 0.73 * 100) / 100;
+                    price[i].innerHTML = newmoney;
+                }
+            }
+        }
+        if (flag == "CZK") {
+            document.cookie = "currency = " + flag;
+            if (flag2 != flag) {
+                var price = document.getElementsByClassName("js_curMonery_exten f16 ml5");
+                for (var i = 0; i < price.length; i++) {
+                    var money = price[i].innerHTML;
+                    ForeignToRMB(flag2, money);
+                    var newmoney = Math.round(oldmoney * 0.31 * 100) / 100;
+                    price[i].innerHTML = newmoney;
+                }
+            }
+        }
+        if (flag == "DKK") {
+            document.cookie = "currency = " + flag;
+            if (flag2 != flag) {
+                var price = document.getElementsByClassName("js_curMonery_exten f16 ml5");
+                for (var i = 0; i < price.length; i++) {
+                    var money = price[i].innerHTML;
+                    ForeignToRMB(flag2, money);
+                    var newmoney = Math.round(oldmoney / 1.03 * 100) / 100;
+                    price[i].innerHTML = newmoney;
+                }
+            }
+        }
+    }
+
+    //外币转成RMB
+    function ForeignToRMB(foreign, money) {
+        if (foreign == "RMB") {
+            oldmoney = money * 1;
+        }
+        if (foreign == "EUR") {
+            oldmoney = money * 7.8646;
+        }
+        if (foreign == "AUD") {
+            oldmoney = money * 4.74;
+        }
+        if (foreign == "GBP") {
+            oldmoney = money * 8.6016;
+        }
+        if (foreign == "NZD") {
+            oldmoney = money * 4.52;
+        }
+        if (foreign == "FJD") {
+            oldmoney = money * 3.16;
+        }
+        if (foreign == "SGD") {
+            oldmoney = money * 5.01;
+        }
+        if (foreign == "MYR") {
+            oldmoney = money * 1.6;
+        }
+        if (foreign == "IDR") {
+            oldmoney = money / 1999.99;
+        }
+        if (foreign == "THB") {
+            oldmoney = money * 0.23;
+        }
+        if (foreign == "USD") {
+            oldmoney = money * 6.88;
+        }
+        if (foreign == "GHF") {
+            oldmoney = money * 7.0395;
+        }
+        if (foreign == "ISK") {
+            oldmoney = money * 0.06;
+        }
+        if (foreign == "NOK") {
+            oldmoney = money * 0.79;
+        }
+        if (foreign == "SEK") {
+            oldmoney = money * 0.73;
+        }
+        if (foreign == "CZK") {
+            oldmoney = money * 0.31;
+        }
+        if (foreign == "DKK") {
+            oldmoney = money * 1.03;
+        }
+    }
+</script>
 </body>
 </html>
