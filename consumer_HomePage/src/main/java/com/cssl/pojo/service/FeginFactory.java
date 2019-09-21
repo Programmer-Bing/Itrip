@@ -5,14 +5,12 @@ import java.util.List;
 import java.util.Map;
 
 import com.cssl.pojo.HomePage_product;
+import com.cssl.pojo.po.OrderXQ;
 import com.cssl.pojo.po.Orders;
 import com.cssl.pojo.po.User;
 import org.springframework.stereotype.Component;
 
 import feign.hystrix.FallbackFactory;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /*
  *  服务降级回调类
@@ -107,6 +105,23 @@ public class FeginFactory implements FallbackFactory<HomePageClientService>{
 
 			@Override
 			public List<Orders> SelectUser(int id) {
+				return null;
+			}
+
+			@Override
+			public List<Orders> SelectOrderProdoct(int userid) {
+				return null;
+			}
+
+			@Override
+			public List<Orders> SelectOrderNumb(int userid) {
+				return null;
+			}
+
+
+
+			@Override
+			public List<OrderXQ> SelectOrderProduct(String ordernum) {
 				return null;
 			}
 		};

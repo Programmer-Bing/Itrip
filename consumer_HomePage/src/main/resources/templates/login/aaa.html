@@ -1,0 +1,89 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../scripts/jquery-1.8.3.min.js"></script>
+    <script src="../scripts/jquery-3.2.1.js"></script>
+    <script src="../layui/layui.all.js"></script>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+    <script>
+        $(function(){
+            layui.use('form', function(){
+                var form = layui.form;
+                form.render();
+            });
+            layui.use('laydate', function(){
+                var laydate = layui.laydate;
+                //常规用法
+                laydate.render({
+                    elem: '#date'// 指定元素
+                });
+            });
+            layui.use('upload', function(){
+                var $ = layui.jquery
+                    ,upload = layui.upload;
+                //选完文件后不自动上传
+                upload.render({
+                    elem: '#test8'
+                    ,url: '/ajaxUpload'
+                    ,multiple: true
+                    ,auto:false
+                    //,multiple: true
+                    ,bindAction: '#test9'//绑定提交按钮
+                    ,done: function(res){
+                        console.log(res)
+                    },before: function () {
+                    },choose: function(obj){
+                        //将每次选择的文件追加到文件队列
+                        var files = obj.pushFile();
+                        //预读本地文件，如果是多文件，则会遍历。(不支持ie8/9)
+                        obj.preview(function(index, file, result){
+                            if(file.size>0 &&  $('#demo3').find('img').length==0){
+                                $('#demo3').empty();
+                            }
+                            $("#demo3").append('<img  src="' + result + '" id="remove_' + index + '" title="双击删除该图片" style="width:50px;height:auto;margin-left: 8px;border: 1px solid;">')
+                            $('#remove_' + index).bind('dblclick', function () {//双击删除指定预上传图片
+                                delete files[index];//删除指定图片
+                                $(this).remove();
+                            });
+                        });
+                    }
+                });
+            });
+        })
+    </script>
+</head>
+<body>
+<div>
+    <FORM id=add_action method=post name=add.action action="/ajaxUpload" class="layui-form" enctype="multipart/form-data">
+        <DIV class=infos>
+            <TABLE class=field>
+                <TBODY>
+                <tr>
+                    <td colspan="2">
+                        <div class="layui-upload">
+                            <button class="layui-btn layui-btn-normal" id="test8"
+                                    type="button" style="width: 100px">选择头像<tton>
+                                <blockquote class="layui-elem-quote layui-quote-nm"
+                                            style="width: 400px; height: 100px">
+                                    预览图：
+                                    <div class="layui-upload-list" id="demo3"></div>
+                                    <ockquote>
+                                    </ockquote>
+                                </blockquote>
+                            </tton>
+                            </button>
+                        </div>
+                    <td>
+                </tr>
+                </TBODY>
+            </TABLE>
+            <DIV class=buttons>
+                <INPUT  value=立即发布
+                        type="submit" lay-submit="" lay-filter="login-submit" id="test9" style="margin-top: 200px">
+            </DIV>
+        </DIV>
+    </FORM>
+</div>
+</body>
+</html>
