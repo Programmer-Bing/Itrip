@@ -13,6 +13,84 @@
     <script type="text/javascript" src="scripts/jquery-1.8.3.min.js"></script>
     <script type="text/javascript">
         $(function(){
+            var Chinese_Name=null;
+            var English_Name=null;
+            var pageNumber=1;
+            var pages;
+            fenye(Chinese_Name,English_Name,pageNumber);
+
+            function fenye(Chinese_Name,English_Name,pageNumber){
+                $.getJSON("findAll","pageNumber="+pageNumber+"&English_Name="+English_Name+"&Chinese_Name="+Chinese_Name,function(json){
+                    $("#xianshi tr:not(:first):not(#sxy)").remove();
+                    pages=json.totalPage;
+                    for (var i=0;i<json.list.length;i++){
+                        var list=json.list;
+                        var tr="";
+                        tr+="";
+                        tr+="<tr>";
+                        tr+="    <td><input type='checkbox' name='id[]' value='"+list[i].user_id+"' />"+list[i].user_id+"</td>";
+                        tr+="    <td>"+list[i].user_name+"</td>";
+                        tr+="    <td>"+list[i].Chinese_Name+"</td>";
+                        tr+="    <td>"+list[i].English_Name+"</td>";
+                        tr+="    <td>"+list[i].Gender+"</td>  ";
+                        tr+="    <td>"+list[i].email+"</td>";
+                        tr+="    <td><img src='images/11.jpg' alt='' width='120' height='50' /></td> ";
+                        if(list[i].Administration=="1"){
+                            tr+="    <td>管理员</td>";
+                        }else{
+                            tr+="    <td>普通用户</td>";
+                        }
+                        tr+="    <td><div class='button-group'> <a class='button border-main' href='modUser.html'><span class='icon-edit'></span> 修改</a> ";
+                        tr+="<a class='button border-red' href='javascript:void(0)' onclick='return del(1,2)'><span class='icon-trash-o'></span> 删除</a> </div></td>";
+                        tr+="</tr>";
+                        $("#xianshi").append(tr);
+                    }
+                    $("#xia").nextAll().remove();
+                    for(var j=1;j<=pages;j++){
+                        var a="";
+                        if(pageNumber==j){
+                            a+="<span class='current' id='pagination'>"+j+"</span>";
+                        }else{
+                            a+="<a id='pagination'>"+j+"</a>";
+                        }
+                        $("#pagelist").append(a);
+                    }
+                });
+            }
+            $("#xia").click(function(){
+                if(pageNumber>=pages){
+                    pageNumber=pages;
+                    fenye(Chinese_Name,English_Name,pageNumber);
+                }else if(pageNumber<pages){
+                    pageNumber=pageNumber+1;
+                    fenye(Chinese_Name,English_Name,pageNumber);
+                }
+            });
+
+            $("#shang").click(function(){
+                if(pageNumber<=1){
+                    pageNumber=1;
+                    fenye(Chinese_Name,English_Name,pageNumber);
+                }else{
+                    pageNumber=pageNumber-1;
+                    fenye(Chinese_Name,English_Name,pageNumber);
+                }
+            });
+
+            $("#trailerpage").click(function(){
+                pageNumber=pages;
+                fenye(Chinese_Name,English_Name,pageNumber);
+            })
+
+            $("#homepage").click(function(){
+                pageNumber=1;
+                fenye(Chinese_Name,English_Name,pageNumber);
+            })
+            $("#pagination").live("click",function () {
+                var pagination=$(this).text();
+                pageNumber=pagination;
+                fenye(Chinese_Name,English_Name,pageNumber);
+            });
         });
     </script>
 </head>
@@ -29,30 +107,22 @@
         </li>
       </ul>
     </div>
-    <table class="table table-hover text-center">
+    <table class="table table-hover text-center" id="xianshi">
       <tr>
-        <th width="120">用户ID</th>
-        <th>用户昵称</th>       
+        <th>用户ID</th>
+        <th>用户昵称</th>
+        <th>中文名</th>
+        <th>英文名</th>
         <th>性别</th>
-        <th>手机号码</th>
         <th>邮箱</th>
 		<th>图片</th>
 		<th>权限</th>
 		<th>操作</th>
-      </tr>      
-        <tr>
-          <td><input type="checkbox" name="id[]" value="1" />
-            1</td>
-          <td>xuhuan</td>
-          <td>男</td>  
-          <td>1234354656</td>
-		  <td>1234354656@qq.com</td>
-		  <td><img src="images/11.jpg" alt="" width="120" height="50" /></td> 
-		  <td>admin</td>
-           <td><div class="button-group"> <a class="button border-main" href="modUser.html"><span class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)" onclick="return del(1,2)"><span class="icon-trash-o"></span> 删除</a> </div></td>
-        </tr>
-      <tr>
-        <td colspan="8"><div class="pagelist"> <a href="">上一页</a> <span class="current">1</span><a href="">2</a><a href="">3</a><a href="">下一页</a><a href="">尾页</a> </div></td>
+      </tr>
+
+
+      <tr id="sxy">
+        <td colspan="8"><div class="pagelist" id="pagelist"> <a id="homepage">首页</a><a id="trailerpage">尾页</a> <a id="shang">上一页</a><a id="xia">下一页</a> </div></td>
       </tr>
     </table>
   </div>

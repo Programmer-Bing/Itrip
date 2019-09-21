@@ -43,7 +43,7 @@
                         var prolist=json.list;
                         var tr="";
                         tr+="<tr>"
-                        tr+="<td><input type='checkbox' name='id[]' value='1' />"+prolist[i].Product_id+"</td>"
+                        tr+="<td><input type='checkbox' name='id[]' value='"+prolist[i].Product_id+"' />"+prolist[i].Product_id+"</td>"
                         tr+="    <td id='biaoti'>"+prolist[i].Product_Name+"</td>"
                         tr+="<td><img src='images/11.jpg' alt='' width='120' height='50' /></td>"
                         tr+="<td>"+prolist[i].P_price+"<span>￥</span></td>"
@@ -118,6 +118,7 @@
 
         });
     </script>
+
 </head>
 <body>
 <form method="post" action="">
@@ -196,6 +197,5 @@ function DelSelect(){
 		return false;
 	}
 }
-
 </script>
 </body></html>
