@@ -1,0 +1,939 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="pragma" content="no-cache"/>
+    <meta http-equiv="cache-control" content="no-cache"/>
+    <meta http-equiv="expires" content="0"/>
+    <meta http-equiv="X-UA-Compatible" content="edge" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="itrip酒店预订提供悉尼南方大酒店 Great Southern Hotel 4星酒店(近中央车站+唐人街旁+近旅游景点)澳大利亚悉尼酒店预订。咨询电话：400-008-8177,信誉保障,低价优惠!(出境自由行酒店住宿首选)" />
+    <meta name="Keywords" content="悉尼南方大酒店 Great Southern Hotel 4星酒店(近中央车站+唐人街旁+近旅游景点),澳大利亚悉尼酒店预订" />
+    <meta name="viewport" content="width=1200, initial-scale=0.8"/>
+    <meta name="applicable-device" content="pc">
+    <title>悉尼南方大酒店 Great Southern Hotel 4星酒店(近中央车站+唐人街旁+近旅游景点)_澳大利亚悉尼酒店预订-itrip酒店预订</title>
+    <link rel="shortcut icon" href="//pic.itrip.com/img/favicon.ico">
+    <link rel="stylesheet" href="//static.itrip.com/js/lib/jquery-ui/1.10.3/themes/itrip/it_datepicker.css"/>
+    <link rel="stylesheet" type="text/css" href="//static.itrip.com/js/lib/location/jquery.location.css">
+    <link rel="stylesheet" type="text/css" href="//static.itrip.com/css/it_reset_201902190028.css">
+    <link rel="stylesheet" type="text/css" href="//static.itrip.com/css/it_hotel_201902190028.css">
+    <link rel="stylesheet" href="../static/layui/css/layui.css">
+    <script src="../static/layui/layui.all.js"></script>
+    <script src="../js/jquery-3.2.1.js"></script>
+    <script src="../js/jquery-1.8.3.js"></script>
+    <style type="text/css">
+        .star {
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+<meta itrip="13"    吗                                                                                                                                                                                       />
+<script>
+    var _oztime = (new Date()).getTime();
+</script>
+<input type="hidden" id ="userAccount" />
+<input type="hidden" id ="userId" />
+<div id="guideFrame" class="guideFrame hide"></div>
+<div id="guide" class="guide hide">
+    <div class="guideCont">
+        <a class="guideKnow" onclick="closeguide()"></a>
+    </div>
+</div>
+<div class="user_select_area hide">
+    <div class="loadingFrame hide"></div>
+    <div class="loadingChose hide">
+        <div class="pos_r">
+            <a class="close"></a>
+            <a class="inEu" href="https://www.itrip.com/ouzhou/">进入欧洲站</a>
+            <a class="inAsi" href="https://www.itrip.com/dny/">进入东南亚站</a>
+            <a class="inAus"  href="javascript:setPromotionInfo(2);">进入澳洲站</a>
+            <a class="inNF" href="https://www.itrip.com/xinfei/">进入新斐站</a>
+            <a class="inAm" href="https://www.itrip.com/meizhou/">进入美洲站</a>
+        </div>
+    </div>
+    <div class="hint hide">
+        <div class="wrap pos_r">
+            <div class="select_area"></div>
+            <div class="select_money"></div>
+        </div>
+        <div class="isee"></div>
+    </div>
+</div>
+<div class="header pageHeader">
+    <div id="topad" class="topad" data-i-op="11089" data-i-op-img="" style="display:none;height:50px;background:url(//pic2.itrip.com/p/20190905190429-352.jpg) top center no-repeat;min-width:1200px;">
+        <a name='__AD_top_activity_banner_95_11089' data-i-op="11089" data-i-op-href="" href="https://www.itrip.com/magazine/huodong/190906/web/" class="link_a" style="display:block;width:98%;height:50px;position:absolute;left:0;" target="_blank"></a>
+        <div class="wrap pos_r">
+            <a class="closeAD hand"></a>
+        </div>
+    </div>
+    <div class="site_top">
+        <div class="top_info">
+            <div class="wrap clearfix">
+                <div class="fl horiz pos_r f14 ">
+                    <ul class="area">
+                        <li>
+                            <a class="cur" href="https://www.itrip.com/aodaliya/">
+
+                                澳洲站
+                            </a>
+                        </li>
+                        <li class="new_f">
+                            <a  href="https://www.itrip.com/xinfei/" title="新西兰 & 斐济">
+                                新西兰 & 斐济</a>
+                        </li>
+                        <li>
+                            <a  href="https://www.itrip.com/ouzhou/">
+                                欧洲站</a>
+                        </li>
+                        <li>
+                            <a  href="https://www.itrip.com/dny/" title="东南亚">
+                                东南亚</a>
+                        </li>
+                        <li>
+                            <a href="https://www.itrip.com/meizhou/"  title="美洲">
+                                美洲站</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="fr">
+			<span class="pos_r">
+						<a href="//www.itrip.com/about/app" rel="nofollow" class="fl" target="_blank">
+							<span class="app-down"><img src="//pic.itrip.com/img/header/head_icon_appdown.gif" class="fl" />APP下载</span>
+						</a>
+					</span>
+                    <span class="line">|</span>
+                    <span class="js_loginStatus" style="display:none;margin-left:0px;">
+						<span><a class="blue" href="javascript:void(0);" onclick="login()" rel="nofollow">登录</a></span><span>/</span>
+						<span><a href="https://www.itrip.com/signup/index" rel="nofollow">注册</a></span>
+					</span>
+                    <span class="js_loginStatus" style="display:none;margin-left:0px;">
+						<span class="sw_syb fl pos_r" style="margin-left:0px;"><a class="blue display_name" href="https://www.itrip.com/user/index"></a><i class="sw_sj"></i>
+							<dl class="down_list">
+								<dd class="js_myOrder"><a href="https://www.itrip.com/user/orders" rel="nofollow" class="pos_r">我的订单<label></label></a></dd>
+								<dd class="js_myFavor"><a href="https://www.itrip.com/user/favor/all" rel="nofollow" class="pos_r">我的收藏 <label></label></a></dd>
+								<dd><a href="https://www.itrip.com/user/reward" rel="nofollow">我的奖金</a></dd>
+								<dd><a href="javascript:void(0);" id="btn_logout" onclick="logout()" rel="nofollow">退出登录</a></dd>
+							</dl>
+						</span>
+					</span>
+                    <span class="line">|</span>
+                    <span class="pos_r">
+
+						<a href="https://www.itrip.com/shoppingCart" rel="nofollow" class="fl">
+							<span class="buy_car js_sc"><i></i>购物车 <label></label></span>
+							<div class="prompt-price-warp hide">
+						        <i class="icon_arrow_up-in"></i>
+						        <p class="prompt-price-txt">您有<em id="promotion-num"></em>个产品正在促销降价</p>
+						        <label class="promotion-close"></label>
+						    </div>
+
+						</a>
+
+					</span>
+
+                    <span class="line">|</span>
+                    <span class="pos_r money_sw_box currencyChange">
+						 <a class="money_sw_box_txt" href="javascript:;" style="border:1px transparent solid;" onclick="window.event.preventDefault(); window.event.stopPropagation(); return false;">
+							<label class="sw_syb fl blue"></label>
+							<i class="sw_sj"></i>
+						</a>
+						<div class="money_sw hide">
+							<a data-id="12">
+									<label class="fl sw_txt">人民币元</label>
+									<label class="fl sw_syb">RMB</label>
+								</a>
+							<a data-id="20">
+									<label class="fl sw_txt">欧元</label>
+									<label class="fl sw_syb">EUR</label>
+								</a>
+							<a data-id="9">
+									<label class="fl sw_txt">澳大利亚元</label>
+									<label class="fl sw_syb">AUD</label>
+								</a>
+							<a data-id="21">
+									<label class="fl sw_txt">英镑</label>
+									<label class="fl sw_syb">GBP</label>
+								</a>
+							<a data-id="10">
+									<label class="fl sw_txt">新西兰元</label>
+									<label class="fl sw_syb">NZD</label>
+								</a>
+							<a data-id="11">
+									<label class="fl sw_txt">斐济元</label>
+									<label class="fl sw_syb">FJD</label>
+								</a>
+							<a data-id="17">
+									<label class="fl sw_txt">新币</label>
+									<label class="fl sw_syb">SGD</label>
+								</a>
+							<a data-id="16">
+									<label class="fl sw_txt">马来西亚币</label>
+									<label class="fl sw_syb">MYR</label>
+								</a>
+							<a data-id="15">
+									<label class="fl sw_txt">印尼盾</label>
+									<label class="fl sw_syb">IDR</label>
+								</a>
+							<a data-id="14">
+									<label class="fl sw_txt">泰铢</label>
+									<label class="fl sw_syb">THB</label>
+								</a>
+							<a data-id="13">
+									<label class="fl sw_txt">美元</label>
+									<label class="fl sw_syb">USD</label>
+								</a>
+							<a data-id="22">
+									<label class="fl sw_txt">瑞士法郎</label>
+									<label class="fl sw_syb">CHF</label>
+								</a>
+							<a data-id="23">
+									<label class="fl sw_txt">冰岛克朗</label>
+									<label class="fl sw_syb">ISK</label>
+								</a>
+							<a data-id="24">
+									<label class="fl sw_txt">挪威克朗</label>
+									<label class="fl sw_syb">NOK</label>
+								</a>
+							<a data-id="25">
+									<label class="fl sw_txt">瑞典克朗</label>
+									<label class="fl sw_syb">SEK</label>
+								</a>
+							<a data-id="26">
+									<label class="fl sw_txt">捷克克朗</label>
+									<label class="fl sw_syb">CZK</label>
+								</a>
+							<a data-id="27">
+									<label class="fl sw_txt">丹麦克朗</label>
+									<label class="fl sw_syb">DKK</label>
+								</a>
+							</div>
+					</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var wxFlag = true;
+    </script><div class="wrap pos_r">
+    <div class="mainHeader clearfix">
+        <div class="logo fl pos_r">
+            <a href="https://www.itrip.com/">
+                <img src="//pic.itrip.com/img/logo3.png" class="logoImg" alt="iTrip爱去自由" style="margin:0px;position:relative;">
+            </a>
+        </div>
+
+        <div class="fl siteTopSearch mt10">
+            <input type="hidden" class="areaSearchUrl1" value="https://www.itrip.com/xibanya/wanle" data-placeholder ="西班牙">
+            <input type="hidden" class="areaSearchUrl2" value="https://www.itrip.com/aodaliya/w-1474" data-placeholder ="热气球">
+            <input type="hidden" class="areaSearchUrl3" value="https://www.itrip.com/xinfei/w-507" data-placeholder ="霍比特人村">
+            <input type="hidden" class="areaSearchUrl4" value="https://www.itrip.com/p4292" data-placeholder ="芭提雅skydiving高空跳伞">
+            <input type="hidden" class="areaSearchUrl5" value="https://www.itrip.com/lasiweijiasi/wanle" data-placeholder ="拉斯维加斯">
+            <form id="searchForm" method="get" action="https://www.itrip.com/search">
+                <input type="text" name="wd" class="siteTopSearchIpt" placeholder="" maxlength="40" autocomplete="off" value=""/>
+                <a href="javascript:;" class="searchBtn">搜索</a>
+                <ul id="searchComponent" class="searchComponent hide">
+                </ul>
+            </form>
+        </div>
+
+        <div class="fr topContact blue horiz">
+            <img src="//pic.itrip.com/img/header/phone_num_2.png" width="328" height="74" style="position: relative;top: -10px;">
+        </div>
+        <div class="search-hot-list">热门搜索：
+            <a href="https://www.itrip.com/search?wd=观鲸" target="_blank">观鲸</a>
+            <a href="https://www.itrip.com/search?wd=滑雪" target="_blank">滑雪</a>
+            <a href="https://www.itrip.com/search?wd=大堡礁" target="_blank">大堡礁</a>
+            <a href="https://www.itrip.com/search?wd=库兰达" target="_blank">库兰达</a>
+            <a href="https://www.itrip.com/search?wd=大洋路" target="_blank">大洋路</a>
+            <a href="https://www.itrip.com/search?wd=汉密尔顿岛" target="_blank">汉密尔顿岛</a>
+            <a href="https://www.itrip.com/search?wd=白天堂沙滩" target="_blank">白天堂沙滩</a>
+            <a href="https://www.itrip.com/search?wd=跳伞" target="_blank">跳伞</a>
+        </div>
+    </div>
+</div>
+    <div class="mainNav">
+        <div class="wrap" style="position:relative;">
+            <div
+                    class="slogn_txt fl pos_r w265">
+                <a href="https://www.itrip.com/aodaliya/">
+                    <h1 style="font-size:inherit;">澳洲旅游</h1>
+                </a>
+                <span></span>
+            </div>
+            <div class="horiz fl" style="max-width:900px;height:40px;">
+                <ul style="overflow:visible" class="mainNav_left">
+                    <li class="pos_r ">
+                        <a class="main_link " href="https://www.itrip.com/aodaliya/wanle" target="_blank" >自助游</a>
+                    </li>
+                    <li class="pos_r ">
+                        <a class="main_link " href="https://www.itrip.com/aodaliya/group" target="_blank" >当地跟团</a>
+                    </li>
+                    <li class="pos_r ">
+                        <a class="main_link " href="https://www.itrip.com/yongche?areaId=2&source=pcnav" target="_blank" >用车</a>
+                        <i class="gif"><img src="//pic2.itrip.com/p/20180919101359-828.gif"/></i>
+                    </li>
+                    <li class="pos_r ">
+                        <a class="main_link " href="https://www.itrip.com/vip/" target="_blank" >定制旅行</a>
+                        <i class="gif"><img src="//pic2.itrip.com/p/20180327160039-63.png"/></i>
+                    </li>
+                    <li class="pos_r ">
+                        <a class="main_link " href="https://www.itrip.com/hotel/" target="_blank" >酒店</a>
+                    </li>
+                </ul>`
+                <ul class="mainNav_right" style="overflow:visible;">
+                    <li class="pos_r ">
+                        <a class="main_link " href="https://www.itrip.com/aodaliya/w-12940"  >保险</a>
+                    </li>
+                    <li class="pos_r haschild">
+                        <a class="main_link " href="http://www.itrip.com/aozhou/#"  >租车</a>
+                        <b class="bottom_s"></b><dl>
+                        <dd><a href="http://zuche.itrip.com/?countryId=-2" target="_blank">租车</a></dd>
+                        <dd><a href="http://fangche.itrip.com/?countryId=-2" >房车</a></dd>
+                    </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="back_b"></div>
+    </div></div>
+<div class="main_center clearfix">
+    <div class="position f14 mt10">当前位置：<a href="https://www.itrip.com/hotel/">酒店频道</a> > <a href="https://www.itrip.com/hotel/aodaliya/">精选酒店</a>  > 悉尼南方大酒店 Great Southern Hotel 4星酒店(近中央车站+唐人街旁+近旅游景点)</div>
+    <div class="mian_info clearfix">
+        <div class="pro_choice fl">
+            <div class="switch_box">
+                <a href="javascript:void(0)" class="pro_coll" style="display: inline;">收藏</a>
+                <div class="pro_detail_box">
+                    <div class="f24"><h1 class="f24 fbn" style="display: inline-block;" th:text="${hotel.get(0).get('h_name')}"></h1><span class="starBox" title="4 星级" style="margin-top:1px;line-height: 14px;margin-left:5px;">
+						<span class="star star4" th:class="'star star'+${hotel.get(0).get('Star_class')}"></span>
+						</span></a>
+                    </div>
+                    <div class="orange f14 lesth" th:text="${hotel.get(0).get('tips')!=null?hotel.get(0).get('tips'):''}"></div>
+                    <div class="mt10" >
+                        <span th:each="la:${lable}" class="tip_blue mr5" th:text="${la.get('lable_name')}">
+
+                        </span>
+                    </div>
+                    <div class="gallery oh mt10">
+                        <div class="fl galleryBox">
+                            <ul>
+                                <li style="opacity:1;display:inline-block;"><img th:src="${hotel.get(0).get('pictrue2')}+'1.jpg'" src="//pic2.itrip.com/p/20160612183954-standard-219.jpg" alt="悉尼南方大酒店 Great Southern Hotel 4星酒店(近中央车站+唐人街旁+近旅游景点)" width="632" height="421" /></li>
+                                <li><img th:src="${hotel.get(0).get('pictrue2')}+'2.jpg'" data-original="//pic2.itrip.com/p/20161009173244-standard-981.jpg" alt="悉尼南方大酒店 Great Southern Hotel 4星酒店(近中央车站+唐人街旁+近旅游景点)" width="632" height="421" /></li>
+                                <li><img th:src="${hotel.get(0).get('pictrue2')}+'3.jpg'"  data-original="//pic2.itrip.com/p/20160612183954-standard-774.jpg" alt="悉尼南方大酒店 Great Southern Hotel 4星酒店(近中央车站+唐人街旁+近旅游景点)" width="632" height="421" /></li>
+                                <li><img th:src="${hotel.get(0).get('pictrue2')}+'4.jpg'" data-original="//pic2.itrip.com/p/20160612183954-standard-938.jpg" alt="悉尼南方大酒店 Great Southern Hotel 4星酒店(近中央车站+唐人街旁+近旅游景点)" width="632" height="421" /></li>
+                                <li><img th:src="${hotel.get(0).get('pictrue2')}+'5.jpg'" data-original="//pic2.itrip.com/p/20161009173411-standard-150.jpg" alt="悉尼南方大酒店 Great Southern Hotel 4星酒店(近中央车站+唐人街旁+近旅游景点)" width="632" height="421" /></li>
+                            </ul>
+                        </div>
+                        <div class="gallerybar fl ml20 picScroll-top">
+                            <a class="prev hide" href="javascript:"></a>
+                            <ul class="bd">
+                                <li class="cur"><img th:src="${hotel.get(0).get('pictrue2')}+'x1.jpg'" alt="悉尼南方大酒店 Great Southern Hotel 4星酒店(近中央车站+唐人街旁+近旅游景点)" src="//pic2.itrip.com/p/20160612183954-standard-219.jpg?imageView2/5/w/100/h/67" width="100" height="67" /></li>
+                                <li><img th:src="${hotel.get(0).get('pictrue2')}+'x2.jpg'" alt="悉尼南方大酒店 Great Southern Hotel 4星酒店(近中央车站+唐人街旁+近旅游景点)" src="//pic2.itrip.com/p/20161009173244-standard-981.jpg?imageView2/5/w/100/h/67" width="100" height="67" /></li>
+                                <li><img th:src="${hotel.get(0).get('pictrue2')}+'x3.jpg'" alt="悉尼南方大酒店 Great Southern Hotel 4星酒店(近中央车站+唐人街旁+近旅游景点)" src="//pic2.itrip.com/p/20160612183954-standard-774.jpg?imageView2/5/w/100/h/67" width="100" height="67" /></li>
+                                <li><img th:src="${hotel.get(0).get('pictrue2')}+'x4.jpg'" alt="悉尼南方大酒店 Great Southern Hotel 4星酒店(近中央车站+唐人街旁+近旅游景点)" src="//pic2.itrip.com/p/20160612183954-standard-938.jpg?imageView2/5/w/100/h/67" width="100" height="67" /></li>
+                                <li><img th:src="${hotel.get(0).get('pictrue2')}+'x5.jpg'" alt="悉尼南方大酒店 Great Southern Hotel 4星酒店(近中央车站+唐人街旁+近旅游景点)" src="//pic2.itrip.com/p/20161009173411-standard-150.jpg?imageView2/5/w/100/h/67" width="100" height="67" /></li>
+                            </ul>
+                            <a class="next hide" href="javascript:"></a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="ch_w100">
+                <div class="choice_qh clearfix mt10">
+                    <ul>
+                        <li class="cur"><h2 class="fbn f16" style="line-height:45px;">房型选择</h2></li>
+                        <li><h2 class="fbn f16" style="line-height:45px;">预订须知</h2></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="all_info">
+                <div class="choice_info notop">
+                    <div class="serch_box clearfix other">
+                        <input type="text" th:id="start" id="start" class="begin_time hand hasDatepicker" placeholder="住店时间" readonly/>
+                        <input type="text" th:id="end" class="begin_time hand" id="end" placeholder="离店时间" readonly/>
+                        <input type="hidden" class="serch_btn hand" value="确定" />
+                    </div>
+                    <div class="room_xz clearfix js_room" data-id="62933665633269606"
+                         data-minCheckinDays="1" data-propertyIds="" th:each="ho:${home}">
+                        <div th:class="room_styles" class="room_style">
+                            <i th:id="roomid+${hoStat.index}" th:text="${ho.get('rif_id')}" hidden></i>
+                            <div class="room_title f14 bold">
+                                <div class="fl room_tit"><h3 class="f14" style="line-height: 30px;" th:text="${ho.get('rif_name')}">标准双人间 - 无早(最多住2人)</h3></div>
+                                <div class="fr room_price">
+                                    <label class="js_nights"
+                                           style="font-size: 14px; font-weight: normal;"></label> <label
+                                        class="js_curCode">RMB</label>&nbsp; <span
+                                        th:class="js_curMoney+${hoStat.index}" data-cid="9"
+                                        data-price="188"
+                                        data-startPrice="188" th:text="${ho.get('price')}">
+												891.12</span>
+                                    <label class="f14">
+                                        / 间</label> <label
+                                        class="js_startDesc f12">起</label>
+                                </div>
+                                <div class="fr hide room_soldout">已订完</div>
+                            </div>
+                            <div class="room_info">
+                                <div class="fl img">
+                                    <img th:src="${ho.get('photo')}" src="//pic2.itrip.com/p/20160612184224-943.jpg?imageView2/5/w/145/h/97" />
+                                </div>
+                                <div class="fl info">
+											<span class="icon people" th:text="'最多入住'+${ho.get('occupants_num')}+'人'">
+
+														最多入住2人
+													</span>
+                                    <span class="icon food" th:text="${ho.get('breakfast')}"></span>
+                                    <p th:utext="'面积：'+${ho.get('area')}+'<br />床型：'+${ho.get('bed_type')}">
+
+                                        面积：15.0㎡<br />
+
+                                        床型：一张大床<br>
+                                    </p>
+                                    <p th:text="${ho.get('instroduce')}">
+                                        15平方米|1大床|暖气,卫生间,办公桌,浴室,冰箱</p>
+                                </div>
+                                <div class="fr">
+                                    <div class="add">
+                                        <i th:text="${hoStat.index}" hidden></i>
+                                        <i th:id="reducef16handgrey" id="reducef16handgrey" class="reduce f16 hand grey">-</i><input type="text"
+                                                                          th:id="numfl+${hoStat.index}"   id="numfl"       class="num fl" value="0" readonly="readonly" /><i
+                                       id="ad_moref16hand"  th:id="ad_moref16hand"   class="ad_more f16 hand">+</i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="choice_info hotel_info mt10 black">
+                    <div class="hotel_tit f16 bold noborder" style="color:#666">预订须知</div>
+                    <div class="f12 hotel_detail">
+                        <p><span style="white-space: normal;"></span></p><p style="margin-top: 0px; margin-bottom: 0px; color: rgb(102, 102, 102); font-family: &quot;Helvetica Neue&quot;, Helvetica, &quot;Hiragino Sans GB&quot;, &quot;Hiragino Sans GB W3&quot;, &quot;Microsoft YaHei&quot;, 微软雅黑, Arial, simsun, sans-serif; font-size: 12px; white-space: normal;"><span style="font-family: sans-serif; font-size: 14px; color: rgb(51, 51, 51);">预订须知：</span></p><ul><li><p>请务必于离开当天早上10:00前办理退房手续，否则酒店会收取相应费用<br/></p></li><li><p>旺季期间酒店可能会有临时增加的附加费用，如出现类似情况我们会与您协商是否继续预订<br/></p></li><li><p>入住酒店期间请遵守酒店规定，若有违反（如公共区域或房间内吸烟、大声喧哗等），酒店有权收取相应费用，需自行承担<br/></p></li><li><p>关于早餐：如需酒店早餐，可自行在酒店购买。价格约为AUD30每人，儿童价格约为10-15澳币每人</p></li></ul><p><span style="white-space: normal;"><strong><span style="color:#e86e1d">以下特殊节假日最少入住2晚：</span></strong></span></p><p>2018.6月8-10日、24日</p><p>2018.7月10-13日</p><p>2018.8月11、18日</p><p>2018.9月29-30日</p><p>2018.10月18-28日</p><p>2018.11月12-15日、22-24日、11月30-2019.1月1</p><p>2019.2月4-10、14、24-28日</p><p>2019.3月2、14-16日</p><p><br/></p><p><span style="white-space: normal;">退改政策：</span></p><ul><li><p style="white-space: normal;">入住日前5天及以上可做一次免费取消<br/></p></li><li><p style="white-space: normal;">入住日期前4天及以内，任何取消修改收取一晚房费<br/></p></li></ul></div>
+                </div>
+            </div>
+        </div>
+        <div class="pro_right fr">
+            <div class="hotel_ms">
+                <div class="hotel_info hei" id="first_info">
+                    <div class="hotel_tit f14 bold"><h2 class="f14">酒店描述</h2></div>
+                    <div id="hotel_detail" class="f14 hotel_detail">
+                        Great Southern Hotel酒店位于悉尼市中心，坐落在历史悠久的19世纪建筑内，距离中央车站仅有5分钟的步行路程。所有客房的标准设施包括空调和有线电视。酒店毗邻唐人街，还设有餐厅和酒吧。<br><br>酒店设有24小时前台和客用洗衣房。旅游咨询台可以提供观光建议，亦可帮助客人安排旅游行程。<br><br>Restaurant 1903餐厅每天早晨供应丰盛的自助早餐。私人拥有的Great Southern Bar酒吧在午餐和晚餐时段供应各种传统的酒吧风味菜肴。<div class="icon_dian"></div>
+                    </div>
+                </div>
+                <div class="hotel_info hei width">
+                    <div class="hotel_tit f14 bold">酒店描述</div>
+                    <div class="f14 hotel_detail" th:text="${hotel.get(0).get('tidescribesps')}">
+                        Great Southern Hotel酒店位于悉尼市中心，坐落在历史悠久的19世纪建筑内，距离中央车站仅有5分钟的步行路程。所有客房的标准设施包括空调和有线电视。酒店毗邻唐人街，还设有餐厅和酒吧。<br><br>酒店设有24小时前台和客用洗衣房。旅游咨询台可以提供观光建议，亦可帮助客人安排旅游行程。<br><br>Restaurant 1903餐厅每天早晨供应丰盛的自助早餐。私人拥有的Great Southern Bar酒吧在午餐和晚餐时段供应各种传统的酒吧风味菜肴。</div>
+                </div>
+            </div>
+            <div class="hotel_info mt384 black" style="height:85px">
+                <div class="hotel_tit f14 bold"><h2 class="f14">酒店地址</h2><a style="display:none;" href="javascript:"></a></div>
+                <div class="f14 hotel_detail" th:text="${hotel.get(0).get('Specific_address')}"> 717 George Street, 2000 Sydney, Australia   (悉尼, 澳大利亚)  </div>
+            </div>
+            <div class="hotel_info mt10 black minh">
+                <div class="hotel_tit f20 bold border-b">
+                    <label style="font-weight:normal; font-size:13px;line-height: 22px; display:none;">总价</label>
+                    <label class="js_curCode">RMB</label>&nbsp;
+                    <span th:text="${hotel.get(0).get('P_price')}" th:id="js_curMoney" class="js_curMoney" data-cid="9" data-price="183.04" data-reward="1.2">
+       						867.61</span>
+                    <label class="f12">起</label>
+                </div>
+                <form class="hide" id="orderForm" method="post" action="//www.itrip.com/main/order_now">
+                    <input type="hidden" name="itemParamJson"/>
+                    <input type="hidden" name="scItemIds"/>
+                </form>
+                <!-- 银联满减 -->
+                <div class="sale_count clearfix mt10 orange hide j_cur_content" th:style="'display: block;'" style="display: none;">
+                    <span class="fl f14" th:text="${pre.size()!=0?'活动':' '}">活动</span>
+                    <div class="fl sale_info">
+                        <div class="fl discount pos_r j_cur_block">
+											<span>
+												<label class="js_cur_discount" th:text="${pre.size()!=0?pre.get(0).get('name'):' '}">银联支付(RMB)-满11000减550,满8500减400,满6000减260,满4000减160,满2000减60</label>
+											</span>
+                            <div class="discount_info j_discount_txt_box" th:text="${pre.size()!=0?pre.get(0).get('describes'):' '}" >
+                                支付订单时，选择银联在线支付（RMB）,满11000减550,满8500减400,满6000减260,满4000减160,满2000减60</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tc orange warning mt10 mb20" style="height:24px">
+                    <span class="tip"></span>
+                    <span class="pop"></span>
+                </div>
+                <div class="btn_tj">
+                    <ins class="f14">入住后点评酒店返现：
+                        <label class="js_reward">
+                            <label class="js_curCode">RMB</label>&nbsp;
+                            <label th:class="js_curMoney" class="js_curMoney" data-cid="9" data-price="1.2">5.69</label>起
+                        </label>
+                    </ins>
+                    <input th:id="btn_jsjsorderhand" class="btn_js js_order hand" type="button" value="立刻结算">
+                    <input th:id="btn_joinjs_addToCarthand" class="btn_join js_addToCart hand" type="button" value="加入购物车">
+                    <div class="pro_id clearfix">
+                        <p th:class="cpfl" class="fl" th:text="'产品编号：'+${hotel.get(0).get('Product_id')}">产品编号：8442</P>
+                        <div class="jiathis_style_24x24" style="float:right;">
+                            <span class="jiathis_txt" style="font-size:12px;">分享产品到：</span>
+                            <a class="jiathis_button_tsina"></a>
+                            <a class="jiathis_button_weixin"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="pos_fix"></div>
+
+<div class="footer">
+    <div class="footer_cont">
+        <div class="wrap">
+            <div class="footSlogn horiz hide">
+                <ul>
+                    <li>
+                        <span class="icon_footer icon_footer_Money"></span>
+                        <p>
+                            <span class="f24">省钱省心</span>
+                            <span>低价保障 免费改单</span>
+                        </p>
+                    </li>
+                    <li>
+                        <span class="icon_footer icon_footer_Bag"></span>
+                        <p>
+                            <span class="f24">产品丰富</span>
+                            <span>全面多样 优质地道</span>
+                        </p>
+                    </li>
+                    <li>
+                        <span class="icon_footer icon_footer_Earplug"></span>
+                        <p>
+                            <span class="f24">专业服务</span>
+                            <span>快速响应 中文服务</span>
+                        </p>
+                    </li>
+                    <li style="border-right:0">
+                        <span class="icon_footer icon_footer_Praise"></span>
+                        <p>
+                            <span class="f24">真实点评</span>
+                            <span>图文点评 高额返现</span>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="foot_nav horiz oh">
+                <ul>
+                    <li><a href="https://www.itrip.com/about/introduction" target="_blank" rel="nofollow" style="margin:0 10px;">公司简介</a>|</li>
+                    <li><a href="https://www.itrip.com/about/qualification" target="_blank" rel="nofollow" style="margin:0 10px;">公司资质</a>|</li>
+                    <li><a href="https://www.itrip.com/help" target="_blank" rel="nofollow" style="margin:0 10px;">帮助中心</a>|</li>
+                    <li><a href="https://www.itrip.com/about/Q&A" target="_blank" rel="nofollow" style="margin:0 10px;">常见问题</a>|</li>
+                    <li><a href="https://www.itrip.com/about/bookingProtocol" target="_blank" rel="nofollow" style="margin:0 10px;">预订协议</a>|</li>
+                    <li><a href="https://www.itrip.com/about/cancelPolicy" target="_blank" rel="nofollow" style="margin:0 10px;">修改和取消政策</a>|</li>
+                    <li><a href="https://www.itrip.com/help?menuId=387" target="_blank" rel="nofollow" style="margin:0 10px;">支付指南</a>|</li>
+                    <li><a href="https://www.itrip.com/help?menuId=382" target="_blank" rel="nofollow" style="margin:0 10px;">预订指南</a>|</li>
+                    <li><a href="https://www.itrip.com/about/privacyprotection" target="_blank" rel="nofollow" style="margin:0 10px;">隐私保护</a>|</li>
+                    <li><a href="http://guide.itrip.com/" target="_blank" rel="nofollow" style="margin:0 10px;">旅游攻略</a>|</li>
+                    <li><a href="https://www.itrip.com/distribution/index" target="_blank" rel="nofollow" style="margin:0 10px;">分销伙伴</a></li>
+                </ul>
+                <p class="mt15 ml15">
+                    <a rel="nofollow" href="javascript:;" class="icon_footer icon_footer_net_2" style="cursor:auto;"></a>
+                    <a rel="nofollow" href="javascript:;" class="icon_footer icon_footer_net_3" style="cursor:auto;"></a>
+                    <a rel="nofollow" href="javascript:;" class="icon_footer icon_footer_net_4" style="cursor:auto;"></a>
+                    <a rel="nofollow" href="javascript:;" class="icon_footer icon_footer_net_5" style="cursor:auto;"></a>
+                    <a rel="nofollow" href="javascript:;" class="icon_footer icon_footer_net_6" style="cursor:auto;"></a>
+                </p>
+                <p class="mt15 ml15">Copyright © 2019 北京易游风光国际旅行社有限公司成都分公司  | 蜀ICP备19013516号-1</p>
+            </div>
+            <div class="foot_us" style="padding:0 22px; width: 320px;height: 120px;">
+                <a class="icon_footer footer_logo ml30"></a>
+                <ul class="ft-gj ml30">
+                    <li class="weixin"><i></i>
+                        <div class="code">
+						<span class="qr">
+						<img width="165" src="//pic.itrip.com/img/right/qrc-gz-1.jpg" />
+						</span>
+                            <em></em>
+                        </div>
+                    </li>
+                    <li class="weibo"><i></i>
+                        <div class="code">
+                            <a href="//weibo.com/aoliday" target="_blank" rel="nofollow"> @iTrip爱去</a>
+                            <img src="//pic.itrip.com/img/about/weibo-aiqu.jpg" />
+                            <em></em>
+                        </div>
+                    </li>
+                    <li class="qq"><i></i>
+                        <div class="code">
+                            <p>iTrip澳大利亚旅游群：<a href="//jq.qq.com/?_wv=1027&k=40nviU1" target="_blank" rel="nofollow">128691627</a></p>
+                            <p>iTrip新西兰旅游交流群：<a href="//jq.qq.com/?_wv=1027&k=40nsxIS" target="_blank" rel="nofollow">123662636</a></p>
+                            <em></em>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="fr_link mt15 oh">
+                <div class="fl">合作伙伴：</div>
+                <div class="fl hz" style="width:1100px;">
+                    <a href="http://www.australia.com/" rel="nofollow" target="_blank">
+                        <img class="lazy_footer" data-original="//pic.itrip.com/img/footer/aodaliya.jpg?imageView2/5/w/112/h/28" width="112" height="28">
+                        <p>澳大利亚旅游局</p>
+                    </a>
+                    <a href="http://www.newzealand.com/cn/" rel="nofollow" target="_blank">
+                        <img class="lazy_footer" data-original="//pic.itrip.com/img/footer/xxn.jpg?imageView2/5/w/112/h/28" width="112" height="28">
+                        <p>新西兰旅游局</p>
+                    </a>
+                    <a href="http://cn.rendezvousenfrance.com/" rel="nofollow" target="_blank">
+                        <img class="lazy_footer" data-original="//pic.itrip.com/img/footer/faguo-logo.gif?imageView2/5/w/112/h/28" width="112" height="28">
+                        <p>法国国家旅游局</p>
+                    </a>
+                    <a href="http://www.visitbritain.com/" rel="nofollow" target="_blank">
+                        <img class="lazy_footer" data-original="//pic.itrip.com/img/footer/yingguo.gif?imageView2/5/w/112/h/28" width="112" height="28">
+                        <p>英国旅游局</p>
+                    </a>
+                    <a href="http://www.germany.travel/cn/" rel="nofollow" target="_blank">
+                        <img class="lazy_footer" data-original="//pic.itrip.com/img/footer/deguo.jpg?imageView2/5/w/112/h/28" width="112" height="28">
+                        <p>德国国家旅游局</p>
+                    </a>
+                    <a href="http://www.holland.com/cn/tourism.htm" rel="nofollow" target="_blank">
+                        <img class="lazy_footer" data-original="//pic.itrip.com/img/footer/helan.jpg?imageView2/5/w/112/h/28" width="112" height="28">
+                        <p>荷兰国家旅游局</p>
+                    </a>
+                    <a href="http://www.myswitzerland.com.cn/" rel="nofollow" target="_blank">
+                        <img class="lazy_footer" data-original="//pic.itrip.com/img/footer/ruishi.jpg?imageView2/5/w/112/h/28" width="112" height="28">
+                        <p>瑞士国家旅游局</p>
+                    </a>
+                    <a href="http://www.spain.info/" rel="nofollow" target="_blank">
+                        <img class="lazy_footer" data-original="//pic.itrip.com/img/footer/xibanya.jpg?imageView2/5/w/112/h/28" width="112" height="28">
+                        <p>西班牙旅游局</p>
+                    </a>
+                    <a href="http://www.enit.it/en/" rel="nofollow" target="_blank">
+                        <img class="lazy_footer" data-original="//pic.itrip.com/img/footer/yidali.jpg?imageView2/5/w/112/h/28" width="112" height="28">
+                        <p>意大利国家旅游局</p>
+                    </a>
+                    <a href="http://www.ireland.com/" rel="nofollow" target="_blank">
+                        <img class="lazy_footer" data-original="//pic.itrip.com/img/footer/aierlan.jpg?imageView2/5/w/112/h/28" width="112" height="28">
+                        <p>爱尔兰旅游局</p>
+                    </a>
+                    <a href="http://www.visitsweden.com/sweden/" rel="nofollow" target="_blank">
+                        <img class="lazy_footer" data-original="//pic.itrip.com/img/footer/ruidian.gif?imageView2/5/w/112/h/28" width="112" height="28">
+                        <p>瑞典旅游局</p>
+                    </a>
+                    <a href="http://www.austria.info/at" rel="nofollow" target="_blank">
+                        <img class="lazy_footer" data-original="//pic.itrip.com/img/footer/aodili.gif?imageView2/5/w/112/h/28" width="112" height="28">
+                        <p>奥地利旅游局</p>
+                    </a>
+                    <a href="http://www.visitportugal.com/" rel="nofollow" target="_blank">
+                        <img class="lazy_footer" data-original="//pic.itrip.com/img/footer/putaoya.gif?imageView2/5/w/112/h/28" width="112" height="28">
+                        <p>葡萄牙旅游局</p>
+                    </a>
+                    <a href="http://www.gnto.gov.gr/" rel="nofollow" target="_blank">
+                        <img class="lazy_footer" data-original="//pic.itrip.com/img/footer/xila.gif?imageView2/5/w/112/h/28" width="112" height="28">
+                        <p>希腊国家旅游局</p>
+                    </a>
+                    <a href="http://www.globalblue.cn/customer-services/" rel="nofollow" target="_blank">
+                        <img class="lazy_footer" data-original="//pic.itrip.com/img/footer/lanlian.gif?imageView2/5/w/112/h/28" width="112" height="28">
+                        <p>环球蓝联退税官网</p>
+                    </a>
+
+                    <a href="http://www.gousa.cn/" rel="nofollow" target="_blank">
+                        <img class="lazy_footer" data-original="//pic.itrip.com/img/footer/usa_logo.jpg?imageView2/5/w/112/h/28" width="112" height="28">
+                        <p>美国国家旅游局</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<noscript>< img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1938846466375704&ev=PageView&noscript=1"
+    /></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code --><style>
+    .rightBar .linkphone a:hover {text-decoration:underline;}
+    .rightBar .linkqq a{margin-bottom:0px !important; color: #fff;padding-left:10px;}
+    .rightBar .linkqq a:hover{background: #4d9def !important;}
+    .rightBar .linkqq,.linkonline { display: block; text-decoration: none; position: relative; margin-bottom: 0px; overflow: hidden;padding-bottom:5px; }
+    .rightBar .linkqq div.del { background: #4d9def; width: 66px;display: block; line-height: 35px; text-align: left; position: absolute; top: 0; right: 30px; z-index: 9; opacity: 0; filter: alpha(opacity=0); transform: translateX(-10px); transition: all .3s ease-in-out; }
+    .rightBar .linkqq div.del span { border: 5px transparent solid; border-left-color: #4D9DEF; position: absolute; right: 0; top: 12px; }
+    .rightBar .linkqq i,.linkonline i{ position: absolute; right: 0; top: 0; margin: 0; z-index: 10; }
+    .rightBar .linkqq:hover,.linkonline:hover,.right-qrcode:hover { overflow: visible; background: #2972bc; }
+    .rightBar .linkqq:hover div.del,.linkonline:hover div.del,.right-qrcode:hover div.del{ transform: translateX(0); opacity: 1; filter: alpha(opacity=100); }
+    .rightBar .linkqq:hover div.del span,.linkonline:hover .del span,.right-qrcode:hover .del span{ right: -10px; }
+    .rightBar .linkhd{display: block;position: absolute;top: 0;right: 0;width: 30px;height: 160px;background:url(//pic.itrip.com/img/rukou.jpg); }
+    .rightBar .linkhd:hover{background:url(//pic.itrip.com/img/rukou.jpg);}
+    .right-qrcode{position: relative; padding: 10px 0; height: 35px; cursor: pointer; overflow: hidden;}
+    .right-qrcode .iconfont{margin: 0; top:8px; font-size: 24px; color: #fff;}
+    .right-qrcode div.del{ background: #fff; width: 165px; padding:0; box-shadow: 0px 0px 3px #eee;}
+    .rightBar .right-qrcode div.hide{display: none;}
+    .rightBar .right-qrcode div.del span { border: 5px transparent solid; border-left-color: #fff; position: absolute; right: -10px; top: 12px; }
+    .rightBar .right-qrcode div.del .text {
+        position: absolute;
+        left: 0;
+        bottom: 20px;
+        width: 100%;
+        font-size: 14px;
+        line-height: 24px;
+        color: #000;
+        background-color: #fff;
+        text-align: center;
+    }
+
+    .vip_nav{position:relative;right:0;width:30px;height:160px;margin-bottom:15px;}
+    .vip_nav div,.vip_nav img{height:160px;}
+    .vip_nav_info{float:right;background-color:transparent;cursor:pointer;display:inline-block;}
+    .vip_nav_index{float:left;display:none;cursor:pointer;position: absolute;right:51px;}
+
+    #rightbar-linktop{margin-bottom:0;}
+</style>
+<div class="rightBar">
+    <div class="vip_nav clearfix" style="margin-bottom:0;">
+        <div class="vip_nav_info">
+            <img src="//pic.itrip.com/img/header/vip_rightbar_v1.png"/>
+        </div>
+        <div class="vip_nav_index">
+            <img src="//pic.itrip.com/img/header/vip_info_v1.png"/>
+        </div>
+    </div>
+    <div class="linkonline hand" href="javascript:;" rel="nofollow" >
+        <div class="del">
+            <div class="pos_r">
+                <p id="product">产品咨询</p>
+                <p id="has_order">已有订单咨询</p>
+                <p id="vip_service">定制咨询服务</p>
+                <span></span>
+            </div>
+        </div>
+        <i class="icon icon_right_talk xiaoneng"></i>
+        <span style="position:relative;top:12px;" class="text-info">
+			在线咨询
+		</span>
+    </div>
+    <div class="right-qrcode" style="height: 60px">
+        <i class="iconfont">&#xe64a;</i>
+        <span style="position:relative;top:5px;">
+			APP
+		</span>
+        <div class="del hide" data-lv="1" style="box-shadow: none;background: transparent;width:151px;top:-36px; "><img src="//pic.itrip.com/img/right/qrc-app-3.png" /><span  style="top:50px;border-left-color: #2b3b48;"></span></div>
+        <div class="del hide" data-lv="15768" style="box-shadow: none;background: transparent;width:151px;top:-36px; "><img src="//pic.itrip.com/img/right/qrc-app-3-15768.png" /><span  style="top:50px;border-left-color: #2b3b48;"></span></div>
+        <div class="del hide" data-lv="15769" style="box-shadow: none;background: transparent;width:151px;top:-36px; "><img src="//pic.itrip.com/img/right/qrc-app-3-15769.png" /><span  style="top:50px;border-left-color: #2b3b48;"></span></div>
+        <div class="del hide" data-lv="15783" style="box-shadow: none;background: transparent;width:151px;top:-36px; "><img src="//pic.itrip.com/img/right/qrc-app-3-15783.png" /><span  style="top:50px;border-left-color: #2b3b48;"></span></div>
+    </div>
+    <a class="linkphone" href="javascript:;" rel="nofollow" style="margin:10px 0 0;height:25px;">
+        <div class="del" style="top:-40px;">
+            <div class="pos_r">
+                <p class="mb5">免费语音(推荐)</p>
+                <p><object><a href="//www.itrip.com/about/app?source=rightnav" target="_blank" style="display: inline; margin: 0; color : #fff;">下载APP</a></object> - 点击客服 - 免费语音</p>
+                <p>电话咨询</p>
+                <p>400-008-8177（仅限国内拨打）</p>
+                <p>86-028-85223501（定制服务专线）</p>
+                <span style="top:60px;"></span>
+            </div>
+        </div>
+        <i class="icon icon_right_phone" style="top:15px;"></i>
+    </a>
+    <div class="right-qrcode J_hb_qrcode" style="display: none;">
+        <i class="iconfont">&#xe64b;</i>
+        <div class="del" style="top:-110px;">
+            <img src="//pic.itrip.com/img/right/qrc-hb.jpg" /><span style="top:122px;"></span>
+        </div>
+    </div>
+    <div class="right-qrcode">
+        <i class="iconfont">&#xe649;</i>
+        <div class="del" style="top:-88px;">
+            <img src="//pic.itrip.com/img/right/qrc-gz-1.jpg" /><span style="top:100px;"></span>
+            <div class="text">关注微信公众号</div>
+        </div>
+    </div>
+    <div class="rightBarBot">
+        <a class="linkTop" id="rightbar-linktop" href="javascript:;">
+            <div class="del">
+                <div class="pos_r">
+                    回到顶部
+                    <span></span>
+                </div>
+            </div>
+            <p><i class="icon icon_right_top"></i>TOP</p>
+        </a>
+    </div>
+</div>
+<div class="dialog_Feedback hide" id="feedBackDialog">
+    <p class="f16 bold tc" data-title="title">意见反馈</p>
+    <textarea data-content="content" placeholder="欢迎提出宝贵的意见和建议。我们会认真阅读，你的支持是对我们最大的鼓励和帮助。" name="feedbackContent" class="feedbackContent" maxlength="500"></textarea>
+    <div class="fr pos_r grey">
+        <span id="totalCount">您还可以输入500个字符</span>
+    </div>
+    <div class="pos_r FeedbackContact mt10">
+        <label>联系方式：</label>
+        <input type="text" placeholder="留下您的手机号或email" maxlength="30" style="width:200px;height: 20px;" name="contactInfo" class="contactInfo"/>
+    </div>
+    <div class="oh mt10 hide" id="verifyCode">
+        <div class="pos_r FeedbackContact fl">
+            <label>验&nbsp;&nbsp;证&nbsp;&nbsp;码：</label>
+            <input type="text" placeholder="验证码" maxlength="6" style="width:100px;height: 25px;" name="verifyCode" />
+            <input type="hidden" id="showCode"/>
+        </div>
+        <img height="36" width="110" class="ml10 hand" border="0" title="看不清，请点我" id="img_verifycode_feedback"/>
+    </div>
+    <div class="oh mt10">
+        <span id="errTip" class="warnning" style="color: #fda814; line-height: 21px; "></span>
+    </div>
+    <div class="oh mt10">
+        <a href="javascript:;" class="btn-normal-blue fr w90" id="save">提交</a>
+        <a href="javascript:;" class="btn-white fr w90 mr10" id="cancelBut">取消</a>
+    </div>
+</div>
+<div class="dialog_Feedback black hide" id="feedbackErrorDialog">
+    <div class="mod_layer_title bold f14">
+        <h3>提示</h3>
+    </div>
+    <div class="mod_layer_cont">
+        <div class="error_tip oh ml20 f14">
+            <p>感谢您的反馈，我们尽快答复您！</p>
+        </div>
+    </div>
+</div>
+<div class="dialog_Feedback black hide" id="qaErrorDialog">
+    <div class="mod_layer_title bold f14">
+        <h3>提示</h3>
+    </div>
+    <div class="mod_layer_cont">
+        <div class="error_tip oh ml20 f14">
+            <p>提交成功，我们尽快答复您！</p>
+        </div>
+    </div>
+</div>
+<script>
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#start', //指定元素
+            min: 'now()',
+            done:function(value,date){//value, date, endDate点击日期、清空、现在、确定均会触发。回调返回三个参数，分别代表：生成的值、日期时间对象、结束的日期时间对象
+                //其他操作
+                nol();
+            }
+        });
+        laydate.render({
+            elem: '#end', //指定元素
+            min: '$("#start").val()',
+            done:function(value,date){//value, date, endDate点击日期、清空、现在、确定均会触发。回调返回三个参数，分别代表：生成的值、日期时间对象、结束的日期时间对象
+                //其他操作
+                nol();
+            }
+        });
+    });
+
+
+    $(document).on("click","#btn_jsjsorderhand",function(){
+        var start = $("#start").val();
+        var end = $("#end").val();
+        if(start==''||end==''){
+            layui.use('layer', function(){
+
+                layer.confirm('请先选择住店时间', {
+                    btn: ['确定'],
+                    time: 200000, //20s后自动关闭
+                },function(index){
+                    $("#reducef16handgrey").css("color","#a8a8a8");
+                    layer.close(index);
+                })
+            })
+        }
+    })
+
+    $(document).on("click","#btn_joinjs_addToCarthand",function(){
+        var start =  $("#start").val();
+        var end = $("#end").val();
+        if(start==''||end==''){
+            layui.use('layer', function(){
+
+                layer.confirm('请先选择住店时间', {
+                    btn: ['确定'],
+                    time: 200000, //20s后自动关闭
+                },function(index){
+                    $("#reducef16handgrey").css("color","#a8a8a8");
+                    layer.close(index);
+                })
+            })
+        }else{
+            var size = $(".room_styles").length;
+            var room = "";
+            for (var i = 0; i < size; i++) {
+                room += $("#roomid"+i).html()+ $("#numfl"+i).val()+"|";
+            }
+            var obj = {};
+            obj.Product_id = $(".cpfl").html().substring(5,6);
+            obj.Original_price = $("#js_curMoney").html();
+            obj.Travle_date = start;
+            obj.Leavingshop_date = end;
+            obj.room = room;
+            $.ajax({
+                url:"http://localhost:8090/addCart/"+JSON.stringify(obj),
+                type:"GET",
+                success:function (date) {
+                    alert(date)
+                }
+            })
+
+        }
+    })
+    
+
+
+</script>
+
+<script>
+
+    function nol() {
+        var start = new Date($("#start").val());
+        var end = new Date($("#end").val());
+        var roos = $(".room_styles").length;
+        if(start!='Invalid Date'&&end!='Invalid Date'){
+            var price_num = 0;
+            for (var i = 0; i < roos; i++) {
+                var je = $(".js_curMoney"+i).html();
+                var count = $("#numfl"+i).val();
+                var price = je * count;
+                price_num += price;
+            }
+            var cha = end - start;
+            cha = cha/24/60/60/1000;
+            price_num = price_num*cha;
+            if (price_num>=0){
+                $("#js_curMoney").html(price_num.toFixed(2));
+            }else {
+                $("#js_curMoney").html("0.00");
+            }
+        }
+    }
+
+    $(document).on("click","#reducef16handgrey",function(){
+        $(this).next(1).val($(this).next(1).val()>0?$(this).next(1).val()-1:0);
+        if($(this).next(1).val()==0){
+            $(this).css("color","#a8a8a8");
+        }
+        if($(this).next(1).val()<5){
+            $(this).next(1).next(1).css("color","#000000");
+        }
+        nol();
+    })
+
+    $(document).on("click","#ad_moref16hand",function(){
+        var ss = $(this).prev().prev().prev().html();
+        var num = $(this).prev(1).val();
+        num++;
+        $(this).prev(1).val(num<5?num:5);
+        if(num!=0){
+            $(this).prev(1).prev(1).css("color","#000000");
+        }
+        if(num>=5){
+            $(this).css("color","#a8a8a8");
+        }
+        nol();
+    })
+
+
+</script>
+</body>
+</html>

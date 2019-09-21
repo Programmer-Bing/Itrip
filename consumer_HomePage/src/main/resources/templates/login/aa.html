@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layDate快速使用</title>
+    <link rel="stylesheet" href="../css/layui.css">
+
+
+</head>
+<body>
+<style type="text/css">
+    #pwdLength span {
+        display: none;
+        float: left;
+        height: 14px;
+        width: 51px;
+        font-size: 12px;
+        text-align: center;
+        line-height: 14px;
+        color: white;
+        border-right: 1px solid white;
+    }
+</style>
+<input id="txtPwd" onkeyup="return check_pwd()" type="password" /><br />
+<div id="pwdPrompt">
+    <div id="pwdLength">
+        <span style=" background-color:#999;">弱</span>
+        <span style=" background-color:#666;">中</span>
+        <span style=" background-color:#333;">强</span>
+    </div>
+    <div style="width: 340px;">密码可由字母、数字、特殊符号组成，长度为6-18个字符</div>
+</div>
+
+
+
+
+
+
+
+
+<script>
+    var reg1 = /(^\d{6,}$)|(^[a-zA-Z]{6,}$)|(^[^a-zA-Z0-9]{6,}$)/; //数字，字母或符号其中的一种
+    var reg7 = /\d*\D*((\d+[a-zA-Z]+[^0-9a-zA-Z]+)|(\d+[^0-9a-zA-Z]+[a-zA-Z]+)|([a-zA-Z]+\d+[^0-9a-zA-Z]+)|([a-zA-Z]+[^0-9a-zA-Z]+\d+)|([^0-9a-zA-Z]+[a-zA-Z]+\d+)|([^0-9a-zA-Z]+\d+[a-zA-Z]+))\d*\D*/; //数字字母字符任意组合
+    function check_pwd() {
+        var pwd = document.getElementByIdx_x_x_x_x_x("txtPwd").value;
+        if (pwd.length < 6) {
+            $("#pwdPrompt div:eq(1)").html("密码长度不能小于6位");
+            return false;
+        } else {
+            $("#pwdPrompt div:eq(1)").css("display", "none");
+            $("#pwdPrompt div:eq(0)").css("display", "block");
+            if (reg1.test(pwd)) {
+                $("#pwdLength span:eq(0)").css("display", "block");
+                $("#pwdLength span:eq(1)").css("display", "none");
+                $("#pwdLength span:eq(2)").css("display", "none");
+                return true;
+            }
+            else if (!reg7.test(pwd)) {
+                $("#pwdLength span:eq(0)").css("display", "block");
+                $("#pwdLength span:eq(1)").css("display", "block");
+                $("#pwdLength span:eq(2)").css("display", "none");
+                return true;
+            }
+            else {
+                $("#pwdLength span:eq(0)").css("display", "block");
+                $("#pwdLength span:eq(1)").css("display", "block");
+                $("#pwdLength span:eq(2)").css("display", "block");
+                return true;
+            }
+            return true;
+        }
+    }
+</script>
+</body>
+</html>

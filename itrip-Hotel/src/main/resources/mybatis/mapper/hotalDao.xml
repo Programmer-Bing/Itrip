@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cssl.pojo.dao.hotalDao">
+
+    <select id="hotel" resultType="map" parameterType="int">
+        SELECT p.`Product_id`,h.`tips`,h.`Specific_address`,h.`describes`,h.`Reservation_Notes`,h.`h_id`,h.`h_name`,c.`pictrue`,c.`cs_name`,h.`Star_class`,h.`purchases_Number`,p.`P_price`,h.`picture1`,h.`pictrue2` FROM hotel h
+          INNER JOIN product p ON h.`Product_id`=p.`Product_id`
+          INNER JOIN citiesstates c ON h.`cs_id`=c.`cs_id`
+        <trim prefix="where" prefixOverrides="or||and">
+            <if test="id != 0">
+                h.h_id = #{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="showInfo" parameterType="int" resultType="map">
+        SELECT * FROM hotel h
+                          INNER JOIN product p ON h.Product_id = p.Product_id
+                          INNER JOIN roominformation r ON r.h_id = h.h_id
+        <trim prefix="where" prefixOverrides="or||and">
+            <if test="id != 0">
+                h.h_id = #{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="showlable" resultType="map" parameterType="int">
+        SELECT hl.h_Id,l.lable_name FROM hotellabel hl
+         INNER JOIN labels l ON hl.lable_id=l.lable_id
+         INNER JOIN hotel h ON h.h_id = hl.h_id
+        <trim prefix="where" prefixOverrides="or||and">
+            hl.h_id = #{id}
+        </trim>
+    </select>
+
+    <select id="showpre" resultType="map" parameterType="int">
+        SELECT p.Product_id,pt.name,pt.describes FROM preferentialactivities pt
+        INNER JOIN product p ON pt.Product_id = p.Product_id
+        INNER JOIN hotel h ON pt.Product_id = h.Product_id
+        where h.h_id = #{id}
+    </select>
+
+</mapper>
