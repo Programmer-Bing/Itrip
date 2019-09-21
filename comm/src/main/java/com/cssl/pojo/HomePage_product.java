@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
+import java.math.BigDecimal;
+
 @Setter
 @Getter
 @NoArgsConstructor
@@ -18,7 +20,7 @@ public class HomePage_product {
     int product_id;
     String product_name;
     String product_imgPath;
-    double product_price;
+    BigDecimal product_price;
     String Country_name;
     String ProductType_name;
 
