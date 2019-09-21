@@ -27,11 +27,11 @@
                 for (i = 0; i < 2; i++) {
                     var li = "";
                     li += "<li data-i-op=\"3684\">";
-                    li += "<a name=\"__AD_module_2_12_3684\" href='findProductDetails?Product_id="+date[i].product_id+"' target=\"_blank\"";
+                    li += "<a name=\"__AD_module_2_12_3684\" href=\"https://www.itrip.com/p16022\" target=\"_blank\"";
                     li += "data-i-op=\"3684\" data-i-op-href=\"\">";
                     li += "<img width=\"218\" height=\"138\" class=\"lazy\" style=\"display: block;\"";
                     li += "alt='" + date[i].product_name + "'";
-                    li += "src='" + date[i].product_imgPath + "'";
+                    li += "src=\"//pic2.itrip.com/p/20190725150827-standard-621.jpg?imageView2/5/w/218/h/138/q/100\"";
                     li += "border=\"0\" data-i-op=\"3684\"";
                     li += "data-original=\"//pic2.itrip.com/p/20190725150827-standard-621.jpg?imageView2/5/w/218/h/138/q/100\"";
                     li += "data-i-op-img=\"\">";
@@ -40,7 +40,7 @@
                     li += "<p class=\"f14 mt10 oh\" style=\"height:42px;\">";
                     li += "<a name=\"__AD_module_2_12_3684\"";
                     li += "title=\"\"+date[i].product_name+\"\"";
-                    li += "href='findProductDetails?Product_id="+date[i].product_id+"' target=\"_blank\" data-i-op=\"3684\"";
+                    li += "href=\"https://www.itrip.com/p16022\" target=\"_blank\" data-i-op=\"3684\"";
                     li += "data-i-op-href=\"\" data-i-op-titile=\"\">";
                     li += "" + date[i].product_name + "</a>";
                     li += "</p>";
@@ -60,126 +60,25 @@
                     $("#Special").append(li);
                 }
             });
-            //热销商品Ajax加载
-            $.getJSON("findSellwell", "", function (date) {
-                for (i = 0; i < date.length; i++) {
-                    var li = "";
-                    li += "<li data-i-op=\"3684\">";
-                    li += "<a name=\"__AD_module_2_12_3684\" href='findProductDetails?Product_id="+date[i].product_id+"' target=\"_blank\"";
-                    li += "data-i-op=\"3684\" data-i-op-href=\"\">";
-                    li += "<img width=\"218\" height=\"138\" class=\"lazy\" style=\"display: block;\"";
-                    li += "alt='" + date[i].product_name + "'";
-                    li += "src='" + date[i].product_imgPath + "'";
-                    li += "border=\"0\" data-i-op=\"3684\"";
-                    li += "data-original=\"//pic2.itrip.com/p/20190725150827-standard-621.jpg?imageView2/5/w/218/h/138/q/100\"";
-                    li += "data-i-op-img=\"\">";
-                    li += "</a>";
-                    li += "<div class=\"proinfo oh\">";
-                    li += "<p class=\"f14 mt10 oh\" style=\"height:42px;\">";
-                    li += "<a name=\"__AD_module_2_12_3684\"";
-                    li += "title=\"\"+date[i].product_name+\"\"";
-                    li += "href='findProductDetails?Product_id="+date[i].product_id+"' target=\"_blank\" data-i-op=\"3684\"";
-                    li += "data-i-op-href=\"\" data-i-op-titile=\"\">";
-                    li += "" + date[i].product_name + "</a>";
-                    li += "</p>";
-                    li += " <p class=\"oh mt5 price_label\">";
-                    li += "<span class=\"fr pri \">";
-                    li += "<label class=\"js_curCode f12\">RMB</label>&nbsp;";
-                    li += "<label class=\"js_curMonery_exten f16 ml5\" data-i-op=\"3684\"";
-                    li += "data-price=\"376.5454\"";
-                    li += "data-exrates=\"{9=4.74, 10=4.52, 11=3.16, 12=1.0, 13=6.88, 14=0.23, 15=5.0E-4, 17=5.01, 16=1.6, 21=8.6016, 20=7.8646,";
-                    li += "23=0.06, 22=7.0395, 25=0.73, 24=0.79, 27=1.03, 26=0.31}\"";
-                    li += "data-cid=\"21\" data-i-op-price=\"\">" + date[i].product_price + "</label><label";
-                    li += "class=\"f12\">&nbsp;起</label>";
-                    li += "</span>";
-                    li += "</p>";
-                    li += "</div>";
-                    li += "<div class=\"bor\"></div></li>";
-                    $("#Hot-sale").append(li);
-                }
-            });
             //意大利吃喝玩乐
-            loading($("#E_Italy").val(), $("#partying").attr("value"), "#show1 .partying");
+            loading(3,1,"#show1 .partying");
             //冰岛 吃喝玩乐
-            loading($("#E_Iceland").val(), $("#partying").attr("value"), "#show2 .Iceland");
+            loading(1,1,"#show2 .Iceland");
             //瑞士 吃喝玩乐
-            loading($("#E_Switzerland").val(), $("#partying").attr("value"), "#show3 .Switzerland");
+            loading(8,1,"#show3 .Switzerland");
             //法国 吃喝玩乐
-            loading($("#E_France").val(), $("#partying").attr("value"), "#show4 .France");
-            //英国 超值卡卷
-            loading($("#S_Britain").val(), $("#cardvolume").attr("value"), "#Card_show1 .Britain");
-            //法意瑞 超值卡卷
-            var citynum = new Array();
-            citynum[0] = $("#E_France").val();
-            citynum[1] = $("#E_Italy").val();
-            citynum[2] = $("#E_Switzerland").val();
-            loading2(citynum, $("#cardvolume").attr("value"), "#Card_show2 .FAYiRui");
-            //西葡 超值卡卷
-            var citynum2 = new Array();
-            citynum2[0] = $("#Spain").attr("value");
-            citynum2[1] = $("#Portugal").attr("value");
-            loading2(citynum2, $("#Localandregiment").attr("value"), "#Card_show3 .SpainPortugal");
-            //法意瑞 当地跟团
-            loading2(citynum, $("#Localandregiment").attr("value"), "#Local_show1 .FAYiRui");
-            //英国 当地跟团
-            loading($("#L_Britain").val(), $("#Localandregiment").attr("value"), "#Local_show2 .Britain")
-            //冰岛 当地跟团
-            loading($("#L_Iceland").val(), $("#Localandregiment").attr("value"), "#Local_show3 .Iceland");
-
-            //唯一一个城市
-            function loading(pcid, ptid, show) {
+            loading(9,1,"#show4 .France");
+            function loading(pcid,ptid,show){
                 //板块Ajax加载
                 $.getJSON("findPartyingByCity", {"P_cid": pcid, "Pt_id": ptid}, function (date) {
                     for (i = 0; i < date.length; i++) {
                         var li = "";
                         li += "<li data-i-op=\"3684\">";
-                        li += "<a name=\"__AD_module_2_12_3684\" href='findProductDetails?Product_id="+date[i].product_id+"' target=\"_blank\"";
+                        li += "<a name=\"__AD_module_2_12_3684\" href=\"https://www.itrip.com/p16022\" target=\"_blank\"";
                         li += "data-i-op=\"3684\" data-i-op-href=\"\">";
                         li += "<img width=\"218\" height=\"138\" class=\"lazy\" style=\"display: block;\"";
                         li += "alt='" + date[i].product_name + "'";
-                        li += "src='" + date[i].product_imgPath + "'";
-                        li += "border=\"0\" data-i-op=\"3684\"";
-                        li += "data-original=\"//pic2.itrip.com/p/20190725150827-standard-621.jpg?imageView2/5/w/218/h/138/q/100\"";
-                        li += "data-i-op-img=\"\">";
-                        li += "</a>";
-                        li += "<div class=\"proinfo oh\">";
-                        li += "<p class=\"f14 mt10 oh\" style=\"height:42px;\">";
-                        li += "<a name=\"__AD_module_2_12_3684\"";
-                        li += "title=\"\"+date[i].product_name+\"\"";
-                        li += "href='findProductDetails?Product_id="+date[i].product_id+"' target=\"_blank\" data-i-op=\"3684\"";
-                        li += "data-i-op-href=\"\" data-i-op-titile=\"\">";
-                        li += "" + date[i].product_name + "</a>";
-                        li += "</p>";
-                        li += " <p class=\"oh mt5 price_label\">";
-                        li += "<span class=\"fr pri \">";
-                        li += "<label class=\"js_curCode f12\">RMB</label>&nbsp;";
-                        li += "<label class=\"js_curMonery_exten f16 ml5\" data-i-op=\"3684\"";
-                        li += "data-price=\"376.5454\"";
-                        li += "data-exrates=\"{9=4.74, 10=4.52, 11=3.16, 12=1.0, 13=6.88, 14=0.23, 15=5.0E-4, 17=5.01, 16=1.6, 21=8.6016, 20=7.8646,";
-                        li += "23=0.06, 22=7.0395, 25=0.73, 24=0.79, 27=1.03, 26=0.31}\"";
-                        li += "data-cid=\"21\" data-i-op-price=\"\">" + date[i].product_price + "</label><label";
-                        li += "class=\"f12\">&nbsp;起</label>";
-                        li += "</span>";
-                        li += "</p>";
-                        li += "</div>";
-                        li += "<div class=\"bor\"></div></li>";
-                        $(show).append(li);
-                    }
-                });
-            }
-
-            //多个城市
-            function loading2(pcid, ptid, show) {
-                //板块Ajax加载
-                $.getJSON("findPartyingByCities", {"P_cid": JSON.stringify(pcid), "Pt_id": ptid}, function (date) {
-                    for (i = 0; i < date.length; i++) {
-                        var li = "";
-                        li += "<li data-i-op=\"3684\">";
-                        li += "<a name=\"__AD_module_2_12_3684\" href='findProductDetails?Product_id="+date[i].product_id+"' target=\"_blank\"";
-                        li += "data-i-op=\"3684\" data-i-op-href=\"\">";
-                        li += "<img width=\"218\" height=\"138\" class=\"lazy\" style=\"display: block;\"";
-                        li += "alt='" + date[i].product_name + "'";
-                        li += "src='" + date[i].product_imgPath + "'";
+                        li += "src=\"//pic2.itrip.com/p/20190725150827-standard-621.jpg?imageView2/5/w/218/h/138/q/100\"";
                         li += "border=\"0\" data-i-op=\"3684\"";
                         li += "data-original=\"//pic2.itrip.com/p/20190725150827-standard-621.jpg?imageView2/5/w/218/h/138/q/100\"";
                         li += "data-i-op-img=\"\">";
@@ -207,7 +106,7 @@
                         li += "<div class=\"bor\"></div></li>";
                         $(show).append(li);
                     }
-                })
+                });
             }
         })
     </script>
@@ -487,7 +386,6 @@
         <div class="back_b"></div>
     </div>
 </div>
-<!-- 城市 轮播图。。 -->
 <div class="banner">
     <div class="wrap pos_r">
         <div class="leftNav">
@@ -744,12 +642,12 @@
                                 <h2 style="font-size:inherit;font-weight:normal;">意大利</h2>
                             </a>
                         </dd>
-                        <dd value="11" id="Spain">
+                        <dd>
                             <a href="https://www.itrip.com/xibanya/wanle">
                                 <h2 style="font-size:inherit;font-weight:normal;">西班牙</h2>
                             </a>
                         </dd>
-                        <dd value="12" id="Portugal">
+                        <dd>
                             <a href="https://www.itrip.com/putaoya/wanle">
                                 <h2 style="font-size:inherit;font-weight:normal;">葡萄牙</h2>
                             </a>
@@ -867,7 +765,7 @@
          </ul>-->
     </div>
 
-    <!--轮播图-->
+<!--轮播图-->
     <script>
         var bannerInfo = [];
 
@@ -956,26 +854,57 @@
     <div class="mt20 clearfix">
         <div class="fl w904">
             <div class="oh">
-                <!-- 特价商品区 -->
                 <div class="fl w440">
                     <div class="icon_ad ">
 					<span class="blue f16 bold">
 						<h2 class="f16">特价</h2>
 					</span>
                     </div>
+                    <!-- 特价商品区 -->
                     <div class="list_ad mt15">
                         <ul id="Special"></ul>
                     </div>
                 </div>
-                <!-- 热销商品 -->
                 <div class="fr w440">
                     <div class="icon_ad icon_ad_hot">
 					<span class="orange f16 bold">
 						<h2 class="f16">热销</h2>
 					</span>
                     </div>
+                    <!-- 热销商品 -->
                     <div class="list_ad mt15">
                         <ul id="Hot-sale">
+                            <li data-i-op="9500">
+                                <a name="__AD_module_1_17_9500" href="https://www.itrip.com/p8542" target="_blank"
+                                   data-i-op="9500" data-i-op-href="">
+                                    <img width="218" height="138" class="lazy" style="display: block;"
+                                         alt="【精华】英国伦敦城市通票London Pass (多日可选+含80多个景点+扫码入园+观光巴士) "
+                                         src="//pic2.itrip.com/p/20190801144454-standard-222.jpg?imageView2/5/w/218/h/138/q/100"
+                                         border="0" data-i-op="9500"
+                                         data-original="//pic2.itrip.com/p/20190801144454-standard-222.jpg?imageView2/5/w/218/h/138/q/100"
+                                         data-i-op-img="">
+                                </a>
+                                <div class="proinfo oh">
+                                    <p class="f14 mt10 oh" style="height:42px;">
+                                        <a name="__AD_module_1_17_9500"
+                                           title="【精华】英国伦敦城市通票London Pass (多日可选+含80多个景点+扫码入园+观光巴士) "
+                                           href="https://www.itrip.com/p8542" target="_blank" data-i-op="9500"
+                                           data-i-op-href="" data-i-op-titile="">【精华】英国伦敦城市通票London Pass
+                                            (多日可选+含80多个景点+扫码入园+观光巴士) </a>
+                                    </p>
+                                    <p class="oh mt5 price_label">
+												<span class="fr pri ">
+													<label class="js_curCode f12">RMB</label>&nbsp;
+													<label class="js_curMonery_exten f16" data-i-op="9500"
+                                                           data-price="63.48"
+                                                           data-exrates="{9=4.74, 10=4.52, 11=3.16, 12=1.0, 13=6.88, 14=0.23, 15=5.0E-4, 17=5.01, 16=1.6, 21=8.6016, 20=7.8646, 23=0.06, 22=7.0395, 25=0.73, 24=0.79, 27=1.03, 26=0.31}"
+                                                           data-cid="21" data-i-op-price="">546.03</label><label
+                                                        class="f12">&nbsp;起</label>
+												</span>
+                                    </p>
+                                </div>
+                                <div class="bor"></div>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -984,20 +913,17 @@
             <div class="pro_list first mt15 clearfix freePackage">
                 <div class="fl pro_fl pos_r oh">
                     <h2>
-                        <i class="pro_icon" id="partying" value="1">
+                        <i class="pro_icon">
                             <img width="122" height="122" class="lazy" style="display: block;" alt="吃喝玩乐"
                                  src="//pic2.itrip.com/p/20150720100138-392.jpg?imageView2/5/w/122/h/122" border="0"
                                  data-original="//pic2.itrip.com/p/20150720100138-392.jpg?imageView2/5/w/122/h/122">
                         </i>
                     </h2>
                     <ul class="pro_choice">
-                        <li value="3" id="E_Italy" class="cur"><h3 class="f16"><a href="javascript:void(0)">意大利</a></h3>
-                            <i></i></li>
-                        <li value="1" id="E_Iceland"><h3 class="f16"><a href="javascript:void(0)">冰岛</a></h3><i></i>
-                        </li>
-                        <li value="8" id="E_Switzerland"><h3 class="f16"><a href="javascript:void(0)">瑞士</a></h3><i></i>
-                        </li>
-                        <li value="9" id="E_France"><h3 class="f16"><a href="javascript:void(0)">法国</a></h3><i></i></li>
+                        <li class="cur"><h3 class="f16"><a href="javascript:void(0)">意大利</a></h3><i></i></li>
+                        <li><h3 class="f16"><a href="javascript:void(0)">冰岛</a></h3><i></i></li>
+                        <li><h3 class="f16"><a href="javascript:void(0)">瑞士</a></h3><i></i></li>
+                        <li><h3 class="f16"><a href="javascript:void(0)">法国</a></h3><i></i></li>
                     </ul>
                     <div class="pro_moer">
                         <i class="icon_index"></i>
@@ -1030,14 +956,14 @@
                     <!-- 法国 -->
                     <div class="pro_lb list_ad" id="show4" style="display:none;">
                         <ul class="France">
+
                         </ul>
                     </div>
                 </div>
             </div>
-            <!-- 超值卡卷 -->
             <div class="pro_list second mt15 clearfix spots">
                 <div class="fl pro_fl pos_r oh">
-                    <i class="pro_icon" id="cardvolume" value="2">
+                    <i class="pro_icon">
                         <h2>
                             <img width="122" height="122" class="lazy" alt="超值卡券" src="//pic.itrip.com/img/loading2.gif"
                                  border="0"
@@ -1045,8 +971,7 @@
                         </h2>
                     </i>
                     <ul class="pro_choice">
-                        <li value="10" id="S_Britain" class="cur"><h3 class="f16"><a href="javascript:void(0)">英国</a>
-                        </h3><i></i></li>
+                        <li class="cur"><h3 class="f16"><a href="javascript:void(0)">英国</a></h3><i></i></li>
                         <li><h3 class="f16"><a href="javascript:void(0)">法意瑞</a></h3><i></i></li>
                         <li><h3 class="f16"><a href="javascript:void(0)">西葡</a></h3><i></i></li>
                     </ul>
@@ -1064,23 +989,91 @@
                 </div>
                 <div class="fr pro_fr">
                     <div class="pro_lb list_ad" id="Card_show1">
-                        <ul class="Britain">
+                        <ul>
+                            <li>
+                                <a name="__AD_module_4_74_4041" class="img" href="https://www.itrip.com/p23742"
+                                   target="_blank">
+                                    <img width="208" height="138" class="lazy1"
+                                         alt="【买到赚到】免打印 英国伦敦探索者通票 3/4/5/7个景点/日游/餐厅/交通随意搭配 (扫码参观+指导手册+1年有效）"
+                                         src="//pic.itrip.com/img/loading2.gif" border="0"
+                                         data-original="//pic2.itrip.com/p/20190125183812-standard-398.jpg?imageView2/5/w/208/h/138/q/100">
+                                    <div class="proinfo oh">
+                                        <p class="f14 mt10 oh" style="height:42px;">
+                                            【买到赚到】免打印 英国伦敦探索者通票 3/4/5/7个景点/日游/餐厅/交通随意搭配 (扫码参观+指导手册+1年有效）</p>
+                                        <p class="oh mt5">
+												<span class="fr pri price_label">
+													<label class="js_curCode f12">RMB</label>
+													<label class="js_curMonery_exten f16 ml5" data-price="53.594"
+                                                           data-exrates="{9=4.74, 10=4.52, 11=3.16, 12=1.0, 13=6.88, 14=0.23, 15=5.0E-4, 17=5.01, 16=1.6, 21=8.6016, 20=7.8646, 23=0.06, 22=7.0395, 25=0.73, 24=0.79, 27=1.03, 26=0.31}"
+                                                           data-cid="21">460.99</label><label
+                                                        class="f12">&nbsp;起</label>
+												</span>
+                                        </p>
+                                    </div>
+                                    <div class="bor_img"></div>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                     <div class="pro_lb list_ad" id="Card_show2" style="display:none;">
-                        <ul class="FAYiRui">
+                        <ul>
+                            <li>
+                                <a name="__AD_module_4_75_5467" class="img" href="https://www.itrip.com/p8607"
+                                   target="_blank">
+                                    <img width="208" height="138" class="lazy1"
+                                         alt="【艺术盛宴】法国巴黎博物馆通票4日 (不限次数参观+免排队+市区/周边全覆盖)"
+                                         src="//pic.itrip.com/img/loading2.gif" border="0"
+                                         data-original="//pic2.itrip.com/p/20190424110448-standard-434.jpg?imageView2/5/w/208/h/138/q/100">
+                                    <div class="proinfo oh">
+                                        <p class="f14 mt10 oh" style="height:42px;">
+                                            【艺术盛宴】法国巴黎博物馆通票4日 (不限次数参观+免排队+市区/周边全覆盖)</p>
+                                        <p class="oh mt5">
+												<span class="fr pri price_label">
+													<label class="js_curCode f12">RMB</label>
+													<label class="js_curMonery_exten f16 ml5" data-price="62.23"
+                                                           data-exrates="{9=4.74, 10=4.52, 11=3.16, 12=1.0, 13=6.88, 14=0.23, 15=5.0E-4, 17=5.01, 16=1.6, 21=8.6016, 20=7.8646, 23=0.06, 22=7.0395, 25=0.73, 24=0.79, 27=1.03, 26=0.31}"
+                                                           data-cid="20">489.41</label><label
+                                                        class="f12">&nbsp;起</label>
+												</span>
+                                        </p>
+                                    </div>
+                                    <div class="bor_img"></div>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                     <div class="pro_lb list_ad" id="Card_show3" style="display:none;">
-                        <ul class="SpainPortugal">
+                        <ul>
+                            <li>
+                                <a name="__AD_module_4_89_5468" class="img" href="https://www.itrip.com/p8333"
+                                   target="_blank">
+                                    <img width="208" height="138" class="lazy1"
+                                         alt="【扫码入园】巴塞罗那足球俱乐部主场诺坎普球场观光门票(含博物馆+免排队+立即出票）"
+                                         src="//pic.itrip.com/img/loading2.gif" border="0"
+                                         data-original="//pic2.itrip.com/p/20190513163555-standard-850.jpg?imageView2/5/w/208/h/138/q/100">
+                                    <div class="proinfo oh">
+                                        <p class="f14 mt10 oh" style="height:42px;">
+                                            【扫码入园】巴塞罗那足球俱乐部主场诺坎普球场观光门票(含博物馆+免排队+立即出票）</p>
+                                        <p class="oh mt5">
+												<span class="fr pri price_label">
+													<label class="js_curCode f12">RMB</label>
+													<label class="js_curMonery_exten f16 ml5" data-price="30.2428"
+                                                           data-exrates="{9=4.74, 10=4.52, 11=3.16, 12=1.0, 13=6.88, 14=0.23, 15=5.0E-4, 17=5.01, 16=1.6, 21=8.6016, 20=7.8646, 23=0.06, 22=7.0395, 25=0.73, 24=0.79, 27=1.03, 26=0.31}"
+                                                           data-cid="20">237.85</label><label
+                                                        class="f12">&nbsp;起</label>
+												</span>
+                                        </p>
+                                    </div>
+                                    <div class="bor_img"></div>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <!-- 当地跟团 -->
             <div class="pro_list third mt15 clearfix localTour">
                 <div class="fl pro_fl pos_r oh">
-                    <i class="pro_icon" id="Localandregiment" value="3">
+                    <i class="pro_icon">
                         <h2>
                             <img width="122" height="122" class="lazy" alt="当地跟团" src="//pic.itrip.com/img/loading2.gif"
                                  border="0"
@@ -1089,10 +1082,8 @@
                     </i>
                     <ul class="pro_choice">
                         <li class="cur"><h3 class="f16"><a href="javascript:void(0)">法意瑞</a></h3><i></i></li>
-                        <li id="L_Britain" value="10"><h3 class="f16"><a href="javascript:void(0)">英国</a></h3><i></i>
-                        </li>
-                        <li id="L_Iceland" value="1"><h3 class="f16"><a href="javascript:void(0)">冰岛</a></h3><i></i>
-                        </li>
+                        <li><h3 class="f16"><a href="javascript:void(0)">英国</a></h3><i></i></li>
+                        <li><h3 class="f16"><a href="javascript:void(0)">冰岛</a></h3><i></i></li>
                     </ul>
                     <div class="pro_moer">
                         <i class="icon_index"></i>
@@ -1108,20 +1099,83 @@
                 </div>
                 <div class="fr pro_fr">
                     <div class="pro_lb list_ad" id="Local_show1">
-                        <ul class="FAYiRui">
+                        <ul>
+                            <li>
+                                <a name="__AD_module_5_26_3739" class="img" href="https://www.itrip.com/p23915"
+                                   target="_blank">
+                                    <img width="208" height="138" class="lazy1"
+                                         alt="【中世纪遗迹】南部爱尔兰莫赫悬崖+布拉尼+科克+凯袖宫英文二日游 (含门票+早餐+都柏林往返)"
+                                         src="//pic.itrip.com/img/loading2.gif" border="0"
+                                         data-original="//pic2.itrip.com/p/20180209094845-standard-798.jpg?imageView2/5/w/208/h/138/q/100">
+                                    <div class="proinfo oh">
+                                        <p class="f14 mt10 oh" style="height:42px;">
+                                            【中世纪遗迹】南部爱尔兰莫赫悬崖+布拉尼+科克+凯袖宫英文二日游 (含门票+早餐+都柏林往返)</p>
+                                        <p class="oh mt5">
+											<span class="fr pri price_label">
+												<label class="js_curCode f12">RMB</label>
+												<label class="js_curMonery_exten f16 ml5" data-price="141.5"
+                                                       data-exrates="{9=4.74, 10=4.52, 11=3.16, 12=1.0, 13=6.88, 14=0.23, 15=5.0E-4, 17=5.01, 16=1.6, 21=8.6016, 20=7.8646, 23=0.06, 22=7.0395, 25=0.73, 24=0.79, 27=1.03, 26=0.31}"
+                                                       data-cid="20">1112.84</label><label class="f12">&nbsp;起</label>
+											</span>
+                                        </p></div>
+                                    <div class="bor_img"></div>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                     <div class="pro_lb list_ad" id="Local_show2" style="display:none;">
-                        <ul class="Britain">
+                        <ul>
+                            <li>
+                                <a name="__AD_module_5_26_7242" class="img" href="https://www.itrip.com/p13127"
+                                   target="_blank">
+                                    <img width="208" height="138" class="lazy1" style="display: block;"
+                                         alt="【萍水一聚】英国苏格兰高地天空岛中文三日游（赠爱丁堡游+格拉斯哥/爱丁堡接送+宿威廉堡） "
+                                         src="//pic2.itrip.com/p/20190429152624-standard-768.jpg?imageView2/5/w/208/h/138/q/100"
+                                         border="0"
+                                         data-original="//pic2.itrip.com/p/20190429152624-standard-768.jpg?imageView2/5/w/208/h/138/q/100">
+                                    <div class="proinfo oh">
+                                        <p class="f14 mt10 oh" style="height:42px;">
+                                            【萍水一聚】英国苏格兰高地天空岛中文三日游（赠爱丁堡游+格拉斯哥/爱丁堡接送+宿威廉堡） </p>
+                                        <p class="oh mt5">
+											<span class="fr pri price_label">
+												<label class="js_curCode f12">RMB</label>
+												<label class="js_curMonery_exten f16 ml5" data-price="166.6"
+                                                       data-exrates="{9=4.74, 10=4.52, 11=3.16, 12=1.0, 13=6.88, 14=0.23, 15=5.0E-4, 17=5.01, 16=1.6, 21=8.6016, 20=7.8646, 23=0.06, 22=7.0395, 25=0.73, 24=0.79, 27=1.03, 26=0.31}"
+                                                       data-cid="21">1433.03</label><label class="f12">&nbsp;起</label>
+											</span>
+                                        </p></div>
+                                    <div class="bor_img"></div>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                     <div class="pro_lb list_ad" id="Local_show3" style="display:none;">
-                        <ul class="Iceland">
+                        <ul>
+                            <li>
+                                <a name="__AD_module_5_27_3745" class="img" href="https://www.itrip.com/p24747"
+                                   target="_blank">
+                                    <img width="208" height="138" class="lazy1"
+                                         alt="【iTrip推荐】冰岛 南岸+黄金圈+冰河湖+蓝湖/蓝冰洞可选+极光6日游（精品小团+中文导游+旅拍可选+含接送)"
+                                         src="//pic.itrip.com/img/loading2.gif" border="0"
+                                         data-original="//pic2.itrip.com/p/20181106105103-standard-93.jpg?imageView2/5/w/208/h/138/q/100">
+                                    <div class="proinfo oh">
+                                        <p class="f14 mt10 oh" style="height:42px;">
+                                            【iTrip推荐】冰岛 南岸+黄金圈+冰河湖+蓝湖/蓝冰洞可选+极光6日游（精品小团+中文导游+旅拍可选+含接送)</p>
+                                        <p class="oh mt5">
+											<span class="fr pri price_label">
+												<label class="js_curCode f12">RMB</label>
+												<label class="js_curMonery_exten f16 ml5" data-price="9212.0"
+                                                       data-exrates="{9=4.74, 10=4.52, 11=3.16, 12=1.0, 13=6.88, 14=0.23, 15=5.0E-4, 17=5.01, 16=1.6, 21=8.6016, 20=7.8646, 23=0.06, 22=7.0395, 25=0.73, 24=0.79, 27=1.03, 26=0.31}"
+                                                       data-cid="12">9212</label><label class="f12">&nbsp;起</label>
+											</span>
+                                        </p></div>
+                                    <div class="bor_img"></div>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <!--精选点评-->
             <div class="mt15 review">
                 <div class="review_title oh"><span class="bold f16 fl ml15"><h2 class="f16">精选点评</h2></span></div>
                 <ul class="mt5 review_list">
@@ -3193,7 +3247,7 @@
           src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/949765398/?value=0&amp;guid=ON&amp;script=0">
 </div>
 <script type="text/javascript">
-    var check = setInterval(checkUserOnline, 100);
+    var check = setInterval(checkUserOnline, 10);
     var flag = $("label[class='sw_syb fl blue']").text(); //币种
     var flag2 = $("label.js_curCode.f12").text();//商品上的币种
     var oldmoney = "";
