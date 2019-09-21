@@ -3,6 +3,8 @@ package com.cssl.pojo.service;
 import com.cssl.pojo.HomePage_product;
 import com.cssl.pojo.ProductDetails;
 import com.cssl.pojo.Product_shopping;
+import com.cssl.pojo.po.OrderXQ;
+import com.cssl.pojo.po.Orders;
 import com.cssl.pojo.po.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.ui.Model;
@@ -92,4 +94,69 @@ public interface HomePageClientService {
      */
     @RequestMapping(method = RequestMethod.GET, value = "delShopping")
     public Integer delShopping(@RequestParam("psc_id") Integer psc_id);
+    /***
+     * 根据号码拿邮箱
+     */
+    @RequestMapping(method = RequestMethod.GET,value = "PhoneEmailUser")
+    public Map<String,Object> PhoneEmail(@RequestParam(value = "phone") String phone);
+
+
+    /***
+     * 用户修改密码
+     */
+    @RequestMapping(method = RequestMethod.POST,value = "/UpdatePhoneUser")
+    public int UpdatePhone(@RequestBody  Map<String,Object> map);
+
+    /***
+     *
+     * 手机密码登录
+     * @param
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST,value = "/LoginPhoeUser")
+    public List<User> LoginPhone(@RequestBody Map<String,Object> map);
+
+    /***
+     *
+     * 邮箱登录
+     * @param map
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST,value = "/LoginEmailUser")
+    public List<User> UserLoginEmail(@RequestBody  Map<String,Object> map);
+
+
+    @RequestMapping(method = RequestMethod.POST,value = "/UpdateUserMsg")
+    public int UpdateUser(@RequestBody User uu);
+
+
+    @RequestMapping(method = RequestMethod.GET,value = "/SecectUserNamexx")
+    public List<User> SelectUserName(@RequestParam(value = "name") String name);
+
+
+    @RequestMapping(method = RequestMethod.POST,value = "/UpdatePhonePerson")
+    public int UpdatePhonePerson(@RequestBody  Map<String, Object> map);
+
+    @RequestMapping(method = RequestMethod.POST,value = "/UpdatePassword")
+    public int UpdatePassword(@RequestBody  Map<String, Object> map);
+
+
+    @RequestMapping(method = RequestMethod.POST,value = "/UpdatePicture")
+    public int UpdatePicture(@RequestBody  Map<String, Object> map);
+
+
+    @RequestMapping(method = RequestMethod.GET,value = "/SelectUserID")
+    public List<Orders> SelectUser(@RequestParam(value = "1") int id);
+
+    @RequestMapping(method = RequestMethod.GET,value = "/SelectOrderProdoct")
+    public List<Orders> SelectOrderProdoct(@RequestParam("1") int userid) ;
+
+
+    @RequestMapping(method = RequestMethod.GET,value = "/SelectOrderNumb")
+    public List<Orders> SelectOrderNumb(@RequestParam(value = "1") int userid);
+
+
+
+    @RequestMapping(method = RequestMethod.GET,value = "/SelectOrderXQ")
+    public List<OrderXQ> SelectOrderProduct(@RequestParam(value = "ordernum") String ordernum);
 }
