@@ -2,24 +2,69 @@
 <!-- saved from url=(0035)https://www.itrip.com/user/baseInfo -->
 <html xmlns:wb="http://open.weibo.com/wb">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="edge">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="edge">
 
-    <meta name="viewport" content="width=1200, initial-scale=0.8">
-    <meta name="applicable-device" content="pc">
-    <title>iTrip爱去 - 用户中心 | 个人信息</title>
-    <script src="../js/http/kuayu.js"></script>
-    <script src="../js/jquery-1.8.3.js"></script>
-    <link rel="shortcut icon" href="https://pic.itrip.com/img/favicon.ico">
-    <link rel="stylesheet" href="../个人中心个人信息_files/al_datepicker.css">
-    <link rel="stylesheet" type="text/css" href="../个人中心个人信息_files/jquery.Jcrop.min.css">
-    <link rel="stylesheet" type="text/css" href="../个人中心个人信息_files/it_reset_201902190028.css">
-    <link rel="stylesheet" type="text/css" href="../个人中心个人信息_files/select2.min.css">
-    <link rel="stylesheet" type="text/css" href="../个人中心个人信息_files/it_uc_201902190028.css">
-    <link rel="stylesheet" type="text/css" href="../个人中心个人信息_files/validationEngine.jquery.css">
+	<meta name="viewport" content="width=1200, initial-scale=0.8">
+	<meta name="applicable-device" content="pc">
+	<title>iTrip爱去 - 用户中心 | 个人信息</title>
+	<!--<script src="../js/http/kuayu.js" type="text/javascript"></script>-->
+
+	<link rel="shortcut icon" href="https://pic.itrip.com/img/favicon.ico">
+	<link rel="stylesheet" href="../个人中心个人信息_files/al_datepicker.css">
+	<link rel="stylesheet" type="text/css" href="../个人中心个人信息_files/jquery.Jcrop.min.css">
+	<link rel="stylesheet" type="text/css" href="../个人中心个人信息_files/it_reset_201902190028.css">
+	<link rel="stylesheet" type="text/css" href="../个人中心个人信息_files/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="../个人中心个人信息_files/it_uc_201902190028.css">
+	<link rel="stylesheet" type="text/css" href="../个人中心个人信息_files/validationEngine.jquery.css">
+	<script src="../js/jquery-1.8.3.js" type="text/javascript"></script>
+	<script type="text/javascript">
+
+        $(function () {
+
+            //拿数据
+            $.getJSON("/GetSession",function (data) {
+                if(data!=null){
+
+                    document.getElementById("logzc").style.display="none";
+                    $("#username").text(data.chinese_Name);
+
+
+                }
+
+
+            });
+
+
+            //鼠标悬停事件
+            $("#user").mousemove(function () {
+                $(".down_list").css("display","block");
+            })
+            $("#user").mouseout(function () {
+                $(".down_list").css("display","none");
+            })
+
+
+            //退出登录
+            $("#btn_logout").click(function () {
+
+                $.getJSON("/logout",function (data) {
+                    window.location="../Europe.html"
+                })
+            })
+
+        })
+
+
+
+
+
+
+	</script>
 <body>
+
 <div id="nTalk_post_hiddenElement"
-     style="left: -10px; top: -10px; visibility: hidden; display: none; width: 1px; height: 1px;"></div>
+	 style="left: -10px; top: -10px; visibility: hidden; display: none; width: 1px; height: 1px;"></div>
 
 
 <meta http-equiv="X-UA-Compatible" content="edge">
@@ -30,65 +75,65 @@
 
 
 <div class="site_top">
-    <div class="top_info">
-        <div class="wrap clearfix">
-            <div class="fl horiz pos_r f14 ">
-                <ul class="area">
-                    <li>
-                        <a href="https://www.itrip.com/aodaliya/">
-                            澳洲站</a>
-                    </li>
-                    <li class="new_f">
-                        <a class="cur" href="https://www.itrip.com/xinfei/" title="新西兰 &amp; 斐济">
+	<div class="top_info">
+		<div class="wrap clearfix">
+			<div class="fl horiz pos_r f14 ">
+				<ul class="area">
+					<li>
+						<a href="https://www.itrip.com/aodaliya/">
+							澳洲站</a>
+					</li>
+					<li class="new_f">
+						<a class="cur" href="https://www.itrip.com/xinfei/" title="新西兰 &amp; 斐济">
 
-                            新西兰 &amp; 斐济
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.itrip.com/ouzhou/">
-                            欧洲站</a>
-                    </li>
-                    <li>
-                        <a href="https://www.itrip.com/dny/" title="东南亚">
-                            东南亚</a>
-                    </li>
-                    <li>
-                        <a href="https://www.itrip.com/meizhou/" title="美洲">
-                            美洲站</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="fr">
+							新西兰 &amp; 斐济
+						</a>
+					</li>
+					<li>
+						<a href="https://www.itrip.com/ouzhou/">
+							欧洲站</a>
+					</li>
+					<li>
+						<a href="https://www.itrip.com/dny/" title="东南亚">
+							东南亚</a>
+					</li>
+					<li>
+						<a href="https://www.itrip.com/meizhou/" title="美洲">
+							美洲站</a>
+					</li>
+				</ul>
+			</div>
+			<div class="fr">
 			<span class="pos_r">
 						<a href="https://www.itrip.com/about/app" rel="nofollow" class="fl" target="_blank">
 							<span class="app-down"><img src="../个人中心个人信息_files/head_icon_appdown.gif"
-                                                        class="fl">APP下载</span>
+														class="fl">APP下载</span>
 						</a>
 					</span>
-                <span class="line">|</span>
-                <span class="js_loginStatus" style="display:none;margin-left:0px;">
+				<span class="line">|</span>
+				<span class="js_loginStatus" style="display:none;margin-left:0px;" id="logzc">
 						<span><a class="blue" href="javascript:void(0);" onclick="login()"
-                                 rel="nofollow">登录</a></span><span>/</span> 
-						<span><a href="https://www.itrip.com/signup/index" rel="nofollow">注册</a></span> 
+								 rel="nofollow">登录</a></span><span>/</span>
+						<span><a href="https://www.itrip.com/signup/index" rel="nofollow">注册</a></span>
 					</span>
-                <span class="js_loginStatus" style="margin-left: 0px;"> 						
+				<span class="js_loginStatus" style="margin-left: 0px;" id="user">
 						<span class="sw_syb fl pos_r" style="margin-left:0px;"><a class="blue display_name"
-                                                                                  href="https://www.itrip.com/user/index">xx</a><i
-                                class="sw_sj"></i>
+																				  href="爱去旅行个人信息主页面.html" id="username">xx</a><i
+								class="sw_sj"></i>
 							<dl class="down_list">
 								<dd class="js_myOrder"><a href="https://www.itrip.com/user/orders" rel="nofollow"
-                                                          class="pos_r">我的订单<label></label></a></dd>
+														  class="pos_r">我的订单<label></label></a></dd>
 								<dd class="js_myFavor"><a href="https://www.itrip.com/user/favor/all" rel="nofollow"
-                                                          class="pos_r">我的收藏 <label></label></a></dd>
+														  class="pos_r">我的收藏 <label></label></a></dd>
 								<dd><a href="https://www.itrip.com/user/reward" rel="nofollow">我的奖金</a></dd>
 								<dd><a href="javascript:void(0);" id="btn_logout" onclick="logout()"
-                                       rel="nofollow">退出登录</a></dd>
+									   rel="nofollow">退出登录</a></dd>
 							</dl>
 						</span>
 					</span>
-                <span class="line">|</span>
-                <span class="pos_r">
-					
+				<span class="line">|</span>
+				<span class="pos_r">
+
 						<a href="https://www.itrip.com/shoppingCart" rel="nofollow" class="fl">
 							<span class="buy_car js_sc"><i></i>购物车 <label></label></span>
 							<div class="prompt-price-warp hide">
@@ -96,16 +141,16 @@
 						        <p class="prompt-price-txt">您有<em id="promotion-num"></em>个产品正在促销降价</p>
 						        <label class="promotion-close"></label>
 						    </div>
-							
+
 						</a>
-					
+
 					</span>
 
-                <span class="line">|</span>
-                <span class="pos_r money_sw_box currencyChange">
+				<span class="line">|</span>
+				<span class="pos_r money_sw_box currencyChange">
 						 <a class="money_sw_box_txt" href="javascript:;" style="border:1px transparent solid;"
-                            onclick="window.event.preventDefault(); window.event.stopPropagation(); return false;"
-                            data-id="12">
+							onclick="window.event.preventDefault(); window.event.stopPropagation(); return false;"
+							data-id="12">
 							<label class="sw_syb fl blue">RMB</label>
 							<i class="sw_sj"></i>
 						</a>
@@ -180,788 +225,823 @@
 								</a>
 							</div>
 					</span>
-            </div>
-        </div>
-    </div>
+			</div>
+		</div>
+	</div>
 </div>
 <script type="text/javascript">
     var wxFlag = true;
 </script>
 <div class="wrap pos_r">
-    <div class="mainHeader clearfix">
-        <div class="logo fl pos_r">
-            <h1>
-                <a href="https://www.itrip.com/">
-                    <img src="../个人中心个人信息_files/logo3.png" alt="iTrip爱去自由" style="margin:0px;position:relative;">
-                </a>
-            </h1>
-        </div>
-        <div class="fl per_icon ml30 f18 bold"><span>个人<br>中心</span></div>
-        <div class="fr topContact blue horiz">
-            <img src="../个人中心个人信息_files/phone_num_2.png" width="328" height="74" style="position: relative;top: -10px;">
-        </div>
-    </div>
+	<div class="mainHeader clearfix">
+		<div class="logo fl pos_r">
+			<h1>
+				<a href="https://www.itrip.com/">
+					<img src="../个人中心个人信息_files/logo3.png" alt="iTrip爱去自由" style="margin:0px;position:relative;">
+				</a>
+			</h1>
+		</div>
+		<div class="fl per_icon ml30 f18 bold"><span>个人<br>中心</span></div>
+		<div class="fr topContact blue horiz">
+			<img src="http://39.107.103.69/images/user/phone_num_2.png" width="328" height="74" style="position: relative;top: -10px;">
+		</div>
+	</div>
 </div>
 <div class="UC_header_fix_bg"></div>
 
 
 <div class="wrap UC_index_box">
-    <div class="pos_r" style="padding:20px 0 0 220px;">
+	<div class="pos_r" style="padding:20px 0 0 220px;">
 
 
-        <div class="UC_nav">
-            <div class="UC_nav_head">
-                <a href="https://www.itrip.com/user/index" style="color:#FFF;"><span
-                        class="icon icon_white_home"></span>
-                    我的主页
-                    <i></i></a>
-            </div>
-            <div class="toux pos_r">
-                <p class="toux_img">
-                    <img src="../个人中心个人信息_files/defaultPortrait1.jpg" width="90" height="90" border="0">
-                </p>
-                <p class="toux_tit">
-                </p>
-                <p class="f14 mt10 blue">17608486293</p>
-                <p></p>
-            </div>
-            <ul style="height: 467px;">
-                <a href="https://www.itrip.com/user/orders?pageNo=1">
-                    <li>
-                        <span class="icon icon_black_list" curclass="icon_white_list"></span>
-                        我的订单
-                    </li>
-                </a>
-                <a href="https://www.itrip.com/user/review">
-                    <li>
-                        <span class="icon icon_black_pen" curclass="icon_white_pen"></span>
-                        我的点评
-                    </li>
-                </a>
-                <a href="https://www.itrip.com/user/baseInfo">
-                    <li class="cur">
-                        <span class="icon icon_black_uimg icon_white_uimg" curclass="icon_white_uimg"></span>
-                        个人信息
-                    </li>
-                </a>
-                <a href="https://www.itrip.com/user/passagerInfos">
-                    <li>
-                        <span class="icon icon_black_clk" curclass="icon_white_clk"></span>
-                        常旅客管理
-                    </li>
-                </a>
-                <a href="https://www.itrip.com/user/coupons">
-                    <li>
-                        <span class="icon icon_black_quan" curclass="icon_white_quan"></span>
-                        我的优惠券
-                    </li>
-                </a>
+		<div class="UC_nav">
+			<div class="UC_nav_head">
+				<a href="爱去旅行个人信息主页面.html" style="color:#FFF;"><span
+						class="icon icon_white_home"></span>
+					我的主页
+					<i></i></a>
+			</div>
+			<div class="toux pos_r">
+				<p class="toux_img">
+					<img src="http://39.107.103.69/images/user/defaultPortrait1.jpg" width="90" height="90" border="0" id="touz">
+				</p>
+				<p class="toux_tit">
+				</p>
+				<p class="f14 mt10 blue" id="txtshann">17608486293</p>
+				<p></p>
+			</div>
+			<ul style="height: 467px;">
+				<a href="个人信息订单.html">
+					<li>
+						<span class="icon icon_black_list" curclass="icon_white_list"></span>
+						我的订单
+					</li>
+				</a>
+				<a href="个人中心个人点评.html">
+					<li>
+						<span class="icon icon_black_pen" curclass="icon_white_pen"></span>
+						我的点评
+					</li>
+				</a>
+				<a href="个人中心个人信息.html">
+					<li class="cur">
+						<span class="icon icon_black_uimg icon_white_uimg" curclass="icon_white_uimg"></span>
+						个人信息
+					</li>
+				</a>
+				<a href="个人中心常旅客管理.html">
+					<li>
+						<span class="icon icon_black_clk" curclass="icon_white_clk"></span>
+						常旅客管理
+					</li>
+				</a>
+				<a href="个人中心优惠券.html">
+					<li>
+						<span class="icon icon_black_quan" curclass="icon_white_quan"></span>
+						我的优惠券
+					</li>
+				</a>
 
-                <a href="https://www.itrip.com/user/reward">
-                    <li>
-                        <span class="icon icon_black_dollor" curclass="icon_white_dollor"></span>
-                        我的奖金
-                    </li>
-                </a>
-                <a href="https://www.itrip.com/user/favor/all">
-                    <li>
-                        <span class="icon icon_black_star" curclass="icon_white_star"></span>
-                        我的收藏
-                    </li>
-                </a>
-            </ul>
-        </div>
+				<a href="个人中心我的奖金.html">
+					<li>
+						<span class="icon icon_black_dollor" curclass="icon_white_dollor"></span>
+						我的奖金
+					</li>
+				</a>
+				<a href="个人中心我的收藏.html">
+					<li>
+						<span class="icon icon_black_star" curclass="icon_white_star"></span>
+						我的收藏
+					</li>
+				</a>
+			</ul>
+		</div>
 
 
-        <div class="oh UC_userinfo">
-            <div class="boxRadiu" style="padding:50px;min-height:500px;">
-                <div class="fl w560">
-                    <p class="f16">基本信息 <span class="btn-orange hand ml5 change_BisicInfo"
-                                              id="baseInfo_update">修改</span></p>
-                    <div class="info_box horiz">
-                        <ul>
-                            <li>中文姓名：</li>
-                            <li id="userNameZh" class="nameZh"></li>
-                        </ul>
-                        <ul>
-                            <li>英文姓名：</li>
-                            <li id="userNameEn">&nbsp;</li>
-                        </ul>
-                        <ul>
-                            <li>昵称：</li>
-                            <li id="usernickName"><span class="emoji">xx</span><span class="f12 grey">（社区统一昵称，不可用于登录，可随时修改）</span>
-                            </li>
-                        </ul>
-                        <ul>
-                            <li>性别：</li>
-                            <li id="userSex">
+		<div class="oh UC_userinfo">
+			<div class="boxRadiu" style="padding:50px;min-height:500px;">
+				<div class="fl w560">
+					<p class="f16">基本信息 <span class="btn-orange hand ml5 change_BisicInfo"
+											  id="baseInfo_update">修改</span></p>
+					<div class="info_box horiz">
+						<ul>
+							<li>中文姓名：</li>
+							<li id="userNameZh" class="nameZh"></li>
+						</ul>
+						<ul>
+							<li>英文姓名：</li>
+							<li id="userNameEn">&nbsp;</li>
+						</ul>
+						<ul>
+							<li>昵称：</li>
+							<li id="usernickName"><span class="emoji">xx</span><span class="f12 grey">（社区统一昵称，不可用于登录，可随时修改）</span>
+							</li>
+						</ul>
+						<ul>
+							<li>性别：</li>
+							<li id="userSex">
 
-                                男
-                            </li>
-                        </ul>
-                        <ul>
-                            <li>生日：</li>
-                            <li id="userBirthDay"></li>
-                        </ul>
-                    </div>
-                    <div class="f16 mt20">
-                        <p class="f16">账号和密码</p>
-                        <div class="info_box horiz" style="border:none;">
-                            <ul>
-                                <li>手机：</li>
-                                <li>
-                                    <span style="margin-left:5px;" class="show-phone">17608486293</span>
-                                    <a href="javascript:void(0);" id="modifyPhone"
-                                       class="btn-orange update-phone">修改</a>
-                                </li>
-                            </ul>
-                            <ul>
-                                <li>邮箱：</li>
-                                <li>
-                                    <span style="margin-left:5px;" class="show-email"></span>
-                                    <a href="javascript:void(0);" class="btn-orange  bing-email" id="modifyEmail">绑定</a>
-                                    <div style="display:none;" data-form="">
-                                        <p>
-                                            <input type="text" placeholder="email" name="email" required="" email="">
-                                        </p>
-                                        <p>
-                                            <input type="button" value="提交">
-                                            <input type="button" value="取消" data-click-hide-closest="div">
-                                        </p>
-                                    </div>
-                                </li>
-                            </ul>
-                            <ul>
-                                <li>账号密码：</li>
-                                <li>
+								男
+							</li>
+						</ul>
+						<ul>
+							<li>生日：</li>
+							<li id="userBirthDay"></li>
+						</ul>
+					</div>
+					<div class="f16 mt20">
+						<p class="f16">账号和密码</p>
+						<div class="info_box horiz" style="border:none;">
+							<ul>
+								<li>手机：</li>
+								<li>
+									<span style="margin-left:5px;" class="show-phone">17608486293</span>
+									<a href="javascript:void(0);" id="modifyPhone"
+									   class="btn-orange update-phone">修改</a>
+								</li>
+							</ul>
+							<ul>
+								<li>邮箱：</li>
+								<li>
+									<span style="margin-left:5px;" class="show-email"></span>
+									<a href="javascript:void(0);" class="btn-orange  bing-email" id="modifyEmail">修改</a>
+									<div style="display:none;" data-form="">
+										<p>
+											<input type="text" placeholder="email" name="email" required="" email="">
+										</p>
+										<p>
+											<input type="button" value="提交">
+											<input type="button" value="取消" data-click-hide-closest="div">
+										</p>
+									</div>
+								</li>
+							</ul>
+							<ul>
+								<li>账号密码：</li>
+								<li>
                                     <span class="btn-orange hand change_password ml5"
-                                          id="change_password_popup">修改</span>
-                                </li>
-                            </ul>
-                            <ul>
-                                <li>社交账号：</li>
-                                <li class="socially">
+										  id="change_password_popup">修改</span>
+								</li>
+							</ul>
+							<ul>
+								<li>社交账号：</li>
+								<li class="socially">
 									<span>
 										<i class="WX_login" title="微信登录" id="btn_wx" data-status="" data-display-name=""
-                                           data-unionid="" data-openid="" style="vertical-align: middle;"></i>
+										   data-unionid="" data-openid="" style="vertical-align: middle;"></i>
 										<span style="font-size:14px;"></span>
 										<a data-bind-openid="wx" id="wxLoginBtn" href="javascript:void(0);">关联微信</a>
 										</span>
-                                    <span>
+									<span>
 										<a data-bind-openid="qq" id="qqLoginBtn" href="javascript:void(0);"><a
-                                                href="javascript:;"></a></a>
+												href="javascript:;"></a></a>
 												<a href="javascript:;" id="connQQ">关联QQ</a>
 											</span>
-                                    <span>
+									<span>
 										<i class="WB_login" title="微博登录" id="btn_weibo"
-                                           style="vertical-align: middle;"></i>
+										   style="vertical-align: middle;"></i>
 										<span style="font-size:14px;"></span>
 										<a data-bind-openid="wb" id="wbLoginBtn" href="javascript:void(0);">关联微博</a>
 										</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+								</li>
+							</ul>
+						</div>
+					</div>
 
 
-                </div>
-                <div class="fr tc">
-                    <div class="userImg">
-                        <img src="../个人中心个人信息_files/defaultPortrait1.jpg" width="120" height="120" border="0">
-                    </div>
-                    <span class="btn-orange change_avatar mt20 hand"
-                          style="line-height:25px;padding:0 17px;">修改头像</span>
-                </div>
-            </div>
-        </div>
+				</div>
+				<div class="fr tc">
+					<div class="userImg">
+						<img src="" width="120" height="120" border="0" id="txtp">
+					</div>
+					<span class="btn-orange change_avatar mt20 hand"
+						  style="line-height:25px;padding:0 17px;" id="updatehd">修改头像</span>
+				</div>
+			</div>
+		</div>
 
-    </div>
+	</div>
 </div>
 
 <!-- td: 更新手机 -->
-<div class="dialog_phone_update hide">
-    <div data-form="">
-        <p class="f16 enter-phone " style="border-bottom:1px #E5E5E5 solid;padding-bottom:10px;">
-            手机：<span data-show-phone="" style="margin-left:5px;">17608486293</span>
-        </p>
-        <form action="https://www.itrip.com/main/user/bindPhone" class="action_update_phone" method="post">
-            <div class="horiz mt25 f14">
-                <ul>
-                    <li class="w90 tr pb20"><span class="orange">*</span>手机：</li>
-                    <li>
-                        <div class="iptBox" style="padding:0;">
-                            <select class="regionCodePhoneNumNext"
-                                    style="height:36px;width:70px;border:none;background:none;" name="phoneRegionCode">
-                                <option value="86" label="中国" selected="selected">+86</option>
-                                <option value="61" label="澳大利亚">+61</option>
-                                <option value="64" label="新西兰">+64</option>
-                                <option value="679" label="斐济">+679</option>
-                                <option value="1" label="美国">+1</option>
-                                <option value="00689" label="大溪地">+00689</option>
-                                <option value="680" label="帕劳">+680</option>
-                                <option value="00248" label="塞舌尔">+00248</option>
-                                <option value="00230" label="毛里求斯">+00230</option>
-                                <option value="001" label="塞班岛">+001</option>
-                                <option value="960" label="马尔代夫">+960</option>
-                                <option value="66" label="泰国">+66</option>
-                                <option value="62" label="印度尼西亚">+62</option>
-                                <option value="65" label="新加坡">+65</option>
-                                <option value="60" label="马来西亚">+60</option>
-                                <option value="44" label="英国">+44</option>
-                                <option value="39" label="意大利">+39</option>
-                                <option value="41" label="瑞士">+41</option>
-                                <option value="354" label="冰岛">+354</option>
-                                <option value="33" label="法国">+33</option>
-                                <option value="49" label="德国">+49</option>
-                                <option value="34" label="西班牙">+34</option>
-                                <option value="379" label="梵蒂冈">+379</option>
-                                <option value="351" label="葡萄牙">+351</option>
-                                <option value="420" label="捷克">+420</option>
-                                <option value="30" label="希腊">+30</option>
-                                <option value="31" label="荷兰">+31</option>
-                                <option value="352" label="卢森堡">+352</option>
-                                <option value="353" label="爱尔兰">+353</option>
-                                <option value="36" label="匈牙利">+36</option>
-                                <option value="43" label="奥地利">+43</option>
-                                <option value="32" label="比利时">+32</option>
-                                <option value="377" label="摩纳哥">+377</option>
-                                <option value="358" label="芬兰">+358</option>
-                                <option value="47" label="挪威">+47</option>
-                                <option value="45" label="丹麦">+45</option>
-                                <option value="46" label="瑞典">+46</option>
-                                <option value="385" label="克罗地亚">+385</option>
-                                <option value="48" label="波兰">+48</option>
-                                <option value="421" label="斯洛伐克">+421</option>
-                                <option value="423" label="列支敦士登">+423</option>
-                                <option value="00" label="欧洲">+00</option>
-                                <option value="66" label="华欣">+66</option>
-                                <option value="852" label="中国香港">+852</option>
-                                <option value="886" label="中国台湾">+886</option>
-                                <option value="386" label="斯洛文尼亚">+386</option>
-                                <option value="0081" label="日本">+0081</option>
-                                <option value="90" label="土耳其">+90</option>
-                                <option value="356" label="马耳他">+356</option>
-                                <option value="299" label="格陵兰岛">+299</option>
-                                <option value="298" label="法罗群岛">+298</option>
-                                <option value="1" label="加拿大">+1</option>
-                                <option value="63" label="菲律宾">+63</option>
-                                <option value="853" label="中国澳门">+853</option>
-                                <option value="33" label="凡尔登">+33</option>
-                                <option value="7" label="俄罗斯">+7</option>
-                                <option value="212" label="摩洛哥">+212</option>
-                                <option value="387" label="波黑">+387</option>
-                                <option value="82" label="韩国">+82</option>
-                            </select>
-                            <input class="phoneNumNext validate[required,custom[phone]]" type="text" name="phoneNum"
-                                   placeholder="手机号" style="width:150px;" autocomplete="off" maxlength="20">
-                            <i class="icon_phone"></i>
-                        </div>
-                    </li>
-                </ul>
-                <ul class="mt10">
-                    <li class="w90 tr pb20">验证码：</li>
-                    <li>
-                        <div class="oh">
-                            <div class="iptBox fl" id="verifyCode" style="width:92px;">
-                                <!-- validate[required,custom[number]] -->
-                                <input type="text" name="smsCode" placeholder="验证码" maxlength="6"
-                                       class="ml10 verifyCode_phone validate[required,custom[number]]"
-                                       style="width:92px;" autocomplete="off">
-                            </div>
-                            <span class="btn-normal-blue fl getPhoneCode" style="padding: 0 10px;margin-left: 10px;"
-                                  data-send-smscode="">获取验证码</span>
-                            <span class="tipMsg hide"></span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <p>
-                <input type="submit" class="btn-orange center mt20 phoneModifySend" value="确定" style="border:none;">
-            </p>
-        </form>
-    </div>
+<div class="dialog" style="position: fixed; left: 50%; top: 50%; margin-left: -188px; margin-top: -146px; z-index: 99;"><span class="close" id="cc"  style="display: none"></span><div class="dialog-box"><div class="dialog-cont"><div class="dialog_phone_update hide" id="uphide">
+	<div data-form="">
+		<p class="f16 enter-phone " style="border-bottom:1px #E5E5E5 solid;padding-bottom:10px;">
+			手机：<span data-show-phone="" style="margin-left:5px;" id="phonenumber">17608486293</span>
+		</p>
+		<form  class="action_update_phone" method="post">
+			<div class="horiz mt25 f14">
+				<ul>
+					<li class="w90 tr pb20"><span class="orange">*</span>手机：</li>
+					<li>
+						<div class="iptBox" style="padding:0;">
+							<select class="regionCodePhoneNumNext" style="height: 36px; width: 70px; border: none; background: none; display: none;" name="phoneRegionCode" tabindex="-1">
+								<option value="86" label="中国" selected="selected">+86</option>
+								<option value="61" label="澳大利亚">+61</option>
+								<option value="64" label="新西兰">+64</option>
+								<option value="679" label="斐济">+679</option>
+								<option value="1" label="美国">+1</option>
+								<option value="00689" label="大溪地">+00689</option>
+								<option value="680" label="帕劳">+680</option>
+								<option value="00248" label="塞舌尔">+00248</option>
+								<option value="00230" label="毛里求斯">+00230</option>
+								<option value="001" label="塞班岛">+001</option>
+								<option value="960" label="马尔代夫">+960</option>
+								<option value="66" label="泰国">+66</option>
+								<option value="62" label="印度尼西亚">+62</option>
+								<option value="65" label="新加坡">+65</option>
+								<option value="60" label="马来西亚">+60</option>
+								<option value="44" label="英国">+44</option>
+								<option value="39" label="意大利">+39</option>
+								<option value="41" label="瑞士">+41</option>
+								<option value="354" label="冰岛">+354</option>
+								<option value="33" label="法国">+33</option>
+								<option value="49" label="德国">+49</option>
+								<option value="34" label="西班牙">+34</option>
+								<option value="379" label="梵蒂冈">+379</option>
+								<option value="351" label="葡萄牙">+351</option>
+								<option value="420" label="捷克">+420</option>
+								<option value="30" label="希腊">+30</option>
+								<option value="31" label="荷兰">+31</option>
+								<option value="352" label="卢森堡">+352</option>
+								<option value="353" label="爱尔兰">+353</option>
+								<option value="36" label="匈牙利">+36</option>
+								<option value="43" label="奥地利">+43</option>
+								<option value="32" label="比利时">+32</option>
+								<option value="377" label="摩纳哥">+377</option>
+								<option value="358" label="芬兰">+358</option>
+								<option value="47" label="挪威">+47</option>
+								<option value="45" label="丹麦">+45</option>
+								<option value="46" label="瑞典">+46</option>
+								<option value="385" label="克罗地亚">+385</option>
+								<option value="48" label="波兰">+48</option>
+								<option value="421" label="斯洛伐克">+421</option>
+								<option value="423" label="列支敦士登">+423</option>
+								<option value="00" label="欧洲">+00</option>
+								<option value="66" label="华欣">+66</option>
+								<option value="852" label="中国香港">+852</option>
+								<option value="886" label="中国台湾">+886</option>
+								<option value="386" label="斯洛文尼亚">+386</option>
+								<option value="0081" label="日本">+0081</option>
+								<option value="90" label="土耳其">+90</option>
+								<option value="356" label="马耳他">+356</option>
+								<option value="299" label="格陵兰岛">+299</option>
+								<option value="298" label="法罗群岛">+298</option>
+								<option value="1" label="加拿大">+1</option>
+								<option value="63" label="菲律宾">+63</option>
+								<option value="853" label="中国澳门">+853</option>
+								<option value="33" label="凡尔登">+33</option>
+								<option value="7" label="俄罗斯">+7</option>
+								<option value="212" label="摩洛哥">+212</option>
+								<option value="387" label="波黑">+387</option>
+								<option value="82" label="韩国">+82</option>
+							</select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 150px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-phoneRegionCode-4w-container"><span class="select2-selection__rendered" id="select2-phoneRegionCode-4w-container" title="+86">+86</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+							<input class="phoneNumNext validate[required,custom[phone]]" id="phoneNum" type="text" name="phoneNum" placeholder="手机号" style="width:150px;" autocomplete="off" maxlength="20" >
+							<i class="icon_phone"></i>
+						</div>
+					</li>
+				</ul>
+				<ul class="mt10">
+					<li class="w90 tr pb20">验证码：</li>
+					<li>
+						<div class="oh">
+							<div class="iptBox fl" id="verifyCode" style="width:92px;">
+								<!-- validate[required,custom[number]] -->
+								<input type="text" name="smsCode" id="smsCode" placeholder="验证码" maxlength="6" class="ml10 verifyCode_phone validate[required,custom[number]]" style="width:92px;" autocomplete="off">
+							</div>
+							<span class="btn-normal-blue fl getPhoneCode" id="sumbithq" style="padding: 0 10px;margin-left: 10px;" data-send-smscode="">获取验证码</span>
+							<span class="tipMsg hide"></span>
+
+						</div>
+					</li>
+				</ul>
+			</div>
+			<p>
+				<span id="hint1" style="font-size: 15px;color: orange;margin-left: 46px"></span>
+				<input type="button" class="btn-orange center mt20 phoneModifySend" id="confirm" value="确定" style="border:none;">
+			</p>
+		</form>
+	</div>
+
+
+
 </div>
-<div class="dialog_email_update hide">
-    <div data-form="">
-        <p class="f16 hide" style="border-bottom:1px #E5E5E5 solid;padding-bottom:10px;">
-            邮箱：<span data-show-email="" style="margin-left:5px;"></span>
-        </p>
-        <form action="https://www.itrip.com/main/user/bindEmail" class="action_update_email" method="post">
-            <div class="horiz mt25">
-                <ul class="mt10 f14">
-                    <li class="tr pb20" style="width:50px;">邮箱：</li>
-                    <li>
-                        <div class="oh">
-                            <div class="iptBox fl" id="verifyCode1" style="width:200px;">
-                                <input class="validate[required,custom[email]] email-text" type="text" name="email"
-                                       placeholder="邮箱" maxlength="30" style="width:200px;" autocomplete="off">
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <p>
-                <input type="submit" class="emailModifySend btn-orange center mt20" value="确定"
-                       style="border:none;cursor:pointer">
-            </p>
-        </form>
-    </div>
-</div>
+	<div class="dialog-light"  style="display: none" ><div class="dialog-light-title"><span class="dialog-light-title-l"></span><span class="dialog-light-title-c">提示</span><span class="dialog-light-title-r"></span></div><div class="dialog-light-cont"><div style="width:420px;height:80px;font-size:14px;text-align:center;">
+		<div>
+			修改关联手机后，您需要使用新手机号登录，原有手机号将无法登录。是否继续修改？
+		</div>
+		<div style="margin-top: 10px;">
+			<input data-dialog-confirm="1568428442277dhvy" id="update"  type="button" value="修改">
+
+		</div>
+	</div></div></div>
+
+	<div class="dialog_cont alertMsg" id="jb" style="padding: 50px; width: 350px; display: none;"><span  id="jbb" class="close" style="display:none;"></span><p class="f16 mb25 mt20 mb30 tc">基本信息修改成功!</p></div>
+
+
+
+
+</div></div></div>
+
 
 
 <input type="hidden" id="getUserInfoUrl" value="https://www.itrip.com/user/getBaseInfo">
 <!--个人信息修改-->
 <div class="dialog"
-     style="position: fixed; left: 50%; top: 50%; margin-left: -285.5px; margin-top: -215px; z-index: 99">
-    <span class="close" style="display: none"></span>
-    <div class="dialog-box">
-        <div class="dialog-cont">
-            <div class="dialog_basic_info hide" style="display: none">
-                <form action="https://www.itrip.com/user/updateBaseInfo" id="userBaseInforModifierForm" method="post">
-                    <input type="hidden" name="userId" value="700054">
-                    <p class="f16" style="border-bottom:1px #E5E5E5 solid;padding-bottom:10px;">基本信息</p>
-                    <div class="horiz mt25">
-                        <ul>
-                            <li class="w90 tr"><span class="orange">*</span>中文姓名：</li>
-                            <li><input class="validate[required,custom[chinese]] ipt nameZh"
-                                       data-errormessage-value-missing="* 请输入中文姓名" type="text" id="nameZh" name="nameZh"
-                                       value=""></li>
-                        </ul>
-                        <ul>
-                            <li class="w90 tr"><span class="orange">*</span>英文名：</li>
-                            <li><input class="validate[required,custom[onlyLetterSp]] ipt"
-                                       data-errormessage-value-missing="* 请输入英文名字" type="text" value="" id="givenNameEn"
-                                       name="givenNameEn"></li>
-                            <li class="w90 tr"><span class="orange">*</span>英文姓：</li>
-                            <li><input class="validate[required,custom[onlyLetterSp]] ipt"
-                                       data-errormessage-value-missing="* 请输入英文姓氏" type="text" value=""
-                                       id="familyNameEn" name="familyNameEn"></li>
-                        </ul>
-                        <ul>
-                            <li class="w90 tr">昵称：</li>
-                            <li><input class="ipt" type="text" value="likelove" id="nickName" name="nickName"><span
-                                    class="f12 grey">（社区统一昵称，不可用于登录，可随时修改）</span></li>
-                        </ul>
-                        <ul>
-                            <li class="w90 tr">性别：</li>
-                            <li>
-                                <select class="ipt" style="width:150px;" id="sex" name="sex">
-                                    <option value="-1">===请选择===</option>
-                                    <option value="0" selected="">男</option>
-                                    <option value="1">女</option>
-                                </select>
-                            </li>
-                        </ul>
-                        <ul>
-                            <li class="w90 tr">生日：</li>
-                            <li>
-                                <div class="ipt fl date">
-                                    <input type="text" class="birthday hasDatepicker" style="height:30px;" value=""
-                                           readonly="readonly" autocomplete="off" name="birthDay" id="dp1568104389516">
-                                    <span class="icon icon_Calendar"></span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="oh mt30">
-                        <input id="baseInfoSubmit" type="submit" class="btn-orange center f14 hand" value="提交"
-                               style="width:165px;line-height:40px;border: none;">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+	 style="position: fixed; left: 50%; top: 50%; margin-left: -285.5px; margin-top: -215px; z-index: 99">
+	<span class="close" id="updatexx" style="display:none;" ></span>
+	<div class="dialog-box">
+		<div class="dialog-cont">
+
+
+			<div class="dialog_basic_info hide" style="display: none">
+				<form action="" id="userBaseInforModifierForm" method="post">
+					<input type="hidden" name="userId" value="700054">
+					<p class="f16" style="border-bottom:1px #E5E5E5 solid;padding-bottom:10px;">基本信息</p>
+					<div class="horiz mt25">
+						<ul>
+							<li class="w90 tr"><span class="orange">*</span>中文姓名：</li>
+							<li><input class="validate[required,custom[chinese]] ipt nameZh"
+									   data-errormessage-value-missing="* 请输入中文姓名" type="text" id="nameZh" name="nameZh"
+									   value=""></li>
+						</ul>
+						<ul>
+							<li class="w90 tr"><span class="orange">*</span>英文名：</li>
+							<li><input class="validate[required,custom[onlyLetterSp]] ipt"
+									   data-errormessage-value-missing="* 请输入英文名字" type="text" value="" id="givenNameEn"
+									   name="givenNameEn"></li>
+							<li class="w90 tr"><span class="orange">*</span>英文姓：</li>
+							<li><input class="validate[required,custom[onlyLetterSp]] ipt"
+									   data-errormessage-value-missing="* 请输入英文姓氏" type="text" value=""
+									   id="familyNameEn" name="familyNameEn"></li>
+						</ul>
+						<ul>
+							<li class="w90 tr">昵称：</li>
+							<li><input class="ipt" type="text" value="likelove" id="nickName" name="nickName"><span
+									class="f12 grey">（社区统一昵称，不可用于登录，可随时修改）</span></li>
+						</ul>
+						<ul>
+							<li class="w90 tr">性别：</li>
+							<li>
+								<select class="ipt" style="width:150px;" id="sex" name="sex">
+									<option value="-1">===请选择===</option>
+									<option value="0" selected="selected" >男</option>
+									<option value="1" id="nv">女</option>
+								</select>
+							</li>
+						</ul>
+						<ul>
+							<li class="w90 tr">生日：</li>
+							<li>
+								<div class="ipt fl date">
+									<input type="text" class="birthday hasDatepicker" style="height:30px;" value=""
+										   readonly="readonly" autocomplete="off" name="birthDay" id="test1">
+									<span class="icon icon_Calendar"></span>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="oh mt30">
+						<input id="baseInfoSubmit" type="button" class="btn-orange center f14 hand" value="提交"
+							   style="width:165px;line-height:40px;border: none;">
+					</div>
+				</form>
+			</div>
+
+
+
+		</div>
+	</div>
 </div>
 
-<div class="dialog_change_password w560 hide">
-    <input type="hidden" value="https://www.itrip.com/user/resetPassword" id="form_action_url">
-    <form action="https://www.itrip.com/resetPassword" id="dialog_change_password_form">
-        <input type="hidden" name="userId" value="700077">
-        <p class="f16" style="border-bottom:1px #E5E5E5 solid;padding-bottom:10px;">密码修改</p>
-        <div class="horiz mt25">
-            <p style="text-align:center;" class="red tc" id="formMsg1"></p>
-            <p style="text-align:center;" class="green tc" id="formMsg2"></p>
-            <ul>
-                <li class="w150 tr"><span class="orange">*</span>原密码：</li>
-                <li><input class="validate[required,minSize[6]] ipt" type="password" name="currentPassword"></li>
-            </ul>
-            <ul>
-                <li class="w150 tr"><span class="orange">*</span>新密码：</li>
-                <li>
-                    <input class="validate[required,minSize[6]] ipt newPass" type="password" name="newPassword"
-                           id="newPassword">
-                    <div class="security_level">
-                        <p class="security_txt">安全性 - <label>无</label></p>
-                        <p style="height:3px;line-height:3px;">
-                            <span class="level_1"></span>
-                            <span class="level_2"></span>
-                            <span class="level_3"></span>
-                        </p>
-                    </div>
-                </li>
-                <li class="tip_newPass" style="padding-left:10px"></li>
-            </ul>
-            <ul>
-                <li class="w150 tr"><span class="orange">*</span>再次输入：</li>
-                <li><input class="validate[required,equals[newPassword]] ipt" type="password"></li>
-            </ul>
-        </div>
-        <div class="oh mt30">
-            <input type="submit" id="dialog_change_password_submit" class="btn-orange center f14 hand"
-                   style="width:165px;line-height:40px;border: none;" value="保存">
-        </div>
-    </form>
+<!--邮箱的绑定和修改-->
+<div class="dialog" style="position: fixed; left: 50%; top: 50%; margin-left: -166px; margin-top: -103px; z-index: 99;"><span class="close" style="display: none" id="emailclose"></span><div class="dialog-box"><div class="dialog-cont"><div class="dialog_email_update hide" id="emailhide" style="display: none;">
+	<div data-form="">
+		<p class="f16 hide" style="border-bottom:1px #E5E5E5 solid;padding-bottom:10px;">
+			邮箱：<span data-show-email="" style="margin-left:5px;"></span>
+		</p>
+		<form action="//www.itrip.com/main/user/bindEmail" class="action_update_email" method="post">
+			<div class="horiz mt25">
+				<ul class="mt10 f14">
+					<li class="tr pb20" style="width:50px;">邮箱：</li>
+					<li>
+						<div class="oh">
+							<div class="iptBox fl" id="verifyCode2" style="width:200px;">
+								<input class="validate[required,custom[email]] email-text" type="text" name="email" placeholder="邮箱" maxlength="30" style="width:200px;" autocomplete="off">
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<p>
+				<input type="submit" class="emailModifySend btn-orange center mt20" value="确定" style="border:none;cursor:pointer">
+			</p>
+		</form>
+	</div>
+</div></div></div></div>
+
+
+<div class="dialog_change_password w560 hide" style="display: none" id="pwdupdate" >
+	<input type="hidden" value="https://www.itrip.com/user/resetPassword" id="form_action_url">
+	<form action="" id="dialog_change_password_form">
+		<input type="hidden" name="userId" value="700077">
+		<p class="f16" style="border-bottom:1px #E5E5E5 solid;padding-bottom:10px;">密码修改</p>
+		<div class="horiz mt25">
+			<p style="text-align:center;" class="red tc" id="formMsg1"></p>
+			<p style="text-align:center;" class="green tc" id="formMsg2"></p>
+			<ul>
+				<li class="w150 tr"><span class="orange">*</span>原密码：</li>
+				<li><input class="validate[required,minSize[6]] ipt" type="password" name="currentPassword" id="password"></li>
+			</ul>
+			<ul>
+				<li class="w150 tr"><span class="orange">*</span>新密码：</li>
+				<li>
+					<input class="validate[required,minSize[6]] ipt newPass" type="password" name="newPassword"
+						   id="newPassword">
+					<div class="security_level">
+						<p class="security_txt">安全性 - <label id="wu">无</label></p>
+						<p style="height:3px;line-height:3px;">
+							<span class="level_1"></span>  <!--style="border-top: 3px #78c752 solid;-->
+							<span class="level_2"></span>
+							<span class="level_3"></span>
+						</p>
+					</div>
+				</li>
+				<li class="tip_newPass" style="padding-left:10px"></li>
+			</ul>
+			<ul>
+				<li class="w150 tr"><span class="orange">*</span>再次输入：</li>
+				<li><input class="validate[required,equals[newPassword]] ipt" type="password" id="repwd"></li>
+			</ul>
+		</div>
+		<div><p style="text-align: center;margin-left: 380px;font-size: 15px;color: orange" id="hint"></p></div>
+		<div class="oh mt30">
+
+			<input type="button" id="dialog_change_password_submit" class="btn-orange center f14 hand"
+				   style="width:165px;line-height:40px;border: none;" value="保存">
+		</div>
+	</form>
 </div>
 
-<div class="dialog_change_avatar w750 hide oh">
+<div class="dialog_change_avatar w750 hide oh" id="head"  >
 
-    <form action="https://www.itrip.com/main/user/updatePortait" id="dialog_change_portait_form"
-          enctype="multipart/form-data" target="hidden_frame" method="post">
-        <input type="file" id="upload_avatar_file" name="imgFile">
-        <div class="oh mb20">
-            <span class="f16 fl">修改头像</span>
-            <span id="upload_avatar" class="btn-orange fl f14 ml10 hand"
-                  style="line-height:22px;width:110px;">上传本地图片</span>
-            <span class="grey">（小于2M，支持jpg、png、bmp）</span>
-        </div>
-        <div class="jcropBox fl">
-            <div id="demo_result">
-                <img src="../个人中心个人信息_files/defaultPortrait.jpg" id="target" width="304" height="190">
-            </div>
+	<form action="https://www.itrip.com/main/user/updatePortait" id="dialog_change_portait_form"
+		  enctype="multipart/form-data" target="hidden_frame" method="post">
 
-        </div>
+		<div class="oh mb20">
+			<span class="f16 fl">修改头像</span>
+			<span id="upload_avatar" class="btn-orange fl f14 ml10 hand"
+				  style="line-height:22px;width:180px;"><input type="file" id="touxiang"></span>
+			<span class="grey">（小于2M，支持jpg、png、bmp）</span>
+		</div>
+		<div class="jcropBox fl">
+			<div id="demo_result">
+				<img src="../个人中心个人信息_files/defaultPortrait.jpg" id="target" width="304" height="190">
+			</div>
 
-        <div id="preview-pane" class="fl ml30">
-            <div class="fl" style="width:140px;">
-                <p class="tc grey mb20">pc端大头像</p>
-                <div class="preview-container">
-                    <img src="../个人中心个人信息_files/defaultPortrait.jpg" class="jcrop-preview" alt="Preview">
-                </div>
-            </div>
-            <div class="fl ml10" style="width:115px;">
-                <p class="tc grey mb20">pc端小头像</p>
-                <div class="preview-container2">
-                    <img src="../个人中心个人信息_files/defaultPortrait.jpg" class="jcrop-preview" alt="Preview">
-                </div>
-            </div>
-            <div class="fl ml20" style="width:90px;">
-                <p class="tc grey mb20">手机客户端头像</p>
-                <div class="preview-container3">
-                    <img src="../个人中心个人信息_files/defaultPortrait.jpg" class="jcrop-preview" alt="Preview">
-                </div>
-            </div>
-        </div>
-        <div class="mt25">
-            <input type="submit" style="line-height:28px;width:110px;border:none"
-                   class="btn-orange fr f14 mr30 hand avatar_submit" value="提交" id="dialog_change_portait_submit">
-        </div>
+		</div>
 
-        <input type="hidden" id="x" name="x">
-        <input type="hidden" id="y" name="y">
-        <input type="hidden" id="w" name="w">
-        <input type="hidden" id="h" name="h">
-        <iframe name="hidden_frame" id="hidden_frame" style="display:none" src="../个人中心个人信息_files/saved_resource.html">
-        </iframe>
-    </form>
+		<div id="preview-pane" class="fl ml30">
+			<div class="fl" style="width:140px;">
+				<p class="tc grey mb20">pc端大头像</p>
+				<div class="preview-container">
+					<img src="../个人中心个人信息_files/defaultPortrait.jpg" class="jcrop-preview" alt="Preview" id="jcrop-preview1">
+				</div>
+			</div>
+			<div class="fl ml10" style="width:115px;">
+				<p class="tc grey mb20">pc端小头像</p>
+				<div class="preview-container2">
+					<img src="../个人中心个人信息_files/defaultPortrait.jpg" class="jcrop-preview" alt="Preview" id="jcrop-preview2">
+				</div>
+			</div>
+			<div class="fl ml20" style="width:90px;">
+				<p class="tc grey mb20">手机客户端头像</p>
+				<div class="preview-container3">
+					<img src="../个人中心个人信息_files/defaultPortrait.jpg" class="jcrop-preview" alt="Preview" id="jcrop-preview3">
+				</div>
+			</div>
+		</div>
+		<div class="mt25">
+			<input type="button" style="line-height:28px;width:110px;border:none"
+				   class="btn-orange fr f14 mr30 hand avatar_submit" value="提交" id="dialog_change_portait_submit">
+		</div>
+
+		<input type="hidden" id="x" name="x">
+		<input type="hidden" id="y" name="y">
+		<input type="hidden" id="w" name="w">
+		<input type="hidden" id="h" name="h">
+		<iframe name="hidden_frame" id="hidden_frame" style="display:none" src="../个人中心个人信息_files/saved_resource.html">
+		</iframe>
+	</form>
 
 </div>
 
 
 <style>
-    .rightBar .linkphone a:hover {
-        text-decoration: underline;
-    }
+	.rightBar .linkphone a:hover {
+		text-decoration: underline;
+	}
 
-    .rightBar .linkqq a {
-        margin-bottom: 0px !important;
-        color: #fff;
-        padding-left: 10px;
-    }
+	.rightBar .linkqq a {
+		margin-bottom: 0px !important;
+		color: #fff;
+		padding-left: 10px;
+	}
 
-    .rightBar .linkqq a:hover {
-        background: #4d9def !important;
-    }
+	.rightBar .linkqq a:hover {
+		background: #4d9def !important;
+	}
 
-    .rightBar .linkqq, .linkonline {
-        display: block;
-        text-decoration: none;
-        position: relative;
-        margin-bottom: 0px;
-        overflow: hidden;
-        padding-bottom: 5px;
-    }
+	.rightBar .linkqq, .linkonline {
+		display: block;
+		text-decoration: none;
+		position: relative;
+		margin-bottom: 0px;
+		overflow: hidden;
+		padding-bottom: 5px;
+	}
 
-    .rightBar .linkqq div.del {
-        background: #4d9def;
-        width: 66px;
-        display: block;
-        line-height: 35px;
-        text-align: left;
-        position: absolute;
-        top: 0;
-        right: 30px;
-        z-index: 9;
-        opacity: 0;
-        filter: alpha(opacity=0);
-        transform: translateX(-10px);
-        transition: all .3s ease-in-out;
-    }
+	.rightBar .linkqq div.del {
+		background: #4d9def;
+		width: 66px;
+		display: block;
+		line-height: 35px;
+		text-align: left;
+		position: absolute;
+		top: 0;
+		right: 30px;
+		z-index: 9;
+		opacity: 0;
+		filter: alpha(opacity=0);
+		transform: translateX(-10px);
+		transition: all .3s ease-in-out;
+	}
 
-    .rightBar .linkqq div.del span {
-        border: 5px transparent solid;
-        border-left-color: #4D9DEF;
-        position: absolute;
-        right: 0;
-        top: 12px;
-    }
+	.rightBar .linkqq div.del span {
+		border: 5px transparent solid;
+		border-left-color: #4D9DEF;
+		position: absolute;
+		right: 0;
+		top: 12px;
+	}
 
-    .rightBar .linkqq i, .linkonline i {
-        position: absolute;
-        right: 0;
-        top: 0;
-        margin: 0;
-        z-index: 10;
-    }
+	.rightBar .linkqq i, .linkonline i {
+		position: absolute;
+		right: 0;
+		top: 0;
+		margin: 0;
+		z-index: 10;
+	}
 
-    .rightBar .linkqq:hover, .linkonline:hover, .right-qrcode:hover {
-        overflow: visible;
-        background: #2972bc;
-    }
+	.rightBar .linkqq:hover, .linkonline:hover, .right-qrcode:hover {
+		overflow: visible;
+		background: #2972bc;
+	}
 
-    .rightBar .linkqq:hover div.del, .linkonline:hover div.del, .right-qrcode:hover div.del {
-        transform: translateX(0);
-        opacity: 1;
-        filter: alpha(opacity=100);
-    }
+	.rightBar .linkqq:hover div.del, .linkonline:hover div.del, .right-qrcode:hover div.del {
+		transform: translateX(0);
+		opacity: 1;
+		filter: alpha(opacity=100);
+	}
 
-    .rightBar .linkqq:hover div.del span, .linkonline:hover .del span, .right-qrcode:hover .del span {
-        right: -10px;
-    }
+	.rightBar .linkqq:hover div.del span, .linkonline:hover .del span, .right-qrcode:hover .del span {
+		right: -10px;
+	}
 
-    .rightBar .linkhd {
-        display: block;
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 30px;
-        height: 160px;
-        background: url(//pic.itrip.com/img/rukou.jpg);
-    }
+	.rightBar .linkhd {
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 30px;
+		height: 160px;
+		background: url(//pic.itrip.com/img/rukou.jpg);
+	}
 
-    .rightBar .linkhd:hover {
-        background: url(//pic.itrip.com/img/rukou.jpg);
-    }
+	.rightBar .linkhd:hover {
+		background: url(//pic.itrip.com/img/rukou.jpg);
+	}
 
-    .right-qrcode {
-        position: relative;
-        padding: 10px 0;
-        height: 35px;
-        cursor: pointer;
-        overflow: hidden;
-    }
+	.right-qrcode {
+		position: relative;
+		padding: 10px 0;
+		height: 35px;
+		cursor: pointer;
+		overflow: hidden;
+	}
 
-    .right-qrcode .iconfont {
-        margin: 0;
-        top: 8px;
-        font-size: 24px;
-        color: #fff;
-    }
+	.right-qrcode .iconfont {
+		margin: 0;
+		top: 8px;
+		font-size: 24px;
+		color: #fff;
+	}
 
-    .right-qrcode div.del {
-        background: #fff;
-        width: 165px;
-        padding: 0;
-        box-shadow: 0px 0px 3px #eee;
-    }
+	.right-qrcode div.del {
+		background: #fff;
+		width: 165px;
+		padding: 0;
+		box-shadow: 0px 0px 3px #eee;
+	}
 
-    .rightBar .right-qrcode div.hide {
-        display: none;
-    }
+	.rightBar .right-qrcode div.hide {
+		display: none;
+	}
 
-    .rightBar .right-qrcode div.del span {
-        border: 5px transparent solid;
-        border-left-color: #fff;
-        position: absolute;
-        right: -10px;
-        top: 12px;
-    }
+	.rightBar .right-qrcode div.del span {
+		border: 5px transparent solid;
+		border-left-color: #fff;
+		position: absolute;
+		right: -10px;
+		top: 12px;
+	}
 
-    .rightBar .right-qrcode div.del .text {
-        position: absolute;
-        left: 0;
-        bottom: 20px;
-        width: 100%;
-        font-size: 14px;
-        line-height: 24px;
-        color: #000;
-        background-color: #fff;
-        text-align: center;
-    }
+	.rightBar .right-qrcode div.del .text {
+		position: absolute;
+		left: 0;
+		bottom: 20px;
+		width: 100%;
+		font-size: 14px;
+		line-height: 24px;
+		color: #000;
+		background-color: #fff;
+		text-align: center;
+	}
 
-    .vip_nav {
-        position: relative;
-        right: 0;
-        width: 30px;
-        height: 160px;
-        margin-bottom: 15px;
-    }
+	.vip_nav {
+		position: relative;
+		right: 0;
+		width: 30px;
+		height: 160px;
+		margin-bottom: 15px;
+	}
 
-    .vip_nav div, .vip_nav img {
-        height: 160px;
-    }
+	.vip_nav div, .vip_nav img {
+		height: 160px;
+	}
 
-    .vip_nav_info {
-        float: right;
-        background-color: transparent;
-        cursor: pointer;
-        display: inline-block;
-    }
+	.vip_nav_info {
+		float: right;
+		background-color: transparent;
+		cursor: pointer;
+		display: inline-block;
+	}
 
-    .vip_nav_index {
-        float: left;
-        display: none;
-        cursor: pointer;
-        position: absolute;
-        right: 51px;
-    }
+	.vip_nav_index {
+		float: left;
+		display: none;
+		cursor: pointer;
+		position: absolute;
+		right: 51px;
+	}
 
-    #rightbar-linktop {
-        margin-bottom: 0;
-    }
+	#rightbar-linktop {
+		margin-bottom: 0;
+	}
 </style>
 <div class="rightBar">
-    <div class="vip_nav clearfix" style="margin-bottom:0;">
-        <div class="vip_nav_info" style="background-color: transparent;">
-            <img src="../个人中心个人信息_files/vip_rightbar_v1.png">
-        </div>
-        <div class="vip_nav_index" style="display: none;">
-            <img src="../个人中心个人信息_files/vip_info_v1.png">
-        </div>
-    </div>
-    <div class="linkonline hand" href="javascript:;" rel="nofollow">
-        <div class="del">
-            <div class="pos_r">
-                <p id="product">产品咨询</p>
-                <p id="has_order">已有订单咨询</p>
-                <p id="vip_service">定制咨询服务</p>
-                <span></span>
-            </div>
-        </div>
-        <i class="icon icon_right_talk xiaoneng"></i>
-        <span style="position:relative;top:12px;" class="text-info">
+	<div class="vip_nav clearfix" style="margin-bottom:0;">
+		<div class="vip_nav_info" style="background-color: transparent;">
+			<img src="../个人中心个人信息_files/vip_rightbar_v1.png">
+		</div>
+		<div class="vip_nav_index" style="display: none;">
+			<img src="../个人中心个人信息_files/vip_info_v1.png">
+		</div>
+	</div>
+	<div class="linkonline hand" href="javascript:;" rel="nofollow">
+		<div class="del">
+			<div class="pos_r">
+				<p id="product">产品咨询</p>
+				<p id="has_order">已有订单咨询</p>
+				<p id="vip_service">定制咨询服务</p>
+				<span></span>
+			</div>
+		</div>
+		<i class="icon icon_right_talk xiaoneng"></i>
+		<span style="position:relative;top:12px;" class="text-info">
 			在线咨询
 		</span>
-    </div>
-    <div class="right-qrcode" style="height: 60px">
-        <i class="iconfont"></i>
-        <span style="position:relative;top:5px;">
+	</div>
+	<div class="right-qrcode" style="height: 60px">
+		<i class="iconfont"></i>
+		<span style="position:relative;top:5px;">
 			APP
 		</span>
-        <div class="del hide" data-lv="1" style="box-shadow: none;background: transparent;width:151px;top:-36px; "><img
-                src="../个人中心个人信息_files/qrc-app-3.png"><span style="top:50px;border-left-color: #2b3b48;"></span></div>
-        <div class="del" data-lv="15768" style="box-shadow: none;background: transparent;width:151px;top:-36px; "><img
-                src="../个人中心个人信息_files/qrc-app-3-15768.png"><span style="top:50px;border-left-color: #2b3b48;"></span>
-        </div>
-        <div class="del hide" data-lv="15769" style="box-shadow: none;background: transparent;width:151px;top:-36px; ">
-            <img src="../个人中心个人信息_files/qrc-app-3-15769.png"><span style="top:50px;border-left-color: #2b3b48;"></span>
-        </div>
-        <div class="del hide" data-lv="15783" style="box-shadow: none;background: transparent;width:151px;top:-36px; ">
-            <img src="../个人中心个人信息_files/qrc-app-3-15783.png"><span style="top:50px;border-left-color: #2b3b48;"></span>
-        </div>
-    </div>
-    <a class="linkphone" href="javascript:;" rel="nofollow" style="margin:10px 0 0;height:25px;">
-        <div class="del" style="top:-40px;">
-            <div class="pos_r">
-                <p class="mb5">免费语音(推荐)</p>
-                <p>
-                    <object><a href="https://www.itrip.com/about/app?source=rightnav" target="_blank"
-                               style="display: inline; margin: 0; color : #fff;">下载APP</a></object>
-                    - 点击客服 - 免费语音
-                </p>
-                <p>电话咨询</p>
-                <p>400-008-8177（仅限国内拨打）</p>
-                <p>86-028-85223501（定制服务专线）</p>
-                <span style="top:60px;"></span>
-            </div>
-        </div>
-        <i class="icon icon_right_phone" style="top:15px;"></i>
-    </a>
-    <div class="right-qrcode J_hb_qrcode" style="display: none;">
-        <i class="iconfont"></i>
-        <div class="del" style="top:-110px;">
-            <img src="../个人中心个人信息_files/qrc-hb.jpg"><span style="top:122px;"></span>
-        </div>
-    </div>
-    <div class="right-qrcode">
-        <i class="iconfont"></i>
-        <div class="del" style="top:-88px;">
-            <img src="../个人中心个人信息_files/qrc-gz-1.jpg"><span style="top:100px;"></span>
-            <div class="text">关注微信公众号</div>
-        </div>
-    </div>
-    <div class="rightBarBot">
-        <a class="linkTop" id="rightbar-linktop" href="javascript:;">
-            <div class="del">
-                <div class="pos_r">
-                    回到顶部
-                    <span></span>
-                </div>
-            </div>
-            <p><i class="icon icon_right_top"></i>TOP</p>
-        </a>
-    </div>
+		<div class="del hide" data-lv="1" style="box-shadow: none;background: transparent;width:151px;top:-36px; "><img
+				src="../个人中心个人信息_files/qrc-app-3.png"><span style="top:50px;border-left-color: #2b3b48;"></span></div>
+		<div class="del" data-lv="15768" style="box-shadow: none;background: transparent;width:151px;top:-36px; "><img
+				src="../个人中心个人信息_files/qrc-app-3-15768.png"><span style="top:50px;border-left-color: #2b3b48;"></span>
+		</div>
+		<div class="del hide" data-lv="15769" style="box-shadow: none;background: transparent;width:151px;top:-36px; ">
+			<img src="../个人中心个人信息_files/qrc-app-3-15769.png"><span style="top:50px;border-left-color: #2b3b48;"></span>
+		</div>
+		<div class="del hide" data-lv="15783" style="box-shadow: none;background: transparent;width:151px;top:-36px; ">
+			<img src="../个人中心个人信息_files/qrc-app-3-15783.png"><span style="top:50px;border-left-color: #2b3b48;"></span>
+		</div>
+	</div>
+	<a class="linkphone" href="javascript:;" rel="nofollow" style="margin:10px 0 0;height:25px;">
+		<div class="del" style="top:-40px;">
+			<div class="pos_r">
+				<p class="mb5">免费语音(推荐)</p>
+				<p>
+					<object><a href="https://www.itrip.com/about/app?source=rightnav" target="_blank"
+							   style="display: inline; margin: 0; color : #fff;">下载APP</a></object>
+					- 点击客服 - 免费语音
+				</p>
+				<p>电话咨询</p>
+				<p>400-008-8177（仅限国内拨打）</p>
+				<p>86-028-85223501（定制服务专线）</p>
+				<span style="top:60px;"></span>
+			</div>
+		</div>
+		<i class="icon icon_right_phone" style="top:15px;"></i>
+	</a>
+	<div class="right-qrcode J_hb_qrcode" style="display: none;">
+		<i class="iconfont"></i>
+		<div class="del" style="top:-110px;">
+			<img src="../个人中心个人信息_files/qrc-hb.jpg"><span style="top:122px;"></span>
+		</div>
+	</div>
+	<div class="right-qrcode">
+		<i class="iconfont"></i>
+		<div class="del" style="top:-88px;">
+			<img src="../个人中心个人信息_files/qrc-gz-1.jpg"><span style="top:100px;"></span>
+			<div class="text">关注微信公众号</div>
+		</div>
+	</div>
+	<div class="rightBarBot">
+		<a class="linkTop" id="rightbar-linktop" href="javascript:;">
+			<div class="del">
+				<div class="pos_r">
+					回到顶部
+					<span></span>
+				</div>
+			</div>
+			<p><i class="icon icon_right_top"></i>TOP</p>
+		</a>
+	</div>
 </div>
 <div class="dialog_Feedback hide" id="feedBackDialog">
-    <p class="f16 bold tc" data-title="title">意见反馈</p>
-    <textarea data-content="content" placeholder="欢迎提出宝贵的意见和建议。我们会认真阅读，你的支持是对我们最大的鼓励和帮助。" name="feedbackContent"
-              class="feedbackContent" maxlength="500"></textarea>
-    <div class="fr pos_r grey">
-        <span id="totalCount">您还可以输入500个字符</span>
-    </div>
-    <div class="pos_r FeedbackContact mt10">
-        <label>联系方式：</label>
-        <input type="text" placeholder="留下您的手机号或email" maxlength="30" style="width:200px;height: 20px;"
-               name="contactInfo" class="contactInfo">
-    </div>
-    <div class="oh mt10 hide" id="verifyCode0">
-        <div class="pos_r FeedbackContact fl">
-            <label>验&nbsp;&nbsp;证&nbsp;&nbsp;码：</label>
-            <input type="text" placeholder="验证码" maxlength="6" style="width:100px;height: 25px;" name="verifyCode">
-            <input type="hidden" id="showCode">
-        </div>
-        <img height="36" width="110" class="ml10 hand" border="0" title="看不清，请点我" id="img_verifycode_feedback">
-    </div>
-    <div class="oh mt10">
-        <span id="errTip" class="warnning" style="color: #fda814; line-height: 21px; "></span>
-    </div>
-    <div class="oh mt10">
-        <a href="javascript:;" class="btn-normal-blue fr w90" id="save">提交</a>
-        <a href="javascript:;" class="btn-white fr w90 mr10" id="cancelBut">取消</a>
-    </div>
+	<p class="f16 bold tc" data-title="title">意见反馈</p>
+	<textarea data-content="content" placeholder="欢迎提出宝贵的意见和建议。我们会认真阅读，你的支持是对我们最大的鼓励和帮助。" name="feedbackContent"
+			  class="feedbackContent" maxlength="500"></textarea>
+	<div class="fr pos_r grey">
+		<span id="totalCount">您还可以输入500个字符</span>
+	</div>
+	<div class="pos_r FeedbackContact mt10">
+		<label>联系方式：</label>
+		<input type="text" placeholder="留下您的手机号或email" maxlength="30" style="width:200px;height: 20px;"
+			   name="contactInfo" class="contactInfo">
+	</div>
+	<div class="oh mt10 hide" id="verifyCode0">
+		<div class="pos_r FeedbackContact fl">
+			<label>验&nbsp;&nbsp;证&nbsp;&nbsp;码：</label>
+			<input type="text" placeholder="验证码" maxlength="6" style="width:100px;height: 25px;" name="verifyCode">
+			<input type="hidden" id="showCode">
+		</div>
+		<img height="36" width="110" class="ml10 hand" border="0" title="看不清，请点我" id="img_verifycode_feedback">
+	</div>
+	<div class="oh mt10">
+		<span id="errTip" class="warnning" style="color: #fda814; line-height: 21px; "></span>
+	</div>
+	<div class="oh mt10">
+		<a href="javascript:;" class="btn-normal-blue fr w90" id="save">提交</a>
+		<a href="javascript:;" class="btn-white fr w90 mr10" id="cancelBut">取消</a>
+	</div>
 </div>
 <div class="dialog_Feedback black hide" id="feedbackErrorDialog">
-    <div class="mod_layer_title bold f14">
-        <h3>提示</h3>
-    </div>
-    <div class="mod_layer_cont">
-        <div class="error_tip oh ml20 f14">
-            <p>感谢您的反馈，我们尽快答复您！</p>
-        </div>
-    </div>
+	<div class="mod_layer_title bold f14">
+		<h3>提示</h3>
+	</div>
+	<div class="mod_layer_cont">
+		<div class="error_tip oh ml20 f14">
+			<p>感谢您的反馈，我们尽快答复您！</p>
+		</div>
+	</div>
 </div>
+
 <div class="dialog_Feedback black hide" id="qaErrorDialog">
-    <div class="mod_layer_title bold f14">
-        <h3>提示</h3>
-    </div>
-    <div class="mod_layer_cont">
-        <div class="error_tip oh ml20 f14">
-            <p>提交成功，我们尽快答复您！</p>
-        </div>
-    </div>
+	<div class="mod_layer_title bold f14">
+		<h3>提示</h3>
+	</div>
+	<div class="mod_layer_cont">
+		<div class="error_tip oh ml20 f14">
+			<p>提交成功，我们尽快答复您！</p>
+		</div>
+	</div>
 </div>
 
 
 </div>
+
+
+<script src="../layDate-v5.0.9/layDate-v5.0.9/laydate/laydate.js"></script>
+<script>
+    //执行一个laydate实例
+    laydate.render({
+        elem: '#test1' //指定元素
+    });
+</script>
 <script>
     $(".change_BisicInfo").click(function () {
         var div = "<div class=\"dialogMask\"></div>";
@@ -974,6 +1054,374 @@
         $(".dialog_basic_info.hide").css("display", "none");
         $(".close").css("display","none");
         $(".dialogMask").remove();
+    })
+</script>
+<script type="text/javascript">
+
+	$(function () {
+			$(".change_BisicInfo").click(function () {
+				//个人信息修改
+			    $.getJSON("/SelectUser",function (data) {
+						$("#nameZh").val(data[0].chinese_Name);
+					     var ename=data[0].english_Name;
+					     var name=ename.split(" ");
+					    $("#givenNameEn").val(name[0])
+
+
+						$("#familyNameEn").val(name[1]);
+					    $("#nickName").val(data[0].user_name);
+					    var sex=data[0].gender;
+
+					    if(sex!="男"){
+							$("#sex").val("1");
+						}
+					    var da=$("#test1").val(data[0].birthday);
+
+
+
+
+
+                })
+            })
+
+		//修改
+		$("#baseInfoSubmit").click(function () {
+			     	var aa= $(".show-phone").text();
+
+					var namezh=$("#nameZh").val();
+					var givenNameEn=$("#givenNameEn").val();
+					var familyNameEn=$("#familyNameEn").val();
+					var nickName=$("#nickName").val();
+					var sex=$("#sex").val();
+					var birthDay=$("#test1").val();
+
+					$.getJSON("/UpdateUser",{"nameZh":namezh,"givenNameEn":givenNameEn,"familyNameEn":familyNameEn,"nickName":nickName,"sex":sex,"birthDay":birthDay},function (data) {
+						if(data!=null){
+						   $("#updatexx").css("display","none")
+                            $(".dialog_basic_info.hide").css("display", "none");
+                            $(".close").css("display","none");
+                            $(".dialogMask").remove();
+                            var div = "<div class=\"dialogMask\"></div>";
+                            $("body").append(div);
+							$("#jb").css("display","block");
+                            $("#jbb").css("display","block");
+                            $(".close").click(function () {
+                                $(".close").css("display","none");
+
+                                $(".dialogMask").remove();
+                                $(".dialog_cont.alertMsg").css("display","none")
+                                $("#userNameZh").text(data.chinese_Name);
+                                $("#userNameEn").text(data.english_Name);
+                                $("#usernickName").text(data.user_name);
+                                $("#userBirthDay").text(data.birthday);
+                                $("#userSex").text(data.gender);
+                            })
+
+						}
+
+                    })
+
+        })
+
+		$.getJSON("/SelectUser",function (data) {
+
+            $("#userNameZh").text(data[0].chinese_Name);
+            $("#userNameEn").text(data[0].english_Name);
+            $("#usernickName").text(data[0].user_name);
+            $("#userBirthDay").text(data[0].birthday);
+            $("#userSex").text(data[0].gender);
+
+        })
+
+
+
+		//拿手机号
+		$.getJSON("/xsphone",function (data) {
+
+			document.getElementById("txtp").src=data.head_portrait;
+			$(".show-phone").text(data.phone_number);
+			$("#txtshann").text(data.phone_number)
+
+            document.getElementById("touz").src=data.head_portrait;
+        })
+		//更新手机
+		$(".update-phone").click(function () {
+
+            var div = "<div class=\"dialogMask\"></div>";
+            $("body").append(div);
+            $("#cc").css("display","block")
+			$(".dialog-light").css("display","block");
+
+			$(".close").click(function () {
+                $(".close").css("display","none");
+                $(".dialog-light").css("display","none");
+            })
+			$("#update").click(function () {
+                var text = $(".show-phone").text();
+
+                $("#phonenumber").text(text);
+                $(".dialog-light").css("display","none");
+                $(".close").css("display","none");
+                $("#uphide").css("display","block");
+                $("#cc").css("display","block");
+                $("#cc").click(function () {
+                    $("#cc").css("display","none");
+                    $("#uphide").css("display","none");
+                })
+            })
+				//获取验证码
+				$("#sumbithq").click(function () {
+
+					var phone=$("#phoneNum").val();
+
+					var phonenumber=$("#phonenumber").text();
+					if(phone==null||phone==""){
+						$("#hint1").text("手机号不能为空!")
+						return false;
+					}
+					else{
+
+                        $("#hint1").text("")
+					}
+					$.getJSON("/usercode",{"phone":phone},function (data) {
+						//获取验证码
+
+                    })
+
+
+
+                })
+
+				$("#confirm").click(function () {
+
+                    var phone=$("#phoneNum").val();
+
+
+
+                    if(phone==null||phone==""){
+                        $("#hint1").text("手机号不能为空!")
+                        return false;
+                    }
+
+
+                    var smsCode=$("#smsCode").val();
+                    if(smsCode==null||smsCode==""){
+                        $("#hint1").text("验证码不能为空!")
+                        return false;
+                    }
+                    else{
+                        $("#hint1").text("")
+                    }
+                    var phone2=$("#phonenumber").text();
+                    $.getJSON("/UpdatePhone",{"phone":phone,"ophone":phone2,"smsCode":smsCode},function (data) {
+							if(data>=0){
+                                $("#cc").css("display","none");
+
+                                $("#uphide").css("display","none");
+                                $(".show-phone").text(phone);
+                                $(".dialogMask").remove();
+							}
+
+                    })
+                })
+
+
+
+            })
+
+		
+		//邮箱 13187035361 123456
+		$.getJSON("/xsphone",function (data) {
+
+				if(data.email==null||data.email==""){
+                    $(".show-email").text("");
+                    $("#modifyEmail").text("绑定")
+
+					$("#modifyEmail").click(function () {
+                        var div = "<div class=\"dialogMask\"></div>";
+                        $("body").append(div);
+					    $("#emailhide").css("display","block");
+                        $("#emailclose").css("display","block");
+                        $("#emailclose").click(function () {
+                            $("#emailhide").css("display","none");
+                            $("#emailclose").css("display","none");
+                            $(".dialogMask").remove();
+                        })
+                    })
+
+				}
+				else{
+                    $(".show-email").text(data.email);
+                    $("#modifyEmail").text("修改")
+					$("#cc").css("display","none")
+				}
+        })
+
+
+		//显示头像
+
+		//修改头像
+		$("#updatehd").click(function () {
+			var  head=$("#head");
+            var div = "<div class=\"dialogMask\"></div>";
+            $("body").append(div);
+            $(".dialog-cont").append(head);
+            $("#head").css("display","block")
+			$(".close").css("display","block");
+            $("#emailclose").css("display","none");
+            $("#updatexx").css("display","none");
+            $(".close").click(function () {
+                $("#head").css("display","none")
+            })
+
+
+			$("#touxiang").change(function () {
+
+                var file=document.getElementById("touxiang").files[0];
+                console.log(file);
+       
+                var tp=file['name'];
+   				$.getJSON("/DisplayImg",{"tp":tp},function (data) {
+						document.getElementById("target").src="http://39.107.103.69/images/user/"+tp;
+                    	document.getElementById("jcrop-preview3").src="http://39.107.103.69/images/user/"+tp;
+                    	document.getElementById("jcrop-preview2").src="http://39.107.103.69/images/user/"+tp;
+						document.getElementById("jcrop-preview1").src="http://39.107.103.69/images/user/"+tp;
+                })
+				
+				$("#dialog_change_portait_submit").click(function () {
+						$.getJSON("/UpdatePicture",{"tp":tp},function (data) {
+							if(data>=0){
+                                $("#head").css("display","none")
+                                $(".dialogMask").remove();
+                                $("#cc").remove();
+                                document.getElementById("txtp").src="http://39.107.103.69/images/user/"+tp;
+                                document.getElementById("touz").src="http://39.107.103.69/images/user/"+tp;
+							}
+                        })
+                })
+				
+            })
+
+
+        })
+
+
+
+
+		$("#change_password_popup").click(function () {
+
+                var yc = "<div class=\"dialogMask\"></div>";
+                $("body").append(yc);
+				var div=$("#pwdupdate");
+				$(".dialog-cont").append(div);
+				$("#pwdupdate").css("display","block")
+				$(".close").css("display","block")
+				$("#updatexx").css("display","none");
+				$("#emailclose").css("display","none")
+				$(".close").click(function () {
+                    $(".close").css("display","none")
+                    $("#pwdupdate").css("display","none")
+                })
+
+            	$("#password").blur(function () {
+                    var password=$("#password").val();
+					if(password==""||password==null){
+                        $("#hint").text("原密码不能为空")
+                        $("#password").focus();
+						return false;
+					}
+					else{
+                        $("#hint").text("")
+					}
+                })
+
+
+				//密码修改
+               var reg1 = /(^\d{6,}$)|(^[a-zA-Z]{6,}$)|(^[^a-zA-Z0-9]{6,}$)/; //数字，字母或符号其中的一种
+              var reg7 = /\d*\D*((\d+[a-zA-Z]+[^0-9a-zA-Z]+)|(\d+[^0-9a-zA-Z]+[a-zA-Z]+)|([a-zA-Z]+\d+[^0-9a-zA-Z]+)|([a-zA-Z]+[^0-9a-zA-Z]+\d+)|([^0-9a-zA-Z]+[a-zA-Z]+\d+)|([^0-9a-zA-Z]+\d+[a-zA-Z]+))\d*\D*/; //数字字母字符任意组合
+
+			$("#newPassword").blur(function () {
+                    var newpwd= $("#newPassword").val();
+                    var pwd = document.getElementById("newPassword").value;
+
+
+					if(pwd.length<6){
+
+						$("#hint").text("密码长度不能少于6位")
+						return false;
+					}
+					else{
+                        $("#hint").text("")
+
+					}
+					if(reg1.test(newpwd)){
+
+                        //$("#hint").text("弱")
+						$("#wu").text("弱")
+						$("#wu").css("color","#eb1902")
+						$(".security_txt").css("color","#eb1902")
+						$(".level_1").css("border-top","3px #eb1902 solid")
+                        $(".level_2").css("border-top","3px #d0d0d0 solid")
+                        $(".level_3").css("border-top","3px #d0d0d0 solid")
+						return false;
+                    }
+					if(!reg7.test(newpwd)){
+                       //$("#hint").text("中")
+                        $("#wu").text("中")
+                        $("#wu").css("color","#f8cf15")
+                        $(".security_txt").css("color","#f8cf15")
+                        $(".level_1").css("border-top","3px #f8cf15 solid")
+                        $(".level_2").css("border-top","3px #f8cf15 solid")
+                        $(".level_3").css("border-top","3px #d0d0d0 solid")
+						return false;
+					}
+					else{
+                        //$("#hint").text("强")
+                        $("#wu").text("强")
+                        $("#wu").css("color","#78c752")
+                        $(".security_txt").css("color","#78c752")
+                        $(".level_1").css("border-top","3px #78c752 solid")
+                        $(".level_2").css("border-top","3px #78c752 solid")
+                        $(".level_3").css("border-top","3px #78c752 solid")
+					}
+
+
+                })
+
+            		$("#repwd").blur(function () {
+                		var password=$("#repwd").val();
+                		if(password==""||password==null){
+                    	$("#hint").text("再次输入不能为空")
+                    	$("#repwd").focus();
+                    	return false;
+                	}
+                	else{
+                    	$("#hint").text("")
+                	}
+            		})
+			
+				$("#dialog_change_password_submit").click(function () {
+                    var repwd=$("#repwd").val();
+                    var newpwd= $("#newPassword").val();
+                    var password=$("#password").val();
+                    $.getJSON("/UpdatePassWord",{"repwd":repwd,"newpwd":newpwd,"password":password},function (data) {
+								if(data==-1){
+                                    $("#hint").text("原始密码输入不正确!")
+                                    $("#password").focus();
+								}
+								else if(data==-2){
+                                    $("#hint").text("两次密码输入不一致!")
+								}
+								else{
+                                    $("#pwdupdate").css("display","none")
+                                    $(".close").css("display","none")
+                                    $(".dialogMask").remove();
+								}
+                    })
+                })
+
+        })
+
     })
 </script>
 </body>

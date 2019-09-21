@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<!-- saved from url=(0035)https://www.itrip.com/findpwd/index -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+	<meta http-equiv="X-UA-Compatible" content="edge"> 
+	
+	<meta name="description" content="">
+	<meta name="Keywords" content="">
+	<meta name="viewport" content="width=1200, initial-scale=0.8">
+	<meta name="applicable-device" content="pc">
+	<title>iTrip爱去 - 找回密码</title>
+	<link rel="shortcut icon" href="https://pic.itrip.com/img/favicon.ico">
+	<link rel="stylesheet" type="text/css" href="../找回密码_files/it_reset_201902190028.css">
+	<link rel="stylesheet" type="text/css" href="../找回密码_files/it_login_201902190028.css">
+	<script type="text/javascript" charset="utf-8" src="//g.alicdn.com/sd/ncpc/nc.js?t=2015052012"></script>
+	<script src="../js/jquery-1.8.3.js" type="text/javascript"></script>
+	<script src="//g.alicdn.com/sd/smartCaptcha/0.0.4/index.js"></script>
+	<script src="//g.alicdn.com/sd/quizCaptcha/0.0.1/index.js"></script>
+	<script type="text/javascript">
+		
+		$(function () {
+		    
+		    $("#checkAccount").click(function () {
+			   var phone=$("#ipt_account").val();
+                if(phone==""||phone==null){
+                    $("#hint").text("邮箱或手机号码能为空")
+                    $("#ipt_account").focus();
+                    document.getElementById("pe").style.border="1px red solid";
+
+                    return false;
+                }
+                else{
+
+					var ep= $("#ipt_account").val();
+					$.getJSON("/Determinethenumber",{"phone":ep},function(data) {
+								if(data.length>0){
+								    $.getJSON("/PhoneEmailUser",{"phone":ep},function (da) {
+
+
+											    $("#ylemail").text(da.email)
+                                    })
+                                    document.getElementById("step1").style.display="none";
+                                    document.getElementById("step2").style.display="block";
+
+                                    document.getElementById("cur").classList.remove("cur");
+                                    document.getElementById("yzsf").className+="cur";
+								}
+								else{
+                                    $("#hint").text("没有该手机号");
+                               		$("#ipt_account").focus();
+                               		document.getElementById("pe").style.border="1px red solid";
+									return false;
+                                }
+                    })
+
+
+				}
+
+            })
+
+			$("#spn_selectType").click(function () {
+
+                $("#spn_selectType").text("电子邮箱验证")
+                var aa=document.getElementById("mt10").clientHeight;//获取高度
+
+				if(aa<40){
+                    document.getElementById("mt10").style.height="75px";
+				}
+				else{
+
+                    document.getElementById("mt10").style.height="36px";
+                    document.getElementById("phoneve").style.display="none";
+
+                    document.getElementById("phoneStep3").style.display="none";
+                    document.getElementById("phoneStep4").style.display="none";
+                    document.getElementById("faison").style.display="block";
+
+				}
+
+
+			})
+
+            $("#mt11").click(function () {
+                var text = $("#mt11").text();
+                var ep= $("#ipt_account").val();
+                document.getElementById("mt10").style.height="36px";
+                document.getElementById("phoneve").style.display="block";
+                document.getElementById("phoneStep3").style.display="block";
+                document.getElementById("phoneStep4").style.display="block";
+				document.getElementById("faison").style.display="none";
+				$("#spn_selectType").text("手机验证")
+				$("#ylphone").text("你预留的手机号码是:")
+				$("#ylemail").text(ep);
+
+
+            })
+
+			$("#loginpwd").click(function () {
+                var ep= $("#ipt_account").val();
+                var code=$("#checkCode").val();
+				$.getJSON("/addUser",{"phone":ep,"code":code},function (data) {
+							if(data>0){
+                                document.getElementById("yzsf").classList.remove("cur");
+                                document.getElementById("phoneStep3").className+="cur";
+
+                                document.getElementById("step3").style.display="block";
+
+                                document.getElementById("step2").style.display="none";
+							}
+							else{
+							    $("#checkCode").focus();
+							    document.getElementById("phonesj").style.border="1px red solid";
+							    return false;
+
+							}
+                })
+
+
+
+
+
+           })
+
+			$("#btn_step3").click(function () {
+
+                var patrn=/^(\w){6,20}$/;
+				var pwd=$("#pwd").val();
+                var ep= $("#ipt_account").val();
+
+				var repwd=$("#rePwd").val();
+				if(pwd==null||pwd==""){
+                    $("#hint2").text("密码输入不能为空")
+					$("#pwd").focus();
+               		document.getElementById("cus_input0").style.border="1px red solid";
+					return false;
+				}
+				else{
+                    $("#pwd").blur();
+                    document.getElementById("cus_input0").style.border="";
+                }
+                if(!patrn.exec(pwd)){
+                    $("#hint2").text("密码输入格式不正确(6-20个字母,字符)")
+                    $("#pwd").focus();
+                    document.getElementById("cus_input0").style.border="1px red solid";
+                    return false;
+                }
+
+                if(repwd==null||repwd==""){
+                    $("#hint2").text("再次密码输入不能为空")
+                    $("#repwd").focus();
+                    document.getElementById("cus_input1").style.border="1px red solid";
+					return false;
+                }else{
+                    $("#hint2").text("")
+                    $("#pwd").blur();
+                    alert("ss")
+                    $.getJSON("/UpdatePwd",{"phone":ep,"pwd":pwd,"rePwd":repwd},function (data) {
+
+							if(data>0){
+                                document.getElementById("cus_input1").style.border="";
+                                document.getElementById("phoneStep3").classList.remove("cur");
+                                document.getElementById("phoneStep4").className+="cur";
+                                document.getElementById("step4").style.display="block";
+                                document.getElementById("step3").style.display="none";
+							}
+							else{
+                                $("#hint2").text("两次密码输入不一致")
+							}
+                    })
+
+
+				}
+
+
+            })
+
+
+
+			$("#checkCodeBtn").click(function () {
+			  //验证码
+                var ep= $("#ipt_account").val();
+				$.getJSON("/usercode",{"phone":ep},function (data) {
+
+                })
+            })
+
+
+        })
+	</script>
+
+
+<body id="bd_store">
+
+
+
+
+<div id="nTalk_post_hiddenElement" style="left: -10px; top: -10px; visibility: hidden; display: none; width: 1px; height: 1px;"></div>
+  <div class="login_header">
+	  <div class="wrap" style="width:900px;">
+	  		<a class="logo" href="https://www.itrip.com/"><img src="../找回密码_files/logo3.png" width="235" height="61" border="0"></a>
+	  	</div>
+  </div>
+  <div class="login_cont">
+    <div class="wrap clearfix" style="width:900px;background: url(//pic.itrip.com/img/ad/left_back.jpg) left 150px no-repeat;">
+	<div class="boxLoginRegister">
+		<div class="logo"></div>
+		<div class="boxLoginRegisterCont">
+			<div class="oh">
+				<div class="txtPanel">
+					<span class="line"></span>
+					<span class="txt">密码找回</span>
+					<span class="line"></span>
+				</div>
+			</div>
+			<div class="oh stepNumbar" id="stepnumber">
+				<ul>
+					<li class="cur" id="cur"><i>1</i>填写登录名</li>
+					<li id="yzsf"><i>2</i>验证身份</li>
+					<li id="faison" style="display: block"><i>3</i>发送链接</li>
+					<li id="phoneStep3" style="display:none;"><i>3</i>设置新密码</li>
+					<li id="phoneStep4" style="display:none;"><i>4</i>完成</li>
+				</ul>
+			</div>
+			<div class="regCont">
+				<div class="stepBox" >
+					<div class="step step1" id="step1" >
+						<form onsubmit="return false" id="checkUser__findpassword">
+							<div>
+								<div class="iptBox mt20 cus_input" id="pe">
+									<input type="text" data-valid="required" data-name="邮箱/手机号" value="17608486293" class="w200" placeholder="邮箱/手机号" id="ipt_account" >
+								<i class="cus_icon icon_right icon_center gray-red icon_error"></i></div>
+								<div  style="width:157px; margin-top: 10px; margin-bottom: 5px">
+									<!--<input type="hidden" id="sessionId" name="sessionId"/>
+									<input type="hidden" id="sig" name="sig"/>
+									<input type="hidden" id="token" name="token"/>
+									<input type="hidden" id="scene" name="scene"/>-->
+
+									<div id="your-dom-id" class="nc-container" ></div>
+								</div>
+
+								<div class="oh mt10" style="height:25px;">
+									<span id="hint" style="font-size: 15px;color: orange;"> </span>
+									<span class="warnning" id="errTip1"></span>
+								</div>
+							</div>
+						</form>
+						<a href="javascript:;" class="btn-normal-blue mt20 btn_step1" id="checkAccount">下一步</a>
+					</div>
+					<div class="step step2" style="display:none;" id="step2">
+						<div id="st1">
+							<div class="oh" style="height:100px;">
+								<span class="fl f14">验证方式</span>
+								<div class="iptBox fl typeValidate mt10" style="padding:0" id="mt10" >
+									<span id="spn_selectType"  >电子邮箱验证</span>
+									<i class="icon_down"></i>
+									<div class="othertype" id="mt11">手机验证</div>
+								</div>
+							</div>
+							<div class="oh checkCode" style="display:none;height:45px;" id="phoneve">
+								<form  id="phonecode_findpassword">
+								<div class="iptBox fl cus_input" id="phonesj">
+									<input type="text" data-valid="required number max[6]"  data-name="手机验证码" placeholder="手机验证码" style="width:100px;" autocomplete="off" id="checkCode" maxlength="6">
+									<input type="hidden" id="phoneRegionCode">
+									<input type="hidden" id="phoneNum">
+								<i class="cus_icon icon_right icon_center gray-red icon_error"></i></div>
+								</form>
+								<a href="javascript:;" class="btn-normal-blue fl ml10" style="font-size:12px;width:105px;" id="checkCodeBtn">获取验证码</a>
+								<a href="javascript:;" class="btn-normal-blue fl ml10" style="font-size:12px;width:120px;display:none;cursor: default;" id="checkCodeBtnClone"></a>
+								<label id="intervalTime" style="display:none;">60</label>
+							</div>
+							<div class="oh mt10">
+								<p class="tl hide">
+									长时间收不到验证码，试试
+									<a href="javascript:void(0);" class="sendVoiceCode">
+										语音接听验证码
+									</a>
+								</p>
+								<span id="ylphone">你预留的电子邮箱:</span><span id="ylemail"></span>
+								<span id="errTip2" class="warnning"></span>
+							</div>		
+							<p class="tl" id="lbl_account"></p>
+						</div>
+
+						<a href="javascript:;" class="btn-normal-blue mt20 btn_step2" id="loginpwd">下一步</a>
+					</div>
+					<div class="step step3 tc emailStep3" style="display:none;" id="fnd_step3">
+						<div>
+							<span class="icon_success" style="margin-top:30px;"></span>
+							<p class="f14" style="margin:30px 0" id="lbl_tips"></p>
+						</div>
+						<p class="tc">
+							如长时间未收到，请<a href="javascript:void(0);" class="blueLink" id="reSendEmail">点此重发</a>
+						</p>
+						<a href="https://www.itrip.com/" class="btn-normal-blue mt20 btn_step4">返回首页</a>
+					</div>
+					<div class="step step3 tc phoneStep3 hide" id="step3">
+						<form onsubmit="return false">
+							<div class="h120">
+								<div class="iptBox mt20 cus_input" id="cus_input0">
+									<label>新密码</label>
+									<input type="password" data-valid="required min[6] max[20]" data-name="密码" class="ml10" style="width:180px;" id="pwd" maxlength="20" placeholder="6-20位,字母与数字组合">
+								<i class="cus_icon icon_right icon_center gray-red icon_error"></i></div>
+								<div class="iptBox mt10 cus_input" id="cus_input1">
+									<label>再次输入</label>
+									<input type="password" data-valid="required min[6] max[20] phoneStep3" data-name="密码" class="ml10" style="width:180px;" id="rePwd" maxlength="20" placeholder="请再次输入密码">
+								<i class="cus_icon icon_right icon_center gray-red icon_error"></i></div>
+								<div></div>
+							</div>
+						</form>
+						<div class="oh mt10" style="text-align: left">
+							<span style="color: orange;font-size: 15px;" id="hint2" ></span>
+							<span id="errTip0" class="warnning"></span>
+						</div>						
+						<a href="javascript:;" class="btn-normal-blue mt20 btn_step3" id="btn_step3" style="display:block;">下一步</a>
+					</div>					
+					<div class="step step4 tc phoneStep4 hide" id="step4">
+						<div>
+							<span class="icon_success" style="margin-top:30px;"></span>
+							<p class="f14" style="margin:30px 0" id="lbl_tips0"></p>
+						</div>
+						<p class="tc">
+							新密码设置成功，请牢记您的新密码。
+						</p>
+						<a href="../Europe.html" class="btn-normal-blue mt20 btn_step4">返回首页</a>
+					</div>					
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	</div>
+
+
+	<div class="wrap tc grey">
+		<div class="mt30">
+			<a class="link_grey" href="https://www.itrip.com/about/introduction" target="_blank">公司简介</a> | 
+			<a class="link_grey" href="https://www.itrip.com/about/qualification" target="_blank">公司资质</a> | 
+			<a class="link_grey" href="https://www.itrip.com/about/contact" target="_blank">联系我们</a> | 
+			<a class="link_grey" href="https://www.itrip.com/findpwd/index#">加入我们</a> | 
+			<a class="link_grey" href="https://www.itrip.com/about/help" target="_blank">帮助中心</a> | 
+			<a class="link_grey" href="https://www.itrip.com/about/Q&amp;A">常见问题</a> | 
+			<a class="link_grey" href="https://www.itrip.com/findpwd/index#">网站条款</a> | 
+			<a class="link_grey" href="https://www.itrip.com/about/bookingProtocol">预定协议</a> | 
+			<a class="link_grey" href="https://www.itrip.com/about/cancelPolicy" target="_blank">修改和取消政策</a> | 
+			<a class="link_grey" href="https://www.itrip.com/findpwd/index#">客服服务</a> | 
+			<a class="link_grey" href="https://www.itrip.com/findpwd/index#">网站地图</a>
+		</div>
+		<p class="mt20">
+			copyright © 2019 iTrip.com | 备案号：蜀ICP备 10201151号-1
+		</p>
+	</div>
+</div>
+<!-- itrip统计 -->
+
+
+<script type="text/javascript">
+    var nc_token = ["FFFF0N00000000008369", (new Date()).getTime(), Math.random()].join(':');
+    var NC_Opt =
+        {
+            renderTo: "#your-dom-id",
+            appkey: "FFFF0N00000000008369",
+            scene: "nc_register",
+            token: nc_token,
+            customWidth: 300,
+            trans:{"key1":"code0"},
+            elementID: ["usernameID"],
+            is_Opt: 0,
+            language: "cn",
+            isEnabled: true,
+            timeout: 3000,
+            times:5,
+            apimap: {
+                // 'analyze': '//a.com/nocaptcha/analyze.jsonp',
+                // 'get_captcha': '//b.com/get_captcha/ver3',
+                // 'get_captcha': '//pin3.aliyun.com/get_captcha/ver3'
+                // 'get_img': '//c.com/get_img',
+                // 'checkcode': '//d.com/captcha/checkcode.jsonp',
+                // 'umid_Url': '//e.com/security/umscript/3.2.1/um.js',
+                // 'uab_Url': '//aeu.alicdn.com/js/uac/909.js',
+                // 'umid_serUrl': 'https://g.com/service/um.json'
+            },
+            callback: function (data) {
+                window.console && console.log(nc_token)
+                window.console && console.log(data.csessionid)
+                window.console && console.log(data.sig)
+            }
+        }
+    var nc = new noCaptcha(NC_Opt)
+    nc.upLang('cn', {
+        _startTEXT: "请按住滑块，拖动到最右边",
+        _yesTEXT: "验证通过",
+        _error300: "哎呀，出错了，点击<a href=\"javascript:__nc.reset()\">刷新</a>再来一次",
+        _errorNetwork: "网络不给力，请<a href=\"javascript:__nc.reset()\">点击刷新</a>",
+    })
+</script>
+
+    </div><div class="error_info" style="display: none; width: 0px;"></div><div class="error_info" style="display: none; width: 0px;"></div><div class="error_info" style="display: none; width: 0px;"></div><div class="error_info" style="display: none; width: 0px;"></div><div class="error_info" style="display: none; width: 0px;"></div><div><img height="1" width="1" style="border-style:none;display:none;" alt="" src="../找回密码_files/saved_resource"></div></body></html>

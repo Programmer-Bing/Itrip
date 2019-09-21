@@ -1,10 +1,12 @@
 package com.cssl.pojo.service;
 
+import com.cssl.pojo.po.Page;
 import com.cssl.pojo.po.User;
 import feign.hystrix.FallbackFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,9 +22,8 @@ public class DeptClientServiceFallbackFactory implements FallbackFactory<UserSer
             }
 
             @Override
-            public List<Map<String,Object>> findAll() {
-                System.out.println("查询失败了");
-                return new ArrayList<>();
+            public Page findAll(Map<String, Object> map) {
+                return new Page();
             }
 
             @Override
@@ -31,12 +32,37 @@ public class DeptClientServiceFallbackFactory implements FallbackFactory<UserSer
             }
 
             @Override
-            public List<Map<String, Object>> findProduct(Map<String, Object> map) {
-                return new ArrayList<>();
+            public Page findProduct(Map<String, Object> map) {
+                return new Page();
             }
 
             @Override
             public int productSize() {
+                return 0;
+            }
+
+            @Override
+            public int addProduct(Map<String, Object> map) {
+                return 0;
+            }
+
+            @Override
+            public int addtourismproducts(Map<String, Object> map) {
+                return 0;
+            }
+
+            @Override
+            public Map<String, Object> selectP_id(String product_Name) {
+                return new HashMap<>();
+            }
+
+            @Override
+            public int addhotel(Map<String, Object> map) {
+                return 0;
+            }
+
+            @Override
+            public int selProCount(Map<String, Object> map) {
                 return 0;
             }
         };
