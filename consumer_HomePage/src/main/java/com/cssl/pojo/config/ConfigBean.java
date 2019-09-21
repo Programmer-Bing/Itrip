@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ConfigBean {
 	
-	@Bean
+	/*@Bean
 	public IRule getRule() {
 		return new RoundRobinRule();
 		//return new RandomRule();
 		//return new RetryRule();
-	}
+	}*/
 }

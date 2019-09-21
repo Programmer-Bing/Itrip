@@ -243,7 +243,7 @@
 		</div>
 		<div class="fl per_icon ml30 f18 bold"><span>个人<br>中心</span></div>
 		<div class="fr topContact blue horiz">
-			<img src="../个人中心个人信息_files/phone_num_2.png" width="328" height="74" style="position: relative;top: -10px;">
+			<img src="http://39.107.103.69/images/user/phone_num_2.png" width="328" height="74" style="position: relative;top: -10px;">
 		</div>
 	</div>
 </div>
@@ -263,11 +263,11 @@
 			</div>
 			<div class="toux pos_r">
 				<p class="toux_img">
-					<img src="../个人中心个人信息_files/defaultPortrait1.jpg" width="90" height="90" border="0">
+					<img src="http://39.107.103.69/images/user/defaultPortrait1.jpg" width="90" height="90" border="0" id="touz">
 				</p>
 				<p class="toux_tit">
 				</p>
-				<p class="f14 mt10 blue">17608486293</p>
+				<p class="f14 mt10 blue" id="txtshann">17608486293</p>
 				<p></p>
 			</div>
 			<ul style="height: 467px;">
@@ -364,7 +364,7 @@
 								<li>邮箱：</li>
 								<li>
 									<span style="margin-left:5px;" class="show-email"></span>
-									<a href="javascript:void(0);" class="btn-orange  bing-email" id="modifyEmail">绑定</a>
+									<a href="javascript:void(0);" class="btn-orange  bing-email" id="modifyEmail">修改</a>
 									<div style="display:none;" data-form="">
 										<p>
 											<input type="text" placeholder="email" name="email" required="" email="">
@@ -412,10 +412,10 @@
 				</div>
 				<div class="fr tc">
 					<div class="userImg">
-						<img src="../个人中心个人信息_files/defaultPortrait1.jpg" width="120" height="120" border="0">
+						<img src="" width="120" height="120" border="0" id="txtp">
 					</div>
 					<span class="btn-orange change_avatar mt20 hand"
-						  style="line-height:25px;padding:0 17px;">修改头像</span>
+						  style="line-height:25px;padding:0 17px;" id="updatehd">修改头像</span>
 				</div>
 			</div>
 		</div>
@@ -609,16 +609,41 @@
 			</div>
 
 
+
 		</div>
 	</div>
 </div>
 
+<!--邮箱的绑定和修改-->
+<div class="dialog" style="position: fixed; left: 50%; top: 50%; margin-left: -166px; margin-top: -103px; z-index: 99;"><span class="close" style="display: none" id="emailclose"></span><div class="dialog-box"><div class="dialog-cont"><div class="dialog_email_update hide" id="emailhide" style="display: none;">
+	<div data-form="">
+		<p class="f16 hide" style="border-bottom:1px #E5E5E5 solid;padding-bottom:10px;">
+			邮箱：<span data-show-email="" style="margin-left:5px;"></span>
+		</p>
+		<form action="//www.itrip.com/main/user/bindEmail" class="action_update_email" method="post">
+			<div class="horiz mt25">
+				<ul class="mt10 f14">
+					<li class="tr pb20" style="width:50px;">邮箱：</li>
+					<li>
+						<div class="oh">
+							<div class="iptBox fl" id="verifyCode2" style="width:200px;">
+								<input class="validate[required,custom[email]] email-text" type="text" name="email" placeholder="邮箱" maxlength="30" style="width:200px;" autocomplete="off">
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<p>
+				<input type="submit" class="emailModifySend btn-orange center mt20" value="确定" style="border:none;cursor:pointer">
+			</p>
+		</form>
+	</div>
+</div></div></div></div>
 
 
-
-<div class="dialog_change_password w560 hide">
+<div class="dialog_change_password w560 hide" style="display: none" id="pwdupdate" >
 	<input type="hidden" value="https://www.itrip.com/user/resetPassword" id="form_action_url">
-	<form action="https://www.itrip.com/resetPassword" id="dialog_change_password_form">
+	<form action="" id="dialog_change_password_form">
 		<input type="hidden" name="userId" value="700077">
 		<p class="f16" style="border-bottom:1px #E5E5E5 solid;padding-bottom:10px;">密码修改</p>
 		<div class="horiz mt25">
@@ -626,7 +651,7 @@
 			<p style="text-align:center;" class="green tc" id="formMsg2"></p>
 			<ul>
 				<li class="w150 tr"><span class="orange">*</span>原密码：</li>
-				<li><input class="validate[required,minSize[6]] ipt" type="password" name="currentPassword"></li>
+				<li><input class="validate[required,minSize[6]] ipt" type="password" name="currentPassword" id="password"></li>
 			</ul>
 			<ul>
 				<li class="w150 tr"><span class="orange">*</span>新密码：</li>
@@ -634,9 +659,9 @@
 					<input class="validate[required,minSize[6]] ipt newPass" type="password" name="newPassword"
 						   id="newPassword">
 					<div class="security_level">
-						<p class="security_txt">安全性 - <label>无</label></p>
+						<p class="security_txt">安全性 - <label id="wu">无</label></p>
 						<p style="height:3px;line-height:3px;">
-							<span class="level_1"></span>
+							<span class="level_1"></span>  <!--style="border-top: 3px #78c752 solid;-->
 							<span class="level_2"></span>
 							<span class="level_3"></span>
 						</p>
@@ -646,25 +671,27 @@
 			</ul>
 			<ul>
 				<li class="w150 tr"><span class="orange">*</span>再次输入：</li>
-				<li><input class="validate[required,equals[newPassword]] ipt" type="password"></li>
+				<li><input class="validate[required,equals[newPassword]] ipt" type="password" id="repwd"></li>
 			</ul>
 		</div>
+		<div><p style="text-align: center;margin-left: 380px;font-size: 15px;color: orange" id="hint"></p></div>
 		<div class="oh mt30">
-			<input type="submit" id="dialog_change_password_submit" class="btn-orange center f14 hand"
+
+			<input type="button" id="dialog_change_password_submit" class="btn-orange center f14 hand"
 				   style="width:165px;line-height:40px;border: none;" value="保存">
 		</div>
 	</form>
 </div>
 
-<div class="dialog_change_avatar w750 hide oh">
+<div class="dialog_change_avatar w750 hide oh" id="head"  >
 
 	<form action="https://www.itrip.com/main/user/updatePortait" id="dialog_change_portait_form"
 		  enctype="multipart/form-data" target="hidden_frame" method="post">
-		<input type="file" id="upload_avatar_file" name="imgFile">
+
 		<div class="oh mb20">
 			<span class="f16 fl">修改头像</span>
 			<span id="upload_avatar" class="btn-orange fl f14 ml10 hand"
-				  style="line-height:22px;width:110px;">上传本地图片</span>
+				  style="line-height:22px;width:180px;"><input type="file" id="touxiang"></span>
 			<span class="grey">（小于2M，支持jpg、png、bmp）</span>
 		</div>
 		<div class="jcropBox fl">
@@ -678,24 +705,24 @@
 			<div class="fl" style="width:140px;">
 				<p class="tc grey mb20">pc端大头像</p>
 				<div class="preview-container">
-					<img src="../个人中心个人信息_files/defaultPortrait.jpg" class="jcrop-preview" alt="Preview">
+					<img src="../个人中心个人信息_files/defaultPortrait.jpg" class="jcrop-preview" alt="Preview" id="jcrop-preview1">
 				</div>
 			</div>
 			<div class="fl ml10" style="width:115px;">
 				<p class="tc grey mb20">pc端小头像</p>
 				<div class="preview-container2">
-					<img src="../个人中心个人信息_files/defaultPortrait.jpg" class="jcrop-preview" alt="Preview">
+					<img src="../个人中心个人信息_files/defaultPortrait.jpg" class="jcrop-preview" alt="Preview" id="jcrop-preview2">
 				</div>
 			</div>
 			<div class="fl ml20" style="width:90px;">
 				<p class="tc grey mb20">手机客户端头像</p>
 				<div class="preview-container3">
-					<img src="../个人中心个人信息_files/defaultPortrait.jpg" class="jcrop-preview" alt="Preview">
+					<img src="../个人中心个人信息_files/defaultPortrait.jpg" class="jcrop-preview" alt="Preview" id="jcrop-preview3">
 				</div>
 			</div>
 		</div>
 		<div class="mt25">
-			<input type="submit" style="line-height:28px;width:110px;border:none"
+			<input type="button" style="line-height:28px;width:110px;border:none"
 				   class="btn-orange fr f14 mr30 hand avatar_submit" value="提交" id="dialog_change_portait_submit">
 		</div>
 
@@ -1034,21 +1061,21 @@
 	$(function () {
 			$(".change_BisicInfo").click(function () {
 				//个人信息修改
-			    $.getJSON("/PersonCenterSelect",function (data) {
-						$("#nameZh").val(data.chinese_Name);
-					     var ename=data.english_Name;
+			    $.getJSON("/SelectUser",function (data) {
+						$("#nameZh").val(data[0].chinese_Name);
+					     var ename=data[0].english_Name;
 					     var name=ename.split(" ");
 					    $("#givenNameEn").val(name[0])
 
 
 						$("#familyNameEn").val(name[1]);
-					    $("#nickName").val(data.user_name);
-					    var sex=data.gender;
+					    $("#nickName").val(data[0].user_name);
+					    var sex=data[0].gender;
 
 					    if(sex!="男"){
 							$("#sex").val("1");
 						}
-					    var da=$("#test1").val(data.birthday);
+					    var da=$("#test1").val(data[0].birthday);
 
 
 
@@ -1082,7 +1109,7 @@
                                 $(".close").css("display","none");
 
                                 $(".dialogMask").remove();
-                                $(".dialog_cont.alertMsg").remove();
+                                $(".dialog_cont.alertMsg").css("display","none")
                                 $("#userNameZh").text(data.chinese_Name);
                                 $("#userNameEn").text(data.english_Name);
                                 $("#usernickName").text(data.user_name);
@@ -1111,8 +1138,11 @@
 		//拿手机号
 		$.getJSON("/xsphone",function (data) {
 
-
+			document.getElementById("txtp").src=data.head_portrait;
 			$(".show-phone").text(data.phone_number);
+			$("#txtshann").text(data.phone_number)
+
+            document.getElementById("touz").src=data.head_portrait;
         })
 		//更新手机
 		$(".update-phone").click(function () {
@@ -1198,6 +1228,199 @@
 
 
             })
+
+		
+		//邮箱 13187035361 123456
+		$.getJSON("/xsphone",function (data) {
+
+				if(data.email==null||data.email==""){
+                    $(".show-email").text("");
+                    $("#modifyEmail").text("绑定")
+
+					$("#modifyEmail").click(function () {
+                        var div = "<div class=\"dialogMask\"></div>";
+                        $("body").append(div);
+					    $("#emailhide").css("display","block");
+                        $("#emailclose").css("display","block");
+                        $("#emailclose").click(function () {
+                            $("#emailhide").css("display","none");
+                            $("#emailclose").css("display","none");
+                            $(".dialogMask").remove();
+                        })
+                    })
+
+				}
+				else{
+                    $(".show-email").text(data.email);
+                    $("#modifyEmail").text("修改")
+					$("#cc").css("display","none")
+				}
+        })
+
+
+		//显示头像
+
+		//修改头像
+		$("#updatehd").click(function () {
+			var  head=$("#head");
+            var div = "<div class=\"dialogMask\"></div>";
+            $("body").append(div);
+            $(".dialog-cont").append(head);
+            $("#head").css("display","block")
+			$(".close").css("display","block");
+            $("#emailclose").css("display","none");
+            $("#updatexx").css("display","none");
+            $(".close").click(function () {
+                $("#head").css("display","none")
+            })
+
+
+			$("#touxiang").change(function () {
+
+                var file=document.getElementById("touxiang").files[0];
+                console.log(file);
+       
+                var tp=file['name'];
+   				$.getJSON("/DisplayImg",{"tp":tp},function (data) {
+						document.getElementById("target").src="http://39.107.103.69/images/user/"+tp;
+                    	document.getElementById("jcrop-preview3").src="http://39.107.103.69/images/user/"+tp;
+                    	document.getElementById("jcrop-preview2").src="http://39.107.103.69/images/user/"+tp;
+						document.getElementById("jcrop-preview1").src="http://39.107.103.69/images/user/"+tp;
+                })
+				
+				$("#dialog_change_portait_submit").click(function () {
+						$.getJSON("/UpdatePicture",{"tp":tp},function (data) {
+							if(data>=0){
+                                $("#head").css("display","none")
+                                $(".dialogMask").remove();
+                                $("#cc").remove();
+                                document.getElementById("txtp").src="http://39.107.103.69/images/user/"+tp;
+                                document.getElementById("touz").src="http://39.107.103.69/images/user/"+tp;
+							}
+                        })
+                })
+				
+            })
+
+
+        })
+
+
+
+
+		$("#change_password_popup").click(function () {
+
+                var yc = "<div class=\"dialogMask\"></div>";
+                $("body").append(yc);
+				var div=$("#pwdupdate");
+				$(".dialog-cont").append(div);
+				$("#pwdupdate").css("display","block")
+				$(".close").css("display","block")
+				$("#updatexx").css("display","none");
+				$("#emailclose").css("display","none")
+				$(".close").click(function () {
+                    $(".close").css("display","none")
+                    $("#pwdupdate").css("display","none")
+                })
+
+            	$("#password").blur(function () {
+                    var password=$("#password").val();
+					if(password==""||password==null){
+                        $("#hint").text("原密码不能为空")
+                        $("#password").focus();
+						return false;
+					}
+					else{
+                        $("#hint").text("")
+					}
+                })
+
+
+				//密码修改
+               var reg1 = /(^\d{6,}$)|(^[a-zA-Z]{6,}$)|(^[^a-zA-Z0-9]{6,}$)/; //数字，字母或符号其中的一种
+              var reg7 = /\d*\D*((\d+[a-zA-Z]+[^0-9a-zA-Z]+)|(\d+[^0-9a-zA-Z]+[a-zA-Z]+)|([a-zA-Z]+\d+[^0-9a-zA-Z]+)|([a-zA-Z]+[^0-9a-zA-Z]+\d+)|([^0-9a-zA-Z]+[a-zA-Z]+\d+)|([^0-9a-zA-Z]+\d+[a-zA-Z]+))\d*\D*/; //数字字母字符任意组合
+
+			$("#newPassword").blur(function () {
+                    var newpwd= $("#newPassword").val();
+                    var pwd = document.getElementById("newPassword").value;
+
+
+					if(pwd.length<6){
+
+						$("#hint").text("密码长度不能少于6位")
+						return false;
+					}
+					else{
+                        $("#hint").text("")
+
+					}
+					if(reg1.test(newpwd)){
+
+                        //$("#hint").text("弱")
+						$("#wu").text("弱")
+						$("#wu").css("color","#eb1902")
+						$(".security_txt").css("color","#eb1902")
+						$(".level_1").css("border-top","3px #eb1902 solid")
+                        $(".level_2").css("border-top","3px #d0d0d0 solid")
+                        $(".level_3").css("border-top","3px #d0d0d0 solid")
+						return false;
+                    }
+					if(!reg7.test(newpwd)){
+                       //$("#hint").text("中")
+                        $("#wu").text("中")
+                        $("#wu").css("color","#f8cf15")
+                        $(".security_txt").css("color","#f8cf15")
+                        $(".level_1").css("border-top","3px #f8cf15 solid")
+                        $(".level_2").css("border-top","3px #f8cf15 solid")
+                        $(".level_3").css("border-top","3px #d0d0d0 solid")
+						return false;
+					}
+					else{
+                        //$("#hint").text("强")
+                        $("#wu").text("强")
+                        $("#wu").css("color","#78c752")
+                        $(".security_txt").css("color","#78c752")
+                        $(".level_1").css("border-top","3px #78c752 solid")
+                        $(".level_2").css("border-top","3px #78c752 solid")
+                        $(".level_3").css("border-top","3px #78c752 solid")
+					}
+
+
+                })
+
+            		$("#repwd").blur(function () {
+                		var password=$("#repwd").val();
+                		if(password==""||password==null){
+                    	$("#hint").text("再次输入不能为空")
+                    	$("#repwd").focus();
+                    	return false;
+                	}
+                	else{
+                    	$("#hint").text("")
+                	}
+            		})
+			
+				$("#dialog_change_password_submit").click(function () {
+                    var repwd=$("#repwd").val();
+                    var newpwd= $("#newPassword").val();
+                    var password=$("#password").val();
+                    $.getJSON("/UpdatePassWord",{"repwd":repwd,"newpwd":newpwd,"password":password},function (data) {
+								if(data==-1){
+                                    $("#hint").text("原始密码输入不正确!")
+                                    $("#password").focus();
+								}
+								else if(data==-2){
+                                    $("#hint").text("两次密码输入不一致!")
+								}
+								else{
+                                    $("#pwdupdate").css("display","none")
+                                    $(".close").css("display","none")
+                                    $(".dialogMask").remove();
+								}
+                    })
+                })
+
+        })
 
     })
 </script>

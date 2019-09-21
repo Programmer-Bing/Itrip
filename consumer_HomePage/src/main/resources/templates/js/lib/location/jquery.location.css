@@ -1,0 +1,167 @@
+@charset "utf-8";
+/* CSS Document */
+input,ul,li,h3{ padding:0; margin:0;}
+ul,li{ list-style:none;}
+.p_ipt_txt{line-height:14px;}
+.f-left{
+	float: left;
+}
+.f-right{
+	float: right;
+}
+#popup_pane{ 
+	border:1px solid #7F9DB9; 
+	width:335px; 
+	position:absolute; 
+	z-index:10000; 
+	display:none; 
+	background:#fff; 
+	overflow:hidden;
+}
+#popup_pane h3{ 
+	font-size:12px; 
+	background:#67A1E1; 
+	color:#CFE3FB; 
+	line-height:25px; 
+	font-weight:400; 
+	padding:0 5px;
+}
+#popup_pane .country,#popup_pane .city{
+	background: url(title.png) 0 0 no-repeat;
+	width: 83px;
+	height: 21px;
+	color: #FFF;
+	line-height: 21px; 
+	margin-top: 10px;
+	padding-left: 15px;
+}
+#popup_pane_head{
+	position:relative;
+	height:30px;
+	margin:5px 5px 0 5px;
+}
+.popup_title{ 
+	height:27px;
+	position:absolute;
+	bottom:-1px;
+	overflow:hidden; 
+}
+.popup_title li{ 
+	float:left; 
+	height:27px; 
+	line-height:27px; 
+	padding:0 8px;
+	text-align:center;
+	font-size:12px; 
+	cursor:pointer;
+	color:#333;
+}
+.popup_title .cur{ 
+	background:#fff;
+	font-weight:bold;
+	color:#0065D9;
+}
+#popup_content{
+	padding:5px 5px 9px;
+	overflow:hidden;
+}
+#popup_content li{ 
+	margin:0;
+}
+#popup_content .cur{ 
+	display:block;
+}
+#popup_content li span{ 
+	float: left;
+	padding: 0 8px;
+	line-height: 25px;
+	font-size: 12px;
+	cursor: pointer;
+	text-align: left;
+	min-width: 65px;
+	color: #666;
+	transition: all .3s ease-in-out;
+}
+#popup_content li span:hover{
+	background: #93C9FF;
+	color: #0F3E6F;
+}
+#popup_content li p{
+	overflow: hidden;
+	position: relative;
+	padding: 5px 0 5px 20px; 
+}
+#popup_content li p i{
+	position: absolute;
+	left: 0;
+	top: 5px;
+	color: #0065D9;
+	font-weight: bold;
+	height: 25px;
+	line-height: 25px;
+	width: 20px;
+	text-align: center;
+}
+#popup_content li p span{
+	width: auto;
+	padding: 0 5px;
+}
+
+
+
+/* 键盘输入后模糊提示 */
+
+#air_down_tips{ 
+	border:1px solid #7E9DB9; 
+	width:210px; 
+	overflow:hidden; 
+	padding-bottom:3px; 
+	position:absolute; 
+	left:0; 
+	top:0; 
+	background:#fff; 
+	font-size:12px; 
+	z-index:100;
+}
+.a_top_title{ 
+	color:#fff; 
+	line-height:25px; 
+	height:25px; 
+	overflow:hidden; 
+	background:#67A1E1; 
+	margin-bottom:1px;
+	padding:0 5px;
+}
+#air_down_tips .tit_act{
+	background:#0053aa;
+}
+#a_error_info{ 
+	display:none;
+}
+#air_tips_info{ 
+	padding:0 1px; 
+	overflow:hidden; 
+	zoom:1; 
+	height:230px; 
+	overflow:hidden;
+}
+#air_tips_info li{ 
+	height:23px; 
+	line-height:23px; 
+	color:#0054AA; 
+	cursor:default; 
+	overflow:hidden; 
+	padding:0 5px;
+}
+#air_tips_info .cur{ 
+	background:#FFE6A6;
+}
+#air_b_pager{ 
+	border-top:1px dashed #7F9DB9; 
+	text-align:center; 
+	height:23px; 
+	line-height:23px; 
+	overflow:hidden; 
+	color:#808080; 
+	font-size:14px;
+}
