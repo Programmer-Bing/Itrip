@@ -40,4 +40,51 @@ public class UserServiceImpl implements UserService {
     public String Cs2(String name) {
         return ud.Cs2(name);
     }
+
+    @Override
+    public Map<String,Object> PhoneEmail(String phone) {
+
+        return  ud.PhoneEmail(phone);
+    }
+
+    @Override
+    public int UpdatePhone(Map<String, Object> map) {
+        return ud.UpdatePhone(map);
+    }
+
+    @Override
+    public List<User> UserLogin(Map<String, Object> map) {
+        return ud.UserLogin(map);
+    }
+
+
+    public List<User> UserLoginEmail(Map<String,Object> map){
+        return ud.UserLoginEmail(map);
+    }
+
+    @Override
+    public int UpdateUser(User uu) {
+        return ud.UpdateUser(uu);
+    }
+
+    @Override
+    public List<User> SelectUserName(String name) {
+        return ud.SelectUserName(name);
+    }
+
+    @Override
+    public int UpdatePhonePerson(Map<String, Object> map) {
+        return ud.UpdatePhonePerson(map);
+    }
+
+
+    @Override
+    public int UpdatePassword(Map<String, Object> map) {
+        return ud.UpdatePassword(map);
+    }
+
+    @Override
+    public int UpdatePicture(Map<String, Object> map) {
+        return ud.UpdatePicture(map);
+    }
 }

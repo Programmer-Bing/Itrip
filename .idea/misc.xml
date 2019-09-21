@@ -15,7 +15,6 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/consumer_80/pom.xml" />
-        <option value="$PROJECT_DIR$/itrip-Hotel/pom.xml" />
         <option value="$PROJECT_DIR$/provider_8001/pom.xml" />
       </set>
     </option>

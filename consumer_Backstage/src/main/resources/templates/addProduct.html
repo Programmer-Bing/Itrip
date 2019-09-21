@@ -25,22 +25,19 @@ $(function(){
 $("#product").change(function(){
 	var pid=0;
 	pid=parseInt($(this).val());
-	if(pid=="1"){
+	if(pid=="1" || pid=="2" || pid=="3"){
 		$("#productClass").remove();
 		var tr="";
 		tr+="";
 		tr+="<div id='productClass'>";
 		tr+="<div class='form-group'><div class='label'><label for='sitename'>旅游产品名字：</label>"
-		tr+="   </div><div class='field'><input type='text' class='input w50' name='Popular' id='Popular' size='50'placeholder='请输入旅游产品名字'data-validate='required:请输入旅游产品名字'/></div></div>"
+		tr+="   </div><div class='field'><input type='text' class='input w50' name='p_name' id='p_name' size='50'placeholder='请输入旅游产品名字'data-validate='required:请输入旅游产品名字'/></div></div>"
 		
 		tr+="<div class='form-group'><div class='label'<label for='itename'>游玩天数：</label></div>"
-		tr+="   <div class='field'><input type='ext' class='input w50'name='Popular'id='Popular'size='50'placeholder='请输入游玩天数'data-validate='required:请输入游玩天数'></div></div>"
-		
-		tr+="<div class='form-group'><div class='label'><label for='sitename'>购买人数：</label></div>"
-		tr+="    <div class='field'><input type='ext'class='input w50' name='Popular' id='opular'size='0' placeholder='输入购买人数'data-validate='required:请输入购买人数'></div></div>"
-		
+		tr+="   <div class='field'><input type='ext' class='input w50'name='Days_play'id='Days_play'size='50'placeholder='请输入游玩天数'data-validate='required:请输入游玩天数'></div></div>"
+
 		tr+="<div class='form-group'><div class='label'><label for='sitename'>价格：</label></div>"
-		tr+="    <div class='field'><input type='text' class='input w50' name='Popular'id='opular' size='0' placeholder='请输入价格' data-validate='equired:请输入价格'/></div></div>"
+		tr+="    <div class='field'><input type='text' class='input w50' name='price'id='price' size='0' placeholder='请输入价格' data-validate='equired:请输入价格'/></div></div>"
 
         tr+="<div class='form-group'><div class='label'><label for='sitename'>城市：</label></div>"
         tr+="    <div class='field'>"
@@ -56,8 +53,11 @@ $("#product").change(function(){
         tr+="</select></div></div>"
 
         tr+="<div class='form-group'><div class='label'><label for='sitename'>评论数：</label></div>"
-		tr+="    <div class='field'><input type='text' class='input w50'name='Popular' id='Popular'size='50'placeholder='请输入评论数'data-validate='required:请输入评论数'/></div></div>"
-		
+		tr+="    <div class='field'><input type='text' class='input w50'name='comments_Number' id='comments_Number'size='50'placeholder='请输入评论数'data-validate='required:请输入评论数'/></div></div>"
+
+        tr+="<div class='form-group'><div class='label'><label for='sitename'>购买人数：</label></div>"
+        tr+="    <div class='field'><input type='text' class='input w50'name='purchases_Number' id='purchases_Number'size='50'placeholder='请输入购买数'data-validate='required:请输入购买数'/></div></div>"
+
 		tr+="<div class='orm-group'><div class='label'><label for='sitename'>描述：</label></div>"
 		tr+="   <div class='field'><textarea rows='5' cols='40' id='describes' name='describes'></textarea></div></div>"
 		
@@ -78,54 +78,73 @@ $("#product").change(function(){
 	  
 		tr+="  <div class='form-group'><div class='label'><label for='sitename'>产品编号：</label></div>"
 		tr+="    <div class='field'><input type='text' class='input w50' name='Product_id' id='Product_id' size='50' placeholder='请输入产品编号' data-validate='required:请输入产品编号'/></div></div>"
-	  
-		tr+="  <div class='form-group'><div class='label'><label for='sitename'>图片：</label></div>"
-		tr+="    <div class='field'><input type='file' accept='image/*' multiple class='input w50' name='Product_id' id='Product_id' size='50' placeholder='请选择图片' data-validate='required:请选择图片'/></div></div>"
-		tr+="<div class='form-group'><div class='label'><label></label></div>"
+
+        tr+="  <div class='form-group'><div class='label'><label for='sitename'>显示图片：</label></div>"
+        tr+="    <div class='field'><input type='file' accept='image/*' class='input w50' name='img' id='img' size='50' placeholder='请选择图片' data-validate='required:请选择图片'/></div></div>"
+
+		tr+="  <div class='form-group'><div class='label'><label for='sitename'>图片集合：</label></div>"
+		tr+="    <div class='field'><input type='file' accept='image/*' multiple class='input w50' name='picture' id='picture' size='50' placeholder='请选择图片' data-validate='required:请选择图片'/></div></div>"
+
+        tr+="<div class='form-group'><div class='label'><label></label></div>"
         tr+="<div class='field'><button class='button bg-main icon-check-square-o' type='submit'> 提交</button></div></div>"
 		tr+="</div>";
 		$('.form-group:eq(0)').append(tr);
-	}else if(pid=="2"){
+	}else if(pid=="4"){
 		$("#productClass").remove();
 		var tr="";
 		tr+="";
 		tr+="<div id='productClass'>";
 		tr+="<div class='form-group'>"
-        tr+="<div class='label'><label for='sitename'>酒店名称：</label></div>"
+        tr+="<div class='label'><label for='sitename'>酒店名称:</label></div>"
         tr+="<div class='field'>"
-        tr+="  <input type='text' class='input w50' name='h_name' id='h_name' size='50' placeholder='请输入酒店名称' data-validate='required:请输入酒店名称'/>  </div></div>"
-	  
-		tr+="<div class='form-group'><div class='label'><label for='sitename'>产品ID：</label></div>"
-        tr+="<div class='field'><input type='text' class='input w50' name='Product_id' id='Product_id' size='50' placeholder='请输入产品ID' data-validate='required:请输入产品ID'/>  </div></div>"
-	  
-		tr+="<div class='form-group'><div class='label'><label for='sitename'>购买人数：</label></div>"
+        tr+="  <input type='text' class='input w50' name='p_name' id='p_name' size='50' placeholder='请输入酒店名称' data-validate='required:请输入酒店名称'/>  </div></div>"
+
+		tr+="<div class='form-group'><div class='label'><label for='sitename'>购买人数:</label></div>"
         tr+="<div class='field'><input type='text' class='input w50' name='purchases_Number' id='purchases_Number' size='50' placeholder='请输入购买人数' data-validate='required:请输入购买人数'/>  </div></div>"
 	  
-		tr+="<div class='form-group'><div class='label'><label for='sitename'>星级：</label></div>"
+		tr+="<div class='form-group'><div class='label'><label for='sitename'>星级:</label></div>"
         tr+="<div class='field'><input type='text' class='input w50' name='Star_class' id='Star_class' size='50' placeholder='星级' data-validate='required:星级'/>  </div></div>"
-	  
-		tr+="<div class='form-group'><div class='label'><label for='sitename'>所属城市：</label></div>"
-        tr+="<div class='field'><select name='cs_id' id='cs_id' class='input'  style='width:200px; line-height:17px;display:inline-block'>"
-        tr+="    <option value=''>选择</option><option value='1'>凯思恩</option>"
-        tr+="    <option value='2'>圣灵群岛</option><option value='3'>费沙岛</option>"
+
+        tr+="<div class='form-group'><div class='label'><label for='sitename'>价格:</label></div>"
+        tr+="<div class='field'><input type='text' class='input w50' name='price' id='price' size='50' placeholder='价格' data-validate='required:价格'/>  </div></div>"
+
+        tr+="<div class='form-group'><div class='label'><label for='sitename'>评分：</label>"
+        tr+="</div><div class='field'><input type='text' class='input w50' name='score' id='score' size='50' placeholder='请输入评分：' data-validate='required:请输入评分'/></div> </div>"
+
+        tr+="<div class='form-group'><div class='label'><label for='sitename'>所属城市：</label></div>"
+        tr+="<div class='field'><select name='citiesstates' id='citiesstates' class='input'  style='width:200px; line-height:17px;display:inline-block'>"
+        tr+="<option value='0'>选择</option>"
+        tr+="<option value='1'>冰岛</option>"
+        tr+="<option value='2'>阿克雷里</option>"
+        tr+="<option value='3'>布里斯班</option>"
+        tr+="<option value='4'>悉尼</option>"
+        tr+="<option value='5'>墨尔本</option>"
+        tr+="<option value='6'>圣灵群岛</option>"
+        tr+="<option value='7'>凯恩斯</option>"
         tr+="  </select></div></div>"
 	  
-		tr+="<div class='form-group'><div class='label'><label for='sitename'>描述：</label></div>"
+		tr+="<div class='form-group'><div class='label'><label for='sitename'>描述:</label></div>"
         tr+="<div class='field'><textarea id='describes' name='describes' rows='5' cols='40'></textarea></div></div>"
-	  
-		tr+="<div class='form-group'><div class='label'><label for='sitename'>图片：</label></div>"
+
+        tr+="<div class='form-group'><div class='label'><label for='sitename'>封面图片:</label></div>"
+        tr+="<div class='field'><input type='file' accept='image/*' class='input w50' name='img' id='img' size='50' placeholder='图片' data-validate='required:请选择图片'/></div></div>"
+
+		tr+="<div class='form-group'><div class='label'><label for='sitename'>图片集合:</label></div>"
         tr+="<div class='field'><input type='file' accept='image/*'  multiple class='input w50' name='picture' id='picture' size='50' placeholder='图片' data-validate='required:请选择图片'/></div></div>"
 	  
-		tr+="<div class='form-group'><div class='label'><label for='sitename'>地址：</label></div>"
+		tr+="<div class='form-group'><div class='label'><label for='sitename'>地址:</label></div>"
         tr+="<div class='field'><input type='text' class='input w50' name='Specific_address' id='Specific_address' size='50' placeholder='地址' data-validate='required:请输入地址'/></div></div>"
-	  
-		tr+="<div class='form-group'><div class='label'><label for='sitename'>预定须知：</label></div>"
+
+        tr+="<div class='form-group'><div class='label'><label for='sitename'>酒店优势:</label></div>"
+        tr+="<div class='field'><input type='text' class='input w50' name='tips' id='tips' size='50' placeholder='酒店优势' data-validate='required:酒店优势'/></div></div>"
+
+		tr+="<div class='form-group'><div class='label'><label for='sitename'>预定须知:</label></div>"
         tr+="<div class='field'><textarea id='Reservation_Notes' name='Reservation_Notes' rows='5' cols='40'></textarea></div></div>"
 		tr+="<div class='form-group'><div class='label'><label></label></div>"
         tr+="<div class='field'><button class='button bg-main icon-check-square-o' type='submit'> 提交</button></div></div>"
 		tr+="</div>";
 		$(".form-group:eq(0)").append(tr);
-	}else if(pid=="3"){
+	}else if(pid=="5"){
 		$("#productClass").remove();
 		var tr="";
 		tr+="<div id='productClass'>";
@@ -154,7 +173,7 @@ $("#product").change(function(){
 	  
 		tr+="<div class='form-group'><div class='label'><label for='sitename'>价格：</label>"
         tr+="</div><div class='field'><input type='text' class='input w50' name='price' id='price' size='50' placeholder='请输入价格：' data-validate='required:请输入价格'/></div> </div>"
-	  
+
 		tr+="<div class='form-group'><div class='label'><label for='sitename'>产品编号：</label></div>"
         tr+="<div class='field'><input type='text' class='input w50' name='Product_id' id='Product_id' size='50' placeholder='产品编号：' data-validate='required:请输入产品编号'/></div></div>"
 		tr+="<div class='form-group'><div class='label'><label></label></div>"
@@ -171,7 +190,7 @@ $("#product").change(function(){
 <div class="panel admin-panel">
   <div class="panel-head"><strong><span class="icon-key"></span> 添加产品</strong></div>
   <div class="body-content">
-    <form method="post" class="form-x" action="">
+    <form method="get" class="form-x" action="addProduct">
 	  <div class="form-group">
         <div class="label">
           <label for="sitename">产品分类：</label>

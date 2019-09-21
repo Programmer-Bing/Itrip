@@ -13,4 +13,14 @@ public interface ProductService {
     public List<Map<String,Object>> findProduct(Map<String,Object> map);
 
     public int productSize();
+
+    public int addProduct(Map<String,Object> map);
+
+    public int addtourismproducts(Map<String,Object> map);
+
+    public Map<String,Object> selectP_id(String product_name);
+
+    public int addhotel(Map<String,Object> map);
+
+    public int selProCount(Map<String,Object> map);
 }

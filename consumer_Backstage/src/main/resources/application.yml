@@ -9,39 +9,27 @@ spring:
     cache: false
     prefix: classpath:/templates/
     suffix: .html
-  jackson:
-    date-format: yyyy-MM-dd HH:mm:ss
-    time-zone: GMT+8
-    serialization:
-      #格式化输出
-      indent_output: true
-      #忽略无法转换的对象
-      fail_on_empty_beans: false
-    #设置空如何序列化
-    defaultPropertyInclusion: NON_EMPTY
-    deserialization:
-      #允许对象忽略json中不存在的属性
-      fail_on_unknown_properties: false
-    parser:
-      #允许出现特殊字符和转义符
-      allow_unquoted_control_chars: true
-      #允许出现单引号
-      allow_single_quotes: true
-#spring:
+
+  #spring:
   application:
-    name: microservice-consumer
+    name: backstage-consumer
 
 eureka:
   client:
     register-with-eureka: true
-    service-url: 
-      defaultZone: http://localhost:6001/eureka
+    service-url:
+      defaultZone: http://127.0.0.1:6001/eureka/
   instance:
-    instance-id: microservice-consumer-80
+    instance-id: backstage-consumer-80
     prefer-ip-address: true     #访问路径可以显示IP地址
 
 #注释后hystrix服务降级不可用
 feign:
-  httpclient:
-    connection-timeout: 30000
+  hystrix:
     enabled: true
+    command:
+      default:
+        execution:
+          isolation:
+            thread:
+              timeoutInMilliseconds: 20000

@@ -12,6 +12,53 @@
 	<link rel="stylesheet" type="text/css" href="../个人信息订单_files/it_reset_201902190028.css">
 	<link rel="stylesheet" type="text/css" href="../个人信息订单_files/it_uc_201902190028.css">
 	<link rel="stylesheet" type="text/css" href="../个人信息订单_files/it_ordershare_201902190028.css">
+	<script src="../js/jquery-1.8.3.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		$(function () {
+
+
+            //拿数据
+            $.getJSON("/GetSession",function (data) {
+                if(data!=null){
+
+
+                    $("#username").text(data.chinese_Name);
+
+
+                }
+
+
+            });
+
+            //拿手机号
+            $.getJSON("/xsphone",function (data) {
+
+
+
+                $("#txtshann").text(data.phone_number)
+
+                document.getElementById("touz").src=data.head_portrait;
+            })
+
+            //鼠标悬停事件
+            $("#user").mousemove(function () {
+                $(".down_list").css("display","block");
+            })
+            $("#user").mouseout(function () {
+                $(".down_list").css("display","none");
+            })
+
+            //退出登录
+            $("#btn_logout").click(function () {
+
+                $.getJSON("/logout",function (data) {
+                    window.location="../Europe.html"
+                })
+            })
+        })
+
+
+	</script>
 </head>
 <body><div id="nTalk_post_hiddenElement" style="left: -10px; top: -10px; visibility: hidden; display: none; width: 1px; height: 1px;"></div>   
 
@@ -62,16 +109,16 @@
 						</a>
 					</span>
 					<span class="line">|</span>
-					<span class="js_loginStatus" style="display:none;margin-left:0px;">
+					<span class="js_loginStatus" style="display:none;margin-left:0px;" id="logzc">
 						<span><a class="blue" href="javascript:void(0);" onclick="login()" rel="nofollow">登录</a></span><span>/</span> 
 						<span><a href="https://www.itrip.com/signup/index" rel="nofollow">注册</a></span> 
 					</span>
-					<span class="js_loginStatus" style="margin-left: 0px;"> 						
-						<span class="sw_syb fl pos_r" style="margin-left:0px;"><a class="blue display_name" href="https://www.itrip.com/user/index">xx</a><i class="sw_sj"></i>
+					<span class="js_loginStatus" style="margin-left: 0px;" id="user">
+						<span class="sw_syb fl pos_r" style="margin-left:0px;"><a class="blue display_name" href="爱去旅行个人信息主页面.html" id="username">xx</a><i class="sw_sj"></i>
 							<dl class="down_list">
-								<dd class="js_myOrder"><a href="https://www.itrip.com/user/orders" rel="nofollow" class="pos_r">我的订单<label></label></a></dd>
-								<dd class="js_myFavor"><a href="https://www.itrip.com/user/favor/all" rel="nofollow" class="pos_r">我的收藏 <label></label></a></dd>
-								<dd><a href="https://www.itrip.com/user/reward" rel="nofollow">我的奖金</a></dd>
+								<dd class="js_myOrder"><a href="个人信息订单.html" rel="nofollow" class="pos_r">我的订单<label></label></a></dd>
+								<dd class="js_myFavor"><a href="个人中心我的收藏.html" rel="nofollow" class="pos_r">我的收藏 <label></label></a></dd>
+								<dd><a href="个人中心我的奖金.html" rel="nofollow">我的奖金</a></dd>
 								<dd><a href="javascript:void(0);" id="btn_logout" onclick="logout()" rel="nofollow">退出登录</a></dd>
 							</dl>
 						</span>
@@ -190,11 +237,7 @@
 		</div>
 	</div>
 <div class="UC_header_fix_bg"></div>	
-<script type="text/javascript">
-	function logout() {
-		window.location.replace(accessRoot + "/login/logout");
-	} 
-</script>
+
 
 <input type="hidden" value="https://www.itrip.com/user/favor/remove/" id="favorCancleUrl">
 
@@ -209,57 +252,57 @@
    
 	<div class="UC_nav">
 			<div class="UC_nav_head">
-				<a href="https://www.itrip.com/user/index" style="color:#FFF;"><span class="icon icon_white_home"></span>
+				<a href="爱去旅行个人信息主页面.html" style="color:#FFF;"><span class="icon icon_white_home"></span>
 				我的主页
 				<i></i></a>
 			</div>
 			<div class="toux pos_r">
 				<p class="toux_img">
-					<img src="../个人信息订单_files/defaultPortrait1.jpg" width="90" height="90" border="0">
+					<img src="../个人信息订单_files/defaultPortrait1.jpg" width="90" height="90" border="0" id="touz">
 							</p>
 				<p class="toux_tit">
-				</p><p class="f14 mt10 blue">17608486293</p>
+				</p><p class="f14 mt10 blue" id="txtshann">17608486293</p>
 					<p></p>
 			</div>
-			<ul style="height: 345px;">
-				<a href="https://www.itrip.com/user/orders?pageNo=1">
+			<ul style="height:378px;" id="grid">
+				<a href="个人信息订单.html">
 					<li class="cur">
 						<span class="icon icon_black_list icon_white_list" curclass="icon_white_list"></span>
 						我的订单
 					</li>
 				</a>
-				<a href="https://www.itrip.com/user/review">
+				<a href="个人中心个人点评.html">
 					<li>
 						<span class="icon icon_black_pen" curclass="icon_white_pen"></span>
 						我的点评
 					</li>
 				</a>
-				<a href="https://www.itrip.com/user/baseInfo">
+				<a href="个人中心个人信息.html">
 					<li>
 						<span class="icon icon_black_uimg" curclass="icon_white_uimg"></span>
 						个人信息
 					</li>
 				</a>
-				<a href="https://www.itrip.com/user/passagerInfos">
+				<a href="个人中心常旅客管理.html">
 					<li>
 						<span class="icon icon_black_clk" curclass="icon_white_clk"></span>
 						常旅客管理
 					</li>
 				</a>
-				<a href="https://www.itrip.com/user/coupons">
+				<a href="个人中心优惠券.html">
 					<li>
 						<span class="icon icon_black_quan" curclass="icon_white_quan"></span>
 						我的优惠券
 					</li>
 				</a>
 				
-				<a href="https://www.itrip.com/user/reward">
+				<a href="个人中心我的奖金.html">
 					<li>
 						<span class="icon icon_black_dollor" curclass="icon_white_dollor"></span>
 						我的奖金
 					</li>
 				</a>
-				<a href="https://www.itrip.com/user/favor/all">
+				<a href="个人中心我的收藏.html">
 					<li>
 						<span class="icon icon_black_star" curclass="icon_white_star"></span>
 						我的收藏
@@ -275,16 +318,16 @@
 				<div class="uc_orderListHead horiz">
 					<ul>
 						<li class="tagSwichHeadItem tip_blue" style="cursor: pointer;">
-							<a href="https://www.itrip.com/user/orders/all">全部订单</a><label>0</label><i></i>
+							<a href="个人信息订单.html">全部订单</a><label>0</label><i></i>
 						</li>
 						<li class="tagSwichHeadItem " style="cursor: pointer;" id="lbl_unpaid">
-							<a href="https://www.itrip.com/user/orders/unpaid">待付款订单</a><label>0</label><i></i>
+							<a href="个人订单待付款订单.html">待付款订单</a><label>0</label><i></i>
 						</li>
 						<li class="tagSwichHeadItem " style="cursor: pointer;" id="lbl_unstart">
-							<a href="https://www.itrip.com/user/orders/unstart">未出行订单</a><label>0</label><i></i>
+							<a href="个人订单待出行订单.html">未出行订单</a><label>0</label><i></i>
 						</li>
 						<li class="tagSwichHeadItem " style="cursor: pointer;" id="lbl_unreview">
-							<a href="https://www.itrip.com/user/orders/noreview">待评价订单</a><label>0</label><i></i>
+							<a href="个人信息待评价订单.html">待评价订单</a><label>0</label><i></i>
 						</li>
 					</ul>
 					
@@ -301,10 +344,141 @@
 				
 
 
+	<div><p class="tc f18 mt20" id="xgxx" style="display: none">未能查询到相关信息</p></div>
+	<div class="tagSwichContItem"  id="tab_order_all" style="display: block">
 
-	<div class="tagSwichContItem" style="display: block" id="tab_order_all">
-		<p class="tc f18 mt20">未能查询到相关信息</p>
+		<div class="dataList_order mt10" style="border: none" >
+			<!--<ul class="dataList_order_head">
+			<li style="width: 890px; line-height: 22px; border-right: none;">
+					<span>2019/09/17</span>
+					<span style="margin-left: 20px;">订单号：<label class="grey">320653174</label></span>
+					<span style="margin-left: 20px;">支付状态：<label class="grey">待付款</label></span>
+					<div class="fr">
+						<span class="fl">总共3个产品</span>
+						<span class="fl  ml15">
+							总价：
+							<label class="orange bold f14">
+								<label class="js_curCode">RMB</label>&nbsp;
+								<label class="js_curMonery_exten" data-cid="12" data-exrates="{&quot;9&quot;:4.85,&quot;10&quot;:4.52,&quot;11&quot;:3.16,&quot;12&quot;:1.0,&quot;13&quot;:7.0887,&quot;14&quot;:0.23,&quot;15&quot;:5.0E-4,&quot;17&quot;:5.1632,&quot;16&quot;:1.6,&quot;21&quot;:8.8625,&quot;20&quot;:7.8646,&quot;23&quot;:0.06,&quot;22&quot;:7.1867,&quot;25&quot;:0.73,&quot;24&quot;:0.79,&quot;27&quot;:1.03,&quot;26&quot;:0.31}" data-price="1249.48">1249.48</label>
+							</label>
+							</span> <span class="fl  ml15">已付款： <label class="orange bold f14"> <label class="js_curCode">RMB</label>&nbsp;
+									<label class="js_curMonery_exten" data-cid="12" data-exrates="{&quot;9&quot;:4.85,&quot;10&quot;:4.52,&quot;11&quot;:3.16,&quot;12&quot;:1.0,&quot;13&quot;:7.0887,&quot;14&quot;:0.23,&quot;15&quot;:5.0E-4,&quot;17&quot;:5.1632,&quot;16&quot;:1.6,&quot;21&quot;:8.8625,&quot;20&quot;:7.8646,&quot;23&quot;:0.06,&quot;22&quot;:7.1867,&quot;25&quot;:0.73,&quot;24&quot;:0.79,&quot;27&quot;:1.03,&quot;26&quot;:0.31}" data-price="0.0">0</label>
+							</label>
+							</span>
+						<a class="btn-dark-orange fl ml15" href="https://www.itrip.com/pay/toPay?orderId=320653174" style="width: 71px; line-height: 22px;" target="_blank">立即付款</a>
+						<a class="tip_blue tc fl ml5" href="https://www.itrip.com/order/320653174" style="width: 71px; line-height: 22px;" target="_blank">订单详情</a>
+					</div>
+				</li>
+			</ul>-->
+			<!--<ul class="order_list">
+				<li>
+					<div class="fl">
+						<a href="https://www.itrip.com/p24108" target="_blank" style="width:122px;height:74px;display:inline-block;">
+							<img width="122" height="74" src="//pic2.itrip.com/p/20190308180532-standard-539.jpg?imageView2/5/w/122/h/74" alt=""></a>
+					</div>
+					<div class="fl ml20 w280 mt10">
+						<p class="grey">
+							产品编号：24108</p>
+						<p class="f14">
+							<a href="javascript:;" style="cursor:default;color:#333">仅夏季开放 女王豪宅 英国伦敦白金汉宫门票 皇家马厩参观可选 （皇家卫队换岗仪式+宫殿花园+中文语音导览器）</a>
+						</p>
+					</div>
+					<div class="fl ml20 w90 mt15">
+						<p class="grey">
+							出行时间</p>
+						<p>
+							2019/09/26</p>
+					</div>
+
+					<div class="fl ml20 w90 mt30">
+						<p class="blue">
+							<label class="js_curCode">RMB</label>&nbsp; <label class="js_curMonery_exten" data-cid="12" data-exrates="{&quot;9&quot;:4.85,&quot;10&quot;:4.52,&quot;11&quot;:3.16,&quot;12&quot;:1.0,&quot;13&quot;:7.0887,&quot;14&quot;:0.23,&quot;15&quot;:5.0E-4,&quot;17&quot;:5.1632,&quot;16&quot;:1.6,&quot;21&quot;:8.8625,&quot;20&quot;:7.8646,&quot;23&quot;:0.06,&quot;22&quot;:7.1867,&quot;25&quot;:0.73,&quot;24&quot;:0.79,&quot;27&quot;:1.03,&quot;26&quot;:0.31}" data-price="274.7375">274.74</label>
+						</p>
+					</div>
+					<div class="fl ml20 w120 mt30">待处理</div>
+
+
+					<div class="fl ml20" style="display: table; height: 80px;">
+						<div style="display: table-cell; vertical-align: middle;">
+							<p><a class="link_blue canselOrder" data-url="https://www.itrip.com/user/cancelItem/320653174/1888283" href="javascript:void(0)">取消</a></p>
+							<p><a class="link_blue" href="https://www.itrip.com/p24108">再次预定</a></p>
+						</div>
+					</div>
+				</li>
+			</ul>-->
+			<!--<ul class="order_list">
+				<li>
+					<div class="fl">
+						<a href="https://www.itrip.com/p24108" target="_blank" style="width:122px;height:74px;display:inline-block;">
+							<img width="122" height="74" src="//pic2.itrip.com/p/20190308180532-standard-539.jpg?imageView2/5/w/122/h/74" alt=""></a>
+					</div>
+					<div class="fl ml20 w280 mt10">
+						<p class="grey">
+							产品编号：24108</p>
+						<p class="f14">
+							<a href="javascript:;" style="cursor:default;color:#333">仅夏季开放 女王豪宅 英国伦敦白金汉宫门票 皇家马厩参观可选 （皇家卫队换岗仪式+宫殿花园+中文语音导览器）</a>
+						</p>
+					</div>
+					<div class="fl ml20 w90 mt15">
+						<p class="grey">
+							出行时间</p>
+						<p>
+							2019/09/26</p>
+					</div>
+
+					<div class="fl ml20 w90 mt30">
+						<p class="blue">
+							<label class="js_curCode">RMB</label>&nbsp; <label class="js_curMonery_exten" data-cid="12" data-exrates="{&quot;9&quot;:4.85,&quot;10&quot;:4.52,&quot;11&quot;:3.16,&quot;12&quot;:1.0,&quot;13&quot;:7.0887,&quot;14&quot;:0.23,&quot;15&quot;:5.0E-4,&quot;17&quot;:5.1632,&quot;16&quot;:1.6,&quot;21&quot;:8.8625,&quot;20&quot;:7.8646,&quot;23&quot;:0.06,&quot;22&quot;:7.1867,&quot;25&quot;:0.73,&quot;24&quot;:0.79,&quot;27&quot;:1.03,&quot;26&quot;:0.31}" data-price="274.7375">274.74</label>
+						</p>
+					</div>
+					<div class="fl ml20 w120 mt30">待处理</div>
+
+
+					<div class="fl ml20" style="display: table; height: 80px;">
+						<div style="display: table-cell; vertical-align: middle;">
+							<p><a class="link_blue canselOrder" data-url="https://www.itrip.com/user/cancelItem/320653174/1888284" href="javascript:void(0)">取消</a></p>
+							<p><a class="link_blue" href="https://www.itrip.com/p24108">再次预定</a></p>
+						</div>
+					</div>
+				</li>
+			</ul>-->
+			<!--<ul class="order_list">
+				<li>
+					<div class="fl">
+						<a href="javascript:;" style="cursor:default;width:122px;height:74px;display:inline-block;">
+							<img width="122" height="74" src="//pic2.itrip.com/p/20150706155408-small-651.jpg?imageView2/5/w/122/h/74" alt=""></a>
+					</div>
+					<div class="fl ml20 w280 mt10">
+						<p class="grey">
+							产品编号：13440</p>
+						<p class="f14">
+							<a href="javascript:;" style="cursor:default;color:#333">利宝完美境外保障—尊崇型(人在境外不可购买）</a>
+						</p>
+					</div>
+					<div class="fl ml20 w90 mt15">
+						<p class="grey">
+							起保时间</p>
+						<p>
+							2019/09/26</p>
+					</div>
+
+					<div class="fl ml20 w90 mt30">
+						<p class="blue">
+							<label class="js_curCode">RMB</label>&nbsp; <label class="js_curMonery_exten" data-cid="12" data-exrates="{&quot;9&quot;:4.85,&quot;10&quot;:4.52,&quot;11&quot;:3.16,&quot;12&quot;:1.0,&quot;13&quot;:7.0887,&quot;14&quot;:0.23,&quot;15&quot;:5.0E-4,&quot;17&quot;:5.1632,&quot;16&quot;:1.6,&quot;21&quot;:8.8625,&quot;20&quot;:7.8646,&quot;23&quot;:0.06,&quot;22&quot;:7.1867,&quot;25&quot;:0.73,&quot;24&quot;:0.79,&quot;27&quot;:1.03,&quot;26&quot;:0.31}" data-price="700.0">700</label>
+						</p>
+					</div>
+					<div class="fl ml20 w120 mt30">待处理</div>
+
+
+					<div class="fl ml20" style="display: table; height: 80px;">
+						<div style="display: table-cell; vertical-align: middle;">
+						</div>
+					</div>
+				</li>
+			</ul>-->
 		</div>
+		<p class="pagenation tr" style="margin-bottom: 6px;"><span>共 <label class="totalresult">1</label> 条</span><span>第<label class="curpage">1</label>页 / 共<label class="totlepage">1</label>页</span><span class="pagenation_str"><a class="num" href="javascript:;">&lt;&lt;</a><a class="prev" href="javascript:;">&lt;</a><a class="current num" href="https://www.itrip.com/user/orders/all?pageNo=1">1</a><a class="next" href="javascript:;">&gt;</a><a href="javascript:;" class="num">&gt;&gt;</a></span></p>
+	</div>
 
 	<div class="canse_box hide">
 		<div class="canse_tit f16">取消订单</div>
@@ -534,7 +708,155 @@
 
 
 </body>
+<script type="text/javascript">
+	var pageno=1;
+    var pagetotalpage=0;
+	$(function () {
 
+		syxs();
+
+    })
+
+
+	function  syxs() {
+        //查询订单
+        $.getJSON("/SelectOrder",function (data) {
+
+            if(true) {//data!=null
+                $("#xgxx").css("display", "none")
+                $("#tab_order_all").css("display", "block");
+
+                for (var i = 0; i < data.length; i++) {
+                    var offsetHeight = document.getElementById("grid").offsetHeight;
+
+                    if (offsetHeight > 400) {
+                        var heg = 2 * 150;
+                        document.getElementById("grid").style.height = heg + "px";
+                    }
+                    var da = data[i];
+
+                    var state = da.stt_id;
+                    var sta = "";
+                    if (state == 1) {
+                        sta = "待付款";
+                    } else if (state == 2) {
+                        sta = "待出行";
+                    } else {
+                        sta = "待评价";
+                    }
+                    if (da != null) {
+                        var li = "\t<ul class=\"dataList_order_head\" style='margin-top: 10px;border: 1px solid #dcdddf '>";
+                        li += "<li style=\"width: 890px; line-height: 22px; border-right: none;margin-top: 10px\">";
+                        li += "<span>" + da.submission_time + "</span>";
+                        li += "<span style=\"margin-left: 20px;\" class='ss'>订单号：<label class=\"grey0\" id='" + da.orderNumber + "'>" + da.orderNumber + "</label></span>";
+                        li += "<span style=\"margin-left: 20px;\">支付状态：<label class=\"grey\">" + sta + "</label></span>";
+                        li += "<div class=\"fr\">";
+                        li += "<span class=\"fl\">总共" + da.productnumb + "个产品</span>";
+                        li += "<span class=\"fl  ml15\">";
+                        li += "总价：";
+                        li += "<label class=\"orange bold f14\">";
+                        li += "<label class=\"js_curCode\">RMB</label>&nbsp;";
+                        li += "<label class=\"js_curMonery_exten\" data-cid=\"12\" data-exrates=\"{&quot;9&quot;:4.85,&quot;10&quot;:4.52,&quot;11&quot;:3.16,&quot;12&quot;:1.0,&quot;13&quot;:7.0887,&quot;14&quot;:0.23,&quot;15&quot;:5.0E-4,&quot;17&quot;:5.1632,&quot;16&quot;:1.6,&quot;21&quot;:8.8625,&quot;20&quot;:7.8646,&quot;23&quot;:0.06,&quot;22&quot;:7.1867,&quot;25&quot;:0.73,&quot;24&quot;:0.79,&quot;27&quot;:1.03,&quot;26&quot;:0.31}\" data-price=\"1249.48\">"+da.summoney+"</label>";
+                        li += "</label>";
+                        li += "</span> <span class=\"fl  ml15\">已付款： <label class=\"orange bold f14\"> <label class=\"js_curCode\">RMB</label>&nbsp;";
+                        li += "<label class=\"js_curMonery_exten\" data-cid=\"12\" data-exrates=\"{&quot;9&quot;:4.85,&quot;10&quot;:4.52,&quot;11&quot;:3.16,&quot;12&quot;:1.0,&quot;13&quot;:7.0887,&quot;14&quot;:0.23,&quot;15&quot;:5.0E-4,&quot;17&quot;:5.1632,&quot;16&quot;:1.6,&quot;21&quot;:8.8625,&quot;20&quot;:7.8646,&quot;23&quot;:0.06,&quot;22&quot;:7.1867,&quot;25&quot;:0.73,&quot;24&quot;:0.79,&quot;27&quot;:1.03,&quot;26&quot;:0.31}\" data-price=\"0.0\">" + da.accountpaid + "</label>\n";
+                        li += "</label>";
+                        li += "</span>";
+                        li += "<a class=\"btn-dark-orange fl ml15\" href=\"https://www.itrip.com/pay/toPay?orderId=320653174\" style=\"width: 71px; line-height: 22px;\" target=\"_blank\">立即付款</a>\n";
+                        li += "<a class=\"tip_blue tc fl ml5\" href=\"https://www.itrip.com/order/320653174\" style=\"width: 71px; line-height: 22px;\" target=\"_blank\">订单详情</a>\n";
+                        li += " </div>";
+                        li += "</li>";
+                        li += "</ul>";
+                        $(".dataList_order.mt10").append(li);
+
+                    }
+
+                }
+
+
+				var elementsByClassName = document.getElementsByClassName("grey0");
+                for (var i = 0; i <elementsByClassName.length ; i++) {
+
+					var ordernum=elementsByClassName[i].innerHTML;
+
+					$.getJSON("/SelectOrderProduct",{"ordernum":ordernum},function (data) {
+                        for (var j = 0; j <data.length; j++) {
+							var da=data[j];
+							 var sta =da.state;
+
+							
+							 var hint="";
+							 if (sta==1){
+                                 hint="待处理"
+							 }
+							 else{
+                                 hint="已取消"
+							 }
+                            var lii = "";
+                            lii += "<ul class=\"order_list\">";
+                            lii += "<li>";
+                            lii += "<div class=\"fl\">";
+                            lii += "<a href=\"https://www.itrip.com/p24108\" target=\"_blank\" style=\"width:122px;height:74px;display:inline-block;\">\n";
+                            lii += "<img width=\"122\" height=\"74\" src=\"//pic2.itrip.com/p/20190308180532-standard-539.jpg?imageView2/5/w/122/h/74\" alt=\"\"></a>\n";
+                            lii += "</div>";
+                            lii += "<div class=\"fl ml20 w280 mt10\">";
+                            lii += "<p class=\"grey\">";
+                            lii += "产品编号："+da.pp.productNumber+"</p>";
+                            lii += "<p class=\"f14\">";
+                            lii += "<a href=\"javascript:;\" style=\"cursor:default;color:#333\">"+da.pp.product_Name+"</a>\n";
+                            lii += "</p>";
+                            lii += "</div>";
+                            lii += "<div class=\"fl ml20 w90 mt15\">";
+                            lii += "<p class=\"grey\">";
+                            lii += "出行时间</p>";
+                            lii += "<p>";
+                            lii += ""+da.traveltime+"</p>";
+                            lii += "</div>";
+                            lii += "<div class=\"fl ml20 w90 mt30\">";
+                            lii += "<p class=\"blue\">";
+                            lii += "<label class=\"js_curCode\">RMB</label>&nbsp; <label class=\"js_curMonery_exten\" data-cid=\"12\" data-exrates=\"{&quot;9&quot;:4.85,&quot;10&quot;:4.52,&quot;11&quot;:3.16,&quot;12&quot;:1.0,&quot;13&quot;:7.0887,&quot;14&quot;:0.23,&quot;15&quot;:5.0E-4,&quot;17&quot;:5.1632,&quot;16&quot;:1.6,&quot;21&quot;:8.8625,&quot;20&quot;:7.8646,&quot;23&quot;:0.06,&quot;22&quot;:7.1867,&quot;25&quot;:0.73,&quot;24&quot;:0.79,&quot;27&quot;:1.03,&quot;26&quot;:0.31}\" data-price=\"274.7375\">"+da.pp.price+"</label>\n";
+                            lii += "</p>";
+                            lii += "</div>";
+                            lii += "<div class=\"fl ml20 w120 mt30\">"+hint+"</div>";
+                            lii += "<div class=\"fl ml20\" style=\"display: table; height: 80px;\">";
+                            lii += "<div style=\"display: table-cell; vertical-align: middle;\">";
+                            lii += "<p><a class=\"link_blue canselOrder\" data-url=\"https://www.itrip.com/user/cancelItem/320653174/1888283\" href=\"javascript:void(0)\">取消</a></p>\n";
+                            lii += "<p><a class=\"link_blue\" href=\"https://www.itrip.com/p24108\">再次预定</a></p>\n";
+                            lii += "</div>";
+                            lii += "</div>";
+                            lii += "</li>";
+                            lii += "</ul>";
+						
+                             var  clientHeight = document.getElementById("grid").clientHeight;
+
+							document.getElementById("grid").style.height=clientHeight+50+"px";
+                            $("#"+da.oo.orderNumber).parent().parent().parent().append(lii);
+                        }
+                    })
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            }
+        })
+
+    }
+</script>
 </html>
 
 
