@@ -1,7 +1,6 @@
 package com.cssl.pojo.service;
 
 import com.cssl.pojo.HomePage_product;
-import com.cssl.pojo.po.OrderXQ;
 import com.cssl.pojo.po.Orders;
 import com.cssl.pojo.po.User;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -100,24 +99,5 @@ public interface HomePageClientService {
 
     @RequestMapping(method = RequestMethod.GET,value = "/SelectUserID")
     public List<Orders> SelectUser(@RequestParam(value = "1") int id);
-
-    @RequestMapping(method = RequestMethod.GET,value = "/SelectOrderProdoct")
-    public List<Orders> SelectOrderProdoct(@RequestParam("1") int userid) ;
-
-
-    @RequestMapping(method = RequestMethod.GET,value = "/SelectOrderNumb")
-    public List<Orders> SelectOrderNumb(@RequestParam(value = "1") int userid);
-
-
-
-    @RequestMapping(method = RequestMethod.GET,value = "/SelectOrderXQ")
-    public List<OrderXQ> SelectOrderProduct( @RequestParam(value = "ordernum") String ordernum);
-
-
-
-
-
-
-
 
 }
