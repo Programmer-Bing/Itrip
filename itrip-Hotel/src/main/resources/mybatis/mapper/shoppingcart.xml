@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cssl.pojo.dao.shoppingcartDao">
+
+    <insert id="addCart" parameterType="map">
+        INSERT INTO shoppingcart VALUES(#{cart.sht_id},#{cart.Product_id},1,#{cart.Original_price},100,#{cart.Travle_date},#{cart.Leavingshop_date},1,0,0,0,0);
+    </insert>
+
+    <insert id="addRoom" parameterType="map">
+        <if test="room.rooms!=null">
+            INSERT INTO roomtype VALUES
+            <foreach collection="room.rooms" item="item" separator=",">
+                (0,#{item.rif_id},#{item.rif_num},#{room.sht_id})
+            </foreach>
+        </if>
+    </insert>
+
+</mapper>
