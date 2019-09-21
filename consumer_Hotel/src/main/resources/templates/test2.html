@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>使用 layDate 独立版</title>
+    <link rel="stylesheet" href="static/layui/css/layui.css">
+    <script src="static/layui/layui.all.js"></script>
+    <script src="js/jquery-3.2.1.js"></script>
+</head>
+<body>
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form class="form-horizontal m" id="form-testArticle-edit" th:object="${testArticle}">
+        <input id="articleId" name="articleId" th:field="*{articleId}"  type="hidden">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">预计结束日期：</label>
+            <div class="col-sm-8">
+                <!--<input id="planEndDate" name="planEndDate" th:field="*{planEndDate}" class="form-control" type="text">-->
+                <input type="text"  placeholder="计划任务结束日期" class="layui-input form-control " th:value="${#dates.format(testArticle.planEndDate,'yyyy-MM-dd HH:mm:ss')}" id="planEndDate" name="planEndDate">
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    //注意：
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#planEndDate', //指定元素
+            done:function(value,date){//value, date, endDate点击日期、清空、现在、确定均会触发。回调返回三个参数，分别代表：生成的值、日期时间对象、结束的日期时间对象
+                //其他操作
+            }
+        });
+    });
+</script>
+</body>
+</html>

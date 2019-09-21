@@ -29,7 +29,7 @@
     <meta name="description"
           content="iTrip爱去为您提供意大利一日游,其中包括圣吉米尼亚诺、托斯卡纳酒庄以及锡耶纳,将欣赏到CHIANTI CLASSICO（经典康帝）酒区,坎波广场内市政厅以及蒙特里久尼城堡,全程导游配送提供午餐.">
     <meta name="Keywords" content="意大利一日游,圣吉米尼亚诺一日游,托斯卡纳酒庄一日游,锡耶纳一日游">
-    <title>意大利一日游_圣吉米尼亚诺一日游_托斯卡纳酒庄一日游_锡耶纳一日游_康帝区葡萄酒品尝-iTrip爱去</title>
+    <title th:text="${ProductDetails.tp_name}"></title>
     <script type="application/javascript" src="../scripts/jquery-3.2.1.js"></script>
     <script type="application/javascript" src="../layui/layui.all.js" charset="UTF-8"></script>
     <link rel="stylesheet" href="../layui/css/layui.css" id="cssfile">
@@ -55,6 +55,114 @@
     <script src="https://dl.ntalker.com/js/xn6/mqtt.chat.js?siteid=kf_9680&amp;v=nt6.96&amp;t=2019.05.14_182647"
             type="text/javascript" charset="utf-8" async="async" data-requiremodule="Connection"></script>
     <script src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/949765398/?random=1567929772312&amp;cv=9&amp;fst=1567929772312&amp;num=1&amp;bg=ffffff&amp;guid=ON&amp;resp=GooglemKTybQhCsO&amp;u_h=1080&amp;u_w=1920&amp;u_ah=1030&amp;u_aw=1920&amp;u_cd=24&amp;u_his=2&amp;u_tz=480&amp;u_java=true&amp;u_nplug=1&amp;u_nmime=1&amp;gtm=2oa8l2&amp;sendb=1&amp;ig=1&amp;data=event%3Dgtag.config&amp;frm=0&amp;url=https%3A%2F%2Fwww.itrip.com%2Fp8053&amp;tiba=%E6%84%8F%E5%A4%A7%E5%88%A9%E4%B8%80%E6%97%A5%E6%B8%B8_%E5%9C%A3%E5%90%89%E7%B1%B3%E5%B0%BC%E4%BA%9A%E8%AF%BA%E4%B8%80%E6%97%A5%E6%B8%B8_%E6%89%98%E6%96%AF%E5%8D%A1%E7%BA%B3%E9%85%92%E5%BA%84%E4%B8%80%E6%97%A5%E6%B8%B8_%E9%94%A1%E8%80%B6%E7%BA%B3%E4%B8%80&amp;async=1&amp;rfmt=3&amp;fmt=4"></script>
+    <script th:inline="javascript">
+        $(function () {
+            <!--图片加载-->
+            var imgspath = $("#imagespath").text();
+            var array = imgspath.split(",");
+            for (var i = 0; i < array.length; i++) {
+                var li = "<li class=\"big_img\" style=\"display:block;\">" +
+                    "<img width=\"695\" height=\"464\" alt='图片未加载出来' src=\"" + array[i] + "\">\n" +
+                    "                </li>";
+                $(".gallery_big_img ul").append(li);
+                var li2 = "";
+                if (i == 0) {
+                    li2 = "<li class=\"cur\"><img width=\"165\" height=\"110\" alt='图片未加载出来'\n" +
+                        "                                     src='" + array[i] + "'>\n" +
+                        "                </li>";
+                } else {
+                    li2 = "<li><img width=\"165\" height=\"110\" alt='图片未加载出来'\n" +
+                        "                                     src='" + array[i] + "'>\n" +
+                        "                </li>";
+                }
+                $(".gallery_small_img .clearfix").append(li2);
+            }
+            <!--费用说明加载-->
+            //费用包含
+            var costinclude = $("#cost_include").text();
+            var array = costinclude.split(",");
+            for (var i = 0; i < array.length; i++) {
+                var p = "<p>" + (i + 1) + " . " + array[i] + "</p>";
+                $("#costinclude").append(p);
+            }
+            //费用不包含
+            var costexcluded = /*[[${ProductDetails.cd_excluded}]]*/ 'Sebastian';
+            var array2 = costexcluded.split(",");
+            for (var j = 0; j < array2.length; j++) {
+                var p = "<p>" + (j + 1) + " . " + array2[j] + "</p>";
+                $("#costexcluded").append(p);
+            }
+            //订购说明
+            var costdescription = /*[[${ProductDetails.cd_description}]]*/ 'Sebastian';
+            var array3 = costdescription.split(",");
+            for (var k = 0; k < array2.length; k++) {
+                var p = "<p>" + (k + 1) + " . " + array3[k] + "</p>";
+                $("#costdescription").append(p);
+            }
+            //加入购物车
+            $(".btn_addingCart.btn_addCart.order_btn").click(function () {
+                var msg = "";
+                var data = $(".price_info .test27").val();
+                var prices = document.getElementsByClassName("samoney");
+                var count = document.getElementsByClassName("num");
+                var discount = 0;
+                var sum = 0;
+                for (var i = 0; i < count.length; i++) {
+                    sum += prices[i].innerHTML * count[i].value;
+                }
+                if (data == "") {
+                    msg = "请选择出行日期";
+                } else if (sum == 0) {
+                    msg = "请选择预订数量";
+                } else if (((count[3].value != 0 || count[4].value != 0 || count[5].value != 0) && count[0].value != 0) ||
+                    ((count[0].value != 0 || count[1].value != 0 || count[2].value != 0) && count[3].value != 0)) {
+                    msg = "只能选择一种套餐";
+                } else {
+                    var Product_id = /*[[${ProductDetails.Product_id}]]*/ 'Sebastian';
+                    discount = $("#discount label[data-discount-type = 'discountChannelPrice']").text();
+                    var testMap = {
+                         "p_id": ""+Product_id+"", "Travel_date": data,
+                         "Settlement_price": sum, "Product_specification": $(".spec_name_span").text(),
+                         "Adult_num": $("#one .Adult").text(), "children_num": $("#one .children").text(),
+                         "baby_num": $("#one .baby").text(),
+                         "Discount": discount * $("#one .Adult").text() + discount * $("#one .children").text() * 0.5,
+                         "uid": "3"
+                     };
+                    $.ajax({
+                        url: "/addShopping",
+                        type: "GET",
+                        data: {"map":JSON.stringify(testMap)},
+                        success: function (date) {
+                            if(date>0)
+                            msg = "添加购物车成功";
+                            var div = "<div class=\"tip-mask \" id=\"tip-dialog\"> \n" +
+                                "<div class=\"background\"></div>\n" +
+                                "<div class=\"tip-box\">\n" +
+                                "<span class=\"close\" e-click=\"removeTips\"><i class=\"iconfont\"></i></span>\n" +
+                                "<h3>温馨提示</h3><div class=\"tip-info\">" + msg + "</div>\n" +
+                                "<div class=\"hasKnow\" e-click=\"removeTips\">知道啦</div></div></div>";
+                            if(msg != "")
+                                $("body").append(div);
+                            $("[e-click = 'removeTips']").click(function () {
+                                $(".tip-mask").remove();
+                            })
+                        }
+                    })
+                }
+                var div = "<div class=\"tip-mask \" id=\"tip-dialog\"> \n" +
+                    "<div class=\"background\"></div>\n" +
+                    "<div class=\"tip-box\">\n" +
+                    "<span class=\"close\" e-click=\"removeTips\"><i class=\"iconfont\"></i></span>\n" +
+                    "<h3>温馨提示</h3><div class=\"tip-info\">" + msg + "</div>\n" +
+                    "<div class=\"hasKnow\" e-click=\"removeTips\">知道啦</div></div></div>";
+                if(msg != "")
+                $("body").append(div);
+                $("[e-click = 'removeTips']").click(function () {
+                    $(".tip-mask").remove();
+                })
+            })
+        })
+    </script>
 </head>
 <body>
 <div id="nTalk_post_hiddenElement"
@@ -146,7 +254,7 @@
                     <span class="line">|</span>
                     <span class="pos_r">
 
-						<a class="fl" href="https://www.itrip.com/shoppingCart" rel="nofollow">
+						<a class="fl" href="http://localhost:8089/findShoppingByUid?uid=3" rel="nofollow">
 							<span class="buy_car js_sc"><i></i>购物车 <label></label></span>
 							<div class="prompt-price-warp hide">
 						        <i class="icon_arrow_up-in"></i>
@@ -328,18 +436,18 @@
 <!--标题-->
 <div class="wrap" style="margin-top:5px;">
     <div class="clearfix">
-        <div class="breadcrumb fl clearfix oh" style="padding-left:0;" th:text="${ProductDetails.tp_name}+'nmb'">
+        <div class="breadcrumb fl clearfix oh" style="padding-left:0;" th:text="${ProductDetails.tp_name}">
             <!-- <a href="https://www.itrip.com/yidali/wanle">意大利</a> &gt;
              <a href="https://www.itrip.com/foluolunsa/wanle">佛罗伦萨</a> &gt;-->
-            <!--意大利圣吉米尼亚诺+托斯卡纳+基安蒂+锡耶纳中文一日游（午餐品酒+英文可选+佛罗伦萨往返）-->
         </div>
     </div>
-    <h1 class="tit_tour bold f28 mt15">意大利圣吉米尼亚诺+托斯卡纳+基安蒂+锡耶纳中文一日游（午餐品酒+英文可选+佛罗伦萨往返）</h1>
+    <h1 class="tit_tour bold f28 mt15" th:text="${ProductDetails.tp_name}"></h1>
     <div class="mt12 f16">
 		<span style="display: inline-block;">
-			<h2 title="跟随《花儿与少年》游览中世纪古城，品尝托斯卡纳地道特色美食与基安蒂葡萄酒。" class="tour_info f16" id="Introduce"
-                style="height:25px; overflow: hidden;display: inline-block;float:left;">跟随《花儿与少年》游览中世纪古城，品尝托斯卡纳地道特色美食与基安蒂葡萄酒。</h2>
-			<span style="display: inline-block;margin-left:20px;">产品编号 : 8053</span>
+			<h2 th:title="${ProductDetails.describes}" class="tour_info f16" id="Introduce"
+                style="height:25px; overflow: hidden;display: inline-block;float:left;"
+                th:text="${ProductDetails.describes}"></h2>
+			<span style="display: inline-block;margin-left:20px;" th:text="${'产品编号 : '+ ProductDetails.tp_id}"></span>
 		</span>
     </div>
 </div>
@@ -351,41 +459,21 @@
         </div>
         <div class="collec_icon">
             <a class="pro_coll white" style="display: inline-block;" href="javascript:void(0)">收藏</a>
-            &nbsp;&nbsp;<label class="collect-count">113</label>
+            &nbsp;&nbsp;<label class="collect-count" th:text="${ProductDetails.collectors_Number}"></label>
         </div>
         <div class="gallery_big_img">
             <ul>
-                <li class="big_img" style="display:block;"><img width="695" height="464"
-                                                                alt="意大利圣吉米尼亚诺+托斯卡纳+基安蒂+锡耶纳中文一日游（午餐品酒+英文可选+佛罗伦萨往返）"
-                                                                src="//pic2.itrip.com/p/20190426145140-standard-388.jpg?imageView2/5/w/695/h/464/q/100">
-                </li>
-                <li class="big_img"><img width="695" height="464" alt="意大利圣吉米尼亚诺+托斯卡纳+基安蒂+锡耶纳中文一日游（午餐品酒+英文可选+佛罗伦萨往返）"
-                                         data-original="//pic2.itrip.com/p/20190426145324-standard-864.jpg?imageView2/5/w/695/h/464/q/100">
-                </li>
-                <li class="big_img"><img width="695" height="464" alt="意大利圣吉米尼亚诺+托斯卡纳+基安蒂+锡耶纳中文一日游（午餐品酒+英文可选+佛罗伦萨往返）"
-                                         data-original="//pic2.itrip.com/p/20190426145007-standard-571.jpg?imageView2/5/w/695/h/464/q/100">
-                </li>
-                <li class="big_img"><img width="695" height="464" alt="意大利圣吉米尼亚诺+托斯卡纳+基安蒂+锡耶纳中文一日游（午餐品酒+英文可选+佛罗伦萨往返）"
-                                         data-original="//pic2.itrip.com/p/20190426144958-standard-42.jpg?imageView2/5/w/695/h/464/q/100">
-                </li>
+                <p style="display: none" id="imagespath" th:text="${ProductDetails.picture}"></p>
             </ul>
         </div>
         <div class="gallery_small_img">
             <ul class="clearfix">
-                <li class="cur"><img width="165" height="110" alt="意大利圣吉米尼亚诺+托斯卡纳+基安蒂+锡耶纳中文一日游（午餐品酒+英文可选+佛罗伦萨往返）"
-                                     src="//pic2.itrip.com/p/20190426145140-standard-388.jpg?imageView2/5/w/165/h/110">
-                </li>
-                <li><img width="165" height="110" alt="意大利圣吉米尼亚诺+托斯卡纳+基安蒂+锡耶纳中文一日游（午餐品酒+英文可选+佛罗伦萨往返）"
-                         src="//pic2.itrip.com/p/20190426145324-standard-864.jpg?imageView2/5/w/165/h/110"></li>
-                <li><img width="165" height="110" alt="意大利圣吉米尼亚诺+托斯卡纳+基安蒂+锡耶纳中文一日游（午餐品酒+英文可选+佛罗伦萨往返）"
-                         src="//pic2.itrip.com/p/20190426145007-standard-571.jpg?imageView2/5/w/165/h/110"></li>
-                <li><img width="165" height="110" alt="意大利圣吉米尼亚诺+托斯卡纳+基安蒂+锡耶纳中文一日游（午餐品酒+英文可选+佛罗伦萨往返）"
-                         src="//pic2.itrip.com/p/20190426144958-standard-42.jpg?imageView2/5/w/165/h/110"></li>
             </ul>
         </div>
+        <!--评论-->
         <div class="comment mt15">
             <div class="comment_total oh">
-                <span class="fl bold">iTrip 点评<em class="ml5">5分</em></span>
+                <span class="fl bold">iTrip 点评<em class="ml5" th:text="${ProductDetails.itrip}"></em></span>
                 <span class="fr bold hand" id="go-review"><i class="iconfont"></i>评论 35</span>
             </div>
             <div class="comment_info mt15 clearfix">
@@ -415,9 +503,10 @@
         <div class="price_panel" id="price_panel" style="position: relative;">
             <div class="price_conut clearfix">
                 <div class="fl start_price" id="start_price">
-                    <span data-currencycode="currencycode">EUR</span>
-                    <span class="price" data-currencyid="20" data-price="44.9428" data-price-type="start"
-                          data-discount-type="price">44.94</span> <span>起</span>
+                    <span data-currencycode="currencycode">RMB</span>
+                    <span class="price" data-currencyid="12" th:data-price="${ProductDetails.price}"
+                          data-price-type="start"
+                          data-discount-type="price" th:text="${ProductDetails.price}"></span> <span>起</span>
                 </div>
             </div>
             <div class="J-coupon-banner">
@@ -432,7 +521,7 @@
                 <span class="fl f16">优惠</span>
                 <div class="fl sale_info" style="margin-top: -11px; width: 440px;">
                     <div class="fl discount pos_r">
-								<span>
+								<span id="discount">
 									<label>折扣已减</label>
 									<label class="fr" data-currencyid="20" data-price="14.14" data-price-type="discount"
                                            data-discount-type="discountChannelPrice">14.14</label>
@@ -563,7 +652,7 @@
                     </div>
                 </div>
             </div>
-            <div class="sale_count clearfix hide mt10 j_cur_content" style="display: none;">
+            <div class="sale_count clearfix hide mt10 j_cur_content" style="display:none;">
                 <span class="fl f16">活动</span>
                 <div class="fl sale_info" style="margin-top: -11px; width: 440px;">
                     <div class="fl discount pos_r j_cur_block" style="display: none;">
@@ -1418,7 +1507,8 @@
             <div class="refer">
                 <div class="refer_info" style="background: #f8f8f8;">
                     <div class="refer_tit">
-                        <i class="iconfont"></i>周边推荐
+                        <i class="iconfont"></i>
+                        <span th:text="${ProductDetails.strategy}"></span>
                     </div>
                 </div>
             </div>
@@ -1428,31 +1518,27 @@
             <h3 class="pro_title f24" style="font-weight:normal;"><i class="iconfont"></i>费用说明</h3>
             <div class="fee_info mt15 clearfix">
                 <dl>
+                    <!--费用包含-->
                     <dd style="height: 246px;">
                         <div class="tit_fee"><i class="iconfont green"></i>费用包含</div>
-                        <div class="li_style"><p>1. 交通：舒适空调旅游巴士</p>
-                            <p>2. 导游：英文导游（中文服务可选）</p>
-                            <p>3. 餐食：托斯卡纳当地特色午餐</p>
-                            <p>4. 品酒：基安蒂葡萄酒品尝</p>
-                            <p>5. 体验：锡耶纳市区徒步之旅</p></div>
+                        <div class="li_style" id="costinclude">
+                            <p style="display:none;" id="cost_include" th:text="${ProductDetails.cd_includes}"></p>
+                        </div>
                     </dd>
+                    <!--费用不包含-->
                     <dd style="height: 246px;">
                         <div class="tit_fee"><i class="iconfont red"></i>费用不包含</div>
-                        <div class="li_style"><p>1. 小费：自愿</p>
-                            <p>2. 门票：圣吉米尼亚诺塔楼登塔门票（参考价10欧/人），锡耶纳大教堂门票（参考价<span style="white-space: normal;">12欧/人</span>）
-                            </p>
-                            <p>3. 其他：一切“费用包含”中未提及费用</p>
-                            <p><span style="color:#e86e1d">注意：自费价格仅供参考，请以景点当天实际情况为准。</span></p></div>
+                        <div class="li_style">
+                            <ol id="costexcluded">
+                            </ol>
+                            <p><span style="color:#e86e1d">注意：自费价格仅供参考，请以景点当天实际情况为准。</span></p>
+                        </div>
                     </dd>
+                    <!--订购说明-->
                     <dd style="height: 246px;">
                         <div class="tit_fee"><i class="iconfont blue"></i>订购说明</div>
-                        <div class="li_style"><p>1. 0-2岁婴儿免费参加行程（不占座位），3-12岁执行儿童价，13岁及以上执行成人价。</p>
-                            <p>2.&nbsp;儿童/婴儿仅限与成人一同购买和出行。</p>
-                            <p><strong><span style="color:#e86e1d">3.&nbsp;</span></strong><strong><span
-                                    style="color: rgb(232, 110, 29);">关于中文服务的说明：</span></strong></p>
-                            <p style="white-space: normal;">（1）中文服务规格仅每周一可选。</p>
-                            <p style="white-space: normal;">（2）中文服务并非专业中文导游和领队，提供的是同行中文助理。</p>
-                            <p style="white-space: normal;">（3）中文服务需要4人成团，如果最终未达到4人，行程将被取消。</p></div>
+                        <div class="li_style" id="costdescription">
+                        </div>
                     </dd>
                 </dl>
             </div>

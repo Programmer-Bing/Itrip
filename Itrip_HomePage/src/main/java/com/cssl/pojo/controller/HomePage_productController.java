@@ -6,21 +6,28 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.cssl.pojo.HomePage_product;
+import com.cssl.pojo.Method.Method;
 import com.cssl.pojo.ProductDetails;
+import com.cssl.pojo.Product_shopping;
 import com.cssl.pojo.service.HomePage_productService;
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.*;
+
+import static com.cssl.pojo.Method.Method.json2map;
 
 @Controller
 public class HomePage_productController {
     @Autowired
     private HomePage_productService homePage_productService;
-
     /*特价商品*/
     @RequestMapping("findBargains")
     @ResponseBody
@@ -64,13 +71,60 @@ public class HomePage_productController {
     }
 
     /*跟据商品id来查找商品详情*/
-    @RequestMapping("/findProductDetails")
-    public String findProductDetails(@RequestParam("Product_id") Integer Product_id, Model model) {
+    @RequestMapping("findProductDetails")
+    @ResponseBody
+    public ProductDetails findProductDetails(@RequestParam("Product_id") Integer Product_id) {
         System.out.println("ByProduct_idfind成功到服务者模块！！");
         System.out.println(Product_id);
-        ProductDetails pd = homePage_productService.findProductDetails(Product_id);
-        model.addAttribute("ProductDetails", pd);
-        return "HomePage/ProductDetails";
+        return homePage_productService.findProductDetails(Product_id);
     }
 
+    /*跟据商品id来查找商品*/
+    @RequestMapping("findByP_id")
+    @ResponseBody
+    public HomePage_product findByP_id(@RequestParam("Product_id") Integer Product_id) {
+        System.out.println("ByP_idfind成功到服务者模块！！");
+        System.out.println(Product_id);
+        return homePage_productService.findByP_id(Product_id);
+    }
+
+    /*向购物车里添加商品*/
+    @RequestMapping("addShopping")
+    @ResponseBody
+    public Integer addShopping(@RequestParam(value = "map", required = false) String map) {
+        System.out.println("AddShopping成功到服务者模块！！");
+        Product_shopping product_shopping = new Product_shopping();
+        Map<String, Object> map2 = json2map(map);
+        System.out.println(map2);
+        HomePage_product hp = homePage_productService.findByP_id(Integer.valueOf((String) map2.get("p_id")));
+        product_shopping.setP_id(Integer.valueOf((String) map2.get("p_id")));
+        product_shopping.setTravel_date((String) map2.get("Travel_date"));
+        product_shopping.setSettlement_price(BigDecimal.valueOf((Double) map2.get("Settlement_price")));
+        product_shopping.setProduct_specification((String) map2.get("Product_specification"));
+        product_shopping.setAdult_num(Integer.parseInt((String) map2.get("Adult_num")));
+        product_shopping.setChildren_num(Integer.parseInt((String) map2.get("children_num")));
+        product_shopping.setBaby_num(Integer.parseInt((String) map2.get("baby_num")));
+        product_shopping.setDiscount(BigDecimal.valueOf((Double) map2.get("Discount")));
+        product_shopping.setUid(Integer.parseInt((String) map2.get("uid")));
+        product_shopping.setP_imgpath(hp.getProduct_imgPath());
+        product_shopping.setP_title(hp.getProduct_name());
+        System.out.println(product_shopping);
+        return homePage_productService.addShopping(product_shopping);
+    }
+
+    /*查找xx的购物车所有商品*/
+    @RequestMapping("findShoppingByUid")
+    @ResponseBody
+    public List<Product_shopping> findShoppingByUid(@RequestParam(value = "uid", required = false) Integer uid) {
+        System.out.println("findShopping成功到服务者模块！！");
+        System.out.println(uid);
+        return homePage_productService.findShoppingByUid(uid);
+    }
+    /*删除购物车里的商品*/
+    @RequestMapping("delShopping")
+    @ResponseBody
+    public Integer delShopping(@RequestParam(value = "psc_id", required = false) Integer psc_id) {
+        System.out.println("DelShopping成功到服务者模块！！");
+        return homePage_productService.delShopping(psc_id);
+    }
 }
