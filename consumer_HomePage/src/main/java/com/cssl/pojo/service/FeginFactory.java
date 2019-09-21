@@ -7,6 +7,8 @@ import java.util.Map;
 import com.cssl.pojo.HomePage_product;
 import com.cssl.pojo.ProductDetails;
 import com.cssl.pojo.Product_shopping;
+import com.cssl.pojo.po.OrderXQ;
+import com.cssl.pojo.po.Orders;
 import com.cssl.pojo.po.User;
 import org.springframework.stereotype.Component;
 
@@ -77,6 +79,71 @@ public class FeginFactory implements FallbackFactory<HomePageClientService> {
 
             @Override
             public Integer delShopping(Integer psc_id) {
+                return null;
+            }
+
+            @Override
+            public Map<String, Object> PhoneEmail(String phone) {
+                return null;
+            }
+
+            @Override
+            public int UpdatePhone(Map<String, Object> map) {
+                return 0;
+            }
+
+            @Override
+            public List<User> LoginPhone(Map<String, Object> map) {
+                return null;
+            }
+
+            @Override
+            public List<User> UserLoginEmail(Map<String, Object> map) {
+                return null;
+            }
+
+            @Override
+            public int UpdateUser(User uu) {
+                return 0;
+            }
+
+            @Override
+            public List<User> SelectUserName(String name) {
+                return null;
+            }
+
+            @Override
+            public int UpdatePhonePerson(Map<String, Object> map) {
+                return 0;
+            }
+
+            @Override
+            public int UpdatePassword(Map<String, Object> map) {
+                return 0;
+            }
+
+            @Override
+            public int UpdatePicture(Map<String, Object> map) {
+                return 0;
+            }
+
+            @Override
+            public List<Orders> SelectUser(int id) {
+                return null;
+            }
+
+            @Override
+            public List<Orders> SelectOrderProdoct(int userid) {
+                return null;
+            }
+
+            @Override
+            public List<Orders> SelectOrderNumb(int userid) {
+                return null;
+            }
+
+            @Override
+            public List<OrderXQ> SelectOrderProduct(String ordernum) {
                 return null;
             }
 
