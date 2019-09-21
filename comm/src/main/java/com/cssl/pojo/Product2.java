@@ -11,7 +11,7 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain=true)
-public class Product {
+public class Product2 {
 
     int Product_id;
     String product_name;

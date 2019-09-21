@@ -45,16 +45,6 @@ public class FeginFactory implements FallbackFactory<HomePageClientService> {
             }
 
             @Override
-            public List<HomePage_product> list2(Map<String, Object> map) {
-                return new ArrayList<>();
-            }
-
-            @Override
-            public List<User> Cs() {
-                return new ArrayList<>();
-            }
-
-            @Override
             public List<User> JudgeUser(String phone) {
                 return new ArrayList<>();
             }

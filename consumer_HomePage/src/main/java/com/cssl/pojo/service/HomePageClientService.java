@@ -32,30 +32,6 @@ public interface HomePageClientService {
     //根据所属不唯一城市查商品
     @RequestMapping(method = RequestMethod.GET, value = "findPartyingByCities")
     public List<HomePage_product> findPartyingByCities(@RequestParam(required = false, value = "P_cid") String P_cid, @RequestParam(required = false, value = "Pt_id") Integer Pt_id);
-
-    @RequestMapping(method = RequestMethod.GET, value = "/homeproduct/list2")
-    public List<HomePage_product> list2(@RequestParam Map<String, Object> map);
-
-    @RequestMapping(method = RequestMethod.GET, value = "/homeproduct/cs")
-    public List<User> Cs();
-
-    /***
-     * 添加用户 注册
-     * @param
-     * @return
-     */
-    @RequestMapping(method = RequestMethod.POST, value = "/userADD")
-    public int addUser(@RequestBody Map<String, Object> map);
-
-    /***
-     * 注册
-     *  判断号码
-     * @param
-     * @return
-     */
-    @RequestMapping(method = RequestMethod.GET, value = "UserRegistration")
-    public List<User> JudgeUser(@RequestParam(value = "phone") String phone);
-
     /***
      * 跟据商品id来查商品详情
      * @param Product_id
@@ -94,6 +70,23 @@ public interface HomePageClientService {
      */
     @RequestMapping(method = RequestMethod.GET, value = "delShopping")
     public Integer delShopping(@RequestParam("psc_id") Integer psc_id);
+
+    /***
+     * 添加用户 注册
+     * @param
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST, value = "/userADD")
+    public int addUser(@RequestBody Map<String, Object> map);
+
+    /***
+     * 注册
+     *  判断号码
+     * @param
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET, value = "UserRegistration")
+    public List<User> JudgeUser(@RequestParam(value = "phone") String phone);
     /***
      * 根据号码拿邮箱
      */

@@ -17,7 +17,7 @@ public class hotal implements Serializable {
 
     int h_id;
     String h_name;
-    Product product;
+    Product2 product;
     int purchases_Number;
     int Star_class;
     citiesstates citiesstate;
