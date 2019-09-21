@@ -7,12 +7,18 @@ import com.cssl.pojo.service.HomePageClientService;
 import com.cssl.pojo.util.DunXing;
 import com.cssl.pojo.util.RedisUtil;
 import com.jcraft.jsch.Session;
+import org.apache.commons.net.PrintCommandListener;
+import org.apache.commons.net.ftp.FTPClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import redis.clients.jedis.Jedis;
 
 import javax.servlet.http.HttpSession;
+import java.io.InputStream;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -476,6 +482,9 @@ public class UserController {
         return  i;
 
     }
+
+
+
 
 
 

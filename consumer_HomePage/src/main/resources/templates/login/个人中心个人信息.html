@@ -1293,7 +1293,7 @@
 							if(data>=0){
                                 $("#head").css("display","none")
                                 $(".dialogMask").remove();
-                                $("#cc").remove();
+                                $("#cc").css("display","none");
                                 document.getElementById("txtp").src="http://39.107.103.69/images/user/"+tp;
                                 document.getElementById("touz").src="http://39.107.103.69/images/user/"+tp;
 							}
@@ -1315,6 +1315,7 @@
 				var div=$("#pwdupdate");
 				$(".dialog-cont").append(div);
 				$("#pwdupdate").css("display","block")
+				$("#cc").css("display","block");
 				$(".close").css("display","block")
 				$("#updatexx").css("display","none");
 				$("#emailclose").css("display","none")

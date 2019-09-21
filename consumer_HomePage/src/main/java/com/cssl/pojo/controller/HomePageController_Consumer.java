@@ -29,13 +29,13 @@ public class HomePageController_Consumer {
         return this.service.findBargains(lp_id);
     }
 
-    /*热销商品查询*/
+   /* *//*热销商品查询*//*
     @RequestMapping(value = "/findSellwell", method = RequestMethod.GET)
     @ResponseBody
     public List<HomePage_product> findSellwell(HttpSession session) {
         System.out.println("sessionId:" + session.getId());
         return this.service.findSellwell();
-    }
+    }*/
 
     /*唯一城市商品查询*/
     @RequestMapping(value = "/findPartyingByCity", method = RequestMethod.GET)
@@ -50,7 +50,7 @@ public class HomePageController_Consumer {
     }
 
     /*多城市商品查询*/
-    @RequestMapping(value = "/findPartyingByCities", method = RequestMethod.GET)
+   /* @RequestMapping(value = "/findPartyingByCities", method = RequestMethod.GET)
     @ResponseBody
     public List<HomePage_product> findPartyingByCities(HttpSession session, @RequestParam(required = false, value = "P_cid") String P_cid, @RequestParam(required = false, value = "Pt_id") Integer Pt_id) {
         System.out.println("城市不唯一");
@@ -61,13 +61,13 @@ public class HomePageController_Consumer {
         map.put("Pt_id", Pt_id);
         System.out.println("map:" + map);
         return this.service.findPartyingByCities(P_cid, Pt_id);
-    }
+    }*/
 
-    /*跟据商品id来查找商品详情*/
+  /*  *//*跟据商品id来查找商品详情*//*
     @RequestMapping(value = "/findProductDetails")
     public String findProductDetails(HttpSession session, @RequestParam(required = false, value = "Product_id") Integer Product_id) {
         System.out.println("sessionId:" + session.getId());
         System.out.println("商品编号：" + Product_id);
         return this.service.findProductDetails(Product_id);
-    }
+    }*/
 }
