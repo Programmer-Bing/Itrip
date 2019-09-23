@@ -84,4 +84,28 @@
     <delete id="delShopping" parameterType="Integer">
         DELETE FROM productshoppingcart WHERE psc_id = #{psc_id}
     </delete>
+    <!--主页地址显示-->
+    <resultMap id="small" type="com.cssl.pojo.largeplate">
+        <result property="lp_id" column="lp_id"></result>
+        <result property="lp_name" column="lp_name"></result>
+        <association property="smal" javaType="com.cssl.pojo.smallplate">
+            <id column="sp_id" property="sp_id"></id>
+            <result column="sp_name" property="sp_name"></result>
+            <result column="lp_id" property="lp_id"></result>
+            <result column="picture" property="picture"></result>
+            <association property="citi" javaType="com.cssl.pojo.citiesstates">
+                <id property="cs_id" column="cs_id"></id>
+                <result property="cs_name" column="cs_name"></result>
+                <result property="sp_id" column="sp_id"></result>
+                <result property="Popular" column="Popular"></result>
+                <result property="sb_cs" column="sb_cs"></result>
+                <result property="img" column="img"></result>
+            </association>
+        </association>
+    </resultMap>
+    <select id="showregion" resultMap="small">
+        SELECT s.sp_name,c.* FROM largeplate l
+        INNER JOIN smallplate s ON s.lp_id = l.lp_id
+        INNER JOIN citiesstates c ON c.sp_id=s.sp_id WHERE l.lp_id=3
+    </select>
 </mapper>

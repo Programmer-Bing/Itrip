@@ -34,7 +34,7 @@ public class UserController {
     @RequestMapping(value = "/consumer/homeproduct/cs")
     public List<User> Cs(HttpSession session){
         System.out.println("测试类");
-        return this.service.Cs();
+        return null;
     }
 
 

@@ -49,4 +49,10 @@ public interface HomePage_productDao {
      * @return
      */
     Integer delShopping(Integer psc_id);
+
+    /**
+     * 地区显示
+     */
+    List<Map> showregion();
+
 }

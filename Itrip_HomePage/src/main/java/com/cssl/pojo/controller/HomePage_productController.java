@@ -127,4 +127,11 @@ public class HomePage_productController {
         System.out.println("DelShopping成功到服务者模块！！");
         return homePage_productService.delShopping(psc_id);
     }
+
+    /*地区显示*/
+    @RequestMapping("showregion")
+    public List<Map> showregion(){
+        return homePage_productService.showregion();
+    }
+
 }
