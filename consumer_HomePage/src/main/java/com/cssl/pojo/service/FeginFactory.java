@@ -32,6 +32,11 @@ public class FeginFactory implements FallbackFactory<HomePageClientService> {
             }
 
             @Override
+            public List<Map> showregion() {
+                return null;
+            }
+
+            @Override
             public List<HomePage_product> findSellwell() { return null; }
 
             @Override

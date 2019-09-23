@@ -149,7 +149,9 @@ public interface HomePageClientService {
     public List<Orders> SelectOrderNumb(@RequestParam(value = "1") int userid);
 
 
-
     @RequestMapping(method = RequestMethod.GET,value = "/SelectOrderXQ")
     public List<OrderXQ> SelectOrderProduct(@RequestParam(value = "ordernum") String ordernum);
+
+    @RequestMapping(method = RequestMethod.GET,value = "/showregion")
+    public List<Map> showregion();
 }

@@ -63,4 +63,9 @@ public class HomePage_productServiceImpl implements HomePage_productService {
     public Integer delShopping(Integer psc_id) {
         return hpdao.delShopping(psc_id);
     }
+
+    @Override
+    public List<Map> showregion() {
+        return hpdao.showregion();
+    }
 }

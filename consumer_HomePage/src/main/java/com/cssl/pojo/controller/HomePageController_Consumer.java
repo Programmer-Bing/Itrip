@@ -107,4 +107,12 @@ public class HomePageController_Consumer {
         System.out.println("num:" + num);
         return num;
     }
+
+    /*显示地区*/
+    @RequestMapping(value = "/showregion" , method = RequestMethod.GET)
+    public String showregion(){
+        List<Map> maps = service.showregion();
+        System.out.println(maps.toString());
+        return  maps.toString();
+    }
 }

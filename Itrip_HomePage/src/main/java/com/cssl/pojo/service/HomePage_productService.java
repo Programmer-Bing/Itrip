@@ -39,4 +39,10 @@ public interface HomePage_productService {
      * @return
      */
     Integer delShopping(Integer psc_id);
+
+    /**
+     * 地区显示
+     */
+    List<Map> showregion();
+
 }

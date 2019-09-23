@@ -59,7 +59,6 @@ public class shoppingcartController {
             }
         }
         map.put("rooms",list1);
-        System.out.println(list1.size());
         service.addCart(map);
         return "牛逼";
     }
