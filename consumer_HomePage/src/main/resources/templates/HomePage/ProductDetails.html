@@ -101,6 +101,13 @@
             }
             //加入购物车
             $(".btn_addingCart.btn_addCart.order_btn").click(function () {
+               f("/addShopping");
+            })
+            //立即预定
+            $(".btn_booking.order_btn.fl.js_order").click(function () {
+                f("/Reservation");
+            })
+            function f(voidname) {
                 var msg = "";
                 var data = $(".price_info .test27").val();
                 var prices = document.getElementsByClassName("samoney");
@@ -121,33 +128,33 @@
                     var Product_id = /*[[${ProductDetails.Product_id}]]*/ 'Sebastian';
                     discount = $("#discount label[data-discount-type = 'discountChannelPrice']").text();
                     var testMap = {
-                         "p_id": ""+Product_id+"", "Travel_date": data,
-                         "Settlement_price": sum, "Product_specification": $(".spec_name_span").text(),
-                         "Adult_num": $("#one .Adult").text(), "children_num": $("#one .children").text(),
-                         "baby_num": $("#one .baby").text(),
-                         "Discount": discount * $("#one .Adult").text() + discount * $("#one .children").text() * 0.5,
-                         "uid": "3"
-                     };
-                    $.ajax({
-                        url: "/addShopping",
-                        type: "GET",
-                        data: {"map":JSON.stringify(testMap)},
-                        success: function (date) {
-                            if(date>0)
-                            msg = "添加购物车成功";
-                            var div = "<div class=\"tip-mask \" id=\"tip-dialog\"> \n" +
-                                "<div class=\"background\"></div>\n" +
-                                "<div class=\"tip-box\">\n" +
-                                "<span class=\"close\" e-click=\"removeTips\"><i class=\"iconfont\"></i></span>\n" +
-                                "<h3>温馨提示</h3><div class=\"tip-info\">" + msg + "</div>\n" +
-                                "<div class=\"hasKnow\" e-click=\"removeTips\">知道啦</div></div></div>";
-                            if(msg != "")
-                                $("body").append(div);
-                            $("[e-click = 'removeTips']").click(function () {
-                                $(".tip-mask").remove();
-                            })
-                        }
-                    })
+                        "p_id": ""+Product_id+"", "Travel_date": data,
+                        "Settlement_price": sum, "Product_specification": $(".spec_name_span").text(),
+                        "Adult_num": $("#one .Adult").text(), "children_num": $("#one .children").text(),
+                        "baby_num": $("#one .baby").text(),
+                        "Discount": discount * $("#one .Adult").text() + discount * $("#one .children").text() * 0.5,
+                        "uid": "3"
+                    };
+                        $.ajax({
+                            url: voidname,
+                            type: "GET",
+                            data: {"map": JSON.stringify(testMap)},
+                            success: function (date) {
+                                if (date > 0)
+                                    msg = "添加购物车成功";
+                                var div = "<div class=\"tip-mask \" id=\"tip-dialog\"> \n" +
+                                    "<div class=\"background\"></div>\n" +
+                                    "<div class=\"tip-box\">\n" +
+                                    "<span class=\"close\" e-click=\"removeTips\"><i class=\"iconfont\"></i></span>\n" +
+                                    "<h3>温馨提示</h3><div class=\"tip-info\">" + msg + "</div>\n" +
+                                    "<div class=\"hasKnow\" e-click=\"removeTips\">知道啦</div></div></div>";
+                                if (msg != "")
+                                    $("body").append(div);
+                                $("[e-click = 'removeTips']").click(function () {
+                                    $(".tip-mask").remove();
+                                })
+                            }
+                        })
                 }
                 var div = "<div class=\"tip-mask \" id=\"tip-dialog\"> \n" +
                     "<div class=\"background\"></div>\n" +
@@ -156,11 +163,11 @@
                     "<h3>温馨提示</h3><div class=\"tip-info\">" + msg + "</div>\n" +
                     "<div class=\"hasKnow\" e-click=\"removeTips\">知道啦</div></div></div>";
                 if(msg != "")
-                $("body").append(div);
+                    $("body").append(div);
                 $("[e-click = 'removeTips']").click(function () {
                     $(".tip-mask").remove();
                 })
-            })
+            }
         })
     </script>
 </head>
