@@ -7,6 +7,7 @@ import java.util.Map;
 import com.cssl.pojo.HomePage_product;
 import com.cssl.pojo.ProductDetails;
 import com.cssl.pojo.Product_shopping;
+import com.cssl.pojo.po.Collect;
 import com.cssl.pojo.po.OrderXQ;
 import com.cssl.pojo.po.Orders;
 import com.cssl.pojo.po.User;
@@ -139,6 +140,37 @@ public class FeginFactory implements FallbackFactory<HomePageClientService> {
 
             @Override
             public int addUser(Map<String, Object> map) {
+                return 0;
+            }
+
+            @Override
+            public List<User> Cs() {
+                return null;
+            }
+
+            @Override
+            public int SelectCollectCount(Collect co) {
+                return 0;
+            }
+
+            @Override
+            public int InsertCollect(Collect co) {
+                return 0;
+            }
+
+
+            @Override
+            public List<Collect> SelectCollectUser(Map<String, Object> map) {
+                return null;
+            }
+
+            @Override
+            public int SelectCollectCountUser(int userid) {
+                return 0;
+            }
+
+            @Override
+            public int DeleteCollect(Map<String, Object> map) {
                 return 0;
             }
         };

@@ -41,7 +41,7 @@ public class OrderController {
 
         /*pa.setTotalCount((int)page.getTotal());*/
         List<Orders> orders = service.SelectOrderNumb(user_id);
-        System.out.println("订单长度: "+orders.size()+"总数:  "+orders.get(0).getSummoney());
+        System.out.println("订单长度: "+orders.size()+"总数:  ");
 
         return  orders;
 
@@ -64,5 +64,6 @@ public class OrderController {
 
         return  orderXQS;
     }
+
 
 }
