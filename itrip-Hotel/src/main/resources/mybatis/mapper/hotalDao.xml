@@ -5,7 +5,7 @@
 <mapper namespace="com.cssl.pojo.dao.hotalDao">
 
     <select id="hotel" resultType="map" parameterType="int">
-        SELECT p.`Product_id`,h.`tips`,h.`Specific_address`,h.`describes`,h.`Reservation_Notes`,h.`h_id`,h.`h_name`,c.`pictrue`,c.`cs_name`,h.`Star_class`,h.`purchases_Number`,p.`P_price`,h.`picture1`,h.`pictrue2` FROM hotel h
+        SELECT p.`Product_id`,p.`P_imgpath`,h.`tips`,h.`Specific_address`,h.`describes`,h.`Reservation_Notes`,h.`h_id`,h.`h_name`,c.`pictrue`,c.`cs_name`,h.`Star_class`,h.`purchases_Number`,p.`P_price`,h.`picture1`,h.`pictrue2` FROM hotel h
           INNER JOIN product p ON h.`Product_id`=p.`Product_id`
           INNER JOIN citiesstates c ON h.`cs_id`=c.`cs_id`
         <trim prefix="where" prefixOverrides="or||and">

@@ -24,6 +24,9 @@ public class hotalControoler_Consumer {
     @RequestMapping(value = "hotel",method = RequestMethod.GET)
     public List<Map> hotel(){
         List<Map> list = homePageClientService.hotel(0);
+        for (Map map : list) {
+            System.out.println(map);
+        }
         return list;
     }
 
