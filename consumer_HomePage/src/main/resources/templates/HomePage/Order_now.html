@@ -1102,7 +1102,6 @@
                                 <p class="f14 mt5"
                                    th:text="'成人 X '+${l1.adult_num}+'  儿童  X '+${l1.children_num}+'  婴儿 X '+${l1.baby_num}"></p>
                                 <p class="zj" style="display: none" th:text="${l1.discount}"></p>
-                                <p class="zj" style="display: none">22.23</p>
                             </li>
                         </ul>
                         <!--<ul class="product_list" data-id="13087" data-promotionid="" data-date="2019/10/09">
@@ -3759,6 +3758,32 @@ data-i-op-reviewid
             sum += (je_one[i].innerHTML * 1);
         }
         $(".f24.orange.bold.ml10.js_total").text((sum + bx * 1));
+        if (!CUR_CID) {
+            CUR_CID = 12;
+            alert("123");
+            $('.money_sw a[data-id="' + CUR_CID + '"]').click();
+
+        } else {
+            changeCurrency(CUR_CID);
+            if(CUR_CID != 12) {
+                var oriPrice = $(".f24.orange.bold.ml10.js_total").text();
+                $('[data-price]').each(function () {
+                    var oriCid = $(this).data('cid');
+                })
+                var fromRate = exRates[oriCid].exRate;
+                var toRate = exRates[12].exRate;
+                var price = (oriPrice * fromRate) / toRate;
+                $(".f18.orange.js_rmb").empty().text(" = RMB" + price.toFixed(2));
+            }else {
+                $(".f18.orange.js_rmb").empty().text(" = RMB" +  $(".f24.orange.bold.ml10.js_total").text());
+            }
+        }
+        alert($(".sw_syb.fl.blue").text());
+        if($(".sw_syb.fl.blue").text() == "RMB"){
+            $(".rmb_p").addClass("hide");
+        }else{
+            $(".rmb_p").removeClass("hide");
+        }
     }
 </script>
 </body>
