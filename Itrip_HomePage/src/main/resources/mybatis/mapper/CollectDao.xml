@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cssl.pojo.dao.CollectDao">
+
+     
+        <select id="SelectCollectCount" resultType="java.lang.Integer" parameterType="Collect">
+
+
+            SELECT COUNT(0)   FROM collect WHERE productid=#{productid}  AND userid=#{userid}
+        </select>
+
+        <insert id="InsertCollect" parameterType="Collect">
+            INSERT INTO collect(productid,userid) VALUES(#{productid},#{userid})
+
+        </insert>
+
+        <resultMap id="MyCollect" type="Collect">
+
+                <id property="cid" column="cid"></id>
+                <association property="pp" column="productid" select="selectpid"></association>
+
+        </resultMap>
+
+
+        <select id="SelectCollectUser" resultMap="MyCollect" parameterType="Map">
+
+            SELECT*FROM collect c INNER JOIN product p ON c.`productid`=p.`Product_id`
+            WHERE c.`userid`=#{userid} LIMIT #{state},#{size}
+        </select>
+
+        <select id="selectpid" parameterType="int" resultType="Product">
+
+
+            SELECT*FROM product WHERE Product_id=#{Product_id}
+        </select>
+
+        <select id="SelectCollectCountUser" resultType="java.lang.Integer" parameterType="int">
+
+            SELECT  COUNT(0)  FROM collect c INNER JOIN product p ON c.`productid`=p.`Product_id`
+            WHERE c.`userid`=#{userid}
+
+        </select>
+
+
+        <delete id="DeleteCollect" parameterType="Map">
+
+
+            DELETE FROM collect WHERE cid=#{cid}  and userid=#{userid}
+        </delete>
+
+
+
+
+</mapper>

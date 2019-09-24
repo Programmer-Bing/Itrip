@@ -42,7 +42,7 @@ public interface OrderDao {
 
     /***
      *
-     *
+     *存储
      * @param ordernum
      * @return
      */

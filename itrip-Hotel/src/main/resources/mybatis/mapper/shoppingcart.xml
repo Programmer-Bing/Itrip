@@ -5,7 +5,7 @@
 <mapper namespace="com.cssl.pojo.dao.shoppingcartDao">
 
     <insert id="addCart" parameterType="map">
-        INSERT INTO productshoppingcart(psc_id,p_id,uid,Settlement_price,Travel_date,departure_date) VALUES(#{cart.sht_id},#{cart.Product_id},1,#{cart.Original_price},#{cart.Travle_date},#{cart.Leavingshop_date});
+        INSERT INTO productshoppingcart(psc_id,p_id,uid,Settlement_price,Travel_date,departure_date,Submission_time) VALUES(#{cart.sht_id},#{cart.Product_id},1,#{cart.Original_price},#{cart.Travle_date},#{cart.Leavingshop_date},now());
     </insert>
 
     <insert id="addRoom" parameterType="map">

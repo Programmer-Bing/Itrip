@@ -23,7 +23,7 @@ public class Product {
 
     private String P_imgpath;  //产品图片
 
-    private double price; //产品金额
+    private double p_price; //产品金额
 
     private String ProductNumber; //产品的编号
 }

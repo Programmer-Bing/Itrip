@@ -45,4 +45,12 @@ public interface HomePage_productService {
      */
     List<Map> showregion();
 
+    /**
+     * 查询购物车的商品
+     * @return
+     */
+    List<List> showMycart();
+
+    boolean delHotel(Integer sht);
+
 }

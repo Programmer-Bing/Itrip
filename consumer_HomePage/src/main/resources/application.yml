@@ -2,7 +2,7 @@ server:
   port: 8089
 spring:
   resources:
-    static-locations: classpath:/templates/,classpath:/static/,classpath:/META-NF/resources/,classpath:/resources/,classpath:/public/,classpath:/upload
+    static-locations: classpath:/templates/,classpath:/static/,classpath:/META-NF/resources/,classpath:/resources/,classpath:/public/,classpath:/upload,classpath:/templates/login
   thymeleaf:
     encoding: UTF-8
     #开发时关闭缓存,不然没法看到实时页面
@@ -33,7 +33,7 @@ spring:
 eureka:
   client:
     register-with-eureka: true
-    service-url: 
+    service-url:
       defaultZone: http://localhost:6001/eureka
   instance:
     instance-id: microservice-consumer-80

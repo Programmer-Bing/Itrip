@@ -108,4 +108,43 @@
         INNER JOIN smallplate s ON s.lp_id = l.lp_id
         INNER JOIN citiesstates c ON c.sp_id=s.sp_id WHERE l.lp_id=3
     </select>
+
+    <!--查询购物车的商品-->
+    <select id="showMycart" resultType="map">
+        SELECT * FROM shoppingcart s
+        INNER JOIN product p ON p.Product_id=s.Product_id
+        LEFT JOIN roomtype r ON r.id=s.sht_id
+        LEFT JOIN roominformation rf ON rf.rif_id = r.rif_id
+    </select>
+
+    <delete id="delroom" parameterType="Integer">
+        DELETE FROM roomtype WHERE id = #{id}
+    </delete>
+
+    <!--删除酒店购物车-->
+    <delete id="delHotel" parameterType="Integer">
+        DELETE FROM shoppingcart WHERE sht_id = #{sht}
+    </delete>
+
+    <resultMap id="rtype" type="map">
+        <id property="sht_id" column="sht_id"></id>
+        <result property="Product_id" column="Product_id"></result>
+        <result property="user_id" column="user_id"></result>
+        <result property="Original_price" column="Original_price"></result>
+        <result property="Settlement_price" column="Settlement_price"></result>
+        <result property="Travel_date" column="Travel_date"></result>
+        <result property="Leavingshop_date" column="Leavingshop_date"></result>
+        <association property="rt" javaType="map">
+            <id property="rt_id" column="rt_id"></id>
+            <result property="rif_id" column="rif_id"></result>
+            <result property="rif_num" column="rif_num"></result>
+            <result property="id" column="id"></result>
+            <collection property="room" ofType="map" >
+                <id property="rif_id" column="rif_id"></id>
+                <result property="rif_name" column="rif_name"></result>
+            </collection>
+        </association>
+    </resultMap>
+
+
 </mapper>
