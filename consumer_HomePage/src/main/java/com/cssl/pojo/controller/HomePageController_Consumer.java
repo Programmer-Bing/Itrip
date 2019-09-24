@@ -92,7 +92,6 @@ public class HomePageController_Consumer {
     }
     /*立即预定*/
     @RequestMapping("/Reservation")
-    @ResponseBody
     public ModelAndView Reservation(HttpSession session, @RequestParam(value = "map", required = false) String map,ModelAndView model, Model model2) {
         System.out.println("sessionId:" + session.getId());
         System.out.println("进入立即结算");
@@ -114,8 +113,8 @@ public class HomePageController_Consumer {
         List<Product_shopping> list2 = new ArrayList<>();
         list1.add(product_shopping);
         System.out.println(list1);
-        model2.addAttribute("list1", list1);
-        model2.addAttribute("list2", list2);
+        model.addObject("Pshopping", list1);
+        model2.addAttribute("Hshopping", list2);
         model.setViewName("HomePage/Order_now");
         return model;
     }

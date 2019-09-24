@@ -3,10 +3,10 @@ package com.cssl.pojo.service;
 import com.cssl.pojo.HomePage_product;
 import com.cssl.pojo.ProductDetails;
 import com.cssl.pojo.Product_shopping;
+import com.cssl.pojo.po.Collect;
 import com.cssl.pojo.po.OrderXQ;
 import com.cssl.pojo.po.Orders;
 import com.cssl.pojo.po.User;
-import org.bouncycastle.cert.ocsp.Req;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -150,17 +150,59 @@ public interface HomePageClientService {
     public List<Orders> SelectOrderNumb(@RequestParam(value = "1") int userid);
 
 
+
     @RequestMapping(method = RequestMethod.GET,value = "/SelectOrderXQ")
     public List<OrderXQ> SelectOrderProduct(@RequestParam(value = "ordernum") String ordernum);
 
-    @RequestMapping(method = RequestMethod.GET,value = "/showregion")
-    public List<Map> showregion();
+    /***
+     *
+     * 收藏查询总数
+     * @param
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST,value = "/SelectCollectCount")
+    public int SelectCollectCount(@RequestBody Collect co);
 
-    @RequestMapping(method = RequestMethod.GET,value = "/showMycart")
-    public List<List> showMycart();
+    /***
+     *
+     *
+     * 添加收藏
+     * @param co
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST,value = "/InsertCollect")
+    public int InsertCollect(@RequestBody Collect co) ;
 
-    @RequestMapping(method = RequestMethod.GET,value = "/delHotel")
-    public boolean delHotel(@RequestParam(value = "sht") Integer sht);
+    /****
+     *
+     *
+     * 个人收藏的查询
+     * @param
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST,value = "/SelectCollectUser")
+    public List<Collect> SelectCollectUser(@RequestBody  Map<String,Object> map);
 
 
+    /****
+     *
+     *
+     * 个人收藏总数的查询
+     * @param
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET,value = "/SelectCollectCountUser")
+    public int SelectCollectCountUser(@RequestParam(value = "11") int userid);
+
+
+    /***
+     *
+     *
+     * 取消收藏
+     * @param map
+     * @return
+     */
+
+    @RequestMapping(method = RequestMethod.POST,value = "/DeleteCollect")
+    public int DeleteCollect(@RequestBody Map<String, Object> map);
 }

@@ -135,6 +135,7 @@
                         "Discount": discount * $("#one .Adult").text() + discount * $("#one .children").text() * 0.5,
                         "uid": "3"
                     };
+                    if(voidname == "/addShopping") {
                         $.ajax({
                             url: voidname,
                             type: "GET",
@@ -155,6 +156,11 @@
                                 })
                             }
                         })
+                    }else {
+                        var str = JSON.stringify(testMap).replace("{","%7B");
+                        var str2 = str.replace("}","%7D")
+                        location.href = "/Reservation?map=" + str2;
+                    }
                 }
                 var div = "<div class=\"tip-mask \" id=\"tip-dialog\"> \n" +
                     "<div class=\"background\"></div>\n" +
