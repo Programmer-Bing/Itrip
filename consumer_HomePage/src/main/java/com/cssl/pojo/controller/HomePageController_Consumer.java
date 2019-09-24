@@ -146,13 +146,7 @@ public class HomePageController_Consumer {
         return num;
     }
 
-    /*显示地区*/
-    @RequestMapping(value = "/showregion" , method = RequestMethod.GET)
-    public String showregion(){
-        List<Map> maps = service.showregion();
-        System.out.println(maps.toString());
-        return  maps.toString();
-    }
+
 
     /**
      * 删除酒店购物车

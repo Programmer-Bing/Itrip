@@ -205,4 +205,18 @@ public interface HomePageClientService {
 
     @RequestMapping(method = RequestMethod.POST,value = "/DeleteCollect")
     public int DeleteCollect(@RequestBody Map<String, Object> map);
+
+    /**
+     * 显示酒店购物车
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET,value = "/showMycart")
+    public List<List> showMycart();
+
+    /**
+     *删除酒店购物车
+     */
+    @RequestMapping(method = RequestMethod.GET,value = "/delHotel")
+    public boolean delHotel(Integer sht);
+
 }
