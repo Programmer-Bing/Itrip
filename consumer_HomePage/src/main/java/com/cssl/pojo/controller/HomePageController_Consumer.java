@@ -12,9 +12,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.cssl.pojo.Method.Method.json2map;
 
 @Controller
 public class HomePageController_Consumer {
@@ -86,13 +90,48 @@ public class HomePageController_Consumer {
         System.out.println("num:" + num);
         return num;
     }
-
+    /*立即预定*/
+    @RequestMapping("/Reservation")
+    @ResponseBody
+    public ModelAndView Reservation(HttpSession session, @RequestParam(value = "map", required = false) String map,ModelAndView model, Model model2) {
+        System.out.println("sessionId:" + session.getId());
+        System.out.println("进入立即结算");
+        Integer num = this.service.addShopping(map);
+        Map<String, Object> map2 = json2map(map);
+        Product_shopping product_shopping = new Product_shopping();
+        HomePage_product hp = this.service.findByP_id(Integer.valueOf((String) map2.get("p_id")));
+        product_shopping.setP_id(Integer.valueOf((String) map2.get("p_id")));
+        product_shopping.setTravel_date((String) map2.get("Travel_date"));
+        product_shopping.setSettlement_price(BigDecimal.valueOf((Double) map2.get("Settlement_price")));
+        product_shopping.setProduct_specification((String) map2.get("Product_specification"));
+        product_shopping.setAdult_num(Integer.parseInt((String) map2.get("Adult_num")));
+        product_shopping.setChildren_num(Integer.parseInt((String) map2.get("children_num")));
+        product_shopping.setBaby_num(Integer.parseInt((String) map2.get("baby_num")));
+        product_shopping.setDiscount(BigDecimal.valueOf((Double) map2.get("Discount")));
+        product_shopping.setUid(Integer.parseInt((String) map2.get("uid")));
+        product_shopping.setP_title(hp.getProduct_name());
+        List<Product_shopping> list1 = new ArrayList<>();
+        List<Product_shopping> list2 = new ArrayList<>();
+        list1.add(product_shopping);
+        System.out.println(list1);
+        model2.addAttribute("list1", list1);
+        model2.addAttribute("list2", list2);
+        model.setViewName("HomePage/Order_now");
+        return model;
+    }
     /*xx的购物车的显示*/
     @RequestMapping("/findShoppingByUid")
     public ModelAndView findShoppingByUid(HttpSession session, ModelAndView model, Model model2, @RequestParam(value = "uid", required = false) Integer uid) {
         System.out.println("findShopping成功到消费者模块！！");
+        List<List> maps = service.showMycart();
+        for (List map : maps) {
+            System.out.println(map);
+        }
         System.out.println(uid);
         model2.addAttribute("ShoppingC", this.service.findShoppingByUid(uid));
+        model2.addAttribute("ShoppingH", maps);
+        System.out.println("--------------------");
+        System.out.println(maps.get(1).get(1));
         model.setViewName("HomePage/ShoppingCart");
         return model;
     }
@@ -107,4 +146,24 @@ public class HomePageController_Consumer {
         System.out.println("num:" + num);
         return num;
     }
+
+    /*显示地区*/
+    @RequestMapping(value = "/showregion" , method = RequestMethod.GET)
+    public String showregion(){
+        List<Map> maps = service.showregion();
+        System.out.println(maps.toString());
+        return  maps.toString();
+    }
+
+    /**
+     * 删除酒店购物车
+     */
+    @RequestMapping(value = "/delHotel" , method = RequestMethod.GET)
+    public ModelAndView delHotel(ModelAndView model,@RequestParam(value = "sht", required = false) Integer sht){
+        service.delHotel(sht);
+        model.setViewName("Europe");
+        return model;
+    }
+
+
 }

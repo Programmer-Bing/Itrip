@@ -314,6 +314,85 @@
                 <p class="mt10"><a class="blue del" th:href="@{'http://localhost:8089/delShopping'(psc_id=${shop.psc_id})}">删除</a></p>
             </li>
         </ul>
+
+
+        <ul class="cart_body clearfix" style="overflow:inherit" data-id="29b603b2-b5de-44be-99b4-3375c1779821"
+            data-productid="8052" data-ispormotion="false" data-state="1" data-type="1"
+            th:each="shop,state:${ShoppingH}">
+            <li style="line-height:72px;">
+                <span class="icon hand icon_orange_Hook"></span>
+            </li>
+
+            <li class="pos_r" style="width:110px;">
+                <a class="blue" th:href="@{'http://localhost:8089/findProductDetails'(Product_id=${shop.get(1).Product_id})}">
+                    <img width="109" height="72" alt="" th:src="${shop.get(1).P_imgpath}"></a>
+            </li>
+
+            <li style="width:200px;">
+                <p th:text="'产品编号'+${shop.get(1).Product_id}"></p>
+                <p class="f14">
+                    <a class="blue" th:href="@{'http://localhost:8089/findProductDetails'(Product_id=${shop.get(1).Product_id})}"
+                       th:text="${shop.get(1).Product_Name}"></a>
+                </p>
+            </li>
+
+            <li class="pos_r" style="width:200px;">
+                <input id="checkInTime" type="hidden" value="2019-09-21">
+                <!-- /*#dates.format(shop.travel_date,'yyyy-MM-dd')*/-->
+                <p class="mb10" th:text="'出行日期：'+ ${shop.get(1).Travel_date}"></p>
+                <p class="mb10" th:text="'离店日期：'+${shop.get(1).Leavingshop_date}"></p>
+                <p class="mb10" th:text="房型：">
+                    <p th:each="s,sta:${shop}" th:if="${sta.index}!=0" th:text="${s.rif_name}+'('+${s.rif_num}+')'" >
+            </p>
+                </p>
+                <input class="persons" type="hidden" value="3">
+            </li>
+
+            <li style="width:140px;">
+                <span class="f16 blue bold" style="display:inline-block;margin-top:10px;"><label class="js_curCode f12">RMB</label><br><label
+                        class="f20 js_curMoney" data-cid="20"
+                        th:text="${shop.get(1).Settlement_price+shop.get(1).Original_price}"></label></span>
+            </li>
+
+            <li style="width:110px;">
+                <div class="s-dis mt10">
+                    <p>优惠特价</p>
+                    <label>-<span class="js_curCode">RMB</span>&nbsp;
+                        <span class="js_reducePrice js_curMoney"
+                              data-exrates="{9=4.85, 10=4.52, 11=3.16, 12=1.0, 13=7.0887, 14=0.23, 15=5.0E-4, 17=5.1632, 16=1.6, 21=8.8625, 20=7.8646, 23=0.06, 22=7.1867, 25=0.73, 24=0.79, 27=1.03, 26=0.31}"
+                              data-cid="20" th:text="${shop.get(1).Settlement_price}"></span></label>
+                    <span class="hide js_reducePrice_discount js_curMoney"
+                          data-exrates="{9=4.85, 10=4.52, 11=3.16, 12=1.0, 13=7.0887, 14=0.23, 15=5.0E-4, 17=5.1632, 16=1.6, 21=8.8625, 20=7.8646, 23=0.06, 22=7.1867, 25=0.73, 24=0.79, 27=1.03, 26=0.31}"
+                          data-price="0" data-cid="20">0</span>
+                </div>
+                <div class="j-no-coupon pt25 hide orange tc" style="padding-top:10px;">不支持使用优惠券</div>
+            </li>
+
+            <li style="width:140px;">
+                <p class="f16 orange bold mt10">
+                    <label class="js_curCode f12">RMB</label><br>
+                    <label class="f20 js_price js_curMoney" data-cid="20"
+                           data-showsharerewardflag="true"
+                           th:text="${shop.get(1).Original_price}"></label>
+                </p>
+                <label class="hide comment-reward js_curMoney"
+                       data-exrates="{9=4.85, 10=4.52, 11=3.16, 12=1.0, 13=7.0887, 14=0.23, 15=5.0E-4, 17=5.1632, 16=1.6, 21=8.8625, 20=7.8646, 23=0.06, 22=7.1867, 25=0.73, 24=0.79, 27=1.03, 26=0.31}"
+                       data-price="0.0" data-cid="20">0</label>
+                <label class="hide promotion-share js_curMoney"
+                       data-exrates="{9=4.85, 10=4.52, 11=3.16, 12=1.0, 13=7.0887, 14=0.23, 15=5.0E-4, 17=5.1632, 16=1.6, 21=8.8625, 20=7.8646, 23=0.06, 22=7.1867, 25=0.73, 24=0.79, 27=1.03, 26=0.31}"
+                       data-price="" data-cid="20">0</label>
+            </li>
+
+            <li>
+                <p class=" mt15"><a class="blue addFav hide" style="display: inline;" href="javascript:;"
+                                    data-id="8052"
+                                    data-typeid="1">加入收藏</a></p>
+                <p class="mt10"><a th:id="delho" class="blue del" th:href="@{'http://localhost:8089/delHotel'(sht=${shop.get(1).sht_id})}">删除</a></p>
+            </li>
+        </ul>
+
+
+
         <!--全选-->
         <div class="cartBar mb30 clearfix">
 

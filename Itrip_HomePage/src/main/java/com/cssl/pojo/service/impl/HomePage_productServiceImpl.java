@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -62,5 +64,48 @@ public class HomePage_productServiceImpl implements HomePage_productService {
     @Override
     public Integer delShopping(Integer psc_id) {
         return hpdao.delShopping(psc_id);
+    }
+
+    @Override
+    public List<Map> showregion() {
+        return hpdao.showregion();
+    }
+
+    @Override
+    public List<List> showMycart() {
+        List<Map> maps = hpdao.showMycart();
+        List<List> list = new ArrayList<>();
+        for (int i = 0; i < maps.size(); i++) {
+            int p = 1;
+            System.out.println("d");
+            List map = new ArrayList();
+            for (int j = 0; j < list.size(); j++) {
+                System.out.println("c");
+                if(maps.get(i).get("sht_id")==list.get(j).get(0)){
+                    p = 0;
+                    list.get(j).add(maps.get(i));
+                    break;
+                }
+            }
+            if(p==1){
+                System.out.println("b");
+                map.add(0,maps.get(i).get("sht_id"));
+                map.add(maps.get(i));
+                list.add(map);
+            }
+        }
+        for (List list1 : list) {
+            System.out.println(list1);
+        }
+        return list;
+    }
+
+
+    @Override
+    public boolean delHotel(Integer sht) {
+        if(hpdao.delroom(sht)&&hpdao.delHotel(sht)){
+            return true;
+        }
+        return false;
     }
 }

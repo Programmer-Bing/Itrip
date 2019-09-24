@@ -3,7 +3,6 @@ package com.cssl.pojo.service;
 import com.cssl.pojo.HomePage_product;
 import com.cssl.pojo.ProductDetails;
 import com.cssl.pojo.Product_shopping;
-import com.cssl.pojo.po.Collect;
 import com.cssl.pojo.po.OrderXQ;
 import com.cssl.pojo.po.Orders;
 import com.cssl.pojo.po.User;
@@ -33,7 +32,6 @@ public interface HomePageClientService {
     //根据所属不唯一城市查商品
     @RequestMapping(method = RequestMethod.GET, value = "findPartyingByCities")
     public List<HomePage_product> findPartyingByCities(@RequestParam(required = false, value = "P_cid") String P_cid, @RequestParam(required = false, value = "Pt_id") Integer Pt_id);
-
     /***
      * 跟据商品id来查商品详情
      * @param Product_id
@@ -73,10 +71,6 @@ public interface HomePageClientService {
     @RequestMapping(method = RequestMethod.GET, value = "delShopping")
     public Integer delShopping(@RequestParam("psc_id") Integer psc_id);
 
-
-    @RequestMapping(method = RequestMethod.GET, value = "/homeproduct/cs")
-    public List<User> Cs();
-
     /***
      * 添加用户 注册
      * @param
@@ -93,19 +87,18 @@ public interface HomePageClientService {
      */
     @RequestMapping(method = RequestMethod.GET, value = "UserRegistration")
     public List<User> JudgeUser(@RequestParam(value = "phone") String phone);
-
     /***
      * 根据号码拿邮箱
      */
-    @RequestMapping(method = RequestMethod.GET, value = "PhoneEmailUser")
-    public Map<String, Object> PhoneEmail(@RequestParam(value = "phone") String phone);
+    @RequestMapping(method = RequestMethod.GET,value = "PhoneEmailUser")
+    public Map<String,Object> PhoneEmail(@RequestParam(value = "phone") String phone);
 
 
     /***
      * 用户修改密码
      */
-    @RequestMapping(method = RequestMethod.POST, value = "/UpdatePhoneUser")
-    public int UpdatePhone(@RequestBody Map<String, Object> map);
+    @RequestMapping(method = RequestMethod.POST,value = "/UpdatePhoneUser")
+    public int UpdatePhone(@RequestBody  Map<String,Object> map);
 
     /***
      *
@@ -113,8 +106,8 @@ public interface HomePageClientService {
      * @param
      * @return
      */
-    @RequestMapping(method = RequestMethod.POST, value = "/LoginPhoeUser")
-    public List<User> LoginPhone(@RequestBody Map<String, Object> map);
+    @RequestMapping(method = RequestMethod.POST,value = "/LoginPhoeUser")
+    public List<User> LoginPhone(@RequestBody Map<String,Object> map);
 
     /***
      *
@@ -122,98 +115,41 @@ public interface HomePageClientService {
      * @param map
      * @return
      */
-    @RequestMapping(method = RequestMethod.POST, value = "/LoginEmailUser")
-    public List<User> UserLoginEmail(@RequestBody Map<String, Object> map);
+    @RequestMapping(method = RequestMethod.POST,value = "/LoginEmailUser")
+    public List<User> UserLoginEmail(@RequestBody  Map<String,Object> map);
 
 
-    @RequestMapping(method = RequestMethod.POST, value = "/UpdateUserMsg")
+    @RequestMapping(method = RequestMethod.POST,value = "/UpdateUserMsg")
     public int UpdateUser(@RequestBody User uu);
 
 
-    @RequestMapping(method = RequestMethod.GET, value = "/SecectUserNamexx")
+    @RequestMapping(method = RequestMethod.GET,value = "/SecectUserNamexx")
     public List<User> SelectUserName(@RequestParam(value = "name") String name);
 
 
-    @RequestMapping(method = RequestMethod.POST, value = "/UpdatePhonePerson")
-    public int UpdatePhonePerson(@RequestBody Map<String, Object> map);
+    @RequestMapping(method = RequestMethod.POST,value = "/UpdatePhonePerson")
+    public int UpdatePhonePerson(@RequestBody  Map<String, Object> map);
 
-    @RequestMapping(method = RequestMethod.POST, value = "/UpdatePassword")
-    public int UpdatePassword(@RequestBody Map<String, Object> map);
-
-
-    @RequestMapping(method = RequestMethod.POST, value = "/UpdatePicture")
-    public int UpdatePicture(@RequestBody Map<String, Object> map);
+    @RequestMapping(method = RequestMethod.POST,value = "/UpdatePassword")
+    public int UpdatePassword(@RequestBody  Map<String, Object> map);
 
 
-    @RequestMapping(method = RequestMethod.GET, value = "/SelectUserID")
+    @RequestMapping(method = RequestMethod.POST,value = "/UpdatePicture")
+    public int UpdatePicture(@RequestBody  Map<String, Object> map);
+
+
+    @RequestMapping(method = RequestMethod.GET,value = "/SelectUserID")
     public List<Orders> SelectUser(@RequestParam(value = "1") int id);
 
-    @RequestMapping(method = RequestMethod.GET, value = "/SelectOrderProdoct")
-    public List<Orders> SelectOrderProdoct(@RequestParam("1") int userid);
+    @RequestMapping(method = RequestMethod.GET,value = "/SelectOrderProdoct")
+    public List<Orders> SelectOrderProdoct(@RequestParam("1") int userid) ;
 
 
-    @RequestMapping(method = RequestMethod.GET, value = "/SelectOrderNumb")
+    @RequestMapping(method = RequestMethod.GET,value = "/SelectOrderNumb")
     public List<Orders> SelectOrderNumb(@RequestParam(value = "1") int userid);
 
 
-    @RequestMapping(method = RequestMethod.GET, value = "/SelectOrderXQ")
+
+    @RequestMapping(method = RequestMethod.GET,value = "/SelectOrderXQ")
     public List<OrderXQ> SelectOrderProduct(@RequestParam(value = "ordernum") String ordernum);
-
-
-    /***
-     *
-     * 收藏查询总数
-     * @param
-     * @return
-     */
-    @RequestMapping(method = RequestMethod.POST,value = "/SelectCollectCount")
-    public int SelectCollectCount(@RequestBody Collect co);
-
-    /***
-     *
-     *
-     * 添加收藏
-     * @param co
-     * @return
-     */
-    @RequestMapping(method = RequestMethod.POST,value = "/InsertCollect")
-    public int InsertCollect(@RequestBody Collect co) ;
-
-    /****
-     *
-     *
-     * 个人收藏的查询
-     * @param
-     * @return
-     */
-    @RequestMapping(method = RequestMethod.POST,value = "/SelectCollectUser")
-    public List<Collect> SelectCollectUser(@RequestBody  Map<String,Object> map);
-
-
-    /****
-     *
-     *
-     * 个人收藏总数的查询
-     * @param
-     * @return
-     */
-    @RequestMapping(method = RequestMethod.GET,value = "/SelectCollectCountUser")
-    public int SelectCollectCountUser(@RequestParam(value = "11") int userid);
-
-
-    /***
-     *
-     *
-     * 取消收藏
-     * @param map
-     * @return
-     */
-
-    @RequestMapping(method = RequestMethod.POST,value = "/DeleteCollect")
-    public int DeleteCollect(@RequestBody Map<String, Object> map);
-
-
-
-
-
 }

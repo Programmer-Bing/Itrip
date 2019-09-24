@@ -6,26 +6,25 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-import java.util.Date;
+import java.io.Serializable;
+import java.math.BigInteger;
+import java.sql.Date;
+import java.util.List;
 
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain=true)
-public class shoppingcart {
-    double sht_id;
+public class shoppingcart implements Serializable {
+    Long sht_id;
     int Product_id;
     int user_id;
     double Original_price;
     double Settlement_price;
-    String Travle_date;
-    String Leavingshop_date;
-    int sm_id;
-    int Adult_num;
-    int children_num;
-    int baby_num;
-    int Passenger_num;
-    String room;
+    Date Travel_date;
+    Date Leavingshop_date;
+    List<roomtype> rt;
+
 
 }
