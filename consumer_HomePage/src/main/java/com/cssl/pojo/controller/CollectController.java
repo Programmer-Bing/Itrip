@@ -45,7 +45,7 @@ public class CollectController {
          System.out.println("查询收藏总数: "+user.getUser_id()+"商品id: "+productnum);
          int i = service.SelectCollectCount(co);
 
-        //status 405 reading HomePageClientService#SelectCollectCount(Collect)
+
          return i;
 
      }
