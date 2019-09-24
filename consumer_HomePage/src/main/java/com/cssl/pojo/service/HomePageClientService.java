@@ -6,6 +6,7 @@ import com.cssl.pojo.Product_shopping;
 import com.cssl.pojo.po.OrderXQ;
 import com.cssl.pojo.po.Orders;
 import com.cssl.pojo.po.User;
+import org.bouncycastle.cert.ocsp.Req;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -154,4 +155,12 @@ public interface HomePageClientService {
 
     @RequestMapping(method = RequestMethod.GET,value = "/showregion")
     public List<Map> showregion();
+
+    @RequestMapping(method = RequestMethod.GET,value = "/showMycart")
+    public List<List> showMycart();
+
+    @RequestMapping(method = RequestMethod.GET,value = "/delHotel")
+    public boolean delHotel(@RequestParam(value = "sht") Integer sht);
+
+
 }

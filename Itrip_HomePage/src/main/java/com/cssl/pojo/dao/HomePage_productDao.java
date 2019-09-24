@@ -4,6 +4,7 @@ import com.cssl.pojo.HomePage_product;
 import com.cssl.pojo.ProductDetails;
 import com.cssl.pojo.Product_shopping;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -55,4 +56,17 @@ public interface HomePage_productDao {
      */
     List<Map> showregion();
 
+    /**
+     * 查询购物车的商品
+     * @return
+     */
+    List<Map> showMycart();
+
+    /**
+     * 删除购物车的酒店
+     * @param sht
+     * @return
+     */
+    boolean delHotel(@Param("sht") Integer sht);
+    boolean delroom(@Param("id")Integer id);
 }

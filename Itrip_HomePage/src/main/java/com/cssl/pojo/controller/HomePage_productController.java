@@ -134,4 +134,20 @@ public class HomePage_productController {
         return homePage_productService.showregion();
     }
 
+
+    /*显示购物车*/
+    @RequestMapping("showMycart")
+    @ResponseBody
+    public List<List> showMycart(){
+        return homePage_productService.showMycart();
+    }
+
+    /*删除酒店购物车*/
+    @RequestMapping("delHotel")
+    @ResponseBody
+    public boolean delHotel(Integer sht){
+        return  homePage_productService.delHotel(sht);
+    }
+
+
 }

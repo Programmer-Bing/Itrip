@@ -7,6 +7,9 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
+
 @Setter
 @Getter
 @NoArgsConstructor
@@ -27,6 +30,8 @@ public class Product_shopping {
     Integer baby_num;
     BigDecimal Discount;
     BigDecimal Settlement_price; //结算价
+    Date departure_date;
+    List<roomtype> rt;
 
     @Override
     public String toString() {
