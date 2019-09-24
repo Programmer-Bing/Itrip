@@ -123,14 +123,10 @@ public class HomePageController_Consumer {
     public ModelAndView findShoppingByUid(HttpSession session, ModelAndView model, Model model2, @RequestParam(value = "uid", required = false) Integer uid) {
         System.out.println("findShopping成功到消费者模块！！");
         List<List> maps = service.showMycart();
-        for (List map : maps) {
-            System.out.println(map);
-        }
         System.out.println(uid);
         model2.addAttribute("ShoppingC", this.service.findShoppingByUid(uid));
         model2.addAttribute("ShoppingH", maps);
         System.out.println("--------------------");
-        System.out.println(maps.get(1).get(1));
         model.setViewName("HomePage/ShoppingCart");
         return model;
     }

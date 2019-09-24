@@ -167,6 +167,16 @@ public class FeginFactory implements FallbackFactory<HomePageClientService> {
             public int DeleteCollect(Map<String, Object> map) {
                 return 0;
             }
+
+            @Override
+            public List<List> showMycart() {
+                return  null;
+            }
+
+            @Override
+            public boolean delHotel(Integer sht) {
+                return false;
+            }
         };
     }
 }
