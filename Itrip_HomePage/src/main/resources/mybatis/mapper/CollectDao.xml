@@ -50,6 +50,42 @@
             DELETE FROM collect WHERE cid=#{cid}  and userid=#{userid}
         </delete>
 
+        <insert id="AddBrowsingHistory" parameterType="BrowsingHistory">
+
+
+            INSERT INTO browsinghistory(productid,userid) VALUES(#{productid},#{userid})
+        </insert>
+
+        <select id="SelectBrowsingHistory" resultType="java.lang.Integer" parameterType="BrowsingHistory">
+
+
+            select  count(0)     from browsinghistory where productid=#{productid} and userid=#{userid}
+        </select>
+
+        <update id="UpdateBrowsingHistory" parameterType="BrowsingHistory">
+
+            UPDATE browsinghistory SET btime=NOW() WHERE productid=#{productid} AND userid=#{userid}
+        </update>
+
+
+        <resultMap id="MyBH" type="BrowsingHistory">
+                <id property="bid" column="bid"></id>
+                <association property="pp" column="product_id" select="productid" ></association>
+
+        </resultMap>
+
+        <select id="SelectBrowsingHistoryUser"  resultMap="MyBH" parameterType="int">
+
+            select*from browsinghistory b inner join  product p on b.`productid`=p.`Product_id`
+            where b.`userid`=#{userid} order by b.`btime` desc LIMIT 0,3
+        </select>
+
+        <select id="productid" resultType="product" parameterType="int">
+
+
+            select*from product where product_id=#{product_id}
+        </select>
+
 
 
 

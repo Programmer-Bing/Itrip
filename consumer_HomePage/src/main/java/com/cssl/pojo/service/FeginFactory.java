@@ -7,10 +7,7 @@ import java.util.Map;
 import com.cssl.pojo.HomePage_product;
 import com.cssl.pojo.ProductDetails;
 import com.cssl.pojo.Product_shopping;
-import com.cssl.pojo.po.Collect;
-import com.cssl.pojo.po.OrderXQ;
-import com.cssl.pojo.po.Orders;
-import com.cssl.pojo.po.User;
+import com.cssl.pojo.po.*;
 import org.springframework.stereotype.Component;
 
 import feign.hystrix.FallbackFactory;
@@ -176,6 +173,27 @@ public class FeginFactory implements FallbackFactory<HomePageClientService> {
             @Override
             public boolean delHotel(Integer sht) {
                 return false;
+            }
+
+
+            @Override
+            public int AddBrowsingHistory(BrowsingHistory bb) {
+                return 0;
+            }
+
+            @Override
+            public int UpdateBrowsingHistory(BrowsingHistory bb) {
+                return 0;
+            }
+
+            @Override
+            public int SelectBrowsingHistory(BrowsingHistory bb) {
+                return 0;
+            }
+
+            @Override
+            public List<BrowsingHistory> SelectBrowsingHistoryUser(int userid) {
+                return null;
             }
         };
     }

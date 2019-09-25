@@ -83,9 +83,11 @@ public class HomePageController_Consumer {
     @ResponseBody
     public Integer addShopping(HttpSession session, @RequestParam(value = "map", required = false) String map) {
         System.out.println("sessionId:" + session.getId());
+        session.getAttribute(session.getId());
         System.out.println(map);
         Integer num = this.service.addShopping(map);
         System.out.println("num:" + num);
+
         return num;
     }
     /*立即预定*/

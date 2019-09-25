@@ -2,21 +2,17 @@ package com.cssl.pojo.controller;
 
 import ch.qos.logback.core.net.SyslogOutputStream;
 
-import com.cssl.pojo.po.Collect;
-import com.cssl.pojo.po.OrderPage;
-import com.cssl.pojo.po.Product;
-import com.cssl.pojo.po.User;
+import com.cssl.pojo.po.*;
 import com.cssl.pojo.service.HomePageClientService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 import javax.validation.constraints.Max;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +22,8 @@ public class CollectController {
 
      @Autowired
      private HomePageClientService service;
+
+
 
      /***
       *
@@ -139,6 +137,73 @@ public class CollectController {
         }
         return  "个人中心我的收藏.html";
     }
+
+
+    /***
+     *
+     * 浏览记录
+     * @return
+     */
+    @RequestMapping("/AddBrowsingHistory")
+    @ResponseBody
+    public int AddBrowsingHistory(String pid,HttpSession se){
+        User user = (User) se.getAttribute(se.getId());
+        BrowsingHistory bb=new BrowsingHistory();
+        bb.setProductid(Integer.parseInt(pid));
+        bb.setUserid(user.getUser_id());
+        int count = service.SelectBrowsingHistory(bb);
+        if(count>0){
+            System.out.println("用户浏览记录中存在");
+            int i = service.UpdateBrowsingHistory(bb);
+            if(i>0){
+                System.out.println("修改成功");
+            }
+        }
+        else{
+            System.out.println("用户浏览记录中不存在:  "+pid);
+
+
+            int i = service.AddBrowsingHistory(bb);
+            System.out.println("数字:  "+i);
+        }
+
+        return 0;
+    }
+
+    /***
+     *
+     *
+     * 个人的浏览记录的查询
+     * @return
+     */
+    @RequestMapping("/SelectBrowsingHistoryUser")
+    @ResponseBody
+    public List<BrowsingHistory> SelectBrowsingHistoryUser(HttpSession se){
+        User user = (User) se.getAttribute(se.getId());
+        List<BrowsingHistory> browsingHistories = service.SelectBrowsingHistoryUser(user.getUser_id());
+        if (browsingHistories!=null){
+            System.out.println("个人的浏览记录的查询:  "+browsingHistories.size()+"产品: "+browsingHistories.get(0).getPp().getP_imgpath());
+        }
+        return  browsingHistories;
+    }
+
+    /***
+     *
+     *
+     * 爱旅行主界面显示
+     * @return
+     */
+    @RequestMapping("/EuropeShowCollect")
+    @ResponseBody
+    public List<Integer> EuropeShowCollect(HttpSession se){
+
+        User user = (User)se.getAttribute(se.getId());
+        int totle = service.SelectCollectCountUser(user.getUser_id());
+        List<Integer> list=new ArrayList<>();
+        list.add(totle);
+        return  list;
+    }
+
 
 
 
