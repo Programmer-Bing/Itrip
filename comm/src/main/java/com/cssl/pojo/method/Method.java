@@ -1,4 +1,4 @@
-package com.cssl.pojo.Method;
+package com.cssl.pojo.method;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;

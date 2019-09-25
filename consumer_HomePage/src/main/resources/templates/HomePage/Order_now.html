@@ -229,8 +229,6 @@
     </div>
 </div>
 <input id="tyingMainProductId" type="hidden" value="">
-<input id="productRule" type="hidden"
-       value='[{"pid":8053,"spec":{"id":"517164267392534549","travller":[{"travllerId":26,"quantity":3}]}},{"pid":8052,"spec":{"id":"516830180222138064","travller":[{"travllerId":26,"quantity":2}]}},{"pid":8053,"spec":{"id":"517164267392534549","travller":[{"travllerId":26,"quantity":3}]}},{"pid":8053,"spec":{"id":"517164267392534549","travller":[{"travllerId":26,"quantity":2},{"travllerId":23,"quantity":1}]}},{"pid":8053,"spec":{"id":"517164267392534549","travller":[{"travllerId":26,"quantity":1},{"travllerId":23,"quantity":1},{"travllerId":14,"quantity":1}]}},{"pid":8053,"spec":{"id":"517164267392534549","travller":[{"travllerId":26,"quantity":2},{"travllerId":23,"quantity":2},{"travllerId":14,"quantity":1}]}},{"pid":13087}]'>
 <!--主体-->
 <div class="wrap" style="margin-top:30px">
     <div class="w750 fl">
@@ -253,12 +251,12 @@
                     </div>
                     <div class="contact_info pos_r mt25">
                         <div class="contact_name"><span>*</span>邮箱</div>
-                        <input name="receiveEmail" class="f14" value="" email="true" require="true" validate="true">
+                        <input name="receiveEmail" class="f14 receiveEmail" value="" email="true" require="true" validate="true">
                         <span class="red tip"></span>
                     </div>
                     <div class="contact_info pos_r mt25">
                         <div class="contact_name">微信号</div>
-                        <input name="weixinCode" class="f14" value="" validate="true">
+                        <input name="weixinCode" class="f14 weixinCode" value="" validate="true">
                         <span class="red tip"></span>
                     </div>
                 </div>
@@ -724,8 +722,10 @@
                         <span class="fl w160">
 
 													承保年龄：1岁-88岁</span>
-                        <span class="fl w110">RMB <em id="ourPrice" data-to-currencyid="21" data-ocurrencyid="12"
-                                                      data-oprice="350">350</em>/份</span>
+                        <span class="fl w110 "><label class="js_curCode">RMB</label> <em id="ourPrice"
+                                                                                         data-to-currencyid="21"
+                                                                                         data-cid="12"
+                                                                                         data-price="350">350</em>/份</span>
                         <span class="fr ml5">份</span>
                         <select class="fr insur_sel hand" data-orgvalue="2">
                             <option>0</option>
@@ -757,7 +757,7 @@
                         <span class="fl w160">
 
 													承保年龄：1岁-88岁</span>
-                        <span class="fl w110">RMB <em id="ourPrice" data-to-currencyid="21" data-ocurrencyid="12"
+                        <span class="fl w110">RMB <em class="ourPrice" data-to-currencyid="21" data-ocurrencyid="12"
                                                       data-oprice="30">30</em>/份</span>
                         <span class="fr ml5">份</span>
                         <select class="fr insur_sel hand" data-orgvalue="0">
@@ -790,7 +790,7 @@
                         <span class="fl w160">
 
 													承保年龄：1岁-88岁</span>
-                        <span class="fl w110">RMB <em id="ourPrice" data-to-currencyid="21" data-ocurrencyid="12"
+                        <span class="fl w110">RMB <em class="ourPrice" data-to-currencyid="21" data-ocurrencyid="12"
                                                       data-oprice="265">265</em>/份</span>
                         <span class="fr ml5">份</span>
                         <select class="fr insur_sel hand" data-orgvalue="0">
@@ -817,7 +817,7 @@
                             <option>20</option>
                         </select>
                     </li>
-                    <li class="hide" data-specid="78305945653300839" data-spename="8天">
+                    <!--<li class="hide" data-specid="78305945653300839" data-spename="8天">
                         <a class="fl productInfo" href="https://www.itrip.com/help?menuId=394" target="_blank"
                            data-id="13440" data-productname="利宝完美境外保障—尊崇型(人在境外不可购买）">利宝完美境外保障—尊崇型(人在境外不可购买）</a>
                         <span class="fl w160">
@@ -915,13 +915,13 @@
                             <option>19</option>
                             <option>20</option>
                         </select>
-                    </li>
+                    </li>-->
                 </ul>
                 <div class="more_in mt10 ml30 f12">
                     <ins>+</ins>
                     其他保险
                 </div>
-                <div class="all_price">合计：RMB <em data-oprice="78.98">700</em></div>
+                <div class="all_price">合计：<label class="js_curCode">RMB</label> <em data-oprice="78.98">700</em></div>
             </div>
             <!--保险投保人信息录入-->
             <div class="insur_peo insuerInfo">
@@ -1095,13 +1095,18 @@
                                 <p class="f14 grey mt5 clearfix">
                                     <span th:text="'出行日期：'+${#strings.substring(l1.travel_date,0,10)}"></span>
                                     <span class="orange bold fr"><label class="js_curCode">RMB</label>&nbsp;&nbsp;<label
-                                            class="js_curMoney price" data-price="140.4" data-cid="20"
+                                            class="js_curMoney price"
+                                            th:data-price="${#numbers.formatDecimal(l1.settlement_price,2,2)}"
+                                            data-cid="12"
                                             th:text="${#numbers.formatDecimal(l1.settlement_price,2,2)}"></label></span>
                                 </p>
                                 <p class="f14 grey mt5" th:text="${#strings.substring(l1.product_specification,5)}"></p>
                                 <p class="f14 mt5"
                                    th:text="'成人 X '+${l1.adult_num}+'  儿童  X '+${l1.children_num}+'  婴儿 X '+${l1.baby_num}"></p>
-                                <p class="zj" style="display: none" th:text="${l1.discount}"></p>
+                                <p style="display: none"> <span
+                                        class="orange bold fr"><label class="js_curCode">RMB</label>&nbsp;&nbsp;<label
+                                        class="zj" th:data-price="${l1.discount}" data-cid="12"
+                                        th:text="${l1.discount}"></label></span></p>
                             </li>
                         </ul>
                         <!--<ul class="product_list" data-id="13087" data-promotionid="" data-date="2019/10/09">
@@ -1125,7 +1130,7 @@
                                     保险 X<em class="toal_insur">2</em>
                                 </p>
                                 <span class="orange bold fr f14"><label class="js_curCode">GBP</label>&nbsp;&nbsp;<label
-                                        class="js_insurMoney" data-cid="21" data-oprice="78.98">78.98</label></span>
+                                        class="js_insurMoney"></label></span>
                             </li>
                         </ul>
                         <ul class="vip hide">
@@ -1161,7 +1166,7 @@
                 <p class="f16">应付：
                     <input id="couponValues" type="hidden" data-discount="20">
                     <label class="js_curCode" data-id="21" data-cur-currid="21">GBP</label>
-                    <span class="f24 orange bold ml10 js_total" data-org-price="1129.15">1205.88</span>
+                    <span class="f24 orange bold ml10 js_total"></span>
                     <span class="orange f12 tr mr50 discount_tip">保险不参加优惠</span>
                     <span class="count f12 discount_info" style="display:none;">
 							<em>已优惠</em>
@@ -1171,7 +1176,7 @@
                 </p>
                 <div class="pos_r">
                     <p class=" rmb_p">
-                        <span class="f18 orange js_rmb" data-rmb="10007.09">=RMB 10687.09</span>
+                        <span class="f18 orange js_rmb"></span>
                         <!--<span class="grey" id="ratesIds" data-rmb-rates-id="1" data-rates-id="8.86">汇率：8.86</span>-->
                     </p>
                     <div class="popup-bottm-tip discount-details" style="float:none; display:inline-block;"
@@ -3442,8 +3447,6 @@ data-i-op-reviewid
         $(".fr.insur_sel.hand").change(function () {
             var times = $(this).val();//几个投保人
             var name = $(this).siblings(".fl.productInfo").text(); //保险名
-            var price = $("#ourPrice").text();//保险单价
-            $(".all_price em").text(times * price);//保险合计
             $(".insur_info.Passager.pos_r").remove();
             for (var i = 0; i < times; i++) {
                 var idNum = getRandomNum();//获取随机数
@@ -3742,8 +3745,32 @@ data-i-op-reviewid
     } else {
         changeCurrency(CUR_CID);
     }
-    var check = setInterval(checkUserOnline, 3000);
+    var check = setInterval(checkUserOnline, 300);
+
     function checkUserOnline() {
+        if (!CUR_CID) {
+            CUR_CID = 12;
+            $('.money_sw a[data-id="' + CUR_CID + '"]').click();
+        } else {
+            if (CUR_CID == 12) {
+                $(".f18.orange.js_rmb").empty().text(" = RMB" + $(".f24.orange.bold.ml10.js_total").text());
+            }
+        }
+    }
+</script>
+<!--保险总额 结算总金额-->
+<script>
+    var check = setInterval(checkUserOnline, 300);
+
+    function checkUserOnline() {
+        if ($(".sw_syb.fl.blue").text() == "RMB") {
+            $(".rmb_p").addClass("hide");
+        } else {
+            $(".rmb_p").removeClass("hide");
+        }
+        var price = $("#ourPrice").text();//保险单价
+        var times = $(".fr.insur_sel.hand").val();//几个投保人
+        $(".all_price em").text(times * price);//保险合计
         $(".js_insurMoney").text($(".all_price em").text());
         var bx = $(".js_insurMoney").text();
         var yh_one = document.getElementsByClassName("zj");
@@ -3757,34 +3784,22 @@ data-i-op-reviewid
         for (var i = 0; i < je_one.length; i++) {
             sum += (je_one[i].innerHTML * 1);
         }
-        $(".f24.orange.bold.ml10.js_total").text((sum + bx * 1));
-        if (!CUR_CID) {
-            CUR_CID = 12;
-            alert("123");
-            $('.money_sw a[data-id="' + CUR_CID + '"]').click();
-
-        } else {
-            changeCurrency(CUR_CID);
-            if(CUR_CID != 12) {
-                var oriPrice = $(".f24.orange.bold.ml10.js_total").text();
-                $('[data-price]').each(function () {
-                    var oriCid = $(this).data('cid');
-                })
-                var fromRate = exRates[oriCid].exRate;
-                var toRate = exRates[12].exRate;
-                var price = (oriPrice * fromRate) / toRate;
-                $(".f18.orange.js_rmb").empty().text(" = RMB" + price.toFixed(2));
-            }else {
-                $(".f18.orange.js_rmb").empty().text(" = RMB" +  $(".f24.orange.bold.ml10.js_total").text());
-            }
-        }
-        alert($(".sw_syb.fl.blue").text());
-        if($(".sw_syb.fl.blue").text() == "RMB"){
-            $(".rmb_p").addClass("hide");
-        }else{
-            $(".rmb_p").removeClass("hide");
-        }
+        $(".f24.orange.bold.ml10.js_total").text((sum + bx * 1).toFixed(2));
     }
+</script>
+<!--支付-->
+<script>
+    $(".btn-orange.fr.f24").click(function () {
+        //获取联系人信息
+        var name = $(".cnName").val();
+        var namepingyin = $(".pinyinName").val();
+        var receiveEmail = $(".receiveEmail").val();
+        var weixinCode = $(".weixinCode").val();
+        var contactPhoneAreaCode = $(".f14.phone_cn.fl").val();
+        var contactForeignPhoneAreaCode = $(".f14.phone_fg.fl").val();
+        //获取游客信息
+
+    })
 </script>
 </body>
 </html>
