@@ -3,10 +3,7 @@ package com.cssl.pojo.service;
 import com.cssl.pojo.HomePage_product;
 import com.cssl.pojo.ProductDetails;
 import com.cssl.pojo.Product_shopping;
-import com.cssl.pojo.po.Collect;
-import com.cssl.pojo.po.OrderXQ;
-import com.cssl.pojo.po.Orders;
-import com.cssl.pojo.po.User;
+import com.cssl.pojo.po.*;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -219,4 +216,36 @@ public interface HomePageClientService {
     @RequestMapping(method = RequestMethod.GET,value = "/delHotel")
     public boolean delHotel(Integer sht);
 
+    /***
+     *
+     *
+     * 浏览记录
+     */
+    @RequestMapping(method = RequestMethod.POST,value = "/AddBrowsingHistory")
+    public int AddBrowsingHistory(@RequestBody BrowsingHistory bb);
+
+    /***
+     *
+     *
+     * 浏览记录的修改
+     * @param bb
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST,value = "/UpdateBrowsingHistory")
+    public int UpdateBrowsingHistory(@RequestBody  BrowsingHistory bb);
+
+
+    /***
+     *
+     *
+     * 浏览的记录的查询
+     * @param bb
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST,value = "/SelectBrowsingHistory")
+    public int SelectBrowsingHistory(@RequestBody  BrowsingHistory bb);
+
+
+    @RequestMapping(method = RequestMethod.GET,value = "/SelectBrowsingHistoryUser")
+    public List<BrowsingHistory> SelectBrowsingHistoryUser(@RequestParam(value = "111") int userid);
 }

@@ -1,5 +1,6 @@
 package com.cssl.pojo.controller;
 
+import com.cssl.pojo.po.BrowsingHistory;
 import com.cssl.pojo.po.Collect;
 import com.cssl.pojo.service.CollectService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,5 +76,56 @@ public class CollectController {
     public int DeleteCollect(@RequestBody Map<String, Object> map) {
         return cs.DeleteCollect(map);
     }
+
+
+    /***
+     *
+     *
+     * 浏览记录
+     */
+    @RequestMapping(method = RequestMethod.POST,value = "/AddBrowsingHistory")
+    public int AddBrowsingHistory(@RequestBody BrowsingHistory bb) {
+        return cs.AddBrowsingHistory(bb);
+
+    }
+
+    /***
+     *
+     * 浏览记录的查询
+     * @param bb
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST,value = "/SelectBrowsingHistory")
+    public int SelectBrowsingHistory(@RequestBody  BrowsingHistory bb) {
+        return cs.SelectBrowsingHistory(bb);
+
+
+    }
+
+    /***
+     *
+     *
+     * 浏览记录的修改
+     * @param bb
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST,value = "/UpdateBrowsingHistory")
+    public int UpdateBrowsingHistory(@RequestBody  BrowsingHistory bb) {
+        return cs.UpdateBrowsingHistory(bb);
+    }
+
+    /****
+     *
+     *
+     * 浏览记录用户查询
+     * @param userid
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET,value = "/SelectBrowsingHistoryUser")
+    public List<BrowsingHistory> SelectBrowsingHistoryUser(@RequestParam(value = "111") int userid) {
+        return cs.SelectBrowsingHistoryUser(userid);
+
+    }
+
 
 }

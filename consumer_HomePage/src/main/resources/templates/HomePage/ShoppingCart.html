@@ -77,16 +77,16 @@
                                  rel="nofollow">登录</a></span><span>/</span>
 						<span><a href="https://www.itrip.com/signup/index" rel="nofollow">注册</a></span>
 					</span>
-                <span class="js_loginStatus" style="margin-left: 0px;">
+                <span class="js_loginStatus" style="margin-left: 0px;" id="user">
 						<span class="sw_syb fl pos_r" style="margin-left:0px;"><a class="blue display_name"
-                                                                                  href="https://www.itrip.com/user/index">きぼうする</a><i
+                                                                                  href="../爱去旅行个人信息主页面.html" id="username"></a><p style="display: none" id="useridd"></p><i
                                 class="sw_sj"></i>
 							<dl class="down_list">
-								<dd class="js_myOrder"><a class="pos_r" href="https://www.itrip.com/user/orders"
+								<dd class="js_myOrder"><a class="pos_r" href="../个人信息订单.html"
                                                           rel="nofollow">我的订单<label></label></a></dd>
-								<dd class="js_myFavor"><a class="pos_r" href="https://www.itrip.com/user/favor/all"
+								<dd class="js_myFavor"><a class="pos_r" href="../个人中心我的收藏.html"
                                                           rel="nofollow">我的收藏 <label></label></a></dd>
-								<dd><a href="https://www.itrip.com/user/reward" rel="nofollow">我的奖金</a></dd>
+								<dd><a href="../个人中心我的奖金.html" rel="nofollow">我的奖金</a></dd>
 								<dd><a id="btn_logout" onclick="logout()" href="javascript:void(0);"
                                        rel="nofollow">退出登录</a></dd>
 							</dl>
@@ -2094,6 +2094,49 @@
     } else {
         changeCurrency(CUR_CID);
     }
+
+
+</script>
+<script type="text/javascript">
+
+    //拿数据
+    $.getJSON("/GetSession",function (data) {
+
+        if(data!=null){
+
+
+            $("#username").text(data.chinese_Name);
+            $("#user").css("display","block");
+            $("#useridd").text(data.user_id);
+
+        }
+
+
+    });
+
+    //退出登录
+    $("#btn_logout").click(function () {
+
+        $.getJSON("/logout",function (data) {
+            window.location="../Europe.html"
+
+
+
+
+        })
+    })
+
+
+
+
+</script>
+
+<script>
+    function  login() {
+        window.location="login/login.html";
+    }
+
+
 </script>
 </body>
 </html>

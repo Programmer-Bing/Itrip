@@ -207,10 +207,10 @@
 			</div>
 			<div class="toux pos_r">
 				<p class="toux_img">
-					<img src="个人中心我的收藏_files/defaultPortrait1.jpg" width="90" height="90" border="0">
+					<img src="个人中心我的收藏_files/defaultPortrait1.jpg" width="90" height="90" border="0" id="touz">
 							</p>
 				<p class="toux_tit">
-				</p><p class="f14 mt10 blue">17608486293</p>
+				</p><p class="f14 mt10 blue" id="txtshann">17608486293</p>
 					<p></p>
 			</div>
 			<ul style="height: 345px;">
@@ -474,10 +474,19 @@
 
 
 
+
             }
 
 
         });
+
+        $.getJSON("/xsphone",function (data) {
+
+
+            $("#txtshann").text(data.phone_number)
+
+            document.getElementById("touz").src=data.head_portrait;
+        })
 
 
         //鼠标悬停事件

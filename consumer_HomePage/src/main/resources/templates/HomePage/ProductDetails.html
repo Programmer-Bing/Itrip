@@ -127,13 +127,15 @@
                 } else {
                     var Product_id = /*[[${ProductDetails.Product_id}]]*/ 'Sebastian';
                     discount = $("#discount label[data-discount-type = 'discountChannelPrice']").text();
+                    var uid=$("#useridd").text();
+
                     var testMap = {
                         "p_id": ""+Product_id+"", "Travel_date": data,
                         "Settlement_price": sum, "Product_specification": $(".spec_name_span").text(),
                         "Adult_num": $("#one .Adult").text(), "children_num": $("#one .children").text(),
                         "baby_num": $("#one .baby").text(),
                         "Discount": discount * $("#one .Adult").text() + discount * $("#one .children").text() * 0.5,
-                        "uid": "3"
+                        "uid": uid
                     };
                     if(voidname == "/addShopping") {
                         $.ajax({
@@ -196,8 +198,6 @@
 
 
         //点击收藏
-
-
        function collect(){
            var text = $(".pro_coll.white").text();
 
@@ -227,6 +227,15 @@
            })
            }
         }
+
+
+        //浏览记录
+        var product = /*[[${ProductDetails.Product_id}]]*/ 'Sebastian';
+        $.getJSON("/AddBrowsingHistory",{"pid":product},function (data) {
+                if(data>0){
+                    alert("添加成功")
+                }
+        })
     </script>
 </head>
 <body>
@@ -303,8 +312,8 @@
 					</span>
                     <span class="js_loginStatus" style="display:none;margin-left:0px;" id="user">
 						<span class="sw_syb fl pos_r" style="margin-left:0px;"><a class="blue display_name"
-                                                                                  href="../爱去旅行个人信息主页面.html" id="username"></a><i
-                                class="sw_sj"></i>
+                                                                                  href="../爱去旅行个人信息主页面.html" id="username"></a><p style="display:none;" id="useridd"></p><i
+                                class="sw_sj" ></i>
 							<dl class="down_list">
 								<dd class="js_myOrder"><a class="pos_r" href="../个人信息订单.html"
                                                           rel="nofollow">我的订单<label></label></a></dd>
@@ -319,7 +328,7 @@
                     <span class="line">|</span>
                     <span class="pos_r">
 
-						<a class="fl" href="http://localhost:8089/findShoppingByUid?uid=3" rel="nofollow">
+						<a class="fl" id="gwcf1" href="javaScript(0);" rel="nofollow">
 							<span class="buy_car js_sc"><i></i>购物车 <label></label></span>
 							<div class="prompt-price-warp hide">
 						        <i class="icon_arrow_up-in"></i>
@@ -5487,6 +5496,8 @@ data-i-op-reviewid
 
 <script type="text/javascript">
 
+
+
     //拿数据
     $.getJSON("/GetSession",function (data) {
 
@@ -5495,8 +5506,8 @@ data-i-op-reviewid
             document.getElementById("logzc").style.display="none";
             $("#username").text(data.chinese_Name);
             $("#user").css("display","block");
-            document.getElementById("dtc").style.display="none";
 
+            $("#useridd").text(data.user_id)
         }
 
 
@@ -5513,6 +5524,15 @@ data-i-op-reviewid
 
         })
     })
+
+    //购物车用户赋值
+
+    $("#gwcf1").click(function () {
+        var text = $("#useridd").text();
+        alert(text);
+        document.getElementById("gwcf1").href="http://localhost:8089/findShoppingByUid?uid="+text;
+    })
+
 
 
 

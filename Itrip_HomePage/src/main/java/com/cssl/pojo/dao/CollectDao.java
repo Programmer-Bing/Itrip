@@ -1,5 +1,6 @@
 package com.cssl.pojo.dao;
 
+import com.cssl.pojo.po.BrowsingHistory;
 import com.cssl.pojo.po.Collect;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -50,7 +51,33 @@ public interface CollectDao {
     public int DeleteCollect(Map<String,Object> map);
 
 
+    /***
+     *
+     * 浏览记录添加
+     */
+    public int AddBrowsingHistory(BrowsingHistory  bb);
+
+    /***
+     *
+     *
+     * 浏览记录的查询
+     */
+    public int  SelectBrowsingHistory(BrowsingHistory  bb);
 
 
+    /***
+     *
+     *
+     * 浏览记录的查询到了修改
+     */
+    public int  UpdateBrowsingHistory(BrowsingHistory  bb);
 
+
+    /****
+     *
+     *
+     *
+     * 个人浏览记录的查询
+     */
+     public List<BrowsingHistory> SelectBrowsingHistoryUser(int userid);
 }

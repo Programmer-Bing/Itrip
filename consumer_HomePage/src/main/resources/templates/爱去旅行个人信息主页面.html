@@ -25,10 +25,19 @@
 
 
 
+
                 }
 
 
             });
+
+            $.getJSON("/xsphone",function (data) {
+
+
+                $("#txtshann").text(data.phone_number)
+
+                document.getElementById("touz").src=data.head_portrait;
+            })
 
 
 			//鼠标悬停事件
@@ -50,8 +59,8 @@
 
         })
 
-
 	</script>
+
 
 <body><div id="nTalk_post_hiddenElement" style="left: -10px; top: -10px; visibility: hidden; display: none; width: 1px; height: 1px;"></div>
 
@@ -112,7 +121,7 @@
 								<dd class="js_myOrder"><a href="个人信息订单.html" rel="nofollow" class="pos_r">我的订单<label></label></a></dd>
 								<dd class="js_myFavor"><a href="个人中心我的收藏.html" rel="nofollow" class="pos_r">我的收藏 <label></label></a></dd>
 								<dd><a href="个人中心我的奖金.html" rel="nofollow">我的奖金</a></dd>
-								<dd><a href="javascript:void(0);" id="btn_logout" onclick="logout()" rel="nofollow">退出登录</a></dd>
+								<dd><a href="javascript:void(0);" id="btn_logout" rel="nofollow">退出登录</a></dd>
 							</dl>
 						</span>
 					</span>
@@ -252,13 +261,13 @@
 			</div>
 			<div class="toux pos_r">
 				<p class="toux_img">
-					<img src="爱去旅行个人信息主页面_files/defaultPortrait1.jpg" width="90" height="90" border="0">
+					<img src="爱去旅行个人信息主页面_files/defaultPortrait1.jpg" width="90" height="90" border="0" id="touz">
 							</p>
 				<p class="toux_tit">
-				</p><p class="f14 mt10 blue">17608486293</p>
+				</p><p class="f14 mt10 blue" id="txtshann">17608486293</p>
 					<p></p>
 			</div>
-			<ul style="height: 345px;">
+			<ul style="height: 450px;">
 				<a href="个人信息订单.html">
 					<li>
 						<span class="icon icon_black_list" curclass="icon_white_list"></span>
@@ -372,6 +381,22 @@
 					<li>待评价订单<label class="f20 bold orange"><a href="https://www.itrip.com/user/orders/noreview?pageNo=1" class="orange">0</a></label></li>
 				</ul>
 			</div>
+		</div>
+
+		<div class="dataList_order mt15">
+			<ul class="dataList_order_head">
+				<li class="f16"><span class="icon icon_black_eye"></span> 您最近的浏览记录</li>
+			</ul>
+			<ul>
+				<li>
+					<div class="viewModel clearfix horiz">
+						<ul id="bh">
+
+
+						</ul>
+					</div>
+				</li>
+			</ul>
 		</div>
 		
 		</div>
@@ -725,6 +750,80 @@
     </div>
 </div>
 
+<script type="text/javascript">
+
+    //浏览记录的显示
+	$(function () {
+
+	    $.getJSON("/SelectBrowsingHistoryUser",function (data) {
+            for (var i = 0; i <data.length ; i++) {
+                var da=data[i];
+
+                var li="<li>";
+                li+="<a href=\"https://www.itrip.com/p24082\" target=\"_blank\">";
+                li+="<div class=\"pro_img\">";
+                li+="<img alt=\"【酷炫】墨尔本大洋路精品小团中文一日游(11人小团/十二门徒/微管家服务/家庭特惠)\" width=\"283\" height=\"189\" border=\"0\" src='"+da.pp.p_imgpath+"'>";
+                li+="</div>";
+                li+="</a>";
+                li+="<div class=\"pro_cont\">";
+                li+="<a href=\"https://www.itrip.com/p24082\" target=\"_blank\" style=\"color:#333\">";
+                li+="<p class=\"f14 mt10 pro_title\">"+da.pp.product_Name+"</p>";
+                li+="</a>";
+                li+="<p class=\"mt5 darkgrey\" style='display:none;'>";
+                li+="<span class=\"starBox\">";
+                li+="<span class=\"star5.0\"></span>";
+                li+="</span>";
+                li+="<span><label class=\"blue\">165</label> 人已点评</span>";
+                li+="</p>";
+                li+="<p class=\"oh\">";
+                li+="<span class=\"orange fr bold\">";
+                li+="<label class=\"js_curCode\">RMB</label>&nbsp;";
+                li+="<label class=\"js_curMoney\" data-cid=\"9\" data-price=\"67.6\">";
+                li+=""+da.pp.p_price+"</label>";
+                li+="起";
+                li+="</span>";
+                li+="<span style=\"text-decoration:line-through;display:none;\" class=\"grey fl mr10\" data-hide-marketprice=\"true\">";
+                li+="<label class=\"js_curCode\">RMB</label>&nbsp;";
+                li+="<label class=\"js_curMoney\" data-cid=\"9\" data-price=\"67.6\">";
+                li+="327.86</label>";
+                li+="</span>";
+                li+="</p>";
+                li+="</div>";
+                li+="</li>";
+                $("#bh").append(li);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            }
+        })
+
+    })
+</script>
 
 
 
