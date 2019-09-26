@@ -3,6 +3,7 @@ package com.cssl.pojo.controller;
 import com.cssl.pojo.HomePage_product;
 import com.cssl.pojo.Product_shopping;
 import com.cssl.pojo.order.Order;
+import com.cssl.pojo.po.User;
 import com.cssl.pojo.service.HomePageClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -126,13 +127,15 @@ public class HomePageController_Consumer {
 
     /*删除购物车中的商品*/
     @RequestMapping(value = "/delShopping", method = RequestMethod.GET)
-    @ResponseBody
-    public Integer delShopping(HttpSession session, @RequestParam(value = "psc_id", required = false) Integer psc_id) {
+    public ModelAndView delShopping(HttpSession session, @RequestParam(value = "psc_id", required = false) Integer psc_id,ModelAndView model,Model model2, @RequestParam(value = "uid", required = false) Integer uid) {
         System.out.println("sessionId:" + session.getId());
+        User user=(User) session.getAttribute(session.getId());
+        uid=user.getUser_id();
+        System.out.println("用户编号： "+uid);
         System.out.println(psc_id);
         Integer num = this.service.delShopping(psc_id);
         System.out.println("num:" + num);
-        return num;
+        return findShoppingByUid(session,model,model2,uid);
     }
 
 
