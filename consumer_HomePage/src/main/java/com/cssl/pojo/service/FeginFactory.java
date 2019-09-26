@@ -212,6 +212,21 @@ public class FeginFactory implements FallbackFactory<HomePageClientService> {
                 return 0;
             }
 
+
+            @Override
+            public int AddDiscountCoupon(DiscountCoupon dc) {
+                return 0;
+            }
+
+            @Override
+            public int SelectDiscountCouponCount(int userid) {
+                return 0;
+            }
+
+            @Override
+            public List<DiscountCoupon> SelectDiscountCouponUserShow(int userid) {
+                return null;
+            }
         };
     }
 }

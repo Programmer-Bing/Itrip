@@ -274,4 +274,34 @@ public interface HomePageClientService {
      */
     @RequestMapping(method = RequestMethod.GET,value = "addOrder")
     public int addOrder(@RequestParam("map") String map);
+
+
+    /***
+     *添加优惠卷
+     * @param dc
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST,value = "/AddDiscountCoupon")
+    public int AddDiscountCoupon(@RequestBody  DiscountCoupon dc);
+
+    /****
+     *
+     *
+     *
+     * 查询当前用户是否拥有优惠卷
+     * @param userid
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET,value = "/SelectDiscountCouponCount")
+    public int SelectDiscountCouponCount(@RequestParam(value = "1") int userid);
+
+
+    /***
+     *
+     *
+     *
+     * 查询当前用户拥有优惠卷
+     */
+    @RequestMapping(method = RequestMethod.GET,value = "/SelectDiscountCouponCount")
+    public List<DiscountCoupon> SelectDiscountCouponUserShow(@RequestParam(value = "1") int userid);
 }
