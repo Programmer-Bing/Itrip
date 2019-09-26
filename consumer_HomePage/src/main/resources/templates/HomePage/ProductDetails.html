@@ -5211,25 +5211,29 @@ data-i-op-reviewid
                                 <div class="coupon-discount-wrap">
                                     <p class="coupon-discount"><strong><span data-symblo="symblo">€</span><span
                                             data-currencyid="20" data-price="1" data-price-type="start"
-                                            data-discount-type="price" class="yhjmony">1</span></strong></p>
+                                            data-discount-type="price" class="yhjmony" id="dprice">1</span></strong></p>
                                     <p class="coupon-discount-desc">满<span data-symblo="symblo">€</span><span
                                             data-currencyid="20" data-price="1" data-price-type="start"
                                             data-discount-type="price" class="yhjmony">1</span></p>
                                 </div>
                             </div>
                             <div class="coupon-info">
-                                <p class="coupon-title coupon-line">无门槛优惠券</p>
-                                <p class="coupon-date">2019.08.27~2019.09.30</p>
+                                <p class="coupon-title coupon-line" id="wmnyhj">无门槛优惠券</p>
+                                <p class="coupon-date" id="wmn">2019.08.27~2019.09.30</p>
 
                                 <p class="coupon-desc kobe-expand-trigger">
                                     <span class="kobe-expand-title">指定条件适用</span>
+                                    <span id="hint" style="display: none"></span>
                                     <span class="kobe-expand-icon"><i class="icon-arrow-down"></i></span>
                                 </p>
 
+
+
                             </div>
+
                             <div class="coupon-right">
-                                <div class="coupon-receive-icon"></div>
-                                <div class="coupon-action">
+                                <div class="coupon-receive-icon" style="background: url('../img/received.png') top right no-repeat;height: 66px;display: none;width: 66px;background-size: 100% auto"></div>
+                                <div class="coupon-action" style="display: block">
                                     <a class="coupon-action-btn receive-now" href="javascript:;"
                                        e-click="doReceiveAction" data-app="" data-code="YyznuSLp">立即领取</a>
                                     <a class="coupon-action-btn" href="https://www.itrip.com/about/app" target="_blank">去APP使用</a>
@@ -5240,8 +5244,8 @@ data-i-op-reviewid
                             </div>
                         </div>
 
-                        <div class="kobe-expand-more">
-                            <div class="kobe-expand-more-inner">
+                        <div class="kobe-expand-more" style="display: none;height: 75px">
+                            <div class="kobe-expand-more-inner" style="border-top: 2px dotted #e6e6e6">
                                 <p class="coupon-condition-title">
                                     <!-- <span>满€1</span> -->
 
@@ -5508,6 +5512,7 @@ data-i-op-reviewid
             $("#user").css("display","block");
 
             $("#useridd").text(data.user_id)
+
         }
 
 
@@ -5543,6 +5548,58 @@ data-i-op-reviewid
     function  login() {
         window.location="login/login.html";
     }
+
+
+</script>
+
+<script type="text/javascript">
+    //领取优惠券
+    $(".coupon-desc.kobe-expand-trigger").bind("click",function(){
+        var hint=$("#hint").text();
+        if(hint==null||hint==""){
+            $("#hint").text("1");
+            $(".kobe-expand-more").css("display","block")
+
+            document.getElementsByClassName("coupon-item kobe-expand")[1].className+=" is-active";
+
+        }
+        else{
+            $("#hint").text("");
+            $(".kobe-expand-more").css("display","none")
+            document.getElementsByClassName("coupon-item kobe-expand")[1].className="coupon-item kobe-expand";
+        }
+
+    });
+    
+    //查询用户是否拥有优惠卷
+    $.getJSON("/SelectDiscountCouponCount",function (data) {
+        if(data>0){
+            $(".coupon-action").css("display","none");
+            $(".coupon-receive-icon").css("display","block");
+        }
+        
+    })
+
+    //添加优惠卷
+    $(".coupon-action").click(function () {
+           var dname=$("#wmnyhj").text();
+           var  yhjmony = $("#dprice").text();
+           var    time = $("#wmn").text();
+           var time1 = time.split("~");
+           $.getJSON("/AddDiscountCoupon",{"yhjmony":yhjmony,"time1":time1[0],"time2":time1[1],"dname":dname},function (data) {
+                if(data==-1){
+                    window.location="login/login.html";
+
+                }
+                else{
+                        $(".coupon-action").css("display","none");
+                        $(".coupon-receive-icon").css("display","block");
+                }
+           })
+    })
+
+
+
 
 
 </script>

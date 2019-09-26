@@ -245,7 +245,33 @@ public interface HomePageClientService {
     @RequestMapping(method = RequestMethod.POST,value = "/SelectBrowsingHistory")
     public int SelectBrowsingHistory(@RequestBody  BrowsingHistory bb);
 
-
+    /***
+     *
+     * 个人浏览记录的查询
+     * @param userid
+     * @return
+     */
     @RequestMapping(method = RequestMethod.GET,value = "/SelectBrowsingHistoryUser")
     public List<BrowsingHistory> SelectBrowsingHistoryUser(@RequestParam(value = "111") int userid);
+
+
+    /***
+     *
+     * @param dc
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST,value = "/AddDiscountCoupon")
+    public int AddDiscountCoupon(@RequestBody  DiscountCoupon dc);
+
+    /****
+     *
+     *
+     *
+     * 查询当前用户是否拥有优惠卷
+     * @param userid
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET,value = "/SelectDiscountCouponCount")
+    public int SelectDiscountCouponCount(@RequestParam(value = "1") int userid);
+
 }

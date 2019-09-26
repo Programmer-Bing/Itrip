@@ -195,6 +195,16 @@ public class FeginFactory implements FallbackFactory<HomePageClientService> {
             public List<BrowsingHistory> SelectBrowsingHistoryUser(int userid) {
                 return null;
             }
+
+            @Override
+            public int AddDiscountCoupon(DiscountCoupon dc) {
+                return 0;
+            }
+
+            @Override
+            public int SelectDiscountCouponCount(int userid) {
+                return 0;
+            }
         };
     }
 }

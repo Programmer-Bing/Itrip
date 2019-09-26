@@ -3,6 +3,7 @@ package com.cssl.pojo.service.impl;
 import com.cssl.pojo.dao.CollectDao;
 import com.cssl.pojo.po.BrowsingHistory;
 import com.cssl.pojo.po.Collect;
+import com.cssl.pojo.po.DiscountCoupon;
 import com.cssl.pojo.service.CollectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,6 +66,16 @@ public class CollectServiceImpl implements CollectService {
     @Override
     public List<BrowsingHistory> SelectBrowsingHistoryUser(int userid) {
         return  cd.SelectBrowsingHistoryUser(userid);
+    }
+
+    @Override
+    public int AddDiscountCoupon(DiscountCoupon dc) {
+        return cd.AddDiscountCoupon(dc);
+    }
+
+    @Override
+    public int SelectDiscountCouponCount(int userid) {
+        return cd.SelectDiscountCouponCount(userid);
     }
 }
 
