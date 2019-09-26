@@ -77,6 +77,12 @@ public class CollectServiceImpl implements CollectService {
     public int SelectDiscountCouponCount(int userid) {
         return cd.SelectDiscountCouponCount(userid);
     }
+
+
+    @Override
+    public List<DiscountCoupon> SelectDiscountCouponCountUser(int userid) {
+        return cd.SelectDiscountCouponCountUser(userid);
+    }
 }
 
 
