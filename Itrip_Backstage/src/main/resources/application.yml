@@ -1,5 +1,5 @@
 server:
-  port: 8002
+  port: 8003
 
 mybatis:
   #config-location: classpath:mybatis/mybatis-cfg.xml
@@ -22,7 +22,7 @@ spring:
       max-total: 5
       max-wait-millis: 200
 
-  #用于分布式存储
+#  用于分布式存储
 #  redis:
 #    port: 6379
 #    database: 0

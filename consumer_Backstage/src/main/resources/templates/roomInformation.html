@@ -9,7 +9,95 @@
     <link rel="stylesheet" href="css/pintuer.css">
     <link rel="stylesheet" href="css/admin.css">
     <script src="js/jquery.js"></script>
-    <script src="js/pintuer.js"></script>  
+    <script src="js/pintuer.js"></script>
+    <script type="text/javascript" src="scripts/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+
+            var pageIndex=1;
+            var pages=0;
+            var name=0;
+
+            fenye(pageIndex,name);
+
+            function fenye(pageIndex,h_id){
+                $.getJSON("roominformation","pageIndex="+pageIndex+"&name="+name,function (json) {
+                    var tr="";
+                    $("#xianshi tr:not(:first):not(#sxy)").remove();
+                    pages=json.totalPage;
+                    for (var i=0;i<json.list.length;i++){
+                        var lists=json.list[i];
+                        tr+="<tr>"
+                        tr+="    <td><input type='checkbox' name='id[]' value='"+lists.rif_id+"' />"+(i+1)+"</td>"
+                        tr+="        <td>"+lists.rif_name+"</td>"
+                        tr+="        <td>"+lists.occupants_num+"</td>"
+                        tr+="        <td><span>"+lists.area+"</span>平方米</td>"
+                        tr+="    <td>"+lists.price+"￥</td>"
+                        tr+="    <td><img src='"+lists.photo+"' alt='' width='70' height='50' /></td>"
+                        tr+="    <td>"+lists.h_id+"</td>"
+                        tr+="    <td><div class='button-group'> <a class='button border-main' href='selsetRoom?id="+lists.rif_id+"'><span class='icon-edit'></span> 修改</a>"
+                        tr+="<a class='button border-red' href='javascript:void(0)' onclick='return del("+lists.rif_id+")'><span class='icon-trash-o'></span> 删除</a> </div></td>"
+                        tr+="</tr>"
+                    }
+                    $("#xianshi tr:first").after(tr);
+
+
+                    $("#yema").children().remove();
+                    var td="";
+                    for(var j=1;j<=pages;j++){
+                        if(pageIndex==j){
+                            td+="<span class=\"current\" id='pagination'>"+j+"</span>";
+                        }else{
+                            td+="<a id='pagination'>"+j+"</a>";
+                        }
+                    }
+                    $("#yema").append(td);
+                });
+            }
+
+            $("#pagination").live("click",function () {
+                var pagination=$(this).text();
+                pageIndex=pagination;
+                fenye(pageIndex,name);
+            });
+
+            $("#shang").click(function () {
+               if(pageIndex==1){
+                   pageIndex=1;
+                   fenye(pageIndex,name);
+               }else{
+                   pageIndex=pageIndex-1;
+                   fenye(pageIndex,name);
+               }
+            });
+
+            $("#xia").click(function () {
+                if(pageIndex==pages){
+                    pageIndex=pages;
+                    fenye(pageIndex,name);
+                }else{
+                    pageIndex=pageIndex*1+1;
+                    fenye(pageIndex,name);
+                }
+            });
+
+            $("#shou").click(function () {
+               pageIndex=1;
+                fenye(pageIndex,name);
+            });
+            $("#wei").click(function () {
+               pageIndex=pages;
+               fenye(pageIndex,name);
+            });
+
+            $("#ss").click(function () {
+                var keywords=$("#keywords").val();
+                name=keywords;
+                fenye(pageIndex,name);
+            });
+
+        });
+    </script>
 </head>
 <body>
 <form method="post" action="">
@@ -20,14 +108,14 @@
         <li>
 		<li><a class="button border-main icon-plus-square-o" href="addRoomInformation.html"> 添加房间</a> </li>
           <button type="button"  class="button border-green" id="checkall"><span class="icon-check"></span> 全选</button>
-          <button type="submit" class="button border-red"><span class="icon-trash-o"></span> 批量删除</button>
+          <button type="button" onclick="return DelSelect()" class="button border-red"><span class="icon-trash-o"></span> 批量删除</button>
         </li>
 		<li>
-          <input type="text" placeholder="请输入搜索关键字" name="keywords" class="input" style="width:250px; line-height:17px;display:inline-block" />
-          <a href="javascript:void(0)" class="button border-main icon-search" onclick="changesearch()" > 搜索</a></li>
+          <input type="text" placeholder="请输入酒店名字" name="keywords" id="keywords" class="input" style="width:250px; line-height:17px;display:inline-block" />
+          <a href="javascript:void(0)" id="ss" class="button border-main icon-search" > 搜索</a></li>
       </ul>
     </div>
-    <table class="table table-hover text-center">
+    <table class="table table-hover text-center" id="xianshi">
       <tr>
         <th>编号</th>
         <th>名称</th>
@@ -37,21 +125,9 @@
 		<th>图片</th>
 		<th>酒店编号</th>
 		<th>操作</th>
-      </tr>      
-        <tr>
-          <td><input type="checkbox" name="id[]" value="1" />
-            1</td>
-          <td>双人间-无早(公共浴室)</td>
-		  <td>2</td>
-		  <td><span>12</span>平方米</td>
-		  <td>583.02￥</td>
-		  <td><img src="images/11.jpg" alt="" width="70" height="50" /></td>
-		  <td>2</td>
-          <td><div class="button-group"> <a class="button border-main" href="modRoomInformation.html"><span class="icon-edit"></span> 修改</a>
-		  <a class="button border-red" href="javascript:void(0)" onclick="return del(1,2)"><span class="icon-trash-o"></span> 删除</a> </div></td>
-        </tr>
-      <tr>
-        <td colspan="8"><div class="pagelist"> <a href="">上一页</a> <span class="current">1</span><a href="">2</a><a href="">3</a><a href="">下一页</a><a href="">尾页</a> </div></td>
+      </tr>
+      <tr id="sxy">
+        <td colspan="8"><div class="pagelist"><a id="shou">首页</a> <a id="shang">上一页</a><div id="yema" style="display: inline-block"></div><a id="xia">下一页</a><a id="wei">尾页</a> </div></td>
       </tr>
     </table>
   </div>
@@ -60,7 +136,14 @@
 
 function del(id){
 	if(confirm("您确定要删除吗?")){
-		
+	    $.getJSON("delRoom","id="+id,function (json) {
+            if(json>0){
+                alert("删除成功!");
+                window.location.reload();
+            }else{
+                alert("删除失败！");
+            }
+        });
 	}
 }
 
@@ -77,14 +160,28 @@ $("#checkall").click(function(){
 
 function DelSelect(){
 	var Checkbox=false;
+    var delbatches="0";
 	 $("input[name='id[]']").each(function(){
 	  if (this.checked==true) {		
-		Checkbox=true;	
+		Checkbox=true;
+          delbatches+=","+$(this).val();
 	  }
 	});
 	if (Checkbox){
 		var t=confirm("您确认要删除选中的内容吗？");
-		if (t==false) return false; 		
+		if (t==false) {
+            return false;
+        }else{
+		    $.getJSON("delbatchesRoom","id="+delbatches,function (json) {
+                if(json>0){
+                    alert("删除成功！");
+                    window.location.reload();
+                }else{
+                    alert("删除失败！");
+                    window.location.reload();
+                }
+            });
+        }
 	}
 	else{
 		alert("请选择您要删除的内容!");

@@ -23,29 +23,29 @@
                 $.getJSON("findAll","pageNumber="+pageNumber+"&English_Name="+English_Name+"&Chinese_Name="+Chinese_Name,function(json){
                     $("#xianshi tr:not(:first):not(#sxy)").remove();
                     pages=json.totalPage;
+                    var tr="";
                     for (var i=0;i<json.list.length;i++){
                         var list=json.list;
-                        var tr="";
                         tr+="";
                         tr+="<tr>";
-                        tr+="    <td><input type='checkbox' name='id[]' value='"+list[i].user_id+"' />"+list[i].user_id+"</td>";
+                        tr+="    <td>"+list[i].user_id+"</td>";
                         tr+="    <td>"+list[i].user_name+"</td>";
                         tr+="    <td>"+list[i].Chinese_Name+"</td>";
                         tr+="    <td>"+list[i].English_Name+"</td>";
                         tr+="    <td>"+list[i].Gender+"</td>  ";
                         tr+="    <td>"+list[i].email+"</td>";
-                        tr+="    <td><img src='images/11.jpg' alt='' width='120' height='50' /></td> ";
+                        tr+="    <td><img src='"+list[i].Head_portrait+"' alt='' width='120' height='70' style=\"border: solid 1px\" /></td> ";
                         if(list[i].Administration=="1"){
                             tr+="    <td>管理员</td>";
                         }else{
                             tr+="    <td>普通用户</td>";
                         }
-                        tr+="    <td><div class='button-group'> <a class='button border-main' href='modUser.html'><span class='icon-edit'></span> 修改</a> ";
-                        tr+="<a class='button border-red' href='javascript:void(0)' onclick='return del(1,2)'><span class='icon-trash-o'></span> 删除</a> </div></td>";
+                        tr+="    <td><div class='button-group'> <a class='button border-main' href='skipModUser?uid="+list[i].user_id+"'><span class='icon-edit'></span> 修改</a> ";
+                        tr+="<a class='button border-red' href='javascript:void(0)' onclick='return del("+list[i].user_id+")'><span class='icon-trash-o'></span> 删除</a> </div></td>";
                         tr+="</tr>";
-                        $("#xianshi").append(tr);
                     }
-                    $("#xia").nextAll().remove();
+                    $("#xianshi tr:first").after(tr);
+                    $("#numberpage").children().remove();
                     for(var j=1;j<=pages;j++){
                         var a="";
                         if(pageNumber==j){
@@ -53,10 +53,15 @@
                         }else{
                             a+="<a id='pagination'>"+j+"</a>";
                         }
-                        $("#pagelist").append(a);
+                        $("#numberpage").append(a);
                     }
                 });
             }
+            $("#ss").click(function(){
+                Chinese_Name=$("#chinese_name").val();
+                English_Name=$("#english_name").val();
+                fenye(Chinese_Name,English_Name,1);
+            });
             $("#xia").click(function(){
                 if(pageNumber>=pages){
                     pageNumber=pages;
@@ -80,12 +85,12 @@
             $("#trailerpage").click(function(){
                 pageNumber=pages;
                 fenye(Chinese_Name,English_Name,pageNumber);
-            })
+            });
 
             $("#homepage").click(function(){
                 pageNumber=1;
                 fenye(Chinese_Name,English_Name,pageNumber);
-            })
+            });
             $("#pagination").live("click",function () {
                 var pagination=$(this).text();
                 pageNumber=pagination;
@@ -102,9 +107,12 @@
       <ul class="search">
         <li>
 		  <li> <a class="button border-main icon-plus-square-o" href="addUser.html"> 添加用户</a> </li>
-          <button type="button"  class="button border-green" id="checkall"><span class="icon-check"></span> 全选</button>
-          <button type="submit" class="button border-red"><span class="icon-trash-o"></span> 批量删除</button>
         </li>
+          <li>
+              <input type="text" placeholder="请输入中文名" name="chinese_name" id="chinese_name" class="input" style="width:250px; line-height:17px;display:inline-block" />
+              <input type="text" placeholder="请输入英文名" name="english_name" id="english_name" class="input" style="width:250px; line-height:17px;display:inline-block" />
+              <a class="button border-main icon-search" id="ss"> 搜索</a>
+          </li>
       </ul>
     </div>
     <table class="table table-hover text-center" id="xianshi">
@@ -122,7 +130,14 @@
 
 
       <tr id="sxy">
-        <td colspan="8"><div class="pagelist" id="pagelist"> <a id="homepage">首页</a><a id="trailerpage">尾页</a> <a id="shang">上一页</a><a id="xia">下一页</a> </div></td>
+        <td colspan="10">
+            <div class="pagelist" id="pagelist">
+                <a id="homepage">首页</a>
+                <a id="shang">上一页</a>
+                <div id="numberpage" style="display: inline-block"></div>
+                <a id="xia">下一页</a> <a id="trailerpage">尾页</a>
+            </div>
+        </td>
       </tr>
     </table>
   </div>
@@ -131,7 +146,16 @@
 
 function del(id){
 	if(confirm("您确定要删除吗?")){
-		
+		$.getJSON("deluser","u_id="+id,function (json) {
+           if(json==1){
+               alert("删除成功！");
+               window.location.reload();
+           }else{
+               alert("删除失败！");
+               window.location.reload();
+           }
+
+        });
 	}
 }
 

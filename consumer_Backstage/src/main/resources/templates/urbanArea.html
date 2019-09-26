@@ -9,7 +9,188 @@
     <link rel="stylesheet" href="css/pintuer.css">
     <link rel="stylesheet" href="css/admin.css">
     <script src="js/jquery.js"></script>
-    <script src="js/pintuer.js"></script>  
+    <script src="js/pintuer.js"></script>
+  <script type="text/javascript" src="scripts/jquery-1.8.3.min.js"></script>
+  <script type="text/javascript">
+    $(function(){
+        $.getJSON("Finlargeplate",function (json) {
+            for (var i=0;i<json.length;i++){
+                var tr="";
+                tr+="<option value='"+json[i].lp_id+"'>"+json[i].lp_name+"</option>";
+                $("#largeplate").append(tr);
+            }
+        });
+        var lp_id=0;
+
+        smallplate(lp_id);
+
+        function smallplate(lp_id){
+            $.getJSON("smallplate","lp_id="+lp_id,function (json) {
+                $("#smallplate option:not(:first)").remove();
+                for (var i=0;i<json.length;i++){
+                    var tr="<option value='"+json[i].sp_id+"'>"+json[i].sp_name+"</option>";
+                    $("#smallplate").append(tr);
+                }
+            });
+        }
+
+        $("#largeplate").change(function () {
+            lp_id=$(this).val();
+            smallplate(lp_id);
+        });
+
+        var pageIndex=1;
+        var pages=0;
+        var cs_name=0;
+        var sp_id=0;
+
+        fenye(pageIndex,cs_name,sp_id);
+
+        function fenye(pageIndex,cs_name,sp_id){
+            $.getJSON("pageCitiesstates","pageindex="+pageIndex+"&cs_name="+cs_name+"&sp_id="+sp_id,function (json) {
+                pages=json.totalPage;
+                var tr="";
+                $("#neirong tr:not(:first):not(#sxy)").remove();
+                for (var i=0;i<json.list.length;i++){
+                    var list=json.list;
+                    tr+="<tr><td>"+list[i].cs_id+"</td>";
+                    tr+="<td>"+list[i].cs_name+"</td>";
+                    tr+="<td>"+list[i].Popular+"</td> ";
+                    tr+="<td><div class='button-group'> <a class='button border-main' href='selCitiesstatesID?cs_id="+list[i].cs_id+"'><span class='icon-edit'></span> 修改</a>";
+                    tr+="<a class='button border-red' href='javascript:void(0)' onclick='return del("+list[i].cs_id+")'><span class='icon-trash-o'></span> 删除</a> </div></td>";
+                    tr+="</tr>";
+                    if(list[i].sonCity.length!=0){
+                        for(var j=0;j<list[i].sonCity.length;j++){
+                            var list2=list[i].sonCity;
+                            tr+="<tr><td>"+list[i].cs_id+"-"+(j+1)+"</td>";
+                            tr+="<td>"+list2[j].cs_name+"</td>";
+                            tr+="<td>"+list2[j].Popular+"</td> ";
+                            tr+="<td><div class='button-group'> <a class='button border-main' href='selCitiesstatesID?cs_id="+list2[j].cs_id+"'><span class='icon-edit'></span> 修改</a>";
+                            tr+="<a class='button border-red' href='javascript:void(0)' onclick='return del("+list2[j].cs_id+")'><span class='icon-trash-o'></span> 删除</a> </div></td>";
+                            tr+="</tr>";
+                        }
+                    }
+                }
+                $("#neirong tr:first").after(tr);
+
+
+                $("#yema").children().remove();
+                // for (var j=1;j<=pages;j++){
+                //     var td="";
+                //     if(j==pageIndex){
+                //         td+="<span class='current' id='pagination'>"+j+"</span>";
+                //     }else{
+                //         td+="<a id='pagination'>"+j+"</a>";
+                //     }
+                //     $("#yema").append(td);
+                // }
+
+
+                var td="";
+                var t=1;
+
+                if(pages<=5){  //如果页码小于等于五页 则正常加载所有页面
+                    for (t;t<=pages;t++){
+
+                        if(t==pageIndex){
+                            td+="<span class='current' id='pagination'>"+t+"</span>";
+                        }else{
+                            td+="<a id='pagination'>"+t+"</a>";
+                        }
+                    }
+                }else if(pages >5){
+                    if(pageIndex<5){
+                        for (t;t<=5;t++){
+                            if(t==pageIndex){
+                                td+="<span class='current' id='pagination'>"+t+"</span>";
+                            }else{
+                                td+="<a id='pagination'>"+t+"</a>";
+                            }
+                        }
+                        if(pageIndex<=pages-2){
+                            td+="<span>...</span>";
+                            for (t = pages - 1; t <= pages;t++){
+                                td+="<a id='pagination'>"+t+"</a>";
+                            }
+                        }
+                        $("#yema").append(td);
+                    }else if(pageIndex>=5){  //当前页大于五页
+                        td+="<span>...</span>";
+                        if(pageIndex*1+2==pages || pageIndex*1+1==pages){
+                            for (t=pageIndex-1;t<=pages;t++){
+                                if(t==pageIndex){
+                                    td+="<span class='current' id='pagination'>"+t+"</span>";
+                                }else{
+                                    td+="<a id='pagination'>"+t+"</a>";
+                                }
+                            }
+                        }else if(pageIndex==pages){
+                            for (t=pageIndex-2;t<=pages;t++){
+                                if(t==pageIndex){
+                                    td+="<span class='current' id='pagination'>"+t+"</span>";
+                                }else{
+                                    td+="<a id='pagination'>"+t+"</a>";
+                                }
+                            }
+                        }else{
+                            var pageNumber=pageIndex*1+1;
+                            for (t=(pageIndex-1);t<=pageNumber;t++){
+                                if(t==pageIndex){
+                                    td+="<span class='current' id='pagination'>"+t+"</span>";
+                                }else{
+                                    td+="<a id='pagination'>"+t+"</a>";
+                                }
+                            }
+                            td+="<span>...</span>";
+                            for (t = pages - 1; t <= pages;t++){
+                                td+="<a id='pagination'>"+t+"</a>";
+                            }
+                        }
+                        $("#yema").append(td);
+                    }
+                }
+
+            });
+        }
+
+        $("#shang").click(function () {
+            if(pageIndex==1){
+                fenye(1,cs_name,sp_id);
+            }else{
+                pageIndex=pageIndex-1;
+                fenye(pageIndex,cs_name,sp_id);
+            }
+        });
+
+        $("#xia").click(function () {
+            if(pageIndex==pages){
+                pageIndex=pages;
+                fenye(pages,cs_name,sp_id);
+            }else{
+                pageIndex=pageIndex*1+1;
+                fenye(pageIndex,cs_name,sp_id);
+            }
+        });
+        $("#shou").click(function () {
+            pageIndex=1;
+            fenye(pageIndex,cs_name,sp_id);
+        });
+        $("#wei").click(function () {
+            pageIndex=pages;
+            fenye(pageIndex,cs_name,sp_id);
+        });
+        $("#pagination").live("click",function () {
+            var pagination=$(this).text();
+            pageIndex=pagination;
+            fenye(pageIndex,cs_name,sp_id);
+        });
+        $("#smallplate").change(function () {
+            sp_id=$(this).val();
+            pageIndex=1;
+            fenye(pageIndex,cs_name,sp_id);
+        });
+    });
+  </script>
 </head>
 <body>
 <form method="post" action="">
@@ -18,54 +199,31 @@
     <div class="padding border-bottom">
       <ul class="search">
         <li>
-		  <li><a class="button border-main icon-plus-square-o" href="addCity.html"> 添加城市</a> </li>
-		  <li><a class="button border-main icon-plus-square-o" href="addArea.html"> 添加地区</a> </li>
-          <button type="button"  class="button border-green" id="checkall"><span class="icon-check"></span> 全选</button>
-          <button type="submit" class="button border-red"><span class="icon-trash-o"></span> 批量删除</button>
-        </li>
-		<li>搜索：</li>
-        <li>城市
-          <select name="s_ishome" class="input" onchange="changesearch()" style="width:60px; line-height:17px; display:inline-block">
-            <option value="">选择</option>
-            <option value="0">大堡厦城市</option>
-            <option value="1">大都市</option>
-			<option value="2">周边地区</option>
-          </select>
-          &nbsp;&nbsp;
-          地区
-          <select name="s_isvouch" class="input" onchange="changesearch()"  style="width:60px; line-height:17px;display:inline-block">
-            <option value="">选择</option>
-            <option value="1">凯恩斯</option>
-            <option value="2">盛林群岛</option>
-			<option value="0">费沙岛</option>
-          </select>
+		  <li><a class="button border-main icon-plus-square-o" href="addCity.html"> 添加城市地区</a> </li>
         </li>
         <li>
-          <input type="text" placeholder="请输入搜索关键字" name="keywords" class="input" style="width:250px; line-height:17px;display:inline-block" />
-          <a href="javascript:void(0)" class="button border-main icon-search" onclick="changesearch()" > 搜索</a></li>
+          五大站:
+          <select name="largeplate" id="largeplate" class="input" onchange="changesearch()" style="width:200px; line-height:17px; display:inline-block">
+            <option value="0">选择</option>
+          </select>
+          &nbsp;&nbsp;
+          小模块:
+          <select name="smallplate" id="smallplate" class="input" onchange="changesearch()" style="width:200px; line-height:17px; display:inline-block">
+            <option value="0">选择</option>
+          </select>
+        </li>
       </ul>
     </div>
-    <table class="table table-hover text-center">
+    <table class="table table-hover text-center" id="neirong">
       <tr>
         <th>ID</th>
-        <th>城市地区名</th>       
-        <th>小模块ID</th>
+        <th>城市地区名</th>
         <th>热度</th>
-        <th>是否属于城市</th>
         <th>操作</th>       
-      </tr>      
-        <tr>
-          <td><input type="checkbox" name="id[]" value="1" />
-            1</td>
-          <td>凯恩斯</td>
-          <td>1</td>
-          <td>5</td>  
-           <td>0</td>
-          <td><div class="button-group"> <a class="button border-main" href="modCityArea.html"><span class="icon-edit"></span> 修改</a>
-		  <a class="button border-red" href="javascript:void(0)" onclick="return del(1,2)"><span class="icon-trash-o"></span> 删除</a> </div></td>
-        </tr>
-      <tr>
-        <td colspan="8"><div class="pagelist"> <a href="">上一页</a> <span class="current">1</span><a href="">2</a><a href="">3</a><a href="">下一页</a><a href="">尾页</a> </div></td>
+      </tr>
+
+      <tr id="sxy">
+        <td colspan="8"><div class="pagelist"><a id="shou">首页</a> <a id="shang">上一页</a> <div style="display: inline-block" id="yema"></div><a id="xia">下一页</a><a id="wei">尾页</a> </div></td>
       </tr>
     </table>
   </div>
@@ -74,7 +232,16 @@
 
 function del(id){
 	if(confirm("您确定要删除吗?")){
-		
+		$.getJSON("delCitiesstates","cs_id="+id,function (json) {
+		    if(json==1){
+		        alert("删除成功！");
+		        window.location.reload();
+            }else if(json==3){
+		        alert("删除失败！城市下有地区。");
+            }else{
+                alert("删除失败！");
+            }
+        });
 	}
 }
 

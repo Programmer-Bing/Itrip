@@ -1,74 +1,78 @@
 server:
-  port: 8002
-
-mybatis:
-  config-location: classpath:mybatis/mybatis-cfg.xml
-  type-aliases-package: com.cssl.pojo
-  mapper-locations: classpath:mybatis/mapper/**/*.xml
-
+  port: 8091
 spring:
-  application:
-    #????
-    name: microservice-hotel
-  datasource:
-    type: com.alibaba.druid.pool.DruidDataSource
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://39.107.103.69:3306/itrip?useUni code=true&characterEncoding=utf8
-    username: root
-    password: ailvxing@123
-    dbcp2:
-      min-idle: 5
-      initial-size: 5
-      max-total: 5
-      max-wait-millis: 200
+  resources:
+    static-locations: classpath:/templates/,classpath:/static/,classpath:/META-NF/resources/,classpath:/resources/,classpath:/public/,classpath:/upload,classpath:/templates/login
+  thymeleaf:
+    encoding: UTF-8
+    #开发时关闭缓存,不然没法看到实时页面
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
 
-  #???????
-#  redis:
-#    port: 6379
-#    database: 0
-#    host: 127.0.0.1
-#    password:
-#    timeout: 10s
-#    jedis:
-#      pool:
-#        max-active: 8
-#        max-wait: -1
-#        max-idle: 5
-#        min-idle: -1
+  #spring:
+  application:
+    name: microservice-consumer1
+
+
+  #用于分布式存储
+  redis:
+    port: 6379
+    database: 0
+    host: 127.0.0.1
+    password:
+    timeout: 10s
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 5
+        min-idle: -1
 
 
 eureka:
-  client: #??????eureka?????
+  client:
+    register-with-eureka: true
     service-url:
-      #defaultZone: http://localhost:6001/eureka
-      #Eureka?????
-      defaultZone: http://localhost:6001/eureka/
+      defaultZone: http://localhost:6001/eureka
   instance:
-    instance-ie-d: microservicHotel8002
-    prefer-ip-address: true     #????????IP??
-    leaseRenewalIntervalInSeconds: 10   #???????????30??
-    leaseExpirationDurationInSeconds: 30 #?????????90??
+    instance-id: microservice-hotel-80
+    prefer-ip-address: true     #访问路径可以显示IP地址
 
-info:
-  app.name: cssl-microservice
-  company.name: www.cssl.com
-  build.artifactId: microservice
-  build.version: 1.0-SNAPSHOT
+#注释后hystrix服务降级不可用
+feign:
+  httpclient:
+    connection-timeout: 30000
+    enabled: true
 
 
-#spring:
-#  boot:
-#    admin:
-#      client:
-#        url: "http://localhost:8000"
 
-#????
-#management:
-#  endpoints:
-#    web:
-#      exposure:
-#        include:
-#        - "*" # ??????health?info?metrics???actuator/+??????????????????health?info
-#  endpoint:
-#    health:
-#      show-details: always #???actuator/health???????????{"status":"UP"}?status??????? DOWN??????????
+
+#分页配置
+pagehelper:
+  #  helperDialect: mysql  #方言  默认
+  reasonable: true      #启动合理化
+#  pageSizeZero: true    #小于pageIndex1时，pageIndex=1 默认
+
+#默认支持文件上传:本示例上传七牛云
+servlet:
+  multipart:
+    enabled: true
+    max-file-size: 10000000      #单文件大小
+    max-request-size: 100000000   #总大小
+#hystrix的超时时间
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 9000
+#ribbon的超时时间
+ribbon:
+  ReadTimeout: 3000
+  ConnectTimeout: 3000
+
+

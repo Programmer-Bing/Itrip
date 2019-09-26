@@ -27,7 +27,7 @@ public class DeptClientServiceFallbackFactory implements FallbackFactory<UserSer
             }
 
             @Override
-            public List<Map<String, Object>> citiesstates() {
+            public List<Map<String, Object>> citiesstatesLs() {
                 return new ArrayList<>();
             }
 
@@ -47,23 +47,128 @@ public class DeptClientServiceFallbackFactory implements FallbackFactory<UserSer
             }
 
             @Override
-            public int addtourismproducts(Map<String, Object> map) {
+            public int addUser(Map<String, Object> map) {
                 return 0;
             }
 
             @Override
-            public Map<String, Object> selectP_id(String product_Name) {
-                return new HashMap<>();
-            }
-
-            @Override
-            public int addhotel(Map<String, Object> map) {
+            public int delproduct(Map<String,Object> map) {
                 return 0;
             }
 
             @Override
-            public int selProCount(Map<String, Object> map) {
+            public int deluser(int u_id) {
                 return 0;
+            }
+
+            @Override
+            public Map<String, Object> whereuid(int uid) {
+                return null;
+            }
+
+            @Override
+            public int modUser(Map<String, Object> map) {
+                return 0;
+            }
+
+            @Override
+            public List<Map<String, Object>> Finlargeplate() {
+                return null;
+            }
+
+            @Override
+            public List<Map<String, Object>> smallplate(int lp_id) {
+                return null;
+            }
+
+            @Override
+            public Page pageCitiesstates(Map<String, Object> map) {
+                return new Page();
+            }
+
+            @Override
+            public List<Map<String, Object>> citiesstates(Map<String, Object> map) {
+                return null;
+            }
+
+            @Override
+            public int addCitiesstates(Map<String, Object> map) {
+                return 0;
+            }
+
+            @Override
+            public List<Map<String, Object>> selCitiesstatesID(int cs_id) {
+                return null;
+            }
+
+            @Override
+            public Map<String, Object> tourismproductsP_id(int p_id) {
+                return null;
+            }
+
+            @Override
+            public int setCitiesstates(Map<String, Object> map) {
+                return 0;
+            }
+
+            @Override
+            public int delCitiesstates(int cs_id) {
+                return 0;
+            }
+
+            @Override
+            public Map<String, Object> productP_id(int p_id) {
+                return null;
+            }
+
+            @Override
+            public Map<String, Object> cost_descriptionC_id(int cd_id) {
+                return null;
+            }
+
+            @Override
+            public Map<String, Object> hotelP_id(int p_id) {
+                return null;
+            }
+
+            @Override
+            public int setProduct(Map<String, Object> map) {
+                return 0;
+            }
+
+            @Override
+            public Page roominformation(Map<String, Object> map) {
+                return new Page();
+            }
+
+            @Override
+            public List<Map<String, Object>> hotel() {
+                return null;
+            }
+
+            @Override
+            public int addroom(Map<String, Object> map) {
+                return 0;
+            }
+
+            @Override
+            public Map<String, Object> selsetRoom(int id) {
+                return null;
+            }
+
+            @Override
+            public int setRoom(Map<String, Object> map) {
+                return 0;
+            }
+
+            @Override
+            public int delRoom(int id) {
+                return 0;
+            }
+
+            @Override
+            public Map<String, Object> selUserAdmin(Map<String, Object> map) {
+                return null;
             }
         };
     }

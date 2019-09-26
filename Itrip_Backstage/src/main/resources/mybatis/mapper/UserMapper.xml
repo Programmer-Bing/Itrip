@@ -5,15 +5,35 @@
     <select id="findAll" resultType="map" parameterType="map">
         SELECT * FROM  `user`
     <trim prefix="where" prefixOverrides="or||and">
-    <if test="chinese_name!='null' and chinese_name!=''">
-        Chinese_Name like concat('%',#{chinese_name},'%')
+    <if test="chinese_name!='' and chinese_name!='null'">
+        and Chinese_Name like concat('%',#{chinese_name},'%')
     </if>
-    <if test="english_name!='null' and english_name!=''">
+    <if test="english_name!='' and english_name!='null'">
          and English_Name like concat('%',#{english_name},'%')
     </if>
     </trim>
     <if test="index!=null and size!=null">
         LIMIT #{index},#{size}
     </if>
+    </select>
+
+    <insert id="addUser" parameterType="map">
+        INSERT INTO `user`(user_name,Chinese_Name,English_Name,Gender,Birthday,Phone_number,email,Account_number,`Password`,Head_portrait,Administration)VALUES(#{user_name},#{Chinese_Name},#{English_Name},#{Gender},#{Birthday},#{Phone_number},#{email},#{Account_number},#{Password},#{Head_portrait},#{Administration})
+    </insert>
+
+    <delete id="deluser" parameterType="int">
+        DELETE FROM `user` WHERE user_id=#{u_id}
+    </delete>
+
+    <select id="whereuid" parameterType="int" resultType="map">
+        SELECT * FROM `user` WHERE user_id=#{u_id}
+    </select>
+
+    <update id="modUser" parameterType="map">
+        UPDATE `user` SET user_name=#{user_name} ,Chinese_Name=#{Chinese_Name} ,English_Name=#{English_Name} ,Gender=#{Gender} ,Birthday=#{Birthday} ,Phone_number=#{Phone_number} ,email=#{email} ,`Password`=#{newpass} ,Head_portrait=#{Head_portrait} ,Administration=#{admin} WHERE user_id=#{user_id}
+    </update>
+
+    <select id="selUserAdmin" resultType="map" parameterType="map">
+        SELECT * FROM `user` WHERE Account_number=#{account} and `Password`=#{pass}
     </select>
 </mapper>

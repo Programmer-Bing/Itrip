@@ -13,6 +13,14 @@
 h4{ font-size:14px; color:#666;}
 a{color:#0ae;}
 </style>
+    <script type="text/javascript">
+        var wy=${wy};
+        if(wy.eq("user")){
+            $("#href").attr("href","users.html");
+        }else if(wy.eq("product")){
+            $("#href").attr("href","product.html");
+        }
+    </script>
 </head>
 <body class="no-skin">
 <div class="error-container"> 
@@ -20,7 +28,7 @@ a{color:#0ae;}
     <div class="errorcon">     
         <i class="icon-smile-o"></i>操作成功！
    </div>
-    <h4 class="smaller">页面自动 <a id="href" href="users.html">跳转</a> 等待时间： <b id="wait">5</b></h4>
+    <h4 class="smaller">页面自动 <a id="href" href="product.html">跳转</a> 等待时间： <b id="wait">5</b></h4>
    
 </div>
 
