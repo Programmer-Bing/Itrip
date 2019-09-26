@@ -150,4 +150,14 @@ public class CollectController {
         return cs.SelectDiscountCouponCount(userid);
     }
 
+    /***
+     *
+     * 查询当前用户是否拥有优惠卷
+     * @param userid
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET,value = "/SelectDiscountCouponCountUser")
+    public List<DiscountCoupon> SelectDiscountCouponCountUser(@RequestParam(value = "1") int userid) {
+        return cs.SelectDiscountCouponCountUser(userid);
+    }
 }
