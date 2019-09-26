@@ -309,5 +309,10 @@ public interface HomePageClientService {
     @RequestMapping(method = RequestMethod.GET,value = "/SelectDiscountCouponCountUser")
     public List<DiscountCoupon> SelectDiscountCouponCountUser(@RequestParam(value = "1") int userid);
 
-
+    /***
+     * 新增订单
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET,value = "addOrder")
+    public int addOrder(@RequestParam("map") String map);
 }
