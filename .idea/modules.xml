@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Itrip.iml" filepath="$PROJECT_DIR$/.idea/Itrip.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Itrip.iml" filepath="$PROJECT_DIR$/Itrip.iml" />
       <module fileurl="file://$PROJECT_DIR$/Itrip_Backstage/Itrip_Backstage.iml" filepath="$PROJECT_DIR$/Itrip_Backstage/Itrip_Backstage.iml" />
       <module fileurl="file://$PROJECT_DIR$/Itrip_HomePage/Itrip_HomePage.iml" filepath="$PROJECT_DIR$/Itrip_HomePage/Itrip_HomePage.iml" />
       <module fileurl="file://$PROJECT_DIR$/comm/comm.iml" filepath="$PROJECT_DIR$/comm/comm.iml" />

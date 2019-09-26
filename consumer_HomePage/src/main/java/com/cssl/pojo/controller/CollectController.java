@@ -38,9 +38,13 @@ public class CollectController {
 
          Collect co=new Collect();
          User user = (User) se.getAttribute(se.getId());
-         co.setProductid(productnum);
-         co.setUserid(user.getUser_id());
-         System.out.println("查询收藏总数: "+user.getUser_id()+"商品id: "+productnum);
+         if(user!=null){
+             co.setProductid(productnum);
+             co.setUserid(user.getUser_id());
+             System.out.println("查询收藏总数: "+user.getUser_id()+"商品id: "+productnum);
+         }
+
+
          int i = service.SelectCollectCount(co);
 
 
@@ -149,8 +153,12 @@ public class CollectController {
     public int AddBrowsingHistory(String pid,HttpSession se){
         User user = (User) se.getAttribute(se.getId());
         BrowsingHistory bb=new BrowsingHistory();
-        bb.setProductid(Integer.parseInt(pid));
-        bb.setUserid(user.getUser_id());
+        if(user!=null){
+            bb.setProductid(Integer.parseInt(pid));
+            bb.setUserid(user.getUser_id());
+        }
+
+
         int count = service.SelectBrowsingHistory(bb);
         if(count>0){
             System.out.println("用户浏览记录中存在");
@@ -161,10 +169,12 @@ public class CollectController {
         }
         else{
             System.out.println("用户浏览记录中不存在:  "+pid);
+            if(user!=null){
+                int i = service.AddBrowsingHistory(bb);
+                System.out.println("数字:  "+i);
+            }
 
 
-            int i = service.AddBrowsingHistory(bb);
-            System.out.println("数字:  "+i);
         }
 
         return 0;
@@ -202,6 +212,54 @@ public class CollectController {
         List<Integer> list=new ArrayList<>();
         list.add(totle);
         return  list;
+    }
+
+    /***
+     *
+     * 添加优惠卷
+     * @param time1
+     * @param time2
+     * @param yhjmony
+     * @param se
+     * @return
+     */
+    @RequestMapping("/AddDiscountCoupon")
+    @ResponseBody
+    public int AddDiscountCoupon(String time1,String time2,int yhjmony,HttpSession se,String dname){
+        User user =(User) se.getAttribute(se.getId());
+        if(user==null){
+            return -1;
+        }
+        else {
+            DiscountCoupon ds = new DiscountCoupon();
+            ds.setUserid(user.getUser_id());
+            ds.setDstatetime(time1);
+            ds.setDmrtime(time2);
+            ds.setDprice(yhjmony);
+            int mz = yhjmony + 1;
+            ds.setMeet(mz);
+            ds.setDname(dname);
+            int i = service.AddDiscountCoupon(ds);
+            System.out.println("添加优惠卷:  " + i);
+
+            return 0;
+        }
+    }
+
+    /***
+     *
+     * 查询当前用户是否拥有优惠卷
+     * @param se
+     * @return
+     */
+    @RequestMapping("/SelectDiscountCouponCount")
+    @ResponseBody
+    public int SelectDiscountCouponCount(HttpSession se){
+        User user =(User) se.getAttribute(se.getId());
+        int i = service.SelectDiscountCouponCount(user.getUser_id());
+        System.out.println("查询当前用户是否拥有优惠卷:  "+i);
+
+        return i;
     }
 
 

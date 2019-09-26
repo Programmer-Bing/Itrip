@@ -2,6 +2,7 @@ package com.cssl.pojo.service;
 
 import com.cssl.pojo.po.BrowsingHistory;
 import com.cssl.pojo.po.Collect;
+import com.cssl.pojo.po.DiscountCoupon;
 
 import java.util.List;
 import java.util.Map;
@@ -28,6 +29,10 @@ public interface CollectService {
     public int  UpdateBrowsingHistory(BrowsingHistory  bb);
 
     public List<BrowsingHistory> SelectBrowsingHistoryUser(int userid);
+
+    public int AddDiscountCoupon(DiscountCoupon dc);
+
+    public int SelectDiscountCouponCount(int userid);
 
 
 }

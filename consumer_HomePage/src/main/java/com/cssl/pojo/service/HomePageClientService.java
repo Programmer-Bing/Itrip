@@ -246,7 +246,12 @@ public interface HomePageClientService {
     @RequestMapping(method = RequestMethod.POST,value = "/SelectBrowsingHistory")
     public int SelectBrowsingHistory(@RequestBody  BrowsingHistory bb);
 
-
+    /***
+     *
+     * 个人浏览记录的查询
+     * @param userid
+     * @return
+     */
     @RequestMapping(method = RequestMethod.GET,value = "/SelectBrowsingHistoryUser")
     public List<BrowsingHistory> SelectBrowsingHistoryUser(@RequestParam(value = "111") int userid);
     /***

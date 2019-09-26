@@ -1,21 +1,15 @@
 package com.cssl.pojo.controller;
 
+import com.cssl.pojo.po.User;
 import com.cssl.pojo.roomtype;
 import com.cssl.pojo.service.HomePageClientService;
 import com.cssl.pojo.shoppingcart;
-import com.fasterxml.jackson.databind.util.JSONPObject;
-import com.google.gson.JsonObject;
-import jdk.nashorn.internal.ir.debug.JSONWriter;
-import lombok.Data;
-import net.sf.json.JSON;
 import net.sf.json.JSONObject;
-import org.apache.catalina.connector.Request;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
-import java.text.SimpleDateFormat;
+import javax.servlet.http.HttpSession;
 import java.util.*;
 
 @RestController
@@ -26,7 +20,9 @@ public class shoppingcartController {
 
     //加入购物车
     @RequestMapping(value = "addCart/{cart}" , method = RequestMethod.GET )
-    public String addCart(@PathVariable("cart") Object cart){
+    public String addCart(@PathVariable("cart") Object cart, HttpSession session){
+        User attribute = (User)session.getAttribute(session.getId());
+        Object attribute1 = session.getAttribute(session.getId() + "123");
         JSONObject jsonObject = JSONObject.fromObject(cart);
         shoppingcart scart = new shoppingcart();
         Date date = new Date();
@@ -45,6 +41,11 @@ public class shoppingcartController {
             list.add(rt);
         }
         map.put("sht_id",id);
+        if(attribute!=null){
+            map.put("userid",attribute.getUser_id());
+        }else{
+            map.put("userid",1);
+        }
         map.put("Product_id",Integer.parseInt(jsonObject.get("Product_id").toString()));
         map.put("Original_price",Double.parseDouble(jsonObject.get("Original_price").toString()));
         map.put("Travle_date",jsonObject.get("Travle_date").toString());
@@ -60,9 +61,46 @@ public class shoppingcartController {
         }
         map.put("rooms",list1);
         service.addCart(map);
-        return "牛逼";
+        return "1";
     }
 
+
+    @RequestMapping(value = "addHorder/{c}" , method = RequestMethod.GET)
+    public ModelAndView AddhOrder(@PathVariable("c") Object c,HttpSession session,ModelAndView model){
+        String ro = c.toString().substring(1);
+        String[] split1 = ro.split("'");
+        List list1 = new ArrayList();
+        String[] split = split1[0].split(":");
+        Object user = session.getAttribute(session.getId());
+        Object hol = session.getAttribute("hol");
+        List<Map> home = (List<Map>) session.getAttribute("home");
+        for (String s : split) {
+            list1.add(s.substring(0,1));
+            list1.add(s.substring(2,3));
+        }
+        List<Map> list = new ArrayList<>();
+        for (int i = 0; i < list1.size(); i++) {
+            if(i%2==0){
+                for (int j = 0; j < home.size(); j++) {
+                    if(list1.get(i).equals(home.get(j).get("rif_id").toString())){
+                        list.add(home.get(j));
+                    }
+                }
+            }
+        }
+        model.addObject("user",user);
+        model.addObject("hotel",hol);
+        model.addObject("room",list);
+        System.out.println(user);
+        System.out.println(hol);
+        for (Map map : list) {
+            System.out.println(map);
+        }
+        model.addObject("sp1",split1[1]);
+        model.addObject("sp2",split1[2]);
+        model.setViewName("OrderHotel");
+        return model;
+    }
 
 
 }
