@@ -66,17 +66,17 @@
 						</a>
 					</span>
 					<span class="line">|</span>
-					<span class="js_loginStatus" style="display:none;margin-left:0px;">
+					<span class="js_loginStatus" style="display:none;margin-left:0px;" id="logzc">
 						<span><a class="blue" href="javascript:void(0);" onclick="login()" rel="nofollow">登录</a></span><span>/</span> 
 						<span><a href="https://www.itrip.com/signup/index" rel="nofollow">注册</a></span> 
 					</span>
-					<span class="js_loginStatus" style="margin-left: 0px;"> 						
-						<span class="sw_syb fl pos_r" style="margin-left:0px;"><a class="blue display_name" href="https://www.itrip.com/user/index">xx</a><i class="sw_sj"></i>
+					<span class="js_loginStatus" style="margin-left: 0px;" id="user">
+						<span class="sw_syb fl pos_r" style="margin-left:0px;"><a class="blue display_name" href="爱去旅行个人信息主页面.html" id="username"></a><i class="sw_sj"></i>
 							<dl class="down_list">
 								<dd class="js_myOrder"><a href="https://www.itrip.com/user/orders" rel="nofollow" class="pos_r">我的订单<label></label></a></dd>
 								<dd class="js_myFavor"><a href="https://www.itrip.com/user/favor/all" rel="nofollow" class="pos_r">我的收藏 <label></label></a></dd>
 								<dd><a href="https://www.itrip.com/user/reward" rel="nofollow">我的奖金</a></dd>
-								<dd><a href="javascript:void(0);" id="btn_logout" onclick="logout()" rel="nofollow">退出登录</a></dd>
+								<dd><a href="javascript:void(0);" id="btn_logout" rel="nofollow">退出登录</a></dd>
 							</dl>
 						</span>
 					</span>
@@ -210,7 +210,7 @@
 			</div>
 			<div class="toux pos_r">
 				<p class="toux_img">
-					<img src="个人中心优惠券_files/defaultPortrait1.jpg" width="90" height="90" border="0">
+					<img src="个人中心优惠券_files/defaultPortrait1.jpg" width="90" height="90" border="0" id="touz">
 							</p>
 				<p class="toux_tit">
 				</p><p class="f14 mt10 blue">17608486293</p>
@@ -268,7 +268,7 @@
 <div class="clearfix UC_coupon">
 			<form action="https://www.itrip.com/user/activeCoupen" id="activeCoupenForm" method="POST">
 			<input type="text" style="display: none;">
-			<div class="UC_coupon_head f14">
+			<!--<div class="UC_coupon_head f14">
 				<p class="error"></p>
 				<p class="success" id="activeFailMsg"></p>
 				<p class="clearfix">
@@ -276,7 +276,7 @@
 					<input type="submit" class="tip_blue fl" style="border: none" value="激活">
 					<a class="btn-dark-orange tc fr" href="https://www.itrip.com/">快去订购产品，享受优惠！</a>
 				</p>
-			</div>
+			</div>-->
 			</form>
 			
 			
@@ -284,7 +284,7 @@
 				<div class="UC_coupon_list_head horiz oh">
 					<ul class="fl">
 						<li class="tagSwichHeadItem cur" style="cursor: pointer;">
-							<a href="https://www.itrip.com/user/coupons/aval">可用优惠券（  0 ）</a>
+							<a href="个人中心优惠券.html">可用优惠券（  <span id="yhcount">0</span> ）</a>
 						</li>
 						<li class="tagSwichHeadItem " style="cursor: pointer;">
 							<a href="https://www.itrip.com/user/coupons/used">已使用优惠券（ 0 ）</a>
@@ -299,11 +299,11 @@
 
    
 <div class="UC_coupon_list_item tagSwichContItem clearfix" style="display: block;">
-		<ul class="clearfix">
+		<ul class="clearfix" id="dst">
 			</ul>
 	</div>
 	
-	<p class="tc f18 mt20">未能查询到相关信息</p>
+	<p class="tc f18 mt20" id="hint">未能查询到相关信息</p>
 	
 </div>
 		</div>
@@ -468,7 +468,118 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
 
+
+    $(function () {
+
+        //拿数据
+        $.getJSON("/GetSession",function (data) {
+            if(data!=null){
+
+
+                $("#username").text(data.chinese_Name);
+
+
+
+
+            }
+
+
+        });
+
+        $.getJSON("/xsphone",function (data) {
+
+
+            $("#txtshann").text(data.phone_number)
+
+            document.getElementById("touz").src=data.head_portrait;
+        })
+
+
+        //鼠标悬停事件
+        $("#user").mousemove(function () {
+            $(".down_list").css("display","block");
+        })
+        $("#user").mouseout(function () {
+            $(".down_list").css("display","none");
+        })
+
+
+        //退出登录
+        $("#btn_logout").click(function () {
+
+            $.getJSON("/logout",function (data) {
+                window.location="Europe.html"
+            })
+        })
+
+    })
+
+
+</script>
+
+
+<script  type="text/javascript">
+
+    $(function () {
+
+
+        $.getJSON("/SelectDiscountCouponUserShow",function (data) {
+
+            if(data==null){
+
+            }
+            else{
+				$("#yhcount").text(data.length)
+                $("#hint").css("display","none");
+                for (var i = 0; i <data.length; i++) {
+                    var da=data[i];
+                    var li="<li class=\"\">";
+                    li+="<div class=\"fl count\">";
+                    li+="<p class=\"count-d f36\"><em class=\"f16\">¥</em>"+da.dprice+"</p>";
+                    li+="<p class=\"count-i f14\">满¥"+da.meet+"</p>";
+                    li+="</div>";
+                    li+="<div class=\"count-info fl f14\">";
+                    li+="<p class=\"count-t\">"+da.dname+"</p>";
+                    li+="<p class=\"count-time\">有效期 "+da.dstatetime+" 至 "+da.dmrtime+"</p>";
+                    li+="<div class=\"count-condition pos_r hand\">指定条件适用<i class=\"arrow\"></i>";
+                    li+="<div class=\"count_details pos_a\">";
+                    li+="<div class=\"pos_r\">";
+                    li+="<i class=\"icon_arrow_up\"></i>";
+                    li+="<p>适用产品类别：景点活动、打包产品、线路、当地跟团、出境游、接机-包车、接机-拼车、送机-包车、送机-拼车、按天包车、线路用车</p><p>适用出行日期：2019.08.27~2019.09.30</p></div>\n";
+                    li+="</div>";
+                    li+="</div>";
+                    li+="</div>";
+                    li+=" </li>";
+                    $("#dst").append(li);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                }
+            }
+        })
+
+    })
+
+
+
+</script>
 
 
 

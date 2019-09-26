@@ -207,10 +207,7 @@ public class FeginFactory implements FallbackFactory<HomePageClientService> {
                 return null;
             }
 
-            @Override
-            public int addOrder(String map) {
-                return 0;
-            }
+
 
 
             @Override
@@ -225,6 +222,11 @@ public class FeginFactory implements FallbackFactory<HomePageClientService> {
 
             @Override
             public List<DiscountCoupon> SelectDiscountCouponUserShow(int userid) {
+                return null;
+            }
+
+            @Override
+            public List<DiscountCoupon> SelectDiscountCouponCountUser(int userid) {
                 return null;
             }
         };

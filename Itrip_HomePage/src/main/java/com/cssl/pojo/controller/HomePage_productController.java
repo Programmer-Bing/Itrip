@@ -179,6 +179,7 @@ public class HomePage_productController {
             op.setP_img(ps.getP_imgpath());
             op.setP_name(ps.getP_title());
             op.setTraveltime(ps.getTravel_date());
+            op.setMoney(ps.getSettlement_price());
             op.setOrder_no(orderno);
             num1 = homePage_productService.addOrderProduct(op);
             System.out.println(num1);
