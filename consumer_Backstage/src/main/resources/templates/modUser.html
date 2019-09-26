@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,13 +15,22 @@
 <div class="panel admin-panel">
   <div class="panel-head"><strong><span class="icon-key"></span> 修改用户</strong></div>
   <div class="body-content">
-    <form method="post" class="form-x" action="">
+    <form method="get" class="form-x" action="modUser">
+
+        <div class="form-group">
+            <div class="label">
+                <label for="sitename">用户ID:</label>
+            </div>
+            <div class="field">
+                <input type="text" th:value="${user.user_id}" readonly = "readonly" class="input w50" id="user_id" name="user_id" size="50" placeholder="请输入用户ID" data-validate="required:请输入用户ID" />
+            </div>
+        </div>
       <div class="form-group">
         <div class="label">
           <label for="sitename">用户名：</label>
         </div>
         <div class="field">
-          <input type="text" class="input w50" id="user_name" name="user_name" size="50" placeholder="请输入用户名" data-validate="required:请输入用户名" />
+          <input type="text" th:value="${user.user_name}" class="input w50" id="user_name" name="user_name" size="50" placeholder="请输入用户名" data-validate="required:请输入用户名" />
         </div>
       </div>
 	  <div class="form-group">
@@ -29,7 +38,7 @@
           <label for="sitename">中文昵称：</label>
         </div>
         <div class="field">
-          <input type="text" class="input w50" id="Chinese_Name" name="Chinese_Name" size="50" placeholder="请输入中文昵称" data-validate="required:请输入中文昵称" />       
+          <input type="text" th:value="${user.Chinese_Name}" class="input w50" id="Chinese_Name" name="Chinese_Name" size="50" placeholder="请输入中文昵称" data-validate="required:请输入中文昵称" />
         </div>
       </div>  
 		<div class="form-group">
@@ -37,7 +46,7 @@
           <label for="sitename">英文昵称：</label>
         </div>
         <div class="field">
-          <input type="text" class="input w50" id="English_Name" name="English_Name" size="50" placeholder="请输入英文昵称" data-validate="required:请输入英文昵称" />       
+          <input type="text" th:value="${user.English_Name}" class="input w50" id="English_Name" name="English_Name" size="50" placeholder="请输入英文昵称" data-validate="required:请输入英文昵称" />
         </div>
       </div>   
 	  <div class="form-group">
@@ -45,8 +54,8 @@
           <label for="sitename">性别：</label>
         </div>
         <div class="field">
-          <input type="radio" name="sex" value="男生">男生
-		  <input type="radio" name="sex" value="女生">女生
+          <input type="radio" th:checked="${user.Gender == '男'}" name="sex" value="男">男生
+		  <input type="radio" th:checked="${user.Gender == '女'}" name="sex" value="女">女生
         </div>
       </div>  
 		<div class="form-group">
@@ -54,7 +63,7 @@
           <label for="sitename">出生日期：</label>
         </div>
         <div class="field">
-			<input type="date" class="input w50" name="Birthday" id="Birthday" size="50" placeholder="请选择出生日期" data-validate="required:请输入选择出生日期"/>
+			<input type="date" th:value="${user.Birthday}" class="input w50" name="Birthday" id="Birthday" size="50" placeholder="请选择出生日期" data-validate="required:请输入选择出生日期"/>
         </div>
       </div>
 	<div class="form-group">
@@ -62,7 +71,7 @@
           <label for="sitename">手机号码：</label>
         </div>
         <div class="field">
-          <input type="text" class="input w50" id="Phone_number" name="Phone_number" size="50" placeholder="请输入手机号码" data-validate="required:请输入手机号码" />       
+          <input type="text" th:value="${user.Phone_number}" class="input w50" id="Phone_number" name="Phone_number" size="50" placeholder="请输入手机号码" data-validate="required:请输入手机号码" />
         </div>
       </div>
 <div class="form-group">
@@ -70,23 +79,39 @@
           <label for="sitename">邮箱：</label>
         </div>
         <div class="field">
-          <input type="text" class="input w50" id="email" name="email" size="50" placeholder="请输入邮箱" data-validate="required:请输入邮箱" />       
+          <input type="text" th:value="${user.email}" class="input w50" id="email" name="email" size="50" placeholder="请输入邮箱" data-validate="required:请输入邮箱" />
         </div>
-      </div>  
+      </div>
+        <div class="form-group">
+            <div class="label">
+                <label for="sitename">原始头像:</label>
+            </div>
+            <div class="field">
+                <img th:src="${user.Head_portrait}" style="border: solid 1px" name="img" alt='' width='120' height='70' />
+            </div>
+        </div>
 <div class="form-group">
         <div class="label">
-          <label for="sitename">头像图片：</label>
+          <label for="sitename">头像图片:</label>
         </div>
         <div class="field">
-          <input type="file" accept="image/*" class="input w50" id="Head_portrait" name="Head_portrait" size="50" placeholder="请选取图片" data-validate="required:请选取图片" />       
+          <input type="file" accept="image/*" class="input w50" id="Head_portrait" name="Head_portrait" size="50" placeholder="请选取图片" data-validate="required:请选取图片" />
         </div>
-      </div> 	  
+      </div>
+        <div class="form-group">
+            <div class="label">
+                <label for="sitename">账户:</label>
+            </div>
+            <div class="field">
+                <input type="text" readonly = "readonly" th:value="${user.Account_number}" disabled="disabled" class="input w50" id="Account_number" name="Account_number" size="50" placeholder="请输入原始密码" data-validate="required:请输入原始密码" />
+            </div>
+        </div>
       <div class="form-group">
         <div class="label">
           <label for="sitename">原始密码：</label>
         </div>
         <div class="field">
-          <input type="password" class="input w50" id="mpass" name="mpass" size="50" placeholder="请输入原始密码" data-validate="required:请输入原始密码" />       
+          <input type="text" th:value="${user.Password}" disabled="disabled" class="input w50" id="mpass" name="mpass" size="50" placeholder="请输入原始密码" data-validate="required:请输入原始密码" />
         </div>
       </div>      
       <div class="form-group">
@@ -97,7 +122,17 @@
           <input type="password" class="input w50" name="newpass" size="50" placeholder="请输入新密码" data-validate="required:请输入新密码,length#>=5:新密码不能小于5位" />         
         </div>
       </div>
-      
+        <div class="form-group">
+            <div class="label">
+                <label for="sitename">身份:</label>
+            </div>
+            <div class="field">
+                <select name="admin" id="admin" class="input"  style="width:150px; line-height:17px;display:inline-block">
+                    <option value="2" th:selected="${user.Administration == 2}">普通用户</option>
+                    <option value="1" th:selected="${user.Administration == 1}">管理员</option>
+                </select>
+            </div>
+        </div>
       <div class="form-group">
         <div class="label">
           <label></label>

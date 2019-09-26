@@ -38,21 +38,28 @@
             function fenye(pageNumber,pt_id,p_cid,title) {
                 $.getJSON("findProduct","pageNumber="+pageNumber+"&pt_id="+pt_id+"&p_cid="+p_cid+"&title="+title,function(json){
                     zong=json.totalPage;
+                    var tr="";
                     $("#xianshi tr:not(:first):not(#sxy)").remove();
                     for(var i=0;i<json.list.length;i++){
                         var prolist=json.list;
-                        var tr="";
+
+                        var biaoti="";
+                        if(prolist[i].Product_Name.length>25){
+                            biaoti = prolist[i].Product_Name.substring(0,25)+"...";
+                        }else{
+                            biaoti = prolist[i].Product_Name;
+                        }
                         tr+="<tr>"
-                        tr+="<td><input type='checkbox' name='id[]' value='"+prolist[i].Product_id+"' />"+prolist[i].Product_id+"</td>"
-                        tr+="    <td id='biaoti'>"+prolist[i].Product_Name+"</td>"
-                        tr+="<td><img src='images/11.jpg' alt='' width='120' height='50' /></td>"
+                        tr+="<td><input type='checkbox' name='id[]' id='p_id' value='"+prolist[i].Product_id+"' />"+(i+1)+"</td>"
+                        tr+="    <td id='biaoti'>"+biaoti+"</td>"
+                        tr+="<td><img src='"+prolist[i].P_imgpath+"' alt='' width='120' height='70' style=\"border: solid 1px\" /></td>"
                         tr+="<td>"+prolist[i].P_price+"<span>￥</span></td>"
-                        tr+="   <td><div class='button-group'> <a class='button border-main' href='modProduct.html'><span class='icon-edit'></span> 修改</a>"
-                        tr+="<a class='button border-red' href='javascript:void(0)' onclick='return del(1,2)'><span class='icon-trash-o'></span> 删除</a> </div></td>"
+                        tr+="   <td><div class='button-group'> <a class='button border-main' href='selSetProduct?p_id="+prolist[i].Product_id+"&pt_id="+prolist[i].Pt_id+"'><span class='icon-edit'></span> 修改</a>"
+                        tr+="<a class='button border-red' href='javascript:void(0)' onclick='return del("+prolist[i].Product_id+","+prolist[i].Pt_id+")'><span class='icon-trash-o'></span> 删除</a> </div></td>"
                         tr+="</tr>"
-                        $("#xianshi").append(tr);
                     }
-                    $("#xia").nextAll().remove();
+                    $("#xianshi tr:first").after(tr);
+                    $("#numberpage").children().remove();
                     for(var j=1;j<=zong;j++){
                         var a="";
                         if(pageNumber==j){
@@ -60,10 +67,12 @@
                         }else{
                             a+="<a id='pagination'>"+j+"</a>";
                         }
-                        $("#pagelist").append(a);
+                        $("#numberpage").append(a);
                     }
                 });
             }
+
+
 
             $("#pagination").live("click",function () {
                 var pagination=$(this).text();
@@ -76,7 +85,7 @@
                     pageNumber=zong;
                     fenye(pageNumber,pt_id,p_cid,title);
                 }else if(pageNumber<zong){
-                    pageNumber=pageNumber+1;
+                    pageNumber=pageNumber*1+1;
                     fenye(pageNumber,pt_id,p_cid,title);
                 }
             });
@@ -116,6 +125,7 @@
                 fenye(pageNumber,pt_id,p_cid,title);
             });
 
+
         });
     </script>
 
@@ -129,7 +139,7 @@
         <li>
 		<li><a class="button border-main icon-plus-square-o" href="addProduct.html"> 添加产品</a> </li>
           <button type="button"  class="button border-green" id="checkall"><span class="icon-check"></span> 全选</button>
-          <button type="submit" class="button border-red"><span class="icon-trash-o"></span> 批量删除</button>
+          <button type="button" onclick="return DelSelect()" class="button border-red"><span class="icon-trash-o"></span> 批量删除</button>
         </li>
           <li>
               城市:
@@ -145,7 +155,8 @@
         </li>
 		<li>
           <input type="text" placeholder="请输入搜索关键字" name="title" id="title" class="input" style="width:250px; line-height:17px;display:inline-block" />
-          <a class="button border-main icon-search" id="ss"> 搜索</a></li>
+          <a class="button border-main icon-search" id="ss"> 搜索</a>
+        </li>
       </ul>
     </div>
     <table class="table table-hover text-center" id="xianshi">
@@ -157,17 +168,25 @@
         <th>操作</th>       
       </tr>
       <tr id="sxy">
-        <td colspan="8"><div class="pagelist" id="pagelist"><a id="homepage">首页</a><a id="trailerpage">尾页</a> <a id="shang">上一页</a><a id="xia">下一页</a> </div></td>
+        <td colspan="8"><div class="pagelist" id="pagelist"><a id="homepage">首页</a><a id="shang">上一页</a><div id="numberpage" style="display: inline-block;"></div><a id="xia">下一页</a><a id="trailerpage">尾页</a></div></td>
       </tr>
     </table>
   </div>
 </form>
 <script type="text/javascript">
+function del(id,pt_id){
+    if(confirm("您确定要删除吗?")){
+        $.getJSON("delproduct","p_id="+id+"&pt_id="+pt_id,function (json) {
+            if(json==1){
+                alert("删除成功！");
+                window.location.reload();
+            }else{
+                alert("删除失败！");
+                window.location.reload();
+            }
 
-function del(id){
-	if(confirm("您确定要删除吗?")){
-		
-	}
+        });
+    }
 }
 
 $("#checkall").click(function(){ 
@@ -183,16 +202,27 @@ $("#checkall").click(function(){
 
 function DelSelect(){
 	var Checkbox=false;
+	var delbatches="0";
 	 $("input[name='id[]']").each(function(){
-	  if (this.checked==true) {		
-		Checkbox=true;	
+	  if (this.checked==true) {
+		Checkbox=true;
+		delbatches+=","+$(this).val();
 	  }
 	});
 	if (Checkbox){
 		var t=confirm("您确认要删除选中的内容吗？");
-		if (t==false) return false; 		
-	}
-	else{
+		if (t==false){
+            return false;
+        }else{
+		    $.getJSON("delbatches","p_id="+delbatches,function (json) {
+                if(json>0){
+                    alert("删除成功！");
+                }else{
+                    alert("删除失败！");
+                }
+            })
+        }
+	}else{
 		alert("请选择您要删除的内容!");
 		return false;
 	}
