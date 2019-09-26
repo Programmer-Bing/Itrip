@@ -6,17 +6,19 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
+        <option value="$PROJECT_DIR$/comm/pom.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/consumer_HomePage/pom.xml" />
+        <option value="$PROJECT_DIR$/consumer_Backstage/pom.xml" />
         <option value="$PROJECT_DIR$/consumer_Hotel/pom.xml" />
+        <option value="$PROJECT_DIR$/eureka_6001/pom.xml" />
         <option value="$PROJECT_DIR$/itrip-Hotel/pom.xml" />
         <option value="$PROJECT_DIR$/Itrip_Backstage/pom.xml" />
+        <option value="$PROJECT_DIR$/Itrip_HomePage/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/consumer_80/pom.xml" />
-        <option value="$PROJECT_DIR$/consumer_Backstage/pom.xml" />
         <option value="$PROJECT_DIR$/provider_8001/pom.xml" />
       </set>
     </option>

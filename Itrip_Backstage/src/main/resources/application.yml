@@ -22,7 +22,7 @@ spring:
       max-total: 5
       max-wait-millis: 200
 
-  #用于分布式存储
+#  用于分布式存储
 #  redis:
 #    port: 6379
 #    database: 0

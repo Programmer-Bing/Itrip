@@ -1,5 +1,6 @@
 server:
   port: 8090
+  max-http-header-size: 102400
 spring:
   resources:
     static-locations: classpath:/templates/,classpath:/static/,classpath:/META-NF/resources/,classpath:/resources/,classpath:/public/,classpath:/upload
@@ -24,12 +25,16 @@ eureka:
     prefer-ip-address: true     #访问路径可以显示IP地址
 
 #注释后hystrix服务降级不可用
-feign:
-  hystrix:
-    enabled: true
-    command:
-      default:
-        execution:
-          isolation:
-            thread:
-              timeoutInMilliseconds: 20000
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 9000
+#ribbon的超时时间
+ribbon:
+  ReadTimeout: 3000
+  ConnectTimeout: 3000

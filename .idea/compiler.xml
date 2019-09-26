@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="comm" />
+        <module name="consumer_Backstage" />
         <module name="consumer_HomePage" />
         <module name="consumer_Hotel" />
         <module name="eureka_6001" />

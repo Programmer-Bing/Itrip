@@ -8,8 +8,8 @@
         SELECT * FROM producttype
     </select>
 
-    <select id="citiesstates" resultType="map">
-        SELECT * FROM citiesstates
+    <select id="citiesstatesLs" resultType="map">
+        SELECT * FROM citiesstates WHERE sb_cs=0
     </select>
 
     <select id="findProduct" parameterType="map" resultType="map">
@@ -35,7 +35,7 @@
     </select>
 
     <insert id="addProduct" parameterType="map">
-        INSERT INTO product(Product_Name,Pt_id,P_cid,P_imgpath,P_price)VALUES(#{product_name},#{pt_id},#{p_cid},#{p_imgpath},#{p_price})
+        INSERT INTO product(Product_Name,Pt_id,P_cid,P_imgpath,P_price,OrderNumber)VALUES(#{product_name},#{pt_id},#{p_cid},#{p_imgpath},#{p_price},#{OrderNumber})
     </insert>
 
     <select id="selectP_id" parameterType="String" resultType="map">
@@ -43,7 +43,7 @@
     </select>
 
     <insert id="addtourismproducts" parameterType="map">
-        INSERT INTO tourismproducts(tp_name,Days_play,purchases_Number,price,comments_Number,describes,Collectors_Number,Strategy,Expensestatement,ReservationNotes,itrip,Product_id,picture) VALUES(#{tp_name},#{Days_play},#{purchases_Number},#{price},#{comments_Number},#{describes},#{Collectors_Number},#{Strategy},#{Expensestatement},#{ReservationNotes},#{itrip},#{Product_id},#{picture})
+        INSERT INTO tourismproducts(tp_name,Days_play,purchases_Number,price,comments_Number,describes,Collectors_Number,Strategy,ReservationNotes,itrip,Product_id,picture,cd_id) VALUES(#{tp_name},#{Days_play},#{purchases_Number},#{price},#{comments_Number},#{describes},#{Collectors_Number},#{Strategy},#{ReservationNotes},#{itrip},#{Product_id},#{picture},#{cd_id})
     </insert>
 
     <insert id="addhotel" parameterType="map">
@@ -53,4 +53,113 @@
     <select id="selProCount" resultType="int" parameterType="map">
         SELECT COUNT(*) FROM product WHERE product_name=#{product_name} and p_cid=#{p_cid}
     </select>
+
+    <delete id="delproduct" parameterType="int">
+        delete from product where Product_id=#{p_id}
+    </delete>
+
+    <delete id="deltourism" parameterType="int">
+        DELETE FROM tourismproducts WHERE Product_id=#{p_id}
+    </delete>
+
+    <delete id="delhotel" parameterType="int">
+        DELETE FROM hotel WHERE Product_id=#{p_id}
+    </delete>
+
+    <insert id="addcost_description" parameterType="map">
+        INSERT INTO cost_description(cd_includes,cd_excluded,cd_description) VALUES(#{cd_includes},#{cd_excluded},#{cd_description})
+    </insert>
+
+    <select id="tourismproductsP_id" resultType="map" parameterType="int">
+        select * from `tourismproducts` where Product_id=#{p_id}
+    </select>
+
+    <select id="productP_id" resultType="map" parameterType="int">
+        SELECT * FROM product where Product_id=#{p_id}
+    </select>
+
+    <select id="cost_descriptionC_id" resultType="map" parameterType="int">
+        SELECT * FROM `cost_description` WHERE cd_id=#{cd_id}
+    </select>
+
+    <select id="cost_descriptionOrder" resultType="map">
+        SELECT * FROM cost_description ORDER BY cd_id DESC LIMIT 1
+    </select>
+
+    <select id="hotelP_id" resultType="map" parameterType="int">
+        select * from hotel where Product_id=#{p_id}
+    </select>
+
+    <update id="setProduct" parameterType="map">
+        UPDATE product SET Product_Name=#{p_name},Pt_id=#{pt_id},P_cid=#{p_cid},P_imgpath=#{p_img},P_price=#{price},OrderNumber=#{OrderNumber} where Product_id=#{p_id}
+    </update>
+
+    <update id="setProduct1" parameterType="map">
+        UPDATE product SET Product_Name=#{p_name},Pt_id=#{pt_id},P_cid=#{p_cid},P_price=#{price},OrderNumber=#{OrderNumber} where Product_id=#{p_id}
+    </update>
+
+    <update id="setTourism" parameterType="map">
+        UPDATE `tourismproducts` SET tp_name=#{tp_name},Days_play=#{Days_play},purchases_Number=#{purchases_Number},price=#{price},comments_Number=#{comments_Number},describes=#{describes},Collectors_Number=#{Collectors_Number},Strategy=#{Strategy},ReservationNotes=#{ReservationNotes},picture=#{picture},itrip=#{itrip},cd_id=#{cd_id} WHERE Product_id=#{p_id}
+    </update>
+
+    <update id="setTourism1" parameterType="map">
+        UPDATE `tourismproducts` SET tp_name=#{tp_name},Days_play=#{Days_play},purchases_Number=#{purchases_Number},price=#{price},comments_Number=#{comments_Number},describes=#{describes},Collectors_Number=#{Collectors_Number},Strategy=#{Strategy},ReservationNotes=#{ReservationNotes},itrip=#{itrip},cd_id=#{cd_id} WHERE Product_id=#{p_id}
+    </update>
+
+    <update id="setDescription" parameterType="map">
+        update `cost_description` set cd_includes=#{cd_includes},cd_excluded=#{cd_excluded},cd_description=#{cd_description} where cd_id=#{cd_id}
+    </update>
+
+    <update id="setHotel" parameterType="map">
+        UPDATE hotel SET h_name=#{h_name},purchases_Number=#{purchases_Number},Star_class=#{Star_class},cs_id=#{cs_id},describes=#{describes},Specific_address=#{Specific_address},score=#{score},Reservation_Notes=#{Reservation_Notes},picture1=#{picture},tips=#{tips} where Product_id=#{p_id}
+    </update>
+
+    <update id="setHotel1" parameterType="map">
+        UPDATE hotel SET h_name=#{h_name},purchases_Number=#{purchases_Number},Star_class=#{Star_class},cs_id=#{cs_id},describes=#{describes},Specific_address=#{Specific_address},score=#{score},Reservation_Notes=#{Reservation_Notes},tips=#{tips} where Product_id=#{p_id}
+    </update>
+
+    <select id="roominformation" parameterType="map" resultType="map">
+        SELECT * FROM roominformation
+        <trim prefix="where" prefixOverrides="or||and">
+            <if test="product_id!=null and product_id.size>0">
+                h_id IN
+            <foreach collection="product_id" item="p_id" index="index" open="(" close=")" separator=",">
+                #{p_id}
+            </foreach>
+            </if>
+        </trim>
+        <if test="index!=null and size!=null">
+            LIMIT #{index},#{size}
+        </if>
+    </select>
+
+    <select id="productName" parameterType="String" resultType="map">
+        SELECT * FROM hotel WHERE h_name LIKE concat('%',#{name},'%')
+    </select>
+
+    <select id="hotel" resultType="map">
+        SELECT * FROM hotel
+    </select>
+
+    <insert id="addroom" parameterType="map">
+        INSERT INTO roominformation(rif_name,occupants_num,`area`,Check_time,price,introduce,photo,h_id,bed_type,breakfast)VALUES(#{rif_name},#{occupants_num},#{area},#{Check_time},#{price},#{introduce},#{photo},#{h_id},#{bed_type},#{breakfast})
+    </insert>
+
+    <update id="setRoom" parameterType="map">
+        UPDATE roominformation SET rif_name=#{rif_name},occupants_num=#{occupants_num},`area`=#{area},Check_time=#{Check_time},price=#{price},introduce=#{introduce},photo=#{photo},h_id=#{h_id},bed_type=#{bed_type},breakfast=#{breakfast} where rif_id=#{rif_id}
+    </update>
+
+    <update id="setRoom1" parameterType="map">
+        UPDATE roominformation SET rif_name=#{rif_name},occupants_num=#{occupants_num},`area`=#{area},Check_time=#{Check_time},price=#{price},introduce=#{introduce},h_id=#{h_id},bed_type=#{bed_type},breakfast=#{breakfast} where rif_id=#{rif_id}
+    </update>
+
+    <select id="selsetRoom" parameterType="int" resultType="map">
+        SELECT * FROM roominformation WHERE rif_id=#{id}
+    </select>
+
+    <delete id="delRoom" parameterType="int">
+        DELETE FROM roominformation WHERE rif_id=#{id}
+    </delete>
+
+
 </mapper>
