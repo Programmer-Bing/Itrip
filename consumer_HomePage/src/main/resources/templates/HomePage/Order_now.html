@@ -251,7 +251,8 @@
                     </div>
                     <div class="contact_info pos_r mt25">
                         <div class="contact_name"><span>*</span>邮箱</div>
-                        <input name="receiveEmail" class="f14 receiveEmail" value="" email="true" require="true" validate="true">
+                        <input name="receiveEmail" class="f14 receiveEmail" value="" email="true" require="true"
+                               validate="true">
                         <span class="red tip"></span>
                     </div>
                     <div class="contact_info pos_r mt25">
@@ -1090,6 +1091,7 @@
                     <div class="orderlistcon mt15">
                         <ul th:each="l1,state:${Pshopping}" class="product_list" data-id="8053" data-promotionid=""
                             data-date="2019/09/23">
+                            <li style="display: none" class="pscid" th:text="${l1.psc_id}"></li>
                             <li>
                                 <p class="f16" th:text="${l1.p_title}"></p>
                                 <p class="f14 grey mt5 clearfix">
@@ -3753,7 +3755,7 @@ data-i-op-reviewid
             $('.money_sw a[data-id="' + CUR_CID + '"]').click();
         } else {
             if (CUR_CID == 12) {
-                $(".f18.orange.js_rmb").empty().text(" = RMB" + $(".f24.orange.bold.ml10.js_total").text());
+                $(".f18.orange.js_rmb").empty().text(" = RMB " + $(".f24.orange.bold.ml10.js_total").text());
             }
         }
     }
@@ -3798,7 +3800,36 @@ data-i-op-reviewid
         var contactPhoneAreaCode = $(".f14.phone_cn.fl").val();
         var contactForeignPhoneAreaCode = $(".f14.phone_fg.fl").val();
         //获取游客信息
-
+        //获取订单商品信息
+        var pscids = [];
+        $(".pscid").each(function () {
+            pscids.push($(this).text())
+        });
+        alert("订单id:"+pscids[0]);
+        //订单总金额
+        var Allmoney = $(".f18.orange.js_rmb").text().split(" ")[3];
+        alert("总金额："+Allmoney);
+        /*保险信息*/
+        //起保时间
+        var starttime = $("#dp1569037351778").val();
+        alert("起保时间："+starttime);
+        //保险编号
+        var InsuranceNo = 1004;
+        //保险费用
+        var InsuranceMoney = $(".js_insurMoney").text();
+        alert("保险费用："+InsuranceMoney);
+        //参数
+        var testMap = {
+            "pscids":pscids,"Allmoney":Allmoney,"starttime":starttime,"InsuranceNo":InsuranceNo,
+            "InsuranceMoney":InsuranceMoney,"uid":"2"
+        };
+        //跳转到controller层
+        var str = JSON.stringify(testMap).replace("{","%7B");
+        var str2 = str.replace("}","%7D");
+        var str3 = str2.replace("[","%5B");
+        var str4 = str3.replace("]","%5D")
+        alert(str4);
+        location.href = "/PlacingOrder?map=" + str4;
     })
 </script>
 </body>
