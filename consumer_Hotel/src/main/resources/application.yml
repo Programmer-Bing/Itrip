@@ -12,7 +12,9 @@ spring:
 
   #spring:
   application:
-    name: microservice-consumer
+    name: hotel-consumer
+  main:
+    allow-bean-definition-overriding: true
 
 
   #用于分布式存储
@@ -36,7 +38,7 @@ eureka:
     service-url:
       defaultZone: http://localhost:6001/eureka
   instance:
-    instance-id: microservice-consumer-80
+    instance-id: microservice-hotel-80
     prefer-ip-address: true     #访问路径可以显示IP地址
 
 #注释后hystrix服务降级不可用

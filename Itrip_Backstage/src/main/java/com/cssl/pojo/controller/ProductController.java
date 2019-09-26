@@ -176,14 +176,14 @@ public class ProductController {
     public int delproduct(@RequestBody Map<String,Object> map){
         System.out.println("服务者DelProductMap:"+map);
         int pt_id=(int)map.get("pt_id");
-        String p_id=(String) map.get("p_id");
+        int p_id=(int) map.get("p_id");
         int num2=0;
         if(pt_id==1 || pt_id==2 || pt_id==3){
-            num2= productService.deltourism(Integer.parseInt(p_id));
+            num2= productService.deltourism(p_id);
         }else if(pt_id==4){
-            num2=productService.delhotel(Integer.parseInt(p_id));
+            num2= productService.delhotel(p_id);
         }
-        int num1= productService.delproduct(Integer.parseInt(p_id));
+        int num1= productService.delproduct(p_id);
         if(num1>0 && num2>0){
             return 1;
         }

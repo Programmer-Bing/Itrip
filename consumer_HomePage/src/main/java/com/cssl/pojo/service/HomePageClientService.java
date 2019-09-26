@@ -277,7 +277,7 @@ public interface HomePageClientService {
 
 
     /***
-     *
+     *添加优惠卷
      * @param dc
      * @return
      */
@@ -295,4 +295,13 @@ public interface HomePageClientService {
     @RequestMapping(method = RequestMethod.GET,value = "/SelectDiscountCouponCount")
     public int SelectDiscountCouponCount(@RequestParam(value = "1") int userid);
 
+
+    /***
+     *
+     *
+     *
+     * 查询当前用户拥有优惠卷
+     */
+    @RequestMapping(method = RequestMethod.GET,value = "/SelectDiscountCouponCount")
+    public List<DiscountCoupon> SelectDiscountCouponUserShow(@RequestParam(value = "1") int userid);
 }

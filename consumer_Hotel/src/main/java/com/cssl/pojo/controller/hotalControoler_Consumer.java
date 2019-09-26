@@ -1,11 +1,9 @@
 package com.cssl.pojo.controller;
 
-import com.cssl.pojo.DeptConsumerFeign80_App;
+import com.cssl.pojo.DeptConsumerFeign81_App;
 import com.cssl.pojo.po.User;
 import com.cssl.pojo.service.HomePageClientService;
-import org.bouncycastle.cert.ocsp.Req;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,9 +34,6 @@ public class hotalControoler_Consumer {
         for (Map maps : list) {
             System.out.println(maps);
         }
-        System.out.println("--------------------");
-        System.out.println(session.getId());
-        System.out.println("--------------------");
         return list;
     }
 

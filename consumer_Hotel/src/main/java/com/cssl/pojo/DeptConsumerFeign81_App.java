@@ -12,10 +12,10 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 @EnableEurekaClient
 @EnableRedisHttpSession(maxInactiveIntervalInSeconds = 3000,redisFlushMode = RedisFlushMode.IMMEDIATE)
 @EnableFeignClients
-public class DeptConsumerFeign80_App {
+public class DeptConsumerFeign81_App {
 
     public static void main(String[] args) {
-        SpringApplication.run(DeptConsumerFeign80_App.class,args);
+        SpringApplication.run(DeptConsumerFeign81_App.class,args);
     }
 
 }

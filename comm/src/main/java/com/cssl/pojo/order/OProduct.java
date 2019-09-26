@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
+import java.math.BigDecimal;
+
 @Setter
 @Getter
 @NoArgsConstructor
@@ -21,6 +23,7 @@ public class OProduct {
     String Startingtime;
     Integer p_state;
     String order_no;
+    BigDecimal money;
 
     @Override
     public String toString() {
@@ -32,6 +35,7 @@ public class OProduct {
                 ", Startingtime='" + Startingtime + '\'' +
                 ", p_state=" + p_state +
                 ", order_no='" + order_no + '\'' +
+                ", money=" + money +
                 '}';
     }
 }
