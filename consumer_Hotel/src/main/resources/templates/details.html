@@ -28,6 +28,7 @@
     </style>
 </head>
 <body>
+
 <meta itrip="13"    吗                                                                                                                                                                                       />
 <script>
     var _oztime = (new Date()).getTime();
@@ -98,22 +99,29 @@
                 </div>
                 <div class="fr">
 			<span class="pos_r">
-						<a href="//www.itrip.com/about/app" rel="nofollow" class="fl" target="_blank">
-							<span class="app-down"><img src="//pic.itrip.com/img/header/head_icon_appdown.gif" class="fl" />APP下载</span>
+						<a class="fl" href="//www.itrip.com/about/app" target="_blank" rel="nofollow">
+							<span class="app-down"><img class="fl"
+                                                        src="//pic.itrip.com/img/header/head_icon_appdown.gif">APP下载</span>
 						</a>
 					</span>
                     <span class="line">|</span>
-                    <span class="js_loginStatus" style="display:none;margin-left:0px;">
-						<span><a class="blue" href="javascript:void(0);" onclick="login()" rel="nofollow">登录</a></span><span>/</span>
-						<span><a href="https://www.itrip.com/signup/index" rel="nofollow">注册</a></span>
+                    <span class="js_loginStatus" style="margin-left: 0px;" id="logzc">
+						<span><a class="blue" onclick="login()" href="javascript:void(0);"
+                                 rel="nofollow">登录</a></span><span>/</span>
+						<span><a href="login/zhuce.html" rel="nofollow">注册</a></span>
 					</span>
-                    <span class="js_loginStatus" style="display:none;margin-left:0px;">
-						<span class="sw_syb fl pos_r" style="margin-left:0px;"><a class="blue display_name" href="https://www.itrip.com/user/index"></a><i class="sw_sj"></i>
+                    <span class="js_loginStatus" style="display:none;margin-left:0px;" id="user">
+						<span class="sw_syb fl pos_r" style="margin-left:0px;"><a class="blue display_name"
+                                                                                  href="爱去旅行个人信息主页面.html" id="username"></a><i
+                                class="sw_sj"></i>
 							<dl class="down_list">
-								<dd class="js_myOrder"><a href="https://www.itrip.com/user/orders" rel="nofollow" class="pos_r">我的订单<label></label></a></dd>
-								<dd class="js_myFavor"><a href="https://www.itrip.com/user/favor/all" rel="nofollow" class="pos_r">我的收藏 <label></label></a></dd>
-								<dd><a href="https://www.itrip.com/user/reward" rel="nofollow">我的奖金</a></dd>
-								<dd><a href="javascript:void(0);" id="btn_logout" onclick="logout()" rel="nofollow">退出登录</a></dd>
+								<dd class="js_myOrder"><a class="pos_r" href="个人信息订单.html"
+                                                          rel="nofollow">我的订单<label></label></a></dd>
+								<dd class="js_myFavor"><a class="pos_r" href="个人中心我的收藏.html"
+                                                          rel="nofollow">我的收藏 <label></label></a></dd>
+								<dd><a href="个人中心我的奖金.html" rel="nofollow">我的奖金</a></dd>
+								<dd><a id="btn_logout"  href="javascript:void(0);"
+                                       rel="nofollow">退出登录</a></dd>
 							</dl>
 						</span>
 					</span>
@@ -304,6 +312,7 @@
             <div class="switch_box">
                 <a href="javascript:void(0)" class="pro_coll" style="display: inline;">收藏</a>
                 <div class="pro_detail_box">
+                    <span th:text="${hotel.get(0).get('h_id')}" hidden th:id="hid"></span>
                     <div class="f24"><h1 class="f24 fbn" style="display: inline-block;" th:text="${hotel.get(0).get('h_name')}"></h1><span class="starBox" title="4 星级" style="margin-top:1px;line-height: 14px;margin-left:5px;">
 						<span class="star star4" th:class="'star star'+${hotel.get(0).get('Star_class')}"></span>
 						</span></a>
@@ -348,7 +357,7 @@
                 </div>
             </div>
             <div class="all_info">
-                <div class="choice_info notop">
+                <div class="choice_info notop" th:id="choiceinfonotop">
                     <div class="serch_box clearfix other">
                         <input type="text" th:id="start" id="start" class="begin_time hand hasDatepicker" placeholder="住店时间" readonly/>
                         <input type="text" th:id="end" class="begin_time hand" id="end" placeholder="离店时间" readonly/>
@@ -825,10 +834,63 @@
     });
 
 
-    $(document).on("click","#btn_jsjsorderhand",function(){
+    $(document).on("click","#btn_jsjsorderhand",function() {
+        var hid = $("#hid").html();
         var start = $("#start").val();
         var end = $("#end").val();
+        var ch = $(".room_styles").length;
+        var b = false;
+        var c = " ";
+        for (var i = 0; i < ch; i++) {
+            var a =  $("#numfl"+i).val();
+            if(a!=0){
+                var h = $("#roomid"+i).text();
+                c += h+"."+a+":"
+                b=true;
+            }
+        }
+        if (start == '' || end == '') {
+            layui.use('layer', function () {
+                layer.confirm('请先选择住店时间', {
+                    btn: ['确定'],
+                    time: 200000, //20s后自动关闭
+                }, function (index) {
+                    $("#reducef16handgrey").css("color", "#a8a8a8");
+                    layer.close(index);
+                })
+            })
+        }else if (b==false) {
+            layui.use('layer', function () {
+                layer.confirm('请先选择酒店房型', {
+                    btn: ['确定'],
+                    time: 200000, //20s后自动关闭
+                }, function (index) {
+                    $("#reducef16handgrey").css("color", "#a8a8a8");
+                    layer.close(index);
+                })
+            })
+        }else{
+            var start =  $("#start").val();
+            var end = $("#end").val();
+            c += "'"+start+"'"+end;
+            window.location="http://localhost:8090/addHorder/"+c;
+        }
+    })
+
+    $(document).on("click","#btn_joinjs_addToCarthand",function(){
+        var start =  $("#start").val();
+        var end = $("#end").val();
+        var ch = $(".room_styles").length;
+        var b = false;
+        for (var i = 0; i < ch; i++) {
+            var a =  $("#numfl"+i).val();
+            if(a!=0){
+                b=true;
+                break;
+            }
+        }
         if(start==''||end==''){
+
             layui.use('layer', function(){
 
                 layer.confirm('请先选择住店时间', {
@@ -839,20 +901,13 @@
                     layer.close(index);
                 })
             })
-        }
-    })
-
-    $(document).on("click","#btn_joinjs_addToCarthand",function(){
-        var start =  $("#start").val();
-        var end = $("#end").val();
-        if(start==''||end==''){
-            layui.use('layer', function(){
-
-                layer.confirm('请先选择住店时间', {
+        }else if (b==false) {
+            layui.use('layer', function () {
+                layer.confirm('请先选择酒店房型', {
                     btn: ['确定'],
                     time: 200000, //20s后自动关闭
-                },function(index){
-                    $("#reducef16handgrey").css("color","#a8a8a8");
+                }, function (index) {
+                    $("#reducef16handgrey").css("color", "#a8a8a8");
                     layer.close(index);
                 })
             })
@@ -872,7 +927,14 @@
                 url:"http://localhost:8090/addCart/"+JSON.stringify(obj),
                 type:"GET",
                 success:function (date) {
-                    alert(date)
+                    layui.use('layer', function () {
+                        layer.confirm('加入购物车成功', {
+                            btn: ['确定'],
+                            time: 30000, //20s后自动关闭
+                        }, function (index) {
+                            layer.close(index);
+                        })
+                    })
                 }
             })
 
@@ -931,6 +993,405 @@
             $(this).css("color","#a8a8a8");
         }
         nol();
+    })
+
+
+</script>
+
+<!--货币切换-->
+<script>
+    var PRE_CID, CUR_CID;
+
+    function changeCurrency(cid) {
+        var code = exRates[cid].code;
+        var symbol = exRates[cid].symbol;
+        $('.js_curCode').empty().append(code);
+        $('[data-symblo]').empty().append(symbol);
+        $('[data-price]').each(function () {
+            var oriPrice = $(this).data('price');
+            var oriCid = $(this).data('cid');
+            var fromRate = exRates[oriCid].exRate;
+            var toRate = exRates[cid].exRate;
+            var price = (oriPrice * fromRate) / toRate;
+            $(this).empty().text(price.toFixed(2));
+        });
+    }
+
+    // 页面事件 货币切换
+    $('.money_sw a').click(function () {
+        PRE_CID = CUR_CID;
+        CUR_CID = $(this).attr('data-id');
+        changeCurrency(CUR_CID);
+        setTimeout(function () { //增加延迟，确保cookie更新
+            //优惠券货币切换
+            productCouponInit();
+        }, 300)
+    });
+    var exRates = JSON.parse('{"10":{"code":"NZD","symbol":"NZD","exRate":4.52},"11":{"code":"FJD","symbol":"FJD","exRate":3.16},"12":{"code":"RMB","symbol":"¥","exRate":1},"13":{"code":"USD","symbol":"$","exRate":6.88},"14":{"code":"THB","symbol":"฿","exRate":0.23},"15":{"code":"IDR","symbol":"Rp","exRate":5.0E-4},"16":{"code":"MYR","symbol":"MYR","exRate":1.6},"17":{"code":"SGD","symbol":"SGD","exRate":5.01},"20":{"code":"EUR","symbol":"€","exRate":7.8646},"21":{"code":"GBP","symbol":"£","exRate":8.6016},"22":{"code":"CHF","symbol":"CHF","exRate":7.0395},"23":{"code":"ISK","symbol":"kr","exRate":0.06},"24":{"code":"NOK","symbol":"kr","exRate":0.79},"25":{"code":"SEK","symbol":"kr","exRate":0.73},"26":{"code":"CZK","symbol":"Kč","exRate":0.31},"27":{"code":"DKK","symbol":"kr","exRate":1.03},"9":{"code":"AUD","symbol":"AUD","exRate":4.74}}');
+    CUR_CID = $.cookie('cid');
+    if (!CUR_CID) {
+        CUR_CID = 12;
+        $('.money_sw a[data-id="' + CUR_CID + '"]').click();
+    } else {
+        changeCurrency(CUR_CID);
+    }
+</script>
+
+
+<script type="text/javascript">
+    var check = setInterval(checkUserOnline, 100);
+    var flag = $("label[class='sw_syb fl blue']").text(); //币种
+    var flag2 = $("label.js_curCode.f12").text();//商品上的币种
+    var oldmoney = "";
+
+    function checkUserOnline() {
+        $("label.js_curCode.f12").text(flag);
+        flag = $("label[class='sw_syb fl blue']").text();
+        flag2 = $("label.js_curCode.f12").eq(0).text();
+        if (flag == "RMB") {
+            document.cookie = "currency = " + flag;
+            //var cookie = document.cookie;
+            if (flag2 != flag) {
+                var price = document.getElementsByClassName("js_curMonery_exten f16 ml5");
+                for (var i = 0; i < price.length; i++) {
+                    var money = price[i].innerHTML;
+                    ForeignToRMB(flag2, money);
+                    var newmoney = Math.round(oldmoney * 1 * 100) / 100;
+                    price[i].innerHTML = newmoney;
+                }
+            }
+        }
+        if (flag == "EUR") {
+            document.cookie = "currency = " + flag;
+            if (flag2 != flag) {
+                var price = document.getElementsByClassName("js_curMonery_exten f16 ml5");
+                for (var i = 0; i < price.length; i++) {
+                    var money = price[i].innerHTML;
+                    ForeignToRMB(flag2, money);
+                    var newmoney = Math.round(oldmoney / 7.8646 * 100) / 100;
+                    price[i].innerHTML = newmoney;
+                }
+            }
+        }
+        if (flag == "AUD") {
+            document.cookie = "currency = " + flag;
+            if (flag2 != flag) {
+                var price = document.getElementsByClassName("js_curMonery_exten f16 ml5");
+                for (var i = 0; i < price.length; i++) {
+                    var money = price[i].innerHTML;
+                    ForeignToRMB(flag2, money);
+                    var newmoney = Math.round(oldmoney / 4.74 * 100) / 100;
+                    price[i].innerHTML = newmoney;
+                }
+            }
+        }
+        if (flag == "GBP") {
+            document.cookie = "currency = " + flag;
+            if (flag2 != flag) {
+                var price = document.getElementsByClassName("js_curMonery_exten f16 ml5");
+                for (var i = 0; i < price.length; i++) {
+                    var money = price[i].innerHTML;
+                    ForeignToRMB(flag2, money);
+                    var newmoney = Math.round(oldmoney / 8.6016 * 100) / 100;
+                    price[i].innerHTML = newmoney;
+                }
+            }
+        }
+        if (flag == "NZD") {
+            document.cookie = "currency = " + flag;
+            if (flag2 != flag) {
+                var price = document.getElementsByClassName("js_curMonery_exten f16 ml5");
+                for (var i = 0; i < price.length; i++) {
+                    var money = price[i].innerHTML;
+                    ForeignToRMB(flag2, money);
+                    var newmoney = Math.round(oldmoney / 4.52 * 100) / 100;
+                    price[i].innerHTML = newmoney;
+                }
+            }
+        }
+        if (flag == "FJD") {
+            document.cookie = "currency = " + flag;
+            if (flag2 != flag) {
+                var price = document.getElementsByClassName("js_curMonery_exten f16 ml5");
+                for (var i = 0; i < price.length; i++) {
+                    var money = price[i].innerHTML;
+                    ForeignToRMB(flag2, money);
+                    var newmoney = Math.round(oldmoney / 3.16 * 100) / 100;
+                    price[i].innerHTML = newmoney;
+                }
+            }
+        }
+        if (flag == "SGD") {
+            document.cookie = "currency = " + flag;
+            if (flag2 != flag) {
+                var price = document.getElementsByClassName("js_curMonery_exten f16 ml5");
+                for (var i = 0; i < price.length; i++) {
+                    var money = price[i].innerHTML;
+                    ForeignToRMB(flag2, money);
+                    var newmoney = Math.round(oldmoney / 5.01 * 100) / 100;
+                    price[i].innerHTML = newmoney;
+                }
+            }
+        }
+        if (flag == "MYR") {
+            document.cookie = "currency = " + flag;
+            if (flag2 != flag) {
+                var price = document.getElementsByClassName("js_curMonery_exten f16 ml5");
+                for (var i = 0; i < price.length; i++) {
+                    var money = price[i].innerHTML;
+                    ForeignToRMB(flag2, money);
+                    var newmoney = Math.round(oldmoney / 1.6 * 100) / 100;
+                    price[i].innerHTML = newmoney;
+                }
+            }
+        }
+        if (flag == "IDR") {
+            document.cookie = "currency = " + flag;
+            if (flag2 != flag) {
+                var price = document.getElementsByClassName("js_curMonery_exten f16 ml5");
+                for (var i = 0; i < price.length; i++) {
+                    var money = price[i].innerHTML;
+                    ForeignToRMB(flag2, money);
+                    var newmoney = Math.round(oldmoney * 1999.99 * 100) / 100;
+                    price[i].innerHTML = newmoney;
+                }
+            }
+        }
+        if (flag == "THB") {
+            document.cookie = "currency = " + flag;
+            if (flag2 != flag) {
+                var price = document.getElementsByClassName("js_curMonery_exten f16 ml5");
+                for (var i = 0; i < price.length; i++) {
+                    var money = price[i].innerHTML;
+                    ForeignToRMB(flag2, money);
+                    var newmoney = Math.round(oldmoney / 0.23 * 100) / 100;
+                    price[i].innerHTML = newmoney;
+                }
+            }
+        }
+        if (flag == "USD") {
+            document.cookie = "currency = " + flag;
+            if (flag2 != flag) {
+                var price = document.getElementsByClassName("js_curMonery_exten f16 ml5");
+                for (var i = 0; i < price.length; i++) {
+                    var money = price[i].innerHTML;
+                    ForeignToRMB(flag2, money);
+                    var newmoney = Math.round(oldmoney / 6.88 * 100) / 100;
+                    price[i].innerHTML = newmoney;
+                }
+            }
+        }
+        if (flag == "GHF") {
+            document.cookie = "currency = " + flag;
+            if (flag2 != flag) {
+                var price = document.getElementsByClassName("js_curMonery_exten f16 ml5");
+                for (var i = 0; i < price.length; i++) {
+                    var money = price[i].innerHTML;
+                    ForeignToRMB(flag2, money);
+                    var newmoney = Math.round(oldmoney / 7.0395 * 100) / 100;
+                    price[i].innerHTML = newmoney;
+                }
+            }
+        }
+        if (flag == "ISK") {
+            document.cookie = "currency = " + flag;
+            if (flag2 != flag) {
+                var price = document.getElementsByClassName("js_curMonery_exten f16 ml5");
+                for (var i = 0; i < price.length; i++) {
+                    var money = price[i].innerHTML;
+                    ForeignToRMB(flag2, money);
+                    var newmoney = Math.round(oldmoney / 0.06 * 100) / 100;
+                    price[i].innerHTML = newmoney;
+                }
+            }
+        }
+        if (flag == "NOK") {
+            document.cookie = "currency = " + flag;
+            if (flag2 != flag) {
+                var price = document.getElementsByClassName("js_curMonery_exten f16 ml5");
+                for (var i = 0; i < price.length; i++) {
+                    var money = price[i].innerHTML;
+                    ForeignToRMB(flag2, money);
+                    var newmoney = Math.round(oldmoney / 0.79 * 100) / 100;
+                    price[i].innerHTML = newmoney;
+                }
+            }
+        }
+        if (flag == "SEK") {
+            document.cookie = "currency = " + flag;
+            if (flag2 != flag) {
+                var price = document.getElementsByClassName("js_curMonery_exten f16 ml5");
+                for (var i = 0; i < price.length; i++) {
+                    var money = price[i].innerHTML;
+                    ForeignToRMB(flag2, money);
+                    var newmoney = Math.round(oldmoney / 0.73 * 100) / 100;
+                    price[i].innerHTML = newmoney;
+                }
+            }
+        }
+        if (flag == "CZK") {
+            document.cookie = "currency = " + flag;
+            if (flag2 != flag) {
+                var price = document.getElementsByClassName("js_curMonery_exten f16 ml5");
+                for (var i = 0; i < price.length; i++) {
+                    var money = price[i].innerHTML;
+                    ForeignToRMB(flag2, money);
+                    var newmoney = Math.round(oldmoney * 0.31 * 100) / 100;
+                    price[i].innerHTML = newmoney;
+                }
+            }
+        }
+        if (flag == "DKK") {
+            document.cookie = "currency = " + flag;
+            if (flag2 != flag) {
+                var price = document.getElementsByClassName("js_curMonery_exten f16 ml5");
+                for (var i = 0; i < price.length; i++) {
+                    var money = price[i].innerHTML;
+                    ForeignToRMB(flag2, money);
+                    var newmoney = Math.round(oldmoney / 1.03 * 100) / 100;
+                    price[i].innerHTML = newmoney;
+                }
+            }
+        }
+    }
+
+    //外币转成RMB
+    function ForeignToRMB(foreign, money) {
+        if (foreign == "RMB") {
+            oldmoney = money * 1;
+        }
+        if (foreign == "EUR") {
+            oldmoney = money * 7.8646;
+        }
+        if (foreign == "AUD") {
+            oldmoney = money * 4.74;
+        }
+        if (foreign == "GBP") {
+            oldmoney = money * 8.6016;
+        }
+        if (foreign == "NZD") {
+            oldmoney = money * 4.52;
+        }
+        if (foreign == "FJD") {
+            oldmoney = money * 3.16;
+        }
+        if (foreign == "SGD") {
+            oldmoney = money * 5.01;
+        }
+        if (foreign == "MYR") {
+            oldmoney = money * 1.6;
+        }
+        if (foreign == "IDR") {
+            oldmoney = money / 1999.99;
+        }
+        if (foreign == "THB") {
+            oldmoney = money * 0.23;
+        }
+        if (foreign == "USD") {
+            oldmoney = money * 6.88;
+        }
+        if (foreign == "GHF") {
+            oldmoney = money * 7.0395;
+        }
+        if (foreign == "ISK") {
+            oldmoney = money * 0.06;
+        }
+        if (foreign == "NOK") {
+            oldmoney = money * 0.79;
+        }
+        if (foreign == "SEK") {
+            oldmoney = money * 0.73;
+        }
+        if (foreign == "CZK") {
+            oldmoney = money * 0.31;
+        }
+        if (foreign == "DKK") {
+            oldmoney = money * 1.03;
+        }
+
+
+
+
+    }
+</script>
+
+<script>
+    function login() {
+        var hid = $("#hid").html();
+        alert(hid);
+        window.location="http://localhost:8089/login/login.html?a=a";
+    }
+
+
+</script>
+<script type="text/javascript">
+
+
+    //拿数据
+    $.getJSON("/GetSession",function (data) {
+
+        if(data!=null){
+
+            document.getElementById("logzc").style.display="none";
+            $("#username").text(data.chinese_Name);
+            $("#user").css("display","block");
+            document.getElementById("dtc").style.display="none";
+
+        }
+
+
+    });
+
+    //退出登录
+    $("#btn_logout").click(function () {
+
+        $.getJSON("/logout",function (data) {
+            window.location="../Europe.html"
+
+
+
+
+        })
+    })
+
+
+</script>
+<script type="text/javascript">
+
+
+    //拿数据
+    $.getJSON("/GetSession",function (data) {
+
+        if(data!=null){
+
+            document.getElementById("logzc").style.display="none";
+            $("#username").text(data.chinese_Name);
+            $("#user").css("display","block");
+            document.getElementById("dtc").style.display="none";
+
+        }
+
+
+    });
+
+    //退出登录
+    $("#btn_logout").click(function () {
+
+        $.getJSON("/logout",function (data) {
+            window.location="../hotel.html"
+
+
+
+
+        })
+    })
+
+    //鼠标悬停事件
+    $("#user").mousemove(function () {
+        $(".down_list").css("display","block");
+    })
+    $("#user").mouseout(function () {
+        $(".down_list").css("display","none");
     })
 
 

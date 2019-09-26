@@ -167,7 +167,7 @@ public class FeginFactory implements FallbackFactory<HomePageClientService> {
 
             @Override
             public List<List> showMycart() {
-                return  null;
+                return null;
             }
 
             @Override
@@ -194,6 +194,16 @@ public class FeginFactory implements FallbackFactory<HomePageClientService> {
             @Override
             public List<BrowsingHistory> SelectBrowsingHistoryUser(int userid) {
                 return null;
+            }
+
+            @Override
+            public int AddDiscountCoupon(DiscountCoupon dc) {
+                return 0;
+            }
+
+            @Override
+            public int SelectDiscountCouponCount(int userid) {
+                return 0;
             }
         };
     }
