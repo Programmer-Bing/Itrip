@@ -33,6 +33,7 @@ spring:
 
 
 eureka:
+  enabled: true
   client:
     register-with-eureka: true
     service-url:

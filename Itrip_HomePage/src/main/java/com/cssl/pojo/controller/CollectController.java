@@ -2,6 +2,7 @@ package com.cssl.pojo.controller;
 
 import com.cssl.pojo.po.BrowsingHistory;
 import com.cssl.pojo.po.Collect;
+import com.cssl.pojo.po.DiscountCoupon;
 import com.cssl.pojo.service.CollectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -127,5 +128,26 @@ public class CollectController {
 
     }
 
+    /***
+     *
+     * 添加优惠卷
+     * @param dc
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST,value = "/AddDiscountCoupon")
+    public int AddDiscountCoupon(@RequestBody  DiscountCoupon dc) {
+        return cs.AddDiscountCoupon(dc);
+
+    }
+
+    /***
+     *
+     *
+     * 查询当前用户是否拥有优惠卷
+     */
+    @RequestMapping(method = RequestMethod.GET,value = "/SelectDiscountCouponCount")
+    public int SelectDiscountCouponCount(@RequestParam(value = "1") int userid) {
+        return cs.SelectDiscountCouponCount(userid);
+    }
 
 }

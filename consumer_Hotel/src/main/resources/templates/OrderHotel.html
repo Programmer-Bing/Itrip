@@ -1,0 +1,3680 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="X-UA-Compatible" content="edge">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="description" content="">
+    <meta name="Keywords" content="">
+    <meta name="viewport" content="width=1200, initial-scale=0.8">
+    <meta name="applicable-device" content="pc">
+    <title>iTrip爱去 - 订单填写</title>
+    <script type="application/javascript" src="../scripts/jquery-3.2.1.js"></script>
+    <script type="application/javascript" src="../layui/layui.all.js" charset="UTF-8"></script>
+    <link rel="stylesheet" href="../layui/css/layui.css" id="cssfile">
+    <link href="//pic.itrip.com/img/favicon.ico" rel="shortcut icon">
+    <link href="//static.itrip.com/css/it_reset_201902190028.css" rel="stylesheet" type="text/css">
+    <link href="//static.itrip.com/css/it_order_201902190028.css" rel="stylesheet" type="text/css">
+    <link href="//static.itrip.com/js/lib/jquery-ui/1.10.3/themes/itrip/it_datepicker.css" rel="stylesheet">
+    <link href="//static.itrip.com/js/lib/My97DatePicker/skin/WdatePicker.css" rel="stylesheet">
+    <link href="https://static.itrip.com/js/lib/My97DatePicker/skin/WdatePicker.css" rel="stylesheet" type="text/css">
+    <script src="https://www.googleadservices.com/pagead/conversion_async.js" type="text/javascript" async=""></script>
+    <script src="https://static-ssl.mediav.com/mv.js" type="text/javascript" async=""></script>
+    <script src="https://material-ssl.mediav.com/bjjs/mba.js" type="text/javascript" async=""></script>
+    <script src="https://assets.growingio.com/2.1/gio.js" async=""></script>
+    <script src="https://static-ssl.mediav.com/mvl.js" type="text/javascript" async=""></script>
+    <script src="https://www.googletagmanager.com/gtag/js?id=AW-949765398" type="text/javascript" async=""></script>
+    <script src="//www.google-analytics.com/analytics.js" async=""></script>
+    <script src="https://connect.facebook.net/en_US/fbevents.js" async=""></script>
+    <script src="https://api.weibo.com/2/oauth2/query?source=1474373704&amp;callback=STK_1311569037352931"
+            charset="UTF-8"></script>
+    <script src="https://sh-trail.ntalker.com/trail/trail/userinfo.php?action=getregion&amp;siteid=kf_9680&amp;userid=kf_9680_ISME9754_700054&amp;callback=trail_getregion_485E74A9"
+            type="text/javascript" charset="utf-8" async="async"></script>
+    <script src="https://api.weibo.com/2/oauth2/query?source=1474373704&amp;callback=STK_5061569037352985"
+            charset="UTF-8"></script>
+    <script src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/949765398/?random=1569037353245&amp;cv=9&amp;fst=1569037353245&amp;num=1&amp;bg=ffffff&amp;guid=ON&amp;resp=GooglemKTybQhCsO&amp;eid=376635471&amp;u_h=900&amp;u_w=1600&amp;u_ah=858&amp;u_aw=1600&amp;u_cd=24&amp;u_his=6&amp;u_tz=480&amp;u_java=true&amp;u_nplug=1&amp;u_nmime=1&amp;gtm=2oa9b0&amp;sendb=1&amp;ig=1&amp;data=event%3Dgtag.config&amp;frm=0&amp;url=https%3A%2F%2Fwww.itrip.com%2Fmain%2Forder_now&amp;ref=https%3A%2F%2Fwww.itrip.com%2FshoppingCart&amp;tiba=iTrip%E7%88%B1%E5%8E%BB%20-%20%E8%AE%A2%E5%8D%95%E5%A1%AB%E5%86%99&amp;async=1&amp;rfmt=3&amp;fmt=4"></script>
+    <script src="https://dl.ntalker.com/js/xn6/zh_cn.js?siteid=kf_9680&amp;v=nt6.96&amp;t=2019.05.14_182647"
+            type="text/javascript" charset="utf-8" async="async" data-requiremodule="lang"></script>
+    <script src="https://dl.ntalker.com/js/xn6/chat.in.js?siteid=kf_9680&amp;v=nt6.96&amp;t=2019.05.14_182647"
+            type="text/javascript" charset="utf-8" async="async" data-requiremodule="chatManage"></script>
+    <script src="https://dl.ntalker.com/js/xn6/mqtt31.js?siteid=kf_9680&amp;v=nt6.96&amp;t=2019.05.14_182647"
+            type="text/javascript" charset="utf-8" async="async" data-requiremodule="MQTT"></script>
+    <script src="https://dl.ntalker.com/js/xn6/mqtt.chat.js?siteid=kf_9680&amp;v=nt6.96&amp;t=2019.05.14_182647"
+            type="text/javascript" charset="utf-8" async="async" data-requiremodule="Connection"></script>
+    <script src="../scripts/jquery-1.8.3.min.js"></script>
+</head>
+
+<body>
+<div id="nTalk_post_hiddenElement"
+     style="left: -10px; top: -10px; width: 1px; height: 1px; display: none; visibility: hidden;"></div>
+<!--页眉-->
+<div class="site_top">
+    <div class="top_info">
+        <div class="wrap clearfix">
+            <div class="fl horiz pos_r f14 ">
+                <ul class="area">
+                    <li>
+                        <a href="https://www.itrip.com/aodaliya/">
+                            澳洲站</a>
+                    </li>
+                    <li class="new_f">
+                        <a title="新西兰 &amp; 斐济" href="https://www.itrip.com/xinfei/">
+                            新西兰 &amp; 斐济</a>
+                    </li>
+                    <li>
+                        <a class="cur" href="https://www.itrip.com/ouzhou/">
+
+                            欧洲站
+                        </a>
+                    </li>
+                    <li>
+                        <a title="东南亚" href="https://www.itrip.com/dny/">
+                            东南亚</a>
+                    </li>
+                    <li>
+                        <a title="美洲" href="https://www.itrip.com/meizhou/">
+                            美洲站</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="fr">
+			<span class="pos_r">
+						<a class="fl" href="//www.itrip.com/about/app" target="_blank" rel="nofollow">
+							<span class="app-down"><img class="fl"
+                                                        src="//pic.itrip.com/img/header/head_icon_appdown.gif">APP下载</span>
+						</a>
+					</span>
+                <span class="line">|</span>
+                <span class="js_loginStatus" style="margin-left: 0px; display: none;">
+						<span><a class="blue" onclick="login()" href="javascript:void(0);"
+                                 rel="nofollow">登录</a></span><span>/</span>
+						<span><a href="https://www.itrip.com/signup/index" rel="nofollow">注册</a></span>
+					</span>
+                <span class="js_loginStatus" style="margin-left: 0px;">
+						<span class="sw_syb fl pos_r" style="margin-left:0px;"><a class="blue display_name"
+                                                                                  href="https://www.itrip.com/user/index">きぼうする</a><i
+                                class="sw_sj"></i>
+							<dl class="down_list">
+								<dd class="js_myOrder"><a class="pos_r" href="https://www.itrip.com/user/orders"
+                                                          rel="nofollow">我的订单<label></label></a></dd>
+								<dd class="js_myFavor"><a class="pos_r" href="https://www.itrip.com/user/favor/all"
+                                                          rel="nofollow">我的收藏 <label></label></a></dd>
+								<dd><a href="https://www.itrip.com/user/reward" rel="nofollow">我的奖金</a></dd>
+								<dd><a id="btn_logout" onclick="logout()" href="javascript:void(0);"
+                                       rel="nofollow">退出登录</a></dd>
+							</dl>
+						</span>
+					</span>
+                <span class="line" style="margin-left: 0px;">|</span>
+                <span class="pos_r">
+
+						<a class="fl" href="https://www.itrip.com/shoppingCart" rel="nofollow">
+							<span class="buy_car js_sc"><i></i>购物车 <label>7</label></span>
+							<div class="prompt-price-warp hide">
+						        <i class="icon_arrow_up-in"></i>
+						        <p class="prompt-price-txt">您有<em id="promotion-num"></em>个产品正在促销降价</p>
+						        <label class="promotion-close"></label>
+						    </div>
+
+						</a>
+
+					</span>
+
+                <span class="line">|</span>
+                <span class="pos_r money_sw_box currencyChange">
+						 <a class="money_sw_box_txt" style="border:1px transparent solid;"
+                            onclick="window.event.preventDefault(); window.event.stopPropagation(); return false;"
+                            href="javascript:;" data-id="21">
+							<label class="sw_syb fl blue">RMB</label>
+							<i class="sw_sj"></i>
+						</a>
+						<div class="money_sw hide">
+							<a data-id="12">
+									<label class="fl sw_txt">人民币元</label>
+									<label class="fl sw_syb">RMB</label>
+								</a>
+							<a data-id="20">
+									<label class="fl sw_txt">欧元</label>
+									<label class="fl sw_syb">EUR</label>
+								</a>
+							<a data-id="9">
+									<label class="fl sw_txt">澳大利亚元</label>
+									<label class="fl sw_syb">AUD</label>
+								</a>
+							<a data-id="21">
+									<label class="fl sw_txt">英镑</label>
+									<label class="fl sw_syb">GBP</label>
+								</a>
+							<a data-id="10">
+									<label class="fl sw_txt">新西兰元</label>
+									<label class="fl sw_syb">NZD</label>
+								</a>
+							<a data-id="11">
+									<label class="fl sw_txt">斐济元</label>
+									<label class="fl sw_syb">FJD</label>
+								</a>
+							<a data-id="17">
+									<label class="fl sw_txt">新币</label>
+									<label class="fl sw_syb">SGD</label>
+								</a>
+							<a data-id="16">
+									<label class="fl sw_txt">马来西亚币</label>
+									<label class="fl sw_syb">MYR</label>
+								</a>
+							<a data-id="15">
+									<label class="fl sw_txt">印尼盾</label>
+									<label class="fl sw_syb">IDR</label>
+								</a>
+							<a data-id="14">
+									<label class="fl sw_txt">泰铢</label>
+									<label class="fl sw_syb">THB</label>
+								</a>
+							<a data-id="13">
+									<label class="fl sw_txt">美元</label>
+									<label class="fl sw_syb">USD</label>
+								</a>
+							<a data-id="22">
+									<label class="fl sw_txt">瑞士法郎</label>
+									<label class="fl sw_syb">CHF</label>
+								</a>
+							<a data-id="23">
+									<label class="fl sw_txt">冰岛克朗</label>
+									<label class="fl sw_syb">ISK</label>
+								</a>
+							<a data-id="24">
+									<label class="fl sw_txt">挪威克朗</label>
+									<label class="fl sw_syb">NOK</label>
+								</a>
+							<a data-id="25">
+									<label class="fl sw_txt">瑞典克朗</label>
+									<label class="fl sw_syb">SEK</label>
+								</a>
+							<a data-id="26">
+									<label class="fl sw_txt">捷克克朗</label>
+									<label class="fl sw_syb">CZK</label>
+								</a>
+							<a data-id="27">
+									<label class="fl sw_txt">丹麦克朗</label>
+									<label class="fl sw_syb">DKK</label>
+								</a>
+							</div>
+					</span>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="//hm.baidu.com/hm.js?a63f93d647323db53fe9d21befcaabcd"></script>
+<script type="text/javascript">
+    var wxFlag = true;
+</script>
+<div class="wrap pos_r">
+    <div class="mainHeader clearfix" style="padding-bottom:0px;">
+        <div class="logo fl pos_r">
+            <h1>
+                <a href="https://www.itrip.com/">
+                    <img style="margin:0px;position:relative;" alt="iTrip爱去自由" src="//pic.itrip.com/img/logo3.png">
+                </a>
+            </h1>
+        </div>
+        <div class="fl ml20 mt15 blue">
+            <p class="f20 bold">
+
+                订单
+            </p>
+        </div>
+        <div class="fr mt10 payStep2">
+        </div>
+    </div>
+</div>
+<input id="tyingMainProductId" type="hidden" value="">
+<input id="productRule" type="hidden"
+       value='[{"pid":8053,"spec":{"id":"517164267392534549","travller":[{"travllerId":26,"quantity":3}]}},{"pid":8052,"spec":{"id":"516830180222138064","travller":[{"travllerId":26,"quantity":2}]}},{"pid":8053,"spec":{"id":"517164267392534549","travller":[{"travllerId":26,"quantity":3}]}},{"pid":8053,"spec":{"id":"517164267392534549","travller":[{"travllerId":26,"quantity":2},{"travllerId":23,"quantity":1}]}},{"pid":8053,"spec":{"id":"517164267392534549","travller":[{"travllerId":26,"quantity":1},{"travllerId":23,"quantity":1},{"travllerId":14,"quantity":1}]}},{"pid":8053,"spec":{"id":"517164267392534549","travller":[{"travllerId":26,"quantity":2},{"travllerId":23,"quantity":2},{"travllerId":14,"quantity":1}]}},{"pid":13087}]'>
+<!--主体-->
+<div class="wrap" style="margin-top:30px">
+    <div class="w750 fl">
+        <!--1.预定联系人-->
+        <div class="orderBox Contactor count_title">
+            <i class="f16"><span>1</span><em>预订联系人</em></i>
+            <div class="new_contact clearfix">
+                <div class="fl new_contact_left">
+                    <div class="contact_info pos_r">
+                        <div class="contact_name"><span>*</span>姓名</div>
+                        <input th:value="${user.Chinese_Name}" name="contactPersonName" class="f14 cnName" placeholder="请填写参加行程的游客姓名" value=""
+                               ischen="all" require="true" validate="true">
+                        <span class="red tip"></span>
+                    </div>
+                    <div class="contact_info pos_r mt25">
+                        <div class="contact_name"><span>*</span>姓名拼音</div>
+                        <input  name="pinyinPersonName" class="f14 pinyinName" placeholder="与护照一致" value="" ischen="en"
+                               require="true" validate="true">
+                        <span class="red tip"></span>
+                    </div>
+                    <div class="contact_info pos_r mt25">
+                        <div class="contact_name"><span>*</span>邮箱</div>
+                        <input th:value="${user.email}" name="receiveEmail" class="f14" value="" email="true" require="true" validate="true">
+                        <span class="red tip"></span>
+                    </div>
+                    <div class="contact_info pos_r mt25">
+                        <div class="contact_name">微信号</div>
+                        <input  name="weixinCode" class="f14" value="" validate="true">
+                        <span class="red tip"></span>
+                    </div>
+                </div>
+                <div class="border"></div>
+                <div class="fr">
+                    <div class="contact_info pos_r clearfix">
+                        <div class="contact_name fl mt10"><span>*</span>联系手机</div>
+                        <div class="select_country fl pos_r" style="display: inline-block;" select-imitation="">
+                            <div class="select_val pos_r">
+                                <input  class="select_t hand f14" id="contactPhoneAreaCode"
+                                       style="border-radius: 5px 0px 0px 5px;" type="text" readonly="readonly"
+                                       value="86" select-val="">
+                                <i class="iconfont"></i>
+                                <i class="border"></i>
+                            </div>
+                            <div class="option hide" style="display: none;" select-option="">
+                                <ul class="hand">
+                                    <li class="cur" value="86">中国</li>
+                                    <li value="61">澳大利亚</li>
+                                    <li value="64">新西兰</li>
+                                    <li value="679">斐济</li>
+                                    <li value="1">美国</li>
+                                    <li value="689">大溪地</li>
+                                    <li value="680">帕劳</li>
+                                    <li value="248">塞舌尔</li>
+                                    <li value="230">毛里求斯</li>
+                                    <li value="1">塞班岛</li>
+                                    <li value="960">马尔代夫</li>
+                                    <li value="66">泰国</li>
+                                    <li value="62">印度尼西亚</li>
+                                    <li value="65">新加坡</li>
+                                    <li value="60">马来西亚</li>
+                                    <li value="44">英国</li>
+                                    <li value="39">意大利</li>
+                                    <li value="41">瑞士</li>
+                                    <li value="354">冰岛</li>
+                                    <li value="33">法国</li>
+                                    <li value="49">德国</li>
+                                    <li value="34">西班牙</li>
+                                    <li value="379">梵蒂冈</li>
+                                    <li value="351">葡萄牙</li>
+                                    <li value="420">捷克</li>
+                                    <li value="30">希腊</li>
+                                    <li value="31">荷兰</li>
+                                    <li value="352">卢森堡</li>
+                                    <li value="353">爱尔兰</li>
+                                    <li value="36">匈牙利</li>
+                                    <li value="43">奥地利</li>
+                                    <li value="32">比利时</li>
+                                    <li value="377">摩纳哥</li>
+                                    <li value="358">芬兰</li>
+                                    <li value="47">挪威</li>
+                                    <li value="45">丹麦</li>
+                                    <li value="46">瑞典</li>
+                                    <li value="385">克罗地亚</li>
+                                    <li value="48">波兰</li>
+                                    <li value="421">斯洛伐克</li>
+                                    <li value="423">列支敦士登</li>
+                                    <li value="0">欧洲</li>
+                                    <li value="66">华欣</li>
+                                    <li value="852">中国香港</li>
+                                    <li value="886">中国台湾</li>
+                                    <li value="386">斯洛文尼亚</li>
+                                    <li value="81">日本</li>
+                                    <li value="90">土耳其</li>
+                                    <li value="356">马耳他</li>
+                                    <li value="299">格陵兰岛</li>
+                                    <li value="298">法罗群岛</li>
+                                    <li value="1">加拿大</li>
+                                    <li value="63">菲律宾</li>
+                                    <li value="853">中国澳门</li>
+                                    <li value="33">凡尔登</li>
+                                    <li value="7">俄罗斯</li>
+                                    <li value="212">摩洛哥</li>
+                                    <li value="387">波黑</li>
+                                    <li value="82">韩国</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <input  th:value="${user.Phone_number}" name="contactPhone" class="f14 phone_cn fl" value="18774903699" require="true"
+                               validate="true" phone="true">
+                        <span class="red tip"></span>
+                        <span class="success hide"><i class="iconfont"></i>验证成功</span>
+                    </div>
+                    <div class="contact_info pos_r mt5 hide" style="padding-left:75px;">
+                        <div class="verification hide">
+                            <input class="ver_input" type="text" maxlength="6" placeholder="验证码" data-input="smsCode">
+                            <span class="Re_get"><i id="getTime">60</i>s后重新获取</span>
+                            <input class="ver_btn hide" type="button" value="重新获取" data-click="getSmsCode">
+                        </div>
+                        <input class="ver_sub" type="button" value="获取验证码" data-click="getSmsCode">
+                        <input class="ver_sub hide" type="button" value="提交" data-click="submitSmsCode">
+                        <span class="red tip" style="left:170px;bottom:6px;width: 160px;"></span>
+                    </div>
+                    <div class="contact_info pos_r mt25 clearfix">
+                        <div class="contact_name fl mt10">备用手机</div>
+                        <div class="select_country fl pos_r" style="display: inline-block;" select-imitation="">
+                            <div class="select_val pos_r">
+                                <input class="select_t hand f14" id="contactForeignPhoneAreaCode"
+                                       style="border-radius: 5px 0px 0px 5px;" type="text" readonly="readonly"
+                                       value="国家" select-val="">
+                                <i class="iconfont"></i>
+                                <i class="border"></i>
+                            </div>
+                            <div class="option hide" style="display: none;" select-option="">
+                                <ul class="hand">
+                                    <li value="86">中国</li>
+                                    <li value="61">澳大利亚</li>
+                                    <li value="64">新西兰</li>
+                                    <li value="679">斐济</li>
+                                    <li value="1">美国</li>
+                                    <li value="689">大溪地</li>
+                                    <li value="680">帕劳</li>
+                                    <li value="248">塞舌尔</li>
+                                    <li value="230">毛里求斯</li>
+                                    <li value="1">塞班岛</li>
+                                    <li value="960">马尔代夫</li>
+                                    <li value="66">泰国</li>
+                                    <li value="62">印度尼西亚</li>
+                                    <li value="65">新加坡</li>
+                                    <li value="60">马来西亚</li>
+                                    <li value="44">英国</li>
+                                    <li value="39">意大利</li>
+                                    <li value="41">瑞士</li>
+                                    <li value="354">冰岛</li>
+                                    <li value="33">法国</li>
+                                    <li value="49">德国</li>
+                                    <li value="34">西班牙</li>
+                                    <li value="379">梵蒂冈</li>
+                                    <li value="351">葡萄牙</li>
+                                    <li value="420">捷克</li>
+                                    <li value="30">希腊</li>
+                                    <li value="31">荷兰</li>
+                                    <li value="352">卢森堡</li>
+                                    <li value="353">爱尔兰</li>
+                                    <li value="36">匈牙利</li>
+                                    <li value="43">奥地利</li>
+                                    <li value="32">比利时</li>
+                                    <li value="377">摩纳哥</li>
+                                    <li value="358">芬兰</li>
+                                    <li value="47">挪威</li>
+                                    <li value="45">丹麦</li>
+                                    <li value="46">瑞典</li>
+                                    <li value="385">克罗地亚</li>
+                                    <li value="48">波兰</li>
+                                    <li value="421">斯洛伐克</li>
+                                    <li value="423">列支敦士登</li>
+                                    <li value="0">欧洲</li>
+                                    <li value="66">华欣</li>
+                                    <li value="852">中国香港</li>
+                                    <li value="886">中国台湾</li>
+                                    <li value="386">斯洛文尼亚</li>
+                                    <li value="81">日本</li>
+                                    <li value="90">土耳其</li>
+                                    <li value="356">马耳他</li>
+                                    <li value="299">格陵兰岛</li>
+                                    <li value="298">法罗群岛</li>
+                                    <li value="1">加拿大</li>
+                                    <li value="63">菲律宾</li>
+                                    <li value="853">中国澳门</li>
+                                    <li value="33">凡尔登</li>
+                                    <li value="7">俄罗斯</li>
+                                    <li value="212">摩洛哥</li>
+                                    <li value="387">波黑</li>
+                                    <li value="82">韩国</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <input th:value="${user.Phone_number}"  name="contactForeignPhone" class="f14 phone_fg fl" value="" validate="true"
+                               number="true">
+                        <span class="red tip"></span>
+                    </div>
+                    <div class="contact_tips"><i class="iconfont"></i>手机号请填写境内外都可联系到的号码，便于我们及时为您提供服务</div>
+                </div>
+            </div>
+        </div>
+        <!--2.游客信息-->
+        <div  class="orderBox mt15 count_title " style="padding:55px 20px 25px 25px">
+            <i class="f16"><span>2</span><em>住客信息</em></i>
+            <div>
+                <div  data-id="8442" class="js_product ">
+                    <div th:each="ro:${room}" data-specId="62933665633269606" data-persons="2">
+                        <p th:text="'【Room&nbsp;1】&nbsp;'+${hotel.get(0).get('h_name')}+'-'+${room.get(roStat.index).get('rif_name')}" class="f14 bold">【Room&nbsp;1】&nbsp;悉尼南方大酒店 Great Southern Hotel 4星酒店(近中央车站+唐人街旁+近旅游景点)-标准双人间 - 无早(最多住2人)<label class="f12 grey">(可住2人，请至少填写一位住客信息)</label></p>
+                        <table class="table-blue Passager mt10" width="100%" cellspadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <th class="blue f14 normal" colspan="3">
+                                    <span class="icon icon_user mr5" style="vertical-align: middle;margin-top:-3px;"></span><span class="personTitle" th:text="'住客'+${roStat.index+1}">住客1</span>
+                                    <span class="orange ml20 pos_r hand personChoseBtn hide">选取常旅客</span>
+                                    <div class="fr grey f12 mt5" style="margin-top:0">
+                                        <a href="javascript:void(0);" class="removePerson hide blue">移除入住人</a>
+                                        <span class="f14 blue mr20 hand saveCLK hide">
+																	<i class="icon icon_blue_Hook hand"></i>
+																	存储为常旅客
+																</span>
+                                        <span class="icon icon_Inform" style="vertical-align: middle;margin-top:-3px;"></span>
+                                        <span class="pos_r passportExamBtn">护照示例
+																	<div class="passportExam hide">
+																		<p>请严格按照登记时所用证件上的信息填写</p>
+																		<div><img src="//pic.itrip.com/img/passport.jpg" width="555" height="311" border="0" alt="护照"/></div>
+																	</div>
+																</span>
+                                    </div>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td class="fruzzyBox">
+                                    <p class="grey">中文姓（拼音）&nbsp;&nbsp;
+                                        <span class="red tip"></span>
+                                    </p>
+                                    <input type="text"
+                                           data-id="3988"
+                                           require="true"
+                                           class="f14 mt5 js_conf_form fruzzyIpt"
+                                           value=""
+                                           placeholder="与护照一致"
+                                           isChEn = ""/>
+                                </td>
+                                <td class="fruzzyBox">
+                                    <p class="grey">中文名（拼音）&nbsp;&nbsp;
+                                        <span class="red tip"></span>
+                                    </p>
+                                    <input type="text"
+                                           data-id="3987"
+                                           require="true"
+                                           class="f14 mt5 js_conf_form "
+                                           value=""
+                                           placeholder="与护照一致"
+                                           isChEn = ""/>
+                                </td>
+                                <td class="fruzzyBox">
+                                    <p class="grey">性别&nbsp;&nbsp;
+                                        <span class="red tip"></span>
+                                    </p>
+                                    <select data-id="9"
+                                            require="true"
+                                            class="f14 mt5 js_conf_form hand" style="width:140px;">
+                                        <option selected="selected" value="Male">男</option>
+                                        <option  value="Female">女</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fruzzyBox">
+                                    <p class="grey">年龄&nbsp;&nbsp;
+                                        <span class="red tip"></span>
+                                    </p>
+                                    <input type="text"
+                                           data-id="7"
+                                           number="true"
+                                           require="true"
+                                           class="f14 mt5 js_conf_form "
+                                           value=""
+                                           placeholder="与护照一致"
+                                           isRange = ''
+                                    />
+                                </td>
+                                <td class="fruzzyBox">&nbsp;</td>
+                                <td class="fruzzyBox">&nbsp;</td>
+                            </tr>
+                        </table>
+                        <a href="javascript:void(0);" class="addPerson blue">添加入住人</a>
+                    </div>
+                    <table data-id="8442" border="0" cellspadding="0" cellspacing="0" width="100%" class="mt20 Message f14 OtherInfo extraConf product-item-group" style="color:#666666">
+                        <tr>
+                            <td width="12%" valign="top" class="f16 blue">附加信息：</td>
+                            <td width="88%" class="f16 padl"></td>
+                        </tr>
+                        <tr>
+                            <td width="12%"></td>
+                            <td width="88%" class="padl" data-id="27">
+                                床型选择<span class="on_choice blue js_conf_form" data-id="27" data-value="1queen bed">
+									    				1大床</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="12%"></td>
+                            <td width="88%" class="pad1">
+                                <dl>
+                                    <dd 	class="on_cur" data-value="1queen bed">1大床</dd>
+                                    <dd  data-value="2single bed">2小床</dd>
+                                </dl>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--3.保险预定-->
+        <div class="count_title pos_r mt15 padb insur_infos" style="background-color: #FFF;">
+            <i class="f16">
+						<span>
+							3</span>
+                <em>保险预订</em>
+            </i>
+            <div class="tips">
+                旅游保险能给您的出行安全带来更多保障，此产品可保障您购买的出行天数，请根据出行时间合理安排勿重复购买。购买前请点击相应保险名称，详细了解具体保险内容，并请留意并不是所有保险都涵盖高危活动（如跳伞、滑翔伞等项目），了解后请自愿选择购买。
+            </div>
+            <div class="time_cycle f14">
+                <span>起保时间：</span>
+                <div class="ipt date pt">
+                    <input th:id="startDatept" class="startDate pt hasDatepicker test27"
+                           id="startDatept" readonly="readonly"
+                           type="text" placeholder="选择出行日期" style="width: 130px;">
+                    <span class="icon icon_timer" style="top:8px;"></span>
+                </div>
+
+
+                <!--样式（不需了解）-->
+                <style>
+                    .insur_list {
+                        display: block !important;
+                    }
+
+                    .insur_list li select {
+                        width: 50px;
+                    }
+
+                    .select_t hand {
+                        display: block !important;
+                    }
+
+                    .select_f {
+                        display: inline-block !important;
+                    }
+
+                    .ml72 specNameAll {
+                        display: block !important;
+                    }
+                </style>
+                <span class="ml72 date">保障期限：</span>
+                <!--保障期限-->
+                <div class="select_f" style="display: inline-block;">
+                    <div class="select_type pos_r">
+                        <input class="select_t hand"
+                               style="border-bottom-right-radius: 5px; border-bottom-left-radius: 5px;"
+                               type="text" readonly="readonly"><b></b></div>
+                    <div class="option hide">
+                        <ul class="hand">
+                            <li value="1天">1天</li>
+                            <li value="2天">2天</li>
+                            <li value="3天">3天</li>
+                            <li value="4天">4天</li>
+                            <li value="5天">5天</li>
+                            <li value="6天">6天</li>
+                            <li class="selected" value="7天">7天</li>
+                            <li value="8天">8天</li>
+                            <li value="9天">9天</li>
+                            <li value="10天">10天</li>
+                            <li value="11天">11天</li>
+                            <li value="12天">12天</li>
+                            <li value="13天">13天</li>
+                            <li value="14天">14天</li>
+                            <li value="15天">15天</li>
+                            <li value="16天">16天</li>
+                            <li value="17天">17天</li>
+                            <li value="18天">18天</li>
+                            <li value="19天">19天</li>
+                            <li value="20天">20天</li>
+                            <li value="21天">21天</li>
+                            <li value="22天">22天</li>
+                            <li value="23天">23天</li>
+                            <li value="24天">24天</li>
+                            <li value="25天">25天</li>
+                            <li value="26天">26天</li>
+                            <li value="27天">27天</li>
+                            <li value="28天">28天</li>
+                            <li value="29天">29天</li>
+                            <li value="30天">30天</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--当日期不可投保时-->
+            <div class="hide insur_msg">
+                <span class="red tl mt10 ml30 f12" style="display: none; width:340px;"></span>
+            </div>
+            <!--保险信息-->
+            <div class="insur_list" style="min-height: 77px;">
+                <ul class="clearfix" style="height: 45px;" insur_list hide>
+                    <li data-specid="710383599514168319" data-spename="7天">
+                        <a class="fl productInfo" href="https://www.itrip.com/help?menuId=394" target="_blank"
+                           data-id="13440" data-productname="利宝完美境外保障—尊崇型(人在境外不可购买）">利宝完美境外保障—尊崇型(人在境外不可购买）</a>
+                        <span class="fl w160">
+
+													承保年龄：1岁-88岁</span>
+                        <span class="fl w110">RMB <em id="ourPrice" data-to-currencyid="21" data-ocurrencyid="12"
+                                                      data-oprice="350">350</em>/份</span>
+                        <span class="fr ml5">份</span>
+                        <select class="fr insur_sel hand" data-orgvalue="2">
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                            <option>18</option>
+                            <option>19</option>
+                            <option>20</option>
+                        </select>
+                    </li>
+                    <li data-specid="710378977834869306" data-spename="7天">
+                        <a class="fl productInfo" href="https://www.itrip.com/help?menuId=391" target="_blank"
+                           data-id="13435" data-productname="史带无忧境外旅行保障计划C(人在境外可买)">史带无忧境外旅行保障计划C(人在境外可买)</a>
+                        <span class="fl w160">
+
+													承保年龄：1岁-88岁</span>
+                        <span class="fl w110">RMB <em id="ourPrice" data-to-currencyid="21" data-ocurrencyid="12"
+                                                      data-oprice="30">30</em>/份</span>
+                        <span class="fr ml5">份</span>
+                        <select class="fr insur_sel hand" data-orgvalue="0">
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                            <option>18</option>
+                            <option>19</option>
+                            <option>20</option>
+                        </select>
+                    </li>
+                    <li data-specid="78289934848579405" data-spename="7天">
+                        <a class="fl productInfo" href="https://www.itrip.com/help?menuId=389" target="_blank"
+                           data-id="13445" data-productname="史带无忧境外旅行保障计划A(人在境外可买)">史带无忧境外旅行保障计划A(人在境外可买)</a>
+                        <span class="fl w160">
+
+													承保年龄：1岁-88岁</span>
+                        <span class="fl w110">RMB <em id="ourPrice" data-to-currencyid="21" data-ocurrencyid="12"
+                                                      data-oprice="265">265</em>/份</span>
+                        <span class="fr ml5">份</span>
+                        <select class="fr insur_sel hand" data-orgvalue="0">
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                            <option>18</option>
+                            <option>19</option>
+                            <option>20</option>
+                        </select>
+                    </li>
+                    <li class="hide" data-specid="78305945653300839" data-spename="8天">
+                        <a class="fl productInfo" href="https://www.itrip.com/help?menuId=394" target="_blank"
+                           data-id="13440" data-productname="利宝完美境外保障—尊崇型(人在境外不可购买）">利宝完美境外保障—尊崇型(人在境外不可购买）</a>
+                        <span class="fl w160">
+
+													承保年龄：1岁-88岁</span>
+                        <span class="fl w110">RMB <em id="ourPrice" data-to-currencyid="21" data-ocurrencyid="12"
+                                                      data-oprice="480">480</em>/份</span>
+                        <span class="fr ml5">份</span>
+                        <select class="fr insur_sel hand" data-orgvalue="0">
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                            <option>18</option>
+                            <option>19</option>
+                            <option>20</option>
+                        </select>
+                    </li>
+                    <li class="hide" data-specid="78301327535852825" data-spename="8天">
+                        <a class="fl productInfo" href="https://www.itrip.com/help?menuId=391" target="_blank"
+                           data-id="13435" data-productname="史带无忧境外旅行保障计划C(人在境外可买)">史带无忧境外旅行保障计划C(人在境外可买)</a>
+                        <span class="fl w160">
+
+													承保年龄：1岁-88岁</span>
+                        <span class="fl w110">RMB <em id="ourPrice" data-to-currencyid="21" data-ocurrencyid="12"
+                                                      data-oprice="50">50</em>/份</span>
+                        <span class="fr ml5">份</span>
+                        <select class="fr insur_sel hand" data-orgvalue="0">
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                            <option>18</option>
+                            <option>19</option>
+                            <option>20</option>
+                        </select>
+                    </li>
+                    <li class="hide" data-specid="710367603564293566" data-spename="8天">
+                        <a class="fl productInfo" href="https://www.itrip.com/help?menuId=389" target="_blank"
+                           data-id="13445" data-productname="史带无忧境外旅行保障计划A(人在境外可买)">史带无忧境外旅行保障计划A(人在境外可买)</a>
+                        <span class="fl w160">
+
+													承保年龄：1岁-88岁</span>
+                        <span class="fl w110">RMB <em id="ourPrice" data-to-currencyid="21" data-ocurrencyid="12"
+                                                      data-oprice="360">360</em>/份</span>
+                        <span class="fr ml5">份</span>
+                        <select class="fr insur_sel hand" data-orgvalue="0">
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                            <option>18</option>
+                            <option>19</option>
+                            <option>20</option>
+                        </select>
+                    </li>
+                </ul>
+                <div class="more_in mt10 ml30 f12">
+                    <ins>+</ins>
+                    其他保险
+                </div>
+                <div class="all_price">合计：RMB <em data-oprice="78.98">700</em></div>
+            </div>
+            <!--保险投保人信息录入-->
+            <div class="insur_peo insuerInfo">
+                <!--第一种保险信息录入表格-->
+                <!--<div class="insur_info Passager pos_r" isinsur="true">
+                    <div class="done">
+                        <span class="personChoseBtn hand">选取常旅客</span>
+                        <span class="cleanPassger hand">删除</span>
+                    </div>
+                    <div class="insur_title" data-spec-id="710383599514168319" data-pid="13440">
+                        <span>投保人1</span><em>利宝完美境外保障—尊崇型(人在境外不可购买）</em>
+                    </div>
+                    <div class="person_detail">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                            <tr>
+                                <td width="33%" class="fruzzyBox">
+                                    性别&nbsp;&nbsp;
+                                    <select class="f14 insur_sel hand" data-id="9" require="true">
+                                        <option selected="selected" value="male">男</option>
+                                        <option value="female">女</option>
+                                    </select>
+                                    <span class="red tip"></span>
+                                </td>
+                                <td width="33%" class="fruzzyBox">
+                                    护照号码&nbsp;&nbsp;
+                                    <input class="insu_input" style="width:142px;" type="text" placeholder="与护照一致"
+                                           value="" data-id="10" require="true">
+                                    <span class="red tip"></span>
+                                </td>
+                                <td width="33%" class="fruzzyBox">
+
+                                    中文姓名
+                                    <input class="insu_input" style="width:142px;" type="text" placeholder="与护照一致"
+                                           value="" data-id="12" ischen="zh" require="true">
+                                    <span class="red tip"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="33%" class="fruzzyBox">
+                                    出生日期&nbsp;&nbsp;
+                                    <span class="pos_r birthday" style="display:inline-block;">
+																	<input class="f14 star hand insu_input hasDatepicker"
+                                                                           id="dp1569037351779" type="text"
+                                                                           readonly="readonly" placeholder=""
+                                                                           value="1980-01-01" data-id="14"
+                                                                           require="true">
+																	<ins class="icon_Calendar hand"
+                                                                         style="top:17px;right:18px"></ins>
+																	<span class="red tip" style="top:-10px;"></span>
+																</span>
+                                </td>
+                                <td width="45%" class="fruzzyBox" style="text-align:left;padding-left:9%;" colspan="2">
+															<span class="hide other_rel">
+																	其他投保成人是我的&nbsp;&nbsp;
+																	<select class="relation_sel insur_sel insu_input"
+                                                                            style="width:25%;" data-id="847"
+                                                                            require="true">
+																		<option value="">请选择</option>
+																		<option value="父母亲">父母亲</option>
+																		<option value="兄弟姐妹">兄弟姐妹</option>
+																		<option value="祖父母">祖父母</option>
+																		<option value="其他">其他</option>
+																	</select>
+													  				<input class="hide other_relation insu_input"
+                                                                           style="width:120px;" type="text"
+                                                                           placeholder="" value="" data-id="847"
+                                                                           require="true">
+																	<span class="red tip"></span>
+																</span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+        <!--优惠-->
+        <div class="count_title pos_r mt15 padb " style="background-color: #FFF;">
+            <i class="f16">
+						<span>
+							4</span><em>优惠</em></i>
+
+            <div class="f14 voucher" style="line-height:30px;">
+                <ul>
+                    <li>
+                        <div style="display:inline-block;width:30px;height:30px;">
+                            <span class="icon hand js_voucherSelect icon_blue_Hook"></span>
+                        </div>
+                        <span data-discount="20.0" data-ucode="lHnxhFrfLhyxz4Fh" data-value="xlRjOUuc">
+									           优惠劵：
+										<span class="coupon_name">欧洲20元通用优惠券</span>
+										<div class="pos_r" style="display:inline-block;">
+											<i class="iconfont"></i>
+											<div class="count_details pos_a">
+												<div class="pos_r">
+													<i class="icon_arrow_up"></i>
+													<p>适用产品类别：景点活动、打包产品、线路、当地跟团、出境游、接机-包车、接机-拼车、送机-包车、送机-拼车、按天包车、线路用车</p><p>适用国家：仅英国、荷兰、比利时、捷克、卢森堡、西班牙、葡萄牙、希腊、斯洛伐克、列支敦士登、摩纳哥、梵蒂冈、匈牙利、奥地利、瑞士、欧洲、克罗地亚、爱尔兰、波兰、挪威、丹麦、芬兰、瑞典、冰岛、斯洛文尼亚、法罗群岛、马耳他、格陵兰岛、土耳其、摩洛哥、俄罗斯、凡尔登、意大利、德国、法国产品可用</p></div>
+											</div>
+										</div>
+										</span>
+                    </li>
+                    <li style="line-height:30px;">
+                        <div style="display:inline-block;width:30px;height:30px;">
+                            <span class="icon icon_Circle hand js_voucherCode"></span>
+                        </div>
+                        <span>输入优惠码 （区分大小写）：</span>
+                        <input style="vertical-align:middle" type="text" readonly="readonly">
+                        <a class="btn-normal-blue vali_ma ml10" style="display: none;" href="javascript:;">验证优惠码</a>
+                        <span class="red" style="display: none;"></span>
+                    </li>
+                    <li>
+                        <div style="display:inline-block;width:30px;height:30px;">
+                            <span class="icon icon_Circle hand js_noVoucher"></span>
+                        </div>
+                        <span>不使用优惠</span>
+                    </li>
+                </ul>
+                <div class="couponBar couponBar_item hide" style="display: block;">
+                    <span class="f14">已使用 <label class="blue">1</label> 张优惠券，总共优惠  <label
+                            class="orange couponPrice">20</label> 元<label class="js_maxDiscount hide">，该订单最多优惠<label
+                            class="orange"></label> 元</label></span>
+                </div>
+            </div>
+
+        </div>
+        <input id="snipingMemberId" type="hidden" value="">
+        <div class="tr" style="height:30px;line-height:30px;">
+            <!-- 判断是否包含促销，有输出下文字 -->
+        </div>
+        <!--支付按钮-->
+        <div class="payBar oh ">
+            <a class="btn-orange fr f24" style="height:45px;line-height:45px;width:215px;" href="javascript:;">去支付</a>
+            <div class="fr tc mr20">
+                <p>支付前，请仔细核对订单信息</p>
+                <p class="mt5"><span class="icon icon_blue_Hook mr5 hand"></span><a class="blue"
+                                                                                    href="https://www.itrip.com/about/bookingProtocol"
+                                                                                    target="_blank">同意预定协议</a></p>
+            </div>
+
+        </div>
+        <!--优惠内容-->
+        <div class="j_cur_content">
+            <div class="j_cur_block clearfix popup-box">
+                <div class="popup-tip f12 ">
+                    <p>银联在线支付-7天价保,一贵就赔</p>
+                    <div class="js_cur_discount" style="display: none;" data-currencyid="12">
+                        银联在线支付(RMB)-满10000减300,满7000减210,满4500减135,满2000减60
+                    </div>
+                    <div class="js_cur_discount" style="display: none;" data-currencyid="9">
+                        银联在线支付(AUD)-满2000减60,满1400减42,满900减27,满400减12
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="w360 fr pos_r">
+        <div class="orderlistbox w360" style="top: 0px; right: -192px; position: fixed; z-index: 10;">
+            <!--产品清单-->
+            <div class="boxRightBlue orderlist">
+                        <div class="con">
+                            <p class="tc" style="border-bottom:1px #e3e3e3 solid;height:12px;margin:15px 25px;">
+                                <span class="f16" style="background:#FFF;padding:0 10px;">产品清单</span>
+                            </p>
+                            <div class="orderlistcon mt15">
+                                <ul data-id="8442" class="product_list" data-promotionId="" data-date="2019/10/01">
+                                    <li>
+                                        <p class="f16" th:text="${hotel.get(0).get('h_name')}">悉尼南方大酒店 Great Southern Hotel 4星酒店(近中央车站+唐人街旁+近旅游景点)</p>
+                                        <p th:text="'入住日期：'+${sp1}+'至'+${sp2}" class="f14 grey mt5 clearfix">
+                                            入住日期：2019/10/01至2019/10/02<span class="orange bold fr"><label class="js_curCode">RMB</label>&nbsp;&nbsp;<label class="js_curMoney" data-cid="9" data-price="592">2871.2</label></span>
+                                        </p>
+                                        <p class="f14 grey mt5">
+                                        <p th:each="r:${room}" th:text="${room.get(rStat.index).get('rif_name')}+'&nbsp;&nbsp;&nbsp;&nbsp;1间'">
+
+                                        </p>
+                                    </li>
+
+                                </ul>
+                                <ul class="insur_ul hide">
+                                    <li class="oh">
+                                        <p class="f16 fl">
+                                            保险 X<em class="toal_insur">0</em>
+                                        </p>
+                                        <span class="orange bold fr f14"><label class="js_curCode">RMB</label>&nbsp;&nbsp;<label class="js_insurMoney"  data-cid = "" data-oprice="0">0</label></span>
+                                    </li>
+                                </ul>
+                                <ul class="vip hide">
+                                    <li class="oh">
+                                        <p class="f16 fl">
+                                            旅途无忧 X1
+                                        </p>
+                                        <span class="orange bold fr f14">
+										<label class="js_curCode">RMB</label>&nbsp;&nbsp;
+										<label class="js_curMoney" data-cid="12" data-price="99">
+											99</label>
+									</span>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li class="clearfix pos_r">
+                                        <p class="f16 fl">
+                                            <span class="pupup-bottom-target">优惠金额<def class="popup-discounted-price">[优惠明细]</def></span>
+                                        </p>
+                                        <span class="orange bold fr f14 have-discount-total">
+											<label class="js_curCode">RMB</label>&nbsp;&nbsp;
+											<label class="js_curMoney" data-cid="12" data-price="1353.15">
+												1353.15</label>
+										</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!--应付金额-->
+            <div class="resultPrice tc">
+                <p class="f16">应付：
+                    <input id="couponValues" type="hidden" data-discount="20">
+                    <label class="js_curCode" data-id="21" data-cur-currid="21">GBP</label>
+                    <span class="f24 orange bold ml10 js_total" data-org-price="1129.15">1205.88</span>
+                    <span class="orange f12 tr mr50 discount_tip">保险不参加优惠</span>
+                    <span class="count f12 discount_info" style="display:none;">
+							<em>已优惠</em>
+							<ins>RMB 20</ins>
+							<br>
+						</span>
+                </p>
+                <div class="pos_r">
+                    <p class=" rmb_p">
+                        <span class="f18 orange js_rmb" data-rmb="10007.09">=RMB 10687.09</span>
+                        <!--<span class="grey" id="ratesIds" data-rmb-rates-id="1" data-rates-id="8.86">汇率：8.86</span>-->
+                    </p>
+                    <div class="popup-bottm-tip discount-details" style="float:none; display:inline-block;"
+                         data-sharediscount="0.02" data-limitprice="100.0">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                            <tr class="max-discount  ">
+                                <td class="f14 bold" style="border-bottom:1px solid #e7e7e7;padding-bottom:10px;"
+                                    colspan="2">
+                                    <span class="fl">最高还可优惠</span>
+                                    <span class="bold tar tip-price js_curMoney fr" data-price="24.12" data-cid="21">24.12</span>
+                                    <span class="bold js_curCode fr">GBP</span>
+                                </td>
+                            </tr>
+                            <tr class="share-reward ">
+                                <td>
+                                    <lable class="discout_icon">可返</lable>
+                                </td>
+                                <td>
+                                    <p class="oh">
+                                        <span class="fl bold">支付后分享返现</span>
+                                        <span class="fr bold tar tip-price js_curMoney" data-price="24.12"
+                                              data-cid="21">24.12</span>
+                                        <span class="fr bold tar js_curMoney hide" id="excludeShareTotalPrice"
+                                              data-price="0.0" data-cid="21">
+												0</span>
+                                        <span class="fr bold js_curCode" style="width: 34px;"
+                                              data-currencycode="currencycode">GBP</span>
+                                    </p>
+                                    <p>支付成功后，分享至微信邀请好友砍价，每邀请1个新用户可砍5元，返现奖金在顺利完成出行后的第四天可提现。</p>
+                                </td>
+                            </tr>
+                            <tr class="comment-reward hide">
+                                <td>
+                                    <lable class="discout_icon">可返</lable>
+                                </td>
+                                <td>
+                                    <p class="oh">
+                                        <span class="fl bold ">出行后点评返现</span>
+                                        <span class="fr bold tar tip-price js_curMoney" data-price="0.0" data-cid="21">
+												0</span>
+                                        <span class="fr js_curCode bold" style="width: 34px;"
+                                              data-currencycode="currencycode">GBP</span>
+                                    </p>
+                                    <p>游玩结束后进行产品点评，点评审核通过即有机会获得最高点评奖金，个人中心可查看奖金</p>
+                                </td>
+                            </tr>
+                            <tr class="promotion-share hide">
+                                <td>
+                                    <lable class="discout_icon">可返</lable>
+                                </td>
+                                <td>
+                                    <p class="oh">
+                                        <span class="fl bold ">促销返现</span>
+                                        <span class="fr bold tar tip-price js_curMoney" data-price="0.0" data-cid="21">
+												0</span>
+                                        <span class="fr js_curCode bold" style="width: 34px;"
+                                              data-currencycode="currencycode">GBP</span>
+                                    </p>
+                                    <p>iTrip 返现奖金。支付成功后，促销返现与分享返现累加合并，分享至微信邀请好友砍价，每邀请1个新用户可砍5元，返现奖金在顺利完成出行后的第四天可提现。</p>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="personChose passagerChose hide">
+    <div class="pos_r">
+        <i class="top_j"></i>
+    </div>
+    <div class="personChoseCont passagerChoseCont">
+        未添加常旅客
+    </div>
+</div>
+<div class="dialog-tip-pay" style="padding:60px;padding-bottom: 20px;display:none">
+    请在60分钟内完成支付，逾期订单将自动取消
+    <p><a class="btn-orange close_dialog-tip-pay"
+          style="width: 120px;line-height: 35px;margin: 0 auto;margin-top: 30px;" href="javascript:;">确定</a></p>
+</div>
+<div class="extConfg hide">
+    <div class="insur_info Passager pos_r" isinsur="true">
+        <div class="done">
+            <span class="personChoseBtn hand">选取常旅客</span>
+            <span class="cleanPassger hand">删除</span>
+        </div>
+        <div class="insur_title" data-spec-id="710383599514168319" data-pid="13440">
+            <span>投保人1</span><em>利宝完美境外保障—尊崇型(人在境外不可购买）</em>
+        </div>
+        <div class="person_detail">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                <tr>
+                    <td width="33%" class="fruzzyBox">
+                        性别&nbsp;&nbsp;
+                        <select class="f14 insur_sel hand" data-id="9" require="true">
+                            <option selected="selected" value="male">男</option>
+                            <option value="female">女</option>
+                        </select>
+                        <span class="red tip"></span>
+                    </td>
+                    <td width="33%" class="fruzzyBox">
+                        护照号码&nbsp;&nbsp;
+                        <input class="insu_input" style="width:142px;" type="text" placeholder="与护照一致" value=""
+                               data-id="10" require="true">
+                        <span class="red tip"></span>
+                    </td>
+                    <td width="33%" class="fruzzyBox">
+
+                        中文姓名
+                        <input class="insu_input" style="width:142px;" type="text" placeholder="与护照一致" value=""
+                               data-id="12" ischen="zh" require="true">
+                        <span class="red tip"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="33%" class="fruzzyBox">
+                        出生日期&nbsp;&nbsp;
+                        <span class="pos_r birthday" style="display:inline-block;">
+																	<input class="f14 star hand insu_input" type="text"
+                                                                           readonly="readonly" placeholder=""
+                                                                           value="1980-01-01" data-id="14"
+                                                                           require="true">
+																	<ins class="icon_Calendar hand"
+                                                                         style="top:17px;right:18px"></ins>
+																	<span class="red tip" style="top:-10px;"></span>
+																</span>
+                    </td>
+                    <td width="45%" class="fruzzyBox" style="text-align:left;padding-left:9%;" colspan="2">
+															<span class="hide other_rel">
+																	其他投保成人是我的&nbsp;&nbsp;
+																	<select class="relation_sel insur_sel insu_input"
+                                                                            style="width:25%;" data-id="847"
+                                                                            require="true">
+																		<option value="">请选择</option>
+																		<option value="父母亲">父母亲</option>
+																		<option value="兄弟姐妹">兄弟姐妹</option>
+																		<option value="祖父母">祖父母</option>
+																		<option value="其他">其他</option>
+																	</select>
+													  				<input class="hide other_relation insu_input"
+                                                                           style="width:120px;" type="text"
+                                                                           placeholder="" value="" data-id="847"
+                                                                           require="true">
+																	<span class="red tip"></span>
+																</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="black hide orderbox-d" id="orderBoxDialog">
+    <div class="mod_layer_title bold f14">
+        <h3>提示</h3>
+    </div>
+    <div class="mod_layer_cont mt20 orange">
+        <div class="error_tip oh ml20 f14 hide no_inventory">
+            <p>促销产品库存不足或促销已过期，促销产品将恢复原价！</p>
+        </div>
+        <div class="error_tip oh ml20 f14 hide no_promotion">
+            <p>促销已过期，促销产品将恢复原价！</p>
+        </div>
+        <div class="error_tip oh ml20 f14 hide promotion_tip">
+            <p>促销产品库存有限，请在两小时内完成支付，超过两小时未支付，订单将自动取消！</p>
+        </div>
+        <div class="error_tip oh ml20 f14 hide repeat_tip">
+            <!-- <p>XXX促销产品,不能重复购买！</p> -->
+            <p>该产品秒杀期间同一个用户只能下一单哦</p>
+        </div>
+        <div class="error_tip oh ml20 f14 hide timeout_tip">
+            <p>订单长时间未提交，请刷新页面重试！</p>
+        </div>
+        <div class="error_tip oh ml20 f14 hide date_error_tip">
+            <p>XXX选择的出行日期，现已无法预订。请修改出行日期，重新下单！</p>
+        </div>
+        <div class="error_tip oh ml20 f14 hide other_error_tip">
+            <p>XXX</p>
+        </div>
+    </div>
+    <div class="comfir-order mt10 oh">
+        <a class="btn-orange submit hand comfirm-btn"
+           style="width:50px;padding:5px 10px;float:right;display:none;">确定</a>
+        <a class="btn-orange submit hand pay-btn"
+           style="width:50px;padding:5px 10px;float:right;display: none;">继续支付</a>
+    </div>
+</div>
+<div class="popup-bottm-tip yhje" style="display: none; position:absolute;padding:5px 0;">
+    <table style="width:100%;">
+        <tbody>
+        <tr class="discount-price discount-lijian ">
+            <td>
+                <lable class="discout_icon">立减</lable>
+            </td>
+            <td>
+                <p class="oh">
+                    <span class="fl bold">折扣立减</span>
+                    <span class="fr bold tar tip-price js_curMoney" data-price="207.73" data-cid="21">207.73</span>
+                    <span class="fr bold js_curCode" style="width: 34px;" data-currencycode="currencycode">GBP</span>
+                </p>
+                <p>iTrip用户专享，市场价折扣优惠</p>
+            </td>
+        </tr>
+        <tr class="discount-coupon-price">
+            <td>
+                <lable class="discout_icon">立减</lable>
+            </td>
+            <td>
+                <p class="oh">
+                    <span class="fl bold">已用优惠券</span>
+                    <span class="fr bold tar js_curMoney" data-price="2.256699576868829" data-cid="21" data-rmb="20">2.26</span>
+                    <span class="fr bold js_curCode" style="width: 34px;" data-currencycode="currencycode">GBP</span>
+                </p>
+                <p class="coupon_name">欧洲20元通用优惠券</p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<style>
+
+    .window-float {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        z-index: 21;
+        max-width: 1100px;
+        max-height: 640px;
+        overflow: hidden;
+        background-color: #fff;
+        border-radius: 4px;
+        padding: 50px;
+        box-sizing: border-box
+    }
+
+    .window-float-close {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RkEwNTQzODg2MDVFMTFFNkJENDBBREMzNDA0RjBERjkiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RkEwNTQzODk2MDVFMTFFNkJENDBBREMzNDA0RjBERjkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpGQTA1NDM4NjYwNUUxMUU2QkQ0MEFEQzM0MDRGMERGOSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpGQTA1NDM4NzYwNUUxMUU2QkQ0MEFEQzM0MDRGMERGOSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PkmU1s8AAADLSURBVHjafJK7CsJAEEXXJbWNBv0FUVFrKwMWNv6rjSKrsRcsLHx9gSY2FlZW3gszsoTBgRMCe88kM0kthLB2zqVgBgpnVwMswNvjUgcjsAMtI9wEGzAGbQpzcAQdQ2I4gCG48S0oPMHUkLQzw1cwAfdEOqnEbgORPnKv4QeDSfT4qsS6gEzDLG8M6d2fig+52i3og3M0U87tVIVUDjScVRbxk7yEOWQPnGTAwthert9hBboSZufSWIRKSwovcJDOpTGnSnv+Gl8BBgC7TjYGkoOt2QAAAABJRU5ErkJggg==) no-repeat 100%
+    }
+
+    .window-float-content {
+        height: inherit;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-right: 30px;
+        width: 100%;
+        max-height: 540px
+    }
+
+    .window-float-content p {
+        font-size: 16px;
+        color: #000;
+        line-height: 38px
+    }
+
+    .window-float-content p.hd {
+        font-size: 18px;
+        color: #0090ff;
+        line-height: 40px
+    }
+
+    .window-float-content p.hdd {
+        color: #ed7d31;
+        font-size: 16px;
+        font-weight: 700
+    }
+
+    .window-float-content p.fq {
+        font-weight: 700
+    }
+
+    .window-float-content p.qs span {
+        color: #2f5496
+    }
+
+    .window-float-content p.qs {
+        line-height: 1.5;
+        margin-bottom: 12px
+    }
+
+    .fqa-content span {
+        color: #2f5496
+    }
+
+    .window-float-content h6 {
+        font-size: 18px;
+        color: #0090ff;
+        line-height: 40px
+    }
+
+    .fqa-content section, .window-float-content section {
+        margin: 10px 0;
+        font-size: 16px;
+        line-height: 40px
+    }
+
+    .window-float-content h5 {
+        color: #ed7d31;
+        font-size: 16px
+    }
+
+    .window-fa-tilte {
+        color: #000;
+        font-size: 16px
+    }
+
+    .window-fa-txt {
+        color: #000
+    }
+
+    .window-fa-txt > span {
+        color: #2f5496
+    }
+
+    .graybg {
+        background: #ccc
+    }
+
+    .mask-dialog {
+        position: absolute;
+        bottom: 63px;
+        width: 240px;
+        padding: 5px 0;
+        left: 100px;
+        background: #000;
+        filter: alpha(opacity=80);
+        -moz-opacity: .8;
+        opacity: .8;
+        border-radius: 4px;
+        line-height: 30px;
+        font-size: 16px;
+        transition: all 1s ease-in;
+        text-align: center;
+        color: #fff;
+        display: none
+    }
+
+    .phone-advice:hover ~ .mask-dialog {
+        display: block
+    }
+
+    .mask-dialog em {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: #000;
+        transform: rotate(45deg);
+        display: block;
+        bottom: -5px;
+        left: 120px
+    }
+
+</style>
+<!--弹框-->
+<div class="mask hide maskAll"></div>
+<div class="window-float j-window-float hide animated fadeInDown" style="margin-left: -550px; margin-top: -320px;">
+    <a class="window-float-close" href="javascript:;"></a>
+    <div class="window-float-content">
+        <p><strong>服务提供方</strong>：iTrip达人管家团队（达人管家、票务顾问、订单顾问等）</p>
+        <p><strong>服务对象：</strong>iTrip懒人无忧服务包会员</p>
+        <p><strong>服务范围：</strong>大洋洲（澳大利亚、新西兰、斐济、帕劳）、欧洲（法国、荷兰、比利时、英国、爱尔兰、意大利、西班牙、希腊、葡萄牙、瑞士、奥地利、冰岛、德国、挪威）</p>
+        <p><strong>服务时间：</strong>目的地时间09:00-18:00</p>
+        <p><strong>行程时间：</strong>行程时长不超过15日，超过按照每天58RMB收取费用</p>
+        <p class="hd">1) 基本服务</p>
+        <p><strong>当地交通向导：</strong>交通向导是指iTrip达人管家提供及时交通向导的服务。会员需要实时交通服务——QQ联系达人管家——临时定位+导航——根据会员提出的临时要求提供即时当下最佳路线。</p>
+        <p class="hd">2) 翻译协助</p>
+        <p>翻译协助是指iTrip达人管家根据会员QQ发送的图片或语音信息进行实时的文字翻译服务。包括但不限于菜单翻译、路牌翻译、实时交流语音翻译（中英双语）等。</p>
+        <p>1) 图片：QQ发送图片——翻译——文字发送</p>
+        <p>2）语音：QQ语音发送——翻译——文字发送</p>
+        <p class="hd">3) 当地吃喝玩乐</p>
+        <p><strong>服务简介：</strong>当地吃喝玩乐是指iTrip达人管家根据会员个人需求推荐最新当地特色美食、景点、购物等的服务，旨在让会员得到浸入式的当地文化体验。包括但不限于当地特色美食推荐、特色餐厅推荐、当地特色购物推荐、当地特色游玩推荐等
+        </p>
+        <p><strong>服务流程：</strong>会员QQ咨询——咨询获取信息（地理定位、会员喜好、时间、下个景点地理位置、当日所住酒店位置）——进行美食/餐厅/景点/购物推荐</p>
+        <p class="hd">4) 代办Check-in：行程二次确认</p>
+        <p><strong>服务简介：</strong>代办Check-in是指iTrip达人管家提供的帮助会员完成境外自由行相关的订单Check-in的服务。仅限iTrip站内产品。</p>
+        <p><strong>服务流程：</strong>QQ提出Check-in需求——即时回复会员——发给供应商Check-in——完成Check-in——回复会员</p>
+    </div>
+</div>
+<!--优惠卷-->
+<style>
+    .mask {
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+        height: 100%;
+        left: 0;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 20;
+    }
+
+    .coupon-list {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        z-index: 30;
+        width: 540px;
+        height: 410px;
+        overflow: hidden;
+        margin-left: -290px;
+        margin-top: -225px;
+        background-color: #fff;
+        border-radius: 2px;
+        padding: 20px
+    }
+
+    .coupon-list .title {
+        font-size: 16px;
+        margin-bottom: 10px;
+        padding-left: 72px;
+        color: #666;
+    }
+
+    .coupon-list .close {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        width: 18px;
+        height: 18px;
+        display: inline-block;
+    }
+
+    .coupon-list .content {
+        height: 340px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 20px;
+    }
+
+    .coupon-list ul li {
+        width: 420px;
+        height: 96px;
+        background: url(../img/uc/coupon-bg.png) center right no-repeat;
+        position: relative;
+        line-height: 22px;
+        margin-bottom: 20px;
+        padding-left: 50px;
+    }
+
+    .coupon-list ul li.disabeld {
+        color: #b0b0b0;
+        border: 1px solid #bbb;
+    }
+
+    .coupon-list ul li.disabeld .count-p {
+        color: #b0b0b0;
+    }
+
+    .coupon-list ul li .select-btn {
+        position: absolute;
+        display: block;
+        width: 30px;
+        height: 30px;
+        left: 0;
+        top: 50%;
+        margin-top: -15px;
+    }
+
+    .coupon-list ul li .count-p {
+        width: 120px;
+        padding-left: 10px;
+        color: #fe9f00;
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    .coupon-list ul li .count-p .count-d {
+        line-height: 45px;
+        height: 45px;
+        overflow: hidden;
+    }
+
+    .coupon-list ul li .count-info {
+        line-height: 24px;
+        margin-top: 13px;
+        padding-left: 40px;
+    }
+
+    .coupon-list ul li .count-info .count-time {
+        color: #fe9f00;
+    }
+
+    .coupon-list ul li .count-info i.arrow {
+        /*报错*/
+        /*background: url(../img/arrow_down.jpg) no-repeat;*/
+        width: 10px;
+        height: 6px;
+        display: inline-block;
+        transition: all 0.4s ease;
+        margin-left: 8px;
+        position: relative;
+        top: -2px;
+    }
+
+    .coupon-list ul li .count-info .count-condition:hover .count_details {
+        opacity: 1;
+        filter: alpha(opacity=100);
+        top: 28px;
+        z-index: 50;
+    }
+
+    .coupon-list ul li .count-info .count-condition:hover i.arrow {
+        /*报错*/
+        /* background: url(../img/arrow_up.jpg) no-repeat;*/
+    }
+
+    .coupon-list ul li .count-info .count_details {
+        border: 1px solid #e7e7e7;
+        box-shadow: 0 0 14px #ddd;
+        width: 260px;
+        top: 18px;
+        z-index: -1;
+        line-height: 28px;
+        background: #fff;
+        border-radius: 2px;
+        transition: all 0.4s ease;
+        opacity: 0;
+        padding: 10px 20px;
+        filter: alpha(opacity=0);
+    }
+
+    .coupon-list ul li .count-info .count_details .icon_arrow_up {
+        top: -24px;
+        left: 30px;
+    }
+
+</style>
+<!--弹框-->
+<div class="mask hide"></div>
+<!--旅途无忧-->
+<div class="coupon-list hide">
+    <h3 class="title">可用优惠券</h3>
+    <a class="close" href="javascript:;"><i class="iconfont" style="font-size:14px;color:#bbb;"></i></a>
+    <div class="content">
+        <ul>
+            <li>
+                <div class="select-btn">
+                    <span class="icon icon_Circle hand js_voucherSelect"></span>
+                </div>
+                <div class="fl count-p" data-discount="20.0" data-ucode="lHnxhFrfLhyxz4Fh" data-value="xlRjOUuc">
+                    <p class="count-d f36"><em class="f16">£</em>2</p>
+                    <p class="count-i f14">满£113</p>
+                </div>
+                <div class="count-info fl f14">
+                    <p class="count-t">欧洲20元通用优惠券</p>
+                    <p class="count-time">有效期 2019.08.28 至 2019.10.31</p>
+
+                    <div class="count-condition pos_r hand">指定条件适用<i class="arrow"></i>
+                        <div class="count_details pos_a">
+                            <div class="pos_r">
+                                <i class="icon_arrow_up"></i>
+                                <p>适用产品类别：景点活动、打包产品、线路、当地跟团、出境游、接机-包车、接机-拼车、送机-包车、送机-拼车、按天包车、线路用车</p>
+                                <p>
+                                    适用国家：仅英国、荷兰、比利时、捷克、卢森堡、西班牙、葡萄牙、希腊、斯洛伐克、列支敦士登、摩纳哥、梵蒂冈、匈牙利、奥地利、瑞士、欧洲、克罗地亚、爱尔兰、波兰、挪威、丹麦、芬兰、瑞典、冰岛、斯洛文尼亚、法罗群岛、马耳他、格陵兰岛、土耳其、摩洛哥、俄罗斯、凡尔登、意大利、德国、法国产品可用</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<script id="coupon-list-temp" type="text/html">
+    {{each coupons as coupon index}}
+    <li class="{{couponColor }}">
+        <div class="select-btn">
+            <span class="icon icon_Circle hand js_voucherSelect"></span>
+        </div>
+        <div class="fl count-p" data-value="{{coupon.cCode}}" data-ucode="{{coupon.uCode}}"
+             data-discount="{{coupon.discount}}">
+            {{if coupon.type==1}}
+            <p class="count-d f36"><em class="f16">{{coupon.symbol }}</em>{{coupon.desc.quota }}</p>
+            {{else if coupon.type==2}}
+            <p class="count-d f36">{{coupon.desc.quota }}<em class="f16">折</em></p>
+            {{/if}}
+            <p class="count-i f14">{{coupon.desc.amount }}</p>
+        </div>
+        <div class="count-info fl f14">
+            <p class="count-t">{{coupon.label }} </p>
+            <p class="count-time">有效期 {{coupon.startTime | formatCoupon}} 至 {{coupon.endTime | formatCoupon}}</p>
+            {{if coupon.desc.toplimit || coupon.desc.productType || coupon.desc.region && coupon.desc.region.product ||
+            coupon.desc.region || coupon.desc.city || coupon.desc.date || coupon.desc.channel }}
+            <div class="count-condition pos_r hand">指定条件适用<i class="arrow"></i>
+                <div class="count_details pos_a">
+                    <div class="pos_r">
+                        <i class="icon_arrow_up"></i>
+                        {{if coupon.desc.toplimit}}
+                        <p>优惠上限：{{coupon.desc.toplimit }}</p>
+                        {{/if}}
+                        {{if coupon.desc.productType}}
+                        <p>适用产品类别：{{coupon.desc.productType }}</p>
+                        {{/if}}
+                        {{if coupon.desc.product}}
+                        <p>适用产品ID：{{coupon.desc.product }}</p>
+                        {{/if}}
+                        {{if coupon.desc.product}}
+                        <p>不适用产品ID：{{coupon.desc.product }}</p>
+                        {{/if}}
+                        {{if coupon.desc.product}}
+                        <p>适用国家：{{coupon.desc.excludeProduct }}</p>
+                        {{/if}}
+                        {{if coupon.desc.product}}
+                        <p>适用城市：{{coupon.desc.region }}</p>
+                        {{/if}}
+                        {{if coupon.desc.product}}
+                        <p>适用出行日期：{{coupon.desc.city }}</p>
+                        {{/if}}
+                        {{if coupon.desc.product}}
+                        <p>使用平台：{{coupon.desc.channel }}</p>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+            {{else}}
+            <div class="count-condition pos_r hand">全场通用(特定活动除外)</div>
+            {{/if}}
+        </div>
+    </li>
+    {{/each}}
+</script>
+<script type="text/javascript">
+    var webRoot = '//www.itrip.com/main';
+    var accessRoot = 'https://www.itrip.com';
+    var picHome = '//pic.itrip.com/img';
+    var pic2Home = '//pic2.itrip.com';
+    var siteName = 'iTrip爱去';
+    var areaId = '1';
+    var cssHome = '//static.itrip.com/css';
+    var jsHome = '//static.itrip.com/js';
+    var videoHome = '//v.itrip.com/video';
+</script>
+
+<script src="//static.itrip.com/js/lib/__CONCAT__jquery-1.9.1.min.js,jquery.lazyload.min.js,jquery.twemoji.min.1.4.1.js,jquery.cookie.js?v=20170819"
+        type="text/javascript"></script>
+<!--
+<script type="text/javascript" src="//static.itrip.com/js/lib/qc_loader.js?v=20170819" data-appid="101203619"  data-redirecturi="https://www.itrip.com/main/login/qq" charset="utf-8" ></script>
+-->
+<div class="footer">
+    <div class="footer_cont">
+        <div class="wrap">
+            <div class="footSlogn horiz hide">
+                <ul>
+                    <li>
+                        <span class="icon_footer icon_footer_Money"></span>
+                        <p>
+                            <span class="f24">省钱省心</span>
+                            <span>低价保障 免费改单</span>
+                        </p>
+                    </li>
+                    <li>
+                        <span class="icon_footer icon_footer_Bag"></span>
+                        <p>
+                            <span class="f24">产品丰富</span>
+                            <span>全面多样 优质地道</span>
+                        </p>
+                    </li>
+                    <li>
+                        <span class="icon_footer icon_footer_Earplug"></span>
+                        <p>
+                            <span class="f24">专业服务</span>
+                            <span>快速响应 中文服务</span>
+                        </p>
+                    </li>
+                    <li style="border-right:0">
+                        <span class="icon_footer icon_footer_Praise"></span>
+                        <p>
+                            <span class="f24">真实点评</span>
+                            <span>图文点评 高额返现</span>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="foot_nav horiz oh">
+                <ul>
+                    <li><a style="margin:0 10px;" href="https://www.itrip.com/about/introduction" target="_blank"
+                           rel="nofollow">公司简介</a>|
+                    </li>
+                    <li><a style="margin:0 10px;" href="https://www.itrip.com/about/qualification" target="_blank"
+                           rel="nofollow">公司资质</a>|
+                    </li>
+                    <li><a style="margin:0 10px;" href="https://www.itrip.com/help" target="_blank"
+                           rel="nofollow">帮助中心</a>|
+                    </li>
+                    <li><a style="margin:0 10px;" href="https://www.itrip.com/about/Q&amp;A" target="_blank"
+                           rel="nofollow">常见问题</a>|
+                    </li>
+                    <li><a style="margin:0 10px;" href="https://www.itrip.com/about/bookingProtocol" target="_blank"
+                           rel="nofollow">预订协议</a>|
+                    </li>
+                    <li><a style="margin:0 10px;" href="https://www.itrip.com/about/cancelPolicy" target="_blank"
+                           rel="nofollow">修改和取消政策</a>|
+                    </li>
+                    <li><a style="margin:0 10px;" href="https://www.itrip.com/help?menuId=387" target="_blank"
+                           rel="nofollow">支付指南</a>|
+                    </li>
+                    <li><a style="margin:0 10px;" href="https://www.itrip.com/help?menuId=382" target="_blank"
+                           rel="nofollow">预订指南</a>|
+                    </li>
+                    <li><a style="margin:0 10px;" href="https://www.itrip.com/about/privacyprotection" target="_blank"
+                           rel="nofollow">隐私保护</a>|
+                    </li>
+                    <li><a style="margin:0 10px;" href="http://guide.itrip.com/" target="_blank" rel="nofollow">旅游攻略</a>|
+                    </li>
+                    <li><a style="margin:0 10px;" href="https://www.itrip.com/distribution/index" target="_blank"
+                           rel="nofollow">分销伙伴</a></li>
+                </ul>
+                <p class="mt15 ml15">
+                    <a class="icon_footer icon_footer_net_2" style="cursor:auto;" href="javascript:;"
+                       rel="nofollow"></a>
+                    <a class="icon_footer icon_footer_net_3" style="cursor:auto;" href="javascript:;"
+                       rel="nofollow"></a>
+                    <a class="icon_footer icon_footer_net_4" style="cursor:auto;" href="javascript:;"
+                       rel="nofollow"></a>
+                    <a class="icon_footer icon_footer_net_5" style="cursor:auto;" href="javascript:;"
+                       rel="nofollow"></a>
+                    <a class="icon_footer icon_footer_net_6" style="cursor:auto;" href="javascript:;"
+                       rel="nofollow"></a>
+                </p>
+                <p class="mt15 ml15">Copyright © 2019 北京易游风光国际旅行社有限公司成都分公司 | 蜀ICP备19013516号-1</p>
+            </div>
+            <div class="foot_us" style="padding:0 22px; width: 320px;height: 120px;">
+                <a class="icon_footer footer_logo ml30"></a>
+                <ul class="ft-gj ml30">
+                    <li class="weixin"><i></i>
+                        <div class="code">
+						<span class="qr">
+						<img width="165" src="//pic.itrip.com/img/right/qrc-gz-1.jpg">
+						</span>
+                            <em></em>
+                        </div>
+                    </li>
+                    <li class="weibo"><i></i>
+                        <div class="code">
+                            <a href="//weibo.com/aoliday" target="_blank" rel="nofollow"> @iTrip爱去</a>
+                            <img src="//pic.itrip.com/img/about/weibo-aiqu.jpg">
+                            <em></em>
+                        </div>
+                    </li>
+                    <li class="qq"><i></i>
+                        <div class="code">
+                            <p>iTrip澳大利亚旅游群：<a href="//jq.qq.com/?_wv=1027&amp;k=40nviU1" target="_blank"
+                                               rel="nofollow">128691627</a></p>
+                            <p>iTrip新西兰旅游交流群：<a href="//jq.qq.com/?_wv=1027&amp;k=40nsxIS" target="_blank"
+                                                rel="nofollow">123662636</a></p>
+                            <em></em>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="fr_link mt15 oh">
+                <div class="fl">合作伙伴：</div>
+                <div class="fl hz" style="width:1100px;">
+                    <a href="http://www.australia.com/" target="_blank" rel="nofollow">
+                        <img width="112" height="28" class="lazy_footer" style="display: inline;"
+                             src="//pic.itrip.com/img/footer/aodaliya.jpg?imageView2/5/w/112/h/28"
+                             data-original="//pic.itrip.com/img/footer/aodaliya.jpg?imageView2/5/w/112/h/28">
+                        <p>澳大利亚旅游局</p>
+                    </a>
+                    <a href="http://www.newzealand.com/cn/" target="_blank" rel="nofollow">
+                        <img width="112" height="28" class="lazy_footer" style="display: inline;"
+                             src="//pic.itrip.com/img/footer/xxn.jpg?imageView2/5/w/112/h/28"
+                             data-original="//pic.itrip.com/img/footer/xxn.jpg?imageView2/5/w/112/h/28">
+                        <p>新西兰旅游局</p>
+                    </a>
+                    <a href="http://cn.rendezvousenfrance.com/" target="_blank" rel="nofollow">
+                        <img width="112" height="28" class="lazy_footer" style="display: inline;"
+                             src="//pic.itrip.com/img/footer/faguo-logo.gif?imageView2/5/w/112/h/28"
+                             data-original="//pic.itrip.com/img/footer/faguo-logo.gif?imageView2/5/w/112/h/28">
+                        <p>法国国家旅游局</p>
+                    </a>
+                    <a href="http://www.visitbritain.com/" target="_blank" rel="nofollow">
+                        <img width="112" height="28" class="lazy_footer" style="display: inline;"
+                             src="//pic.itrip.com/img/footer/yingguo.gif?imageView2/5/w/112/h/28"
+                             data-original="//pic.itrip.com/img/footer/yingguo.gif?imageView2/5/w/112/h/28">
+                        <p>英国旅游局</p>
+                    </a>
+                    <a href="http://www.germany.travel/cn/" target="_blank" rel="nofollow">
+                        <img width="112" height="28" class="lazy_footer" style="display: inline;"
+                             src="//pic.itrip.com/img/footer/deguo.jpg?imageView2/5/w/112/h/28"
+                             data-original="//pic.itrip.com/img/footer/deguo.jpg?imageView2/5/w/112/h/28">
+                        <p>德国国家旅游局</p>
+                    </a>
+                    <a href="http://www.holland.com/cn/tourism.htm" target="_blank" rel="nofollow">
+                        <img width="112" height="28" class="lazy_footer" style="display: inline;"
+                             src="//pic.itrip.com/img/footer/helan.jpg?imageView2/5/w/112/h/28"
+                             data-original="//pic.itrip.com/img/footer/helan.jpg?imageView2/5/w/112/h/28">
+                        <p>荷兰国家旅游局</p>
+                    </a>
+                    <a href="http://www.myswitzerland.com.cn/" target="_blank" rel="nofollow">
+                        <img width="112" height="28" class="lazy_footer" style="display: inline;"
+                             src="//pic.itrip.com/img/footer/ruishi.jpg?imageView2/5/w/112/h/28"
+                             data-original="//pic.itrip.com/img/footer/ruishi.jpg?imageView2/5/w/112/h/28">
+                        <p>瑞士国家旅游局</p>
+                    </a>
+                    <a href="http://www.spain.info/" target="_blank" rel="nofollow">
+                        <img width="112" height="28" class="lazy_footer" style="display: inline;"
+                             src="//pic.itrip.com/img/footer/xibanya.jpg?imageView2/5/w/112/h/28"
+                             data-original="//pic.itrip.com/img/footer/xibanya.jpg?imageView2/5/w/112/h/28">
+                        <p>西班牙旅游局</p>
+                    </a>
+                    <a href="http://www.enit.it/en/" target="_blank" rel="nofollow">
+                        <img width="112" height="28" class="lazy_footer" style="display: inline;"
+                             src="//pic.itrip.com/img/footer/yidali.jpg?imageView2/5/w/112/h/28"
+                             data-original="//pic.itrip.com/img/footer/yidali.jpg?imageView2/5/w/112/h/28">
+                        <p>意大利国家旅游局</p>
+                    </a>
+                    <a href="http://www.ireland.com/" target="_blank" rel="nofollow">
+                        <img width="112" height="28" class="lazy_footer" style="display: inline;"
+                             src="//pic.itrip.com/img/footer/aierlan.jpg?imageView2/5/w/112/h/28"
+                             data-original="//pic.itrip.com/img/footer/aierlan.jpg?imageView2/5/w/112/h/28">
+                        <p>爱尔兰旅游局</p>
+                    </a>
+                    <a href="http://www.visitsweden.com/sweden/" target="_blank" rel="nofollow">
+                        <img width="112" height="28" class="lazy_footer" style="display: inline;"
+                             src="//pic.itrip.com/img/footer/ruidian.gif?imageView2/5/w/112/h/28"
+                             data-original="//pic.itrip.com/img/footer/ruidian.gif?imageView2/5/w/112/h/28">
+                        <p>瑞典旅游局</p>
+                    </a>
+                    <a href="http://www.austria.info/at" target="_blank" rel="nofollow">
+                        <img width="112" height="28" class="lazy_footer" style="display: inline;"
+                             src="//pic.itrip.com/img/footer/aodili.gif?imageView2/5/w/112/h/28"
+                             data-original="//pic.itrip.com/img/footer/aodili.gif?imageView2/5/w/112/h/28">
+                        <p>奥地利旅游局</p>
+                    </a>
+                    <a href="http://www.visitportugal.com/" target="_blank" rel="nofollow">
+                        <img width="112" height="28" class="lazy_footer" style="display: inline;"
+                             src="//pic.itrip.com/img/footer/putaoya.gif?imageView2/5/w/112/h/28"
+                             data-original="//pic.itrip.com/img/footer/putaoya.gif?imageView2/5/w/112/h/28">
+                        <p>葡萄牙旅游局</p>
+                    </a>
+                    <a href="http://www.gnto.gov.gr/" target="_blank" rel="nofollow">
+                        <img width="112" height="28" class="lazy_footer" style="display: inline;"
+                             src="//pic.itrip.com/img/footer/xila.gif?imageView2/5/w/112/h/28"
+                             data-original="//pic.itrip.com/img/footer/xila.gif?imageView2/5/w/112/h/28">
+                        <p>希腊国家旅游局</p>
+                    </a>
+                    <a href="http://www.globalblue.cn/customer-services/" target="_blank" rel="nofollow">
+                        <img width="112" height="28" class="lazy_footer" style="display: inline;"
+                             src="//pic.itrip.com/img/footer/lanlian.gif?imageView2/5/w/112/h/28"
+                             data-original="//pic.itrip.com/img/footer/lanlian.gif?imageView2/5/w/112/h/28">
+                        <p>环球蓝联退税官网</p>
+                    </a>
+
+                    <a href="http://www.gousa.cn/" target="_blank" rel="nofollow">
+                        <img width="112" height="28" class="lazy_footer" style="display: inline;"
+                             src="//pic.itrip.com/img/footer/usa_logo.jpg?imageView2/5/w/112/h/28"
+                             data-original="//pic.itrip.com/img/footer/usa_logo.jpg?imageView2/5/w/112/h/28">
+                        <p>美国国家旅游局</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- itrip统计 -->
+
+<script src="//static.itrip.com/js/lib/des/des.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/dot/2.0.0-beta.0/doT.js"></script>
+<script type="text/javascript">
+    /*
+data-i-op-address:
+data-i-op-reviewid
+ */
+    (function () {
+        var timer = 0;
+        var pic2_home = pic2Home;
+        var pic_home = picHome;
+        var _cookie = {
+            get: function (key) {
+                if (!key)
+                    return null;
+                key = key.toUpperCase();
+                var cks = document.cookie.split("; ");
+                var tmp = null;
+                for (var i = 0; i < cks.length; i++) {
+                    tmp = cks[i].split("=");
+                    if (tmp[0].toUpperCase() == key)
+                        return unescape(tmp[1]);
+                }
+                return null;
+            },
+            set: function (options) {
+                options = $.extend({
+                    key: "",
+                    value: "",
+                    expires: 0,
+                    path: "",
+                    domain: document.domain
+                }, options);
+
+                var ck = [options.key + "=" + escape(options.value)];
+                if (!isNaN(options.expires) && options.expires != 0) {//
+                    var date = new Date();
+                    date.setTime(date.getTime() + options.expires * 60 * 1000);
+                    ck.push(";expires=" + date.toUTCString());
+                }
+
+                ck.push(";path=" + (options.path || "/"));
+                if (options.domain && options.domain.toLowerCase() !== "localhost")
+                    ck.push(";domain=" + options.domain);
+                document.cookie = ck.join("");
+            }
+        };
+        var iclick = {
+            init: function () {
+                setTimeout(function () {
+                    iclick.getPath();
+                    iclick.getUid();
+                }, 200);
+            },
+            getPath: function () {
+                var
+                    protocol = location.protocol,
+                    host = window.location.host;
+                this.uidPath = protocol + "//" + host + "/main/getUniqueVisitorId";
+                this.reportPath = protocol + "//" + host + "/main/reloadPosition";
+                this.reportPathProduct = protocol + "//" + host + "/main/product/reloadPosition";
+            },
+            getUid: function () {
+                var uid = _cookie.get('uid') || iclick.uid;
+                if (uid) {
+                    //
+                    if ($(".itrip_recommend").length > 0) {
+                        this.reportInfoProduct();
+                    } else {
+                        this.reportInfo();
+                    }
+                } else {
+                    //
+                    this.createUid();
+                }
+
+            },
+            createUid: function () {
+                if (timer > 3) {
+                    timer = 0;
+                    return;
+                }
+                timer++;
+                var params = {
+                    "client": {
+                        'userAgent': navigator.userAgent.split(" ").join()
+                    }
+                }
+                if (typeof (_ITRIP_DESKEY) == "undefined") {
+                    window._ITRIP_DESKEY = 'itripOperation@aoliday.comBySy&Cc';
+                }
+                if (typeof (strEnc) == 'function') {
+                    params.client = strEnc(JSON.stringify(params.client), window._ITRIP_DESKEY);
+                } else {
+                    setTimeout(function () {
+                        iclick.createUid();
+                    }, 2000);
+                    return;
+                }
+                $.ajax({
+                    type: "post",
+                    async: true,
+                    url: iclick.uidPath,
+                    data: params,
+                    success: function (res) {
+                        _cookie.set({key: "uid", value: res.data, expires: "365"});
+                        iclick.uid = res.data;
+                        if ($(".itrip_recommend").length > 0) {
+                            iclick.reportInfoProduct();
+                        } else {
+                            iclick.reportInfo();
+                        }
+                    },
+                    error: function () {
+                        setTimeout(function () {
+                            iclick.getUid();
+                        }, 500);
+                    }
+                });
+            },
+            reportInfoProduct: function () {
+                var _u = iclick.getAllCids();
+                iclick.doReportProduct(_u.infosP);
+                //iclick.doReportProduct("9174");
+                iclick.doReport(_u.infos);
+            },
+            reportInfo: function () {
+                iclick.doReport(iclick.getAllCids().infos);
+            },
+            doReportProduct: function (ids) {
+                var params = {
+                    uid: _cookie.get('uid') || iclick.uid,
+                    cids: ids,
+                    excludeIds: iclick.getAllCids().infosP
+                }
+                if (!params.uid || !params.cids) {
+                    return;
+                }
+                $.ajax({
+                    type: "get",
+                    async: false,
+                    url: iclick.reportPathProduct,
+                    data: params,
+                    success: function (res) {
+                        if (res.data) {
+                            iclick.refreshProduct(res.data);
+                        }
+                    },
+                    error: function (res) {
+                        console.log("upload error");
+                    }
+                });
+            },
+            doReport: function (ids) {
+                var params = {
+                    uid: _cookie.get('uid') || iclick.uid,
+                    cids: ids,
+                    excludeIds: iclick.getAllCids().infos
+                }
+                if (!params.uid || !params.cids) {
+                    return;
+                }
+                $.ajax({
+                    type: "get",
+                    async: false,
+                    url: iclick.reportPath,
+                    data: params,
+                    success: function (res) {
+                        iclick.doTorefresh(res);
+                    },
+                    error: function (res) {
+                        console.log("upload error");
+                    }
+                });
+            },
+            doTorefresh: function (res) {
+                if ($(".money_sw_box_txt").attr("data-id")) {
+                    if (res.data && res.data.reservePositions) {
+                        iclick.refresh(res.data);
+                    }
+
+                    /* if(res.data && res.data.reserveReviews){
+		            iclick.refreshReviews(res.data.reserveReviews);
+		          } */
+                } else {
+                    setTimeout(function () {
+                        iclick.doTorefresh(res);
+                    }, 1000);
+                }
+            },
+            refreshProduct: function (data) {
+                //data-i-op-href //
+                //data-i-op-xcts //
+                //data-i-op-ywcs //
+                //data-i-op-ywsc
+                //data-i-op-bhjd:
+                //data-i-op-icon
+                //data-i-op-img:
+                //data-i-op-purchase
+                //data-i-op-price
+                var item,
+                    content,
+                    invalidId;
+
+                for (var i in data) {
+                    item = data[i];
+                    invalidId = i;
+                    var interText;
+                    if ($(".view-recommend").length > 0) {
+                        interText = doT.template($("#recommendProduct1").text());
+                    } else {
+                        interText = doT.template($("#recommendProduct2").text());
+                    }
+                    $("[data-i-op='" + invalidId + "']").html(interText(item));
+                    //
+                    $("li[data-i-op='" + invalidId + "']").each(function () {
+                        var name = $(this).attr("name");
+                        if (name && name.indexOf('__AD_') > -1) {
+                            $(this).attr("name", "__AD_" + item.positionCode + "_" + item.contentId);
+                        }
+                        $(this).attr("data-i-op", item.contentId);
+                    });
+                }
+                $('img.lazy,img.lazy1').lazyload({
+                    placeholder: picHome + "/loading2.gif",
+                    effect: "fadeIn",
+                    threshold: 200,
+                    skip_invisible: false
+                });
+            },
+            //banner
+            refresh: function (res) {
+                //data-i-op-title //
+                //data-i-op-img:
+                //data-i-op-productid:
+
+                var item,
+                    content,
+                    invalidId,
+                    data = res.reservePositions,
+                    interText,
+                    icons = res.productReviewIconUrls;
+                for (var i = 0; i < data.length; i++) {
+                    item = data[i];
+                    invalidId = item.invalidId;
+
+                    if (item.price) {
+                        item.productReviewIconUrls = icons;
+                        item.activityTypePromotion = res.activityTypePromotion;
+                        item.inventoryEnabled = res.inventoryEnabled;
+                        /* if($("[data-i-op='"+invalidId+"']").eq(0).parents(".pro_list").length > 0){
+	          		interText = doT.template($("#modProduct").text());
+	          	}else{
+	          		interText = doT.template($("#saleProduct").text());
+	          	}  */
+                        interText = doT.template($("#saleProduct").text());
+                        $("li[data-i-op='" + invalidId + "']").html(interText(item));
+                    } else {
+                        var imgsrc = $("img[data-i-op='" + invalidId + "'][data-i-op-img]").attr("src");
+                        var _laststr = imgsrc && imgsrc.substring(imgsrc.indexOf('?'), imgsrc.length) || '';
+                        //imgage
+                        item.image && $("img[data-i-op='" + invalidId + "'][data-i-op-img]").each(function () {
+                            var _img = item.image.indexOf('http') > -1 ? item.image : pic2_home + "/p/" + item.image;
+                            if ($(this).attr("data-original")) {
+                                $(this).attr("data-original", _img + "?" + _laststr);
+                            } else {
+                                $(this).attr("src", _img + "?" + _laststr);
+                            }
+                            $(this).attr("title", item.title);
+                            $(this).attr("alt", item.title);
+                        });
+
+                        item.image && $("li[data-i-op='" + invalidId + "'][data-i-op-img],div[data-i-op='" + invalidId + "'][data-i-op-img]").each(function () {
+                            var _img = item.image.indexOf('http') > -1 ? item.image : pic2_home + "/p/" + item.image;
+                            _img = _img + "?imageView2/1/q/90";
+                            $(this).css("background-image", 'url(' + _img + ')');
+                        });
+
+
+                        $("[data-i-op='" + invalidId + "'][data-i-op-href]").each(function () {
+                            $(this).attr("href", item.url);
+                            item.title && $(this).attr("alt", item.title);
+                        });
+
+                        //title
+                        item.title && $("[data-i-op='" + invalidId + "'][data-i-op-titile]").each(function () {
+                            $(this).text(item.title);
+                        });
+
+                    }
+                    item.price && $("[data-i-op='" + invalidId + "'][data-i-op-price]").each(function () {
+                        $(this).attr("data-price", item.price);
+                        $(this).attr("data-cid", item.currencyId);
+                        iclick.calPrice($(this), item.price, item.currencyId);
+                    });
+                    $("[data-i-op='" + invalidId + "']").each(function () {
+                        var name = $(this).attr("name");
+                        if (name && name.indexOf('__AD_') > -1) {
+                            $(this).attr("name", "__AD_" + item.code + "_" + item.id);
+                        }
+                        $(this).attr("data-i-op", item.id);
+                    });
+                }
+                $(document).find('img.lazy').lazyload({
+                    placeholder: picHome + "/loading2.gif",
+                    effect: "fadeIn",
+                    threshold: 200,
+                    skip_invisible: true
+                });
+            },
+            calPrice: function (obj, money, fromCurrencyId) {
+                var toCurrency = $(".money_sw_box_txt").attr("data-id");
+                var allExRates = obj.attr('data-exRates');
+                if (typeof allExRates != 'object' && allExRates.indexOf('=') > -1) {
+                    allExRates = allExRates.replace(/\=/g, ':');
+                }
+                var exRatesObj;
+                if (typeof allExRates == 'string') {
+                    exRatesObj = eval("(" + allExRates + ")"); //string to json
+                } else {
+                    exRatesObj = allExRates;
+                }
+                var toRate = typeof exRatesObj[toCurrency] == 'object' ? exRatesObj[toCurrency].exRate : exRatesObj[toCurrency];
+                var fromRate = typeof exRatesObj[fromCurrencyId] == 'object' ? exRatesObj[fromCurrencyId].exRate : exRatesObj[fromCurrencyId];
+
+                var toMoney = (Number(money) * Number(fromRate) / Number(toRate));
+                obj.empty().text(toMoney.toFixed(2));
+            },
+            //
+            getUrl: function (reviewDetail) {
+                var firstPic = reviewDetail.review.firstPic;
+                var images = reviewDetail.images;
+                if (firstPic) {
+                    if (firstPic.indexOf('http') > -1) {
+                        return firstPic;
+                    } else {
+                        return pic2_home + firstPic;
+                    }
+                } else {
+                    if (images && images.length > 0) {
+                        var _img = images[0];
+                        if (_img.indexOf('http') > -1) {
+                            if (_img.indexOf("http://www.aoliday.com/p") > -1 || _img.indexOf("https://www.aoliday.com/p") > -1) {
+                                return _img.replace("//www.aoliday.com/p", pic2_home + "/p");
+                            } else {
+                                return _img;
+                            }
+                        } else {
+                            if (_img.indexOf('/p') == -1) {
+                                return pic2_home + "/p/" + _img;
+                            } else {
+                                return pic2_home + _img;
+                            }
+                        }
+                    } else {
+                        if (reviewDetail.productImages && reviewDetail.productImages.length > 0) {
+                            return pic2_home + "/p/" + productDetail.productImages[0].small;
+                        } else {
+                            return pic_home + "/no-image.jpg";
+                        }
+                    }
+                }
+            },
+            getIconPath: function (id) {
+                if (productReviewIconUrls && productReviewIconUrls.length > 0 && productReviewIconUrls[id]) {
+                    return pic2_home + "/p/" + productReviewIconUrls[id];
+                }
+            },
+            getAllCids: function () {
+                var infos = [], _infos = {}, id, infosP = [];
+                $("[data-i-op]").each(function (item) {
+                    id = $(this).attr("data-i-op");
+                    if (id && !_infos[id]) {
+                        _infos[id] = id;
+                        if ($(this).parents(".itrip_recommend").length > 0) {
+                            infosP.push(id);
+                        } else {
+                            infos.push(id);
+                        }
+                    }
+                });
+                return {
+                    infos: infos.join(","),
+                    infosP: infosP.join(",")
+                }
+            }
+        }
+        iclick.init();
+        window.doReport = iclick.doReport;
+        window.doReportProduct = iclick.doReportProduct;
+    })();
+
+</script>
+<script id="recommendProduct1" type="text/x-dot-template">
+    <div class="pro_img">
+        <div class="tip_tit_red" style="display: none;">
+            <span style="width: 55px;">新品上架</span> <i></i>
+        </div>
+        <a href="{{=it.contentUrl}}" target="_blank">
+            {{? it.image.small.indexOf("//")>-1 || it.image.small.indexOf("http")>-1}}
+            <img class="pro_img lazy" data-original="{{=it.image.small}}" width="300" height="200" border="0">
+            {{??}}
+            <img class="pro_img lazy" data-original="//pic2.itrip.com/p/{{=it.image.small}}" width="300" height="200"
+                 border="0">
+            {{?}}
+            <div class="pro_desc_bg" style="height: 0px;"></div>
+            <div class="pro_desc" style="height: 0px;">
+                {{? it.xcts && it.xcts != ''}}
+                <div class="mt15 oh" style="padding:0px 10px;color:#fff">
+                    <div class="fl">行程特色：</div>
+                    <div class="pro_desc_item fl">{{=it.xcts}}</div>
+                </div>
+                {{?}}
+
+                {{? it.ywcs && it.ywcs != ''}}
+                <p class="mt5">
+                    <span>游玩城市：</span><span class="pro_desc_item">{{=it.ywcs}}</span>
+                </p>
+                {{?}}
+
+                {{? it.ywsc && it.ywsc != ''}}
+                <p class="mt5">
+                    <span>游玩时长：</span>
+                    <span class="pro_desc_item">{{=it.ywsc}}</span>
+                </p>
+                {{?}}
+
+                {{? it.bhjd && it.bhjd != ''}}
+                <p class="mt5 oh">
+                    <span class="fl">包含景点：</span>
+                    <span class="pro_desc_item fl" style="height:50px;overflow:hidden;">{{=it.bhjd}}</span>
+                </p>
+                {{?}}
+            </div>
+        </a>
+        {{? it.promotionIconUrl !=null && it.promotionIconUrl !=''}}
+        <div class="icon_count" style="position:absolute;top:0px; left:8px;">
+            <img src="{{=it.promotionIconUrl}}" style="width: 70px;">
+        </div>
+        {{?}}
+    </div>
+    <div class="pro_cont">
+        <a class="blue" href="{{=it.contentUrl}}" target="_blank"><h3 class="f14 mt10 normal pro_title">
+            {{=it.name}}</h3></a>
+        <p class="mt5 darkgrey clearfix">
+				<span class="fl">
+					{{? it.confirmRightNow == 1}}
+					<img src="//pic.itrip.com/img/product/comfirm.jpg" width="61" height="20" style="margin-top:-8px;">
+					{{?}}
+				</span>
+            {{? it.activityType == 1 && it.remainInventory > 0 && it.enableInventory == 1}}
+            <span class="fr price_label orange mtd10">仅剩{{=it.remainInventory}}</span>
+            {{??}}
+            <span class="grey fr" data-hide-marketprice="true">&nbsp;</span>
+            {{?}}
+        </p>
+        <p class="darkgrey clearfix">
+            <span class="fl">已有{{=it.purchaseNum}}人购买</span>
+            <span class="orange fr bold {{? it.activityType == 1 && it.remainInventory > 0 && it.enableInventory == 1}} new_style ms {{? it.confirmRightNow == 1}}mtd10{{?}}{{?}}">
+					<label class="js_curCode">{{=it.currencySymbol}}</label>&nbsp;&nbsp;
+					<label class="js_curMoney"
+                           data-exRates='{9=4.85, 10=4.52, 11=3.16, 12=1.0, 13=7.0887, 14=0.23, 15=5.0E-4, 17=5.1632, 16=1.6, 21=8.8625, 20=7.8646, 23=0.06, 22=7.1867, 25=0.73, 24=0.79, 27=1.03, 26=0.31}'
+                           data-cid="{{=it.productBase.currencyId}}" data-price="{{=it.startPrice.oriPrice}}">{{=it.startPrice.price}}</label>
+					起
+				</span>
+            {{? it.activityType == 1 && it.remainInventory > 0 && it.enableInventory == 1}}
+            <span class="fr ms-title {{? it.confirmRightNow == 1}}mtd10{{?}}"><img
+                    src="//pic.itrip.com/img/ms_icon_new.png" width="44" height="24"></span>
+            {{?}}
+        </p>
+    </div>
+</script>
+<script id="recommendProduct2" type="text/x-dot-template">
+    {{? it.promotionIconUrl}}
+    <div class="ele-icon"><img src="{{= it.promotionIconUrl}}" style="width: 45px;height: 45px;"></div>
+    {{?}}
+    <div class="recommend_img fl"><a href="{{= it.contentUrl}}" target="_blank"><img class="lazy"
+                                                                                     data-original="//pic2.itrip.com/p/{{=it.image.small}}"
+                                                                                     width="180" height="120"></a></div>
+    <div class="recommend_info fr">
+        <a href="{{=it.contentUrl}}" target="_blank" class="blue"><h3 class="f16 normal text_ellipsis">{{=it.name}}</h3>
+        </a>
+        <p class="mt10 f14 retext">{{=it.xcts}}</p>
+        <p class="oh mt20">
+            <a class="btn-insur fr" href="{{=it.contentUrl}}" target="_blank">去看看<i class="icon-delta-right"></i></a>
+            <span class="f12 orange fr mr15 {{? it.activityType == 1 && it.remainInventory>0 && (it.enableInventory == 1)}} new_style ms mt10{{?}}">
+					<label class="{{? it.activityType == 1 && it.remainInventory>0 && (it.enableInventory == 1)}} f16 {{??}} f24 {{?}} bold">
+						<label class="js_curCode">{{=it.currencySymbol}}</label>
+						<label class="js_curMoney"
+                               data-exRates='{9=4.85, 10=4.52, 11=3.16, 12=1.0, 13=7.0887, 14=0.23, 15=5.0E-4, 17=5.1632, 16=1.6, 21=8.8625, 20=7.8646, 23=0.06, 22=7.1867, 25=0.73, 24=0.79, 27=1.03, 26=0.31}'
+                               data-cid="{{=it.productBase.currencyId}}" data-price="{{=it.startPrice.oriPrice}}">{{=it.startPrice.price}}</label>
+					</label>起
+				</span>
+            {{? it.activityType == 1 && it.remainInventory>0 && (it.enableInventory == 1)}}
+            <span class="fr ms-title mt10"><img src="//pic.itrip.com/img/ms_icon_new.png" width="44" height="24"></span>
+            {{??}}
+            <span class="grey fr mr15 f14" data-hide-marketprice="true">&nbsp;</span>
+            {{?}}
+            {{? it.activityType == 1 && it.remainInventory>0 && (it.enableInventory == 1)}}
+            <span class="fr mr15 f14 orange mt10">仅剩{{=it.remainInventory}}</span>
+            {{?}}
+        </p>
+    </div>
+</script>
+<script id="saleProduct" type="text/x-dot-template">
+    <!---->
+    <a name='__AD_{{=it.code}}{{=it.id}}' data-i-op="{{=it.id}}" data-i-op-href="" href="{{=it.url}}" target="_blank">
+        {{? it.image && it.image != ''}}
+        {{? it.image.indexOf("//")>-1 || it.image.indexOf("http")>-1}}
+        <img class="lazy" data-i-op="{{=it.id}}" data-i-op-img=""
+             data-original="{{=it.image}}?imageView2/5/w/218/h/138/q/100"
+             width="218" height="138" border="0" alt="{{=it.title}}">
+        {{??}}
+        <img class="lazy" data-i-op="{{=it.id}}" data-i-op-img=""
+             data-original="//pic.itrip.com/img/p/{{=it.image}}?imageView2/5/w/218/h/138/q/100"
+             width="218" height="138" border="0" alt="{{=it.title}}">
+        {{?}}
+        {{?? }}
+        <img data-i-op="{{=it.id}}" data-i-op-img class="lazy" data-original="//pic.itrip.com/img/no-image.jpg"
+             width="218" height="138" border="0">
+        {{?}}
+    </a>
+    {{? it.productReviewIconUrls && it.productReviewIconUrls[it.productId]}}
+    <i class="icon_sale" style="position:absolute;top:-1px; left:-2px;">
+        {{? it.productReviewIconUrls[it.productId].indexOf("//")>-1 ||
+        it.productReviewIconUrls[it.productId].indexOf("http")>-1}}
+        <img src="{{=it.productReviewIconUrls[it.productId]}}">
+        {{??}}
+        <img src="//pic2.itrip.com/p/{{=it.productReviewIconUrls[it.productId]}}">
+        {{?}}
+    </i>
+    {{?? it.productPromotions && it.productPromotions.length > 0 && it.productPromotions[0].promotionIcon}}
+    <i class="icon_sale" style="position:absolute;top:-1px; left:5px;">
+        {{? it.productPromotions[0].promotionIcon.indexOf("//")>-1 ||
+        it.productPromotions[0].promotionIcon.indexOf("http")>-1}}
+        <img src="{{=it.productPromotions[0].promotionIcon}}" style="width: 60px; height: 60px;">
+        {{??}}
+        <img src="//pic2.itrip.com/p/{{=it.productPromotions[0].promotionIcon}}" style="width: 60px; height: 60px;">
+        {{?}}
+    </i>
+    {{?}}
+    {{? it.activityType == it.activityTypePromotion && it.productPromotions.length > 0 && it.productPromotions[0].remainInventory > 0 && it.productPromotions[0].enableInventory == it.inventoryEnabled}}
+    <div class="ms-count">
+        <div class="pos_r">
+            <p class="ms-bag"></p>
+            <p class="ms-text">仅剩 </p>
+        </div>
+    </div>
+    {{?}}
+    <div class="proinfo oh">
+        <p class="f14 mt10 oh" style="height:42px;">
+            <a name='__AD_{{=it.code}}{{=it.id}}' data-i-op="{{=it.id}}" data-i-op-href="" data-i-op-titile=""
+               href="{{=it.url}}"
+               title="{{=it.title}}" target="_blank">{{=it.title}}</a>
+        </p>
+        <p class="oh mt5 price_label">
+      <span class="fr pri {{? it.activityType == it.activityTypePromotion && it.productPromotions.length > 0 && it.productPromotions[0].remainInventory > 0 && (it.productPromotions[0].enableInventory == it.inventoryEnabled)}} new_style ms{{?}}">
+        <label class="js_curCode f12"></label>&nbsp;
+        <label data-i-op="{{=it.invalidId}}" data-i-op-price class="js_curMonery_exten f16"
+               data-cid="{{=it.currencyId}}"
+               data-exRates='{9=4.85, 10=4.52, 11=3.16, 12=1.0, 13=7.0887, 14=0.23, 15=5.0E-4, 17=5.1632, 16=1.6, 21=8.8625, 20=7.8646, 23=0.06, 22=7.1867, 25=0.73, 24=0.79, 27=1.03, 26=0.31}'
+               data-price="{{=it.price}}">
+      </label><label class="f12">&nbsp;起</label>
+    </span>
+            {{? it.activityType == it.activityTypePromotion && it.productPromotions.length > 0 &&
+            it.productPromotions[0].remainInventory > 0 && (it.productPromotions[0].enableInventory ==
+            it.inventoryEnabled)}}
+            <span class="fr"><img src="//pic.itrip.com/img/ms_icon_new.png" width="44" height="24"></span>
+            {{?}}
+        </p>
+    </div>
+    <div class="bor"></div>
+</script>
+<script>
+    function getAreaIdCookies(name) {
+        var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+        if (arr = document.cookie.match(reg))
+            return unescape(arr[2]);
+        else
+            return null;
+    }
+
+</script>
+
+<script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function () {
+        var areaId = '1';
+        var areaName = '';
+        if (areaId == '1') {
+            areaName = '欧洲';
+        } else if (areaId == '2') {
+            areaName = '澳洲';
+        } else if (areaId == '3') {
+            areaName = '新斐';
+        } else if (areaId == '4') {
+            areaName = '东南亚';
+        } else if (areaId == '5') {
+            areaName = '美洲';
+        }
+        if (areaName != '') {
+            _hmt.push(['_setCustomVar', 1, 'site_pdp', areaName, 3]);
+        }
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?a63f93d647323db53fe9d21befcaabcd";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+<script type="text/javascript">
+    if (getAreaIdCookies('uin') && getAreaIdCookies('uin').length > 0) {
+        var _ozuid = getAreaIdCookies('uin');
+    }
+
+    if (_ozprm) {
+        var _ozprm = _ozprm;
+    } else {
+        var _ozprm = '';
+        if ($(".cur").length > 0) {
+            _ozprm = "cid99=" + $.trim($(".cur").html());
+        }
+    }
+</script>
+<script src="//static.itrip.com/js/lib/99click/o_code_n.js" type="text/javascript"></script>
+
+<!-- 360统计 -->
+<!-- Global site tag (gtag.js) - Google AdWords: 949765398 -->
+<script>
+    var _mvq = _mvq || [];
+    _mvq.push(['$setAccount', 'm-253629-0']);
+    _mvq.push(['$logConversion']);
+
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'AW-949765398');
+</script>
+<!-- Facebook Pixel Code -->
+<script>
+
+    window.onload = function () {
+        <!--facebook-->
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window,
+            document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+
+        fbq('init', '1938846466375704'); // Insert your pixel ID here.
+        fbq('track', 'PageView');
+
+        <!--google-->
+        // 定义全站营销代码
+        var ggConversion = function () {
+            var codeScript;
+            var loadScript;
+            var headScript;
+            var wow = document.getElementById('wowo');
+            var headScript = document.getElementsByTagName("script")[0];
+            var elemImg = document.createElement('div');
+            var imgSrc = '<img height="1" width="1" style="border-style:none;display:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/949765398/?value=0&guid=ON&script=0"/>';
+            document.getElementsByTagName('body')[0].appendChild(elemImg);
+            elemImg.innerHTML = imgSrc;
+        };
+        // 加载统计代码
+        (function (i, s, o, g, r, a, m) {
+            i["GoogleAnalyticsObject"] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, "script", "//www.google-analytics.com/analytics.js", "ga");
+
+        ga("create", "UA-61956206-1", "auto");
+        ga("send", "pageview");
+        // 加载营销代码
+        ggConversion();
+
+        <!-- Global site tag (gtag.js) - Google AdWords: 949765398 -->
+        (function () {
+            var site = document.createElement('script');
+            site.type = 'text/javascript';
+            site.async = true;
+            site.src = "https://www.googletagmanager.com/gtag/js?id=AW-949765398";
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(site, s);
+        })();
+
+        <!--360-->
+        (function () {
+            var mvl = document.createElement('script');
+            mvl.type = 'text/javascript';
+            mvl.async = true;
+            mvl.src = ('https:' == document.location.protocol ? 'https://static-ssl.mediav.com/mvl.js' : 'http://static.mediav.com/mvl.js');
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(mvl, s);
+        })();
+
+        <!--GrowingIO-->
+        !function (e, t, n, g, i) {
+            e[i] = e[i] || function () {
+                (e[i].q = e[i].q || []).push(arguments)
+            }, n = t.createElement("script"), tag = t.getElementsByTagName("script")[0], n.async = 1, n.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + g, tag.parentNode.insertBefore(n, tag)
+        }(window, document, "script", "assets.growingio.com/2.1/gio.js", "gio");
+        gio('init', '85a6b38dd701488ca63d51cb8211101d', {'setImp': 'false'});
+        gio('send');
+        <!--用户-->
+        // 发送登录用户变量API
+        gio('people.set', "loginUserId", (getAreaIdCookies("uin") || ''));
+
+        // 发送访问用户变量API
+        gio('visitor.set', "visitor_id", (getAreaIdCookies("gr_user_id") || ''));
+
+
+        gio('setUserId', '700054');
+        <!--详情页-->
+        <!--资金状态-->
+        <!--购物车是否有产品-->
+        <!--搜索-->
+
+
+        //运营位gio统计
+        $("body").on("click", 'a[data-i-op]', function () {
+            var opId = $(this).attr("data-i-op");
+            if (opId) {
+                try {
+                    gio('evar.set', 'innerads', opId);
+                    gio('track', opId);
+                } catch (e) {
+
+                }
+            }
+        })
+        //标签点击
+        $("body").on("click", '[tag-id]', function () {
+            try {
+                var tagId = $(this).attr("tag-id");
+                gio('track', 'pc_label', {'label_content': tagId});
+                gio('evar.set', 'labels', tagId);
+            } catch (e) {
+
+            }
+        });
+        //header 下载app 点击 Google统计
+        $('[href="//www.itrip.com/about/app"]').click(function () {
+            gtag('event', 'conversion', {'send_to': 'AW-949765398/EpDnCM-bhI0BEJaK8cQD'});
+        })
+    }
+</script>
+<noscript>&lt; img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1938846466375704&amp;ev=PageView&amp;noscript=1"
+    /&gt;
+</noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+<script type="text/javascript">
+    var itemParamsId = 'c267d63e-0ee5-4224-b577-b20a4866c918';
+    var scItemIds = '["80bc1f7c-962f-41fa-8783-31cd7ad3cbe9","0fb070b2-f076-45d1-afa0-5b7c83ac079e","bfd0905c-98f1-47fa-a222-f4b56768412a","7090e05f-d2e4-40cb-b72a-10a782254883","7e6d4950-b501-4e77-80e2-d3f1a2d580b0","ee006705-21a0-484c-a914-967ea77cb46e","9e3db347-e67f-429c-8bef-1b09f0ee777d"]';
+    var isHistroy = 'Y';
+    var isSnipingProduct = "0";
+    var selectVip = 'false';
+    var disableVip = '';
+</script>
+<script src="//static.itrip.com/js/it_payHeader_201905081718.js" type="text/javascript"></script>
+<script src="//static.itrip.com/js/lib/jquery-ui/1.10.3/jquery-ui.min.js?v=20170819" type="text/javascript"></script>
+<script src="//static.itrip.com/js/lib/sea.js?v=20170819" type="text/javascript"></script>
+<script type="text/javascript">
+    seajs.config({
+        base: '//static.itrip.com/js',
+        map: [
+
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_payment)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_mall_countDown)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_findPwd)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_login)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_bundPro)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_activePage)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_uc_coupons)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_customOrder)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_uc_reward)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_tour)\.js$/i, '//static.itrip.com/js/$2_201908141620.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_bundleProduct)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_header)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_sniping)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_product)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_charterTravel)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_packageProduct)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_flightTransfer)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_hotel_index)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_index_aus)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_bundleWifi)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_reviewDetails)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_pay)\.js$/i, '//static.itrip.com/js/$2_201905211134.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_charterTravelFunc)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_uc_distribution)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_index_eu)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_hotel_list)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_uc_passagerInfos)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_uc_index)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_orderDetail)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_signup)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_hotel_index_au)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_uc_orders)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_reviewList)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_searchResult)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_uc_baseInfo)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_uc_reviewEdit)\.js$/i, '//static.itrip.com/js/$2_201909161546.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_order)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_flightTransferSelc)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_uc_favor)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_dis_self)\.js$/i, '//static.itrip.com/js/$2_201907221117.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_shoppingCart)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_productList)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_uc_review)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_feedBack)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_payHeader)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_disIncome)\.js$/i, '//static.itrip.com/js/$2_201905081718.js'],
+            [/^http[s]{0,1}:\/\/(.*)\/(.*it_hotel_detail)\.js$/i, '//static.itrip.com/js/$2_201905081718.js']
+            , ['.js', '.js?v=20170819']
+        ]
+    });
+    seajs.use('it_order');
+
+    window.addOrderForm = function () {
+        $('.payBar > a').click();
+    };
+    window.setMsg = function (msg) {
+        $("#img_verifycode").click();
+        $('#popup_errTip').text(msg);
+    };
+</script>
+<style>
+    .rightBar .linkphone a:hover {
+        text-decoration: underline;
+    }
+
+    .rightBar .linkqq a {
+        margin-bottom: 0px !important;
+        color: #fff;
+        padding-left: 10px;
+    }
+
+    .rightBar .linkqq a:hover {
+        background: #4d9def !important;
+    }
+
+    .rightBar .linkqq, .linkonline {
+        display: block;
+        text-decoration: none;
+        position: relative;
+        margin-bottom: 0px;
+        overflow: hidden;
+        padding-bottom: 5px;
+    }
+
+    .rightBar .linkqq div.del {
+        background: #4d9def;
+        width: 66px;
+        display: block;
+        line-height: 35px;
+        text-align: left;
+        position: absolute;
+        top: 0;
+        right: 30px;
+        z-index: 9;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        transform: translateX(-10px);
+        transition: all .3s ease-in-out;
+    }
+
+    .rightBar .linkqq div.del span {
+        border: 5px transparent solid;
+        border-left-color: #4D9DEF;
+        position: absolute;
+        right: 0;
+        top: 12px;
+    }
+
+    .rightBar .linkqq i, .linkonline i {
+        position: absolute;
+        right: 0;
+        top: 0;
+        margin: 0;
+        z-index: 10;
+    }
+
+    .rightBar .linkqq:hover, .linkonline:hover, .right-qrcode:hover {
+        overflow: visible;
+        background: #2972bc;
+    }
+
+    .rightBar .linkqq:hover div.del, .linkonline:hover div.del, .right-qrcode:hover div.del {
+        transform: translateX(0);
+        opacity: 1;
+        filter: alpha(opacity=100);
+    }
+
+    .rightBar .linkqq:hover div.del span, .linkonline:hover .del span, .right-qrcode:hover .del span {
+        right: -10px;
+    }
+
+    .rightBar .linkhd {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 30px;
+        height: 160px;
+        background: url(//pic.itrip.com/img/rukou.jpg);
+    }
+
+    .rightBar .linkhd:hover {
+        background: url(//pic.itrip.com/img/rukou.jpg);
+    }
+
+    .right-qrcode {
+        position: relative;
+        padding: 10px 0;
+        height: 35px;
+        cursor: pointer;
+        overflow: hidden;
+    }
+
+    .right-qrcode .iconfont {
+        margin: 0;
+        top: 8px;
+        font-size: 24px;
+        color: #fff;
+    }
+
+    .right-qrcode div.del {
+        background: #fff;
+        width: 165px;
+        padding: 0;
+        box-shadow: 0px 0px 3px #eee;
+    }
+
+    .rightBar .right-qrcode div.hide {
+        display: none;
+    }
+
+    .rightBar .right-qrcode div.del span {
+        border: 5px transparent solid;
+        border-left-color: #fff;
+        position: absolute;
+        right: -10px;
+        top: 12px;
+    }
+
+    .rightBar .right-qrcode div.del .text {
+        position: absolute;
+        left: 0;
+        bottom: 20px;
+        width: 100%;
+        font-size: 14px;
+        line-height: 24px;
+        color: #000;
+        background-color: #fff;
+        text-align: center;
+    }
+
+    .vip_nav {
+        position: relative;
+        right: 0;
+        width: 30px;
+        height: 160px;
+        margin-bottom: 15px;
+    }
+
+    .vip_nav div, .vip_nav img {
+        height: 160px;
+    }
+
+    .vip_nav_info {
+        float: right;
+        background-color: transparent;
+        cursor: pointer;
+        display: inline-block;
+    }
+
+    .vip_nav_index {
+        float: left;
+        display: none;
+        cursor: pointer;
+        position: absolute;
+        right: 51px;
+    }
+
+    #rightbar-linktop {
+        margin-bottom: 0;
+    }
+</style>
+<div class="rightBar">
+    <div class="vip_nav clearfix" style="margin-bottom:0;">
+        <div class="vip_nav_info" style="background-color: transparent;">
+            <img src="//pic.itrip.com/img/header/vip_rightbar_v1.png">
+        </div>
+        <div class="vip_nav_index" style="display: none;">
+            <img src="//pic.itrip.com/img/header/vip_info_v1.png">
+        </div>
+    </div>
+    <div class="linkonline hand" rel="nofollow" href="javascript:;">
+        <div class="del">
+            <div class="pos_r">
+                <p id="product">产品咨询</p>
+                <p id="has_order">已有订单咨询</p>
+                <p id="vip_service">定制咨询服务</p>
+                <span></span>
+            </div>
+        </div>
+        <i class="icon icon_right_talk xiaoneng"></i>
+        <span class="text-info" style="position:relative;top:12px;">
+			在线咨询
+		</span>
+    </div>
+    <div class="right-qrcode" style="height: 60px">
+        <i class="iconfont"></i>
+        <span style="position:relative;top:5px;">
+			APP
+		</span>
+        <div class="del" style="box-shadow: none;background: transparent;width:151px;top:-36px; " data-lv="1"><img
+                src="//pic.itrip.com/img/right/qrc-app-3.png"><span style="top:50px;border-left-color: #2b3b48;"></span>
+        </div>
+        <div class="del hide" style="box-shadow: none;background: transparent;width:151px;top:-36px; " data-lv="15768">
+            <img src="//pic.itrip.com/img/right/qrc-app-3-15768.png"><span
+                style="top:50px;border-left-color: #2b3b48;"></span></div>
+        <div class="del hide" style="box-shadow: none;background: transparent;width:151px;top:-36px; " data-lv="15769">
+            <img src="//pic.itrip.com/img/right/qrc-app-3-15769.png"><span
+                style="top:50px;border-left-color: #2b3b48;"></span></div>
+        <div class="del hide" style="box-shadow: none;background: transparent;width:151px;top:-36px; " data-lv="15783">
+            <img src="//pic.itrip.com/img/right/qrc-app-3-15783.png"><span
+                style="top:50px;border-left-color: #2b3b48;"></span></div>
+    </div>
+    <a class="linkphone" style="margin:10px 0 0;height:25px;" href="javascript:;" rel="nofollow">
+        <div class="del" style="top:-40px;">
+            <div class="pos_r">
+                <p class="mb5">免费语音(推荐)</p>
+                <p>
+                    <object><a style="display: inline; margin: 0; color : #fff;"
+                               href="//www.itrip.com/about/app?source=rightnav" target="_blank">下载APP</a></object>
+                    - 点击客服 - 免费语音
+                </p>
+                <p>电话咨询</p>
+                <p>010-60641334（仅限国内拨打）</p>
+                <p>86-028-85223501（定制服务专线）</p>
+                <span style="top:60px;"></span>
+            </div>
+        </div>
+        <i class="icon icon_right_phone" style="top:15px;"></i>
+    </a>
+    <div class="right-qrcode J_hb_qrcode" style="display: none;">
+        <i class="iconfont"></i>
+        <div class="del" style="top:-110px;">
+            <img src="//pic.itrip.com/img/right/qrc-hb.jpg"><span style="top:122px;"></span>
+        </div>
+    </div>
+    <div class="right-qrcode">
+        <i class="iconfont"></i>
+        <div class="del" style="top:-88px;">
+            <img src="//pic.itrip.com/img/right/qrc-gz-1.jpg"><span style="top:100px;"></span>
+            <div class="text">关注微信公众号</div>
+        </div>
+    </div>
+    <div class="rightBarBot">
+        <a class="linkTop" id="rightbar-linktop" href="javascript:;">
+            <div class="del">
+                <div class="pos_r">
+                    回到顶部
+                    <span></span>
+                </div>
+            </div>
+            <p><i class="icon icon_right_top"></i>TOP</p>
+        </a>
+    </div>
+</div>
+<div class="dialog_Feedback hide" id="feedBackDialog">
+    <p class="f16 bold tc" data-title="title">意见反馈</p>
+    <textarea name="feedbackContent" class="feedbackContent" maxlength="500"
+              placeholder="欢迎提出宝贵的意见和建议。我们会认真阅读，你的支持是对我们最大的鼓励和帮助。" data-content="content"></textarea>
+    <div class="fr pos_r grey">
+        <span id="totalCount">您还可以输入500个字符</span>
+    </div>
+    <div class="pos_r FeedbackContact mt10">
+        <label>联系方式：</label>
+        <input name="contactInfo" class="contactInfo" style="width:200px;height: 20px;" type="text" maxlength="30"
+               placeholder="留下您的手机号或email">
+    </div>
+    <div class="oh mt10 hide" id="verifyCode">
+        <div class="pos_r FeedbackContact fl">
+            <label>验&nbsp;&nbsp;证&nbsp;&nbsp;码：</label>
+            <input name="verifyCode" style="width:100px;height: 25px;" type="text" maxlength="6" placeholder="验证码">
+            <input id="showCode" type="hidden">
+        </div>
+        <img width="110" height="36" title="看不清，请点我" class="ml10 hand" id="img_verifycode_feedback" border="0">
+    </div>
+    <div class="oh mt10">
+        <span class="warnning" id="errTip" style="color: #fda814; line-height: 21px; "></span>
+    </div>
+    <div class="oh mt10">
+        <a class="btn-normal-blue fr w90" id="save" href="javascript:;">提交</a>
+        <a class="btn-white fr w90 mr10" id="cancelBut" href="javascript:;">取消</a>
+    </div>
+</div>
+<div class="dialog_Feedback black hide" id="feedbackErrorDialog">
+    <div class="mod_layer_title bold f14">
+        <h3>提示</h3>
+    </div>
+    <div class="mod_layer_cont">
+        <div class="error_tip oh ml20 f14">
+            <p>感谢您的反馈，我们尽快答复您！</p>
+        </div>
+    </div>
+</div>
+<div class="dialog_Feedback black hide" id="qaErrorDialog">
+    <div class="mod_layer_title bold f14">
+        <h3>提示</h3>
+    </div>
+    <div class="mod_layer_cont">
+        <div class="error_tip oh ml20 f14">
+            <p>提交成功，我们尽快答复您！</p>
+        </div>
+    </div>
+</div>
+
+<script src="//static.itrip.com/js/it_feedBack_201905081718.js" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+    var isTest = location.href.indexOf("//www.itrip.com") > -1 ? false : true;
+    //默认的ID
+    var settingid = isTest ? "kf_9680_1448432403231" : "kf_9680_1447207361586";
+    NTKF_PARAM = {
+        siteid: "kf_9680",                   //小能提供企业id,
+        settingid: settingid,  //小能分配的缺省客服组id
+        uid: $.cookie('uin'),
+        uname: $.cookie('acc'),
+        isvip: "",
+        userlevel: ""
+
+        , ntalkerparam: {
+
+            items: '[{id=8053, count=3}, {id=8052, count=2}, {id=8053, count=3}, {id=8053, count=3}, {id=8053, count=3}, {id=8053, count=5}, {id=13087, count=0}]'
+
+        }
+
+    }
+</script>
+<script src="//dl.ntalker.com/js/xn6/ntkfstat.js?siteid=kf_9680" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    $(function () {
+        //所有footer图懒加载
+        $('img.lazy_footer').lazyload({
+            placeholder: picHome + "/loading2.gif",
+            effect: "fadeIn",
+            threshold: 200,
+            skip_invisible: true
+        });
+        //所有emoji转图
+        $('.emoji').each(function () {
+            var ori = $(this).html();
+            var emoji = twemoji.parse(ori, {size: 16});
+            $(this).html(emoji);
+        });
+
+        //登陆 注册 忘记密码 屏蔽客服
+        function shieldKefu() {
+            var url = location.href;
+            if (url.indexOf('signup/index') != -1 || url.indexOf('login/index') != -1 || url.indexOf('findpwd/index') != -1) {
+                $(".linkonline").remove();
+            }
+        }
+
+        shieldKefu();
+
+        //控制右侧二维码显示
+        function qrCodeShow() {
+            var lv = $.cookie('channelId');
+            var el = $(".del").filter("[data-lv='" + lv + "']");
+            if (el.length > 0) {
+                el.removeClass('hide');
+            } else {
+                $(".del").filter("[data-lv='1']").removeClass('hide');
+            }
+        }
+
+        qrCodeShow();
+
+        function checkLogin() {
+            if ($(".display_name").text() == "") {
+                //未登录
+                location.href = '/login/index?redirect_url=' + encodeURIComponent(location.href);
+                return false;
+            } else {
+                //登陆
+                return true;
+            }
+        }
+
+        if ($('.linkonline .xiaoneng').length > 0) {
+            $('.linkonline #au').click(function () {
+                //小能分配的缺省客服组id
+                if (checkLogin()) {
+                    settingid = isTest ? 'kf_9680_1458962349823' : 'kf_9680_1458959605873';
+                    NTKF.im_openInPageChat(settingid);
+                }
+            });
+            $('.linkonline #au_order').click(function () {
+                if (checkLogin()) {
+                    settingid = 'kf_9680_1461738767319';
+                    NTKF.im_openInPageChat(settingid);
+                }
+
+            });
+            $('.linkonline #eu').click(function () {
+                if (checkLogin()) {
+                    settingid = isTest ? 'kf_9680_1458962367444' : 'kf_9680_1458895403086';
+                    NTKF.im_openInPageChat(settingid);
+                }
+
+            });
+            $('.linkonline #dny').click(function () {
+                if (checkLogin()) {
+                    settingid = isTest ? 'kf_9680_1458962302725' : 'kf_9680_1458960215090';
+                    NTKF.im_openInPageChat(settingid);
+                }
+
+            });
+            $('.linkonline #usa').click(function () {
+                if (checkLogin()) {
+                    settingid = isTest ? 'kf_9680_1458962323439' : 'kf_9680_1458960192283';
+                    NTKF.im_openInPageChat(settingid);
+                }
+
+            });
+            $('.linkonline #vip').click(function () {
+                if (checkLogin()) {
+                    settingid = 'kf_9680_1458959605873';
+                    NTKF.im_openInPageChat(settingid);
+                }
+
+            });
+            $('.linkonline #other-area').click(function () {
+                if (checkLogin()) {
+                    settingid = isTest ? 'kf_9680_1458962284605' : 'kf_9680_1458960269082';
+                    NTKF.im_openInPageChat(settingid);
+                }
+
+            });
+            //旅行顾问
+            $('.linkonline #consult_travel').click(function () {
+                if (checkLogin()) {
+                    settingid = 'kf_9680_1458959605873';
+                    NTKF.im_openInPageChat(settingid);
+                }
+
+            });
+            //订单咨询
+            $('.linkonline #consult_order').click(function () {
+                if (checkLogin()) {
+                    settingid = 'kf_9680_1461738767319';
+                    NTKF.im_openInPageChat(settingid);
+                }
+
+            });
+            //售前
+            $('.linkonline #sale_before').click(function () {
+                if (checkLogin()) {
+                    settingid = 'kf_9680_1458959605873';
+                    NTKF.im_openInPageChat(settingid);
+                }
+
+            });
+            //售后
+            $('.linkonline #sale_after').click(function () {
+                if (checkLogin()) {
+                    settingid = 'kf_9680_1461738767319';
+                    NTKF.im_openInPageChat(settingid);
+                }
+
+            });
+            //产品
+            $('.linkonline #product').click(function () {
+                if (checkLogin()) {
+                    settingid = 'kf_9680_1458959605873';
+                    NTKF.im_openInPageChat(settingid);
+                }
+
+            });
+            //已有订单
+            $('.linkonline #has_order').click(function () {
+                if (checkLogin()) {
+                    settingid = 'kf_9680_1461738767319';
+                    NTKF.im_openInPageChat(settingid);
+                }
+
+            });
+            //懒人服务
+            $('.linkonline #vip_service').click(function () {
+                if (checkLogin()) {
+                    settingid = 'kf_9680_1471227292535';
+                    NTKF.im_openInPageChat(settingid);
+                }
+
+            });
+        }
+
+        function noticeToggle() {
+            var timer = null;
+            clearInterval(timer);
+            timer = setInterval(function () {
+                $(document).on('mouseenter', ".vip_nav_info", function () {
+                    $(".vip_nav_info").css("background-color", "#fecf07");
+                    $(document).find(".vip_nav_index").show();
+                });
+            }, 500);
+
+            timer = setInterval(function () {
+                $(document).on('mouseleave', ".vip_nav_info", function () {
+                    $(".vip_nav_info").css("background-color", "transparent");
+                    $(document).find(".vip_nav_index").hide();
+                });
+
+            }, 500);
+
+            timer = setInterval(function () {
+                $(document).on('mouseenter', ".vip_nav_index", function () {
+                    $(".vip_nav_info").css("background-color", "#fecf07");
+                    $(this).show();
+                });
+            }, 500);
+
+            timer = setInterval(function () {
+                $(document).on('mouseleave', ".vip_nav_index", function () {
+                    $(".vip_nav_info").css("background-color", "transparent");
+                    $(this).hide();
+                });
+            }, 500);
+        }
+
+        $(".vip_nav_info").click(function () {
+            window.open("https://www.itrip.com/vip?source=navright");
+        });
+
+        $(".vip_nav_index").click(function () {
+            window.open("https://www.itrip.com/vip?source=navright");
+        });
+
+        noticeToggle();
+    });
+</script>
+<script>
+
+    ggConversion = function () {
+        var codeScript;
+        var loadScript;
+        var headScript;
+        var wow = document.getElementById('wowo');
+        var headScript = document.getElementsByTagName("script")[0];
+        var elemImg = document.createElement('div');
+        var imgSrc = '<img height="1" width="1" style="border-style:none;display:none;" alt="" src="//www.googleadservices.com/pagead/conversion/949765398/?value=1.00&amp;currency_code=CNY&amp;label=ggYfCMvF_loQlorxxAM&amp;guid=ON&amp;script=0"/>';
+        document.getElementsByTagName('body')[0].appendChild(elemImg);
+        elemImg.innerHTML = imgSrc;
+    };
+</script>
+
+<div class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" id="ui-datepicker-div"></div>
+<div><img width="1" height="1" style="border-style:none;display:none;" alt=""
+          src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/949765398/?value=0&amp;guid=ON&amp;script=0">
+</div>
+<iframe src="https://bid.g.doubleclick.net/xbbe/pixel?d=KAE" style="display: none;"></iframe>
+<!--保险-->
+<script>
+    $(function () {
+        //生成随机数
+        function getRandomNum() {
+            return parseInt(Math.random() * 50);
+        }
+
+        $(".fr.insur_sel.hand").change(function () {
+            var times = $(this).val();//几个投保人
+            var name = $(this).siblings(".fl.productInfo").text(); //保险名
+            var price = $("#ourPrice").text();//保险单价
+            $(".all_price em").text(times * price);//保险合计
+            $(".insur_info.Passager.pos_r").remove();
+            for (var i = 0; i < times; i++) {
+                var idNum = getRandomNum();//获取随机数
+                var div = "<div class=\"insur_info Passager pos_r\" isinsur=\"true\">\n" +
+                    "                    <div class=\"done\">\n" +
+                    "                        <span class=\"personChoseBtn hand\">选取常旅客</span>\n" +
+                    "                        <span class=\"cleanPassger hand\">删除</span>\n" +
+                    "                    </div>\n" +
+                    "                    <div class=\"insur_title\" data-spec-id=\"710383599514168319\" data-pid=\"13440\">\n" +
+                    "                        <span>投保人" + (i + 1) + "</span><em>" + name + "</em>\n" +
+                    "                    </div>\n" +
+                    "                    <div class=\"person_detail\">\n" +
+                    "                        <table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n" +
+                    "                            <tbody>\n" +
+                    "                            <tr>\n" +
+                    "                                <td width=\"33%\" class=\"fruzzyBox\">\n" +
+                    "                                    性别&nbsp;&nbsp;\n" +
+                    "                                    <select class=\"f14 insur_sel hand\" data-id=\"9\" require=\"true\">\n" +
+                    "                                        <option selected=\"selected\" value=\"male\">男</option>\n" +
+                    "                                        <option value=\"female\">女</option>\n" +
+                    "                                    </select>\n" +
+                    "                                    <span class=\"red tip\"></span>\n" +
+                    "                                </td>\n" +
+                    "                                <td width=\"33%\" class=\"fruzzyBox\">\n" +
+                    "                                    护照号码&nbsp;&nbsp;\n" +
+                    "                                    <input class=\"insu_input\" style=\"width:142px;\" type=\"text\" placeholder=\"与护照一致\"\n" +
+                    "                                           value=\"\" data-id=\"10\" require=\"true\">\n" +
+                    "                                    <span class=\"red tip\"></span>\n" +
+                    "                                </td>\n" +
+                    "                                <td width=\"33%\" class=\"fruzzyBox\">\n" +
+                    "\n" +
+                    "                                    中文姓名\n" +
+                    "                                    <input class=\"insu_input\" style=\"width:142px;\" type=\"text\" placeholder=\"与护照一致\"\n" +
+                    "                                           value=\"\" data-id=\"12\" ischen=\"zh\" require=\"true\">\n" +
+                    "                                    <span class=\"red tip\"></span>\n" +
+                    "                                </td>\n" +
+                    "                            </tr>\n" +
+                    "                            <tr>\n" +
+                    "                                <td width=\"33%\" class=\"fruzzyBox\">\n" +
+                    "                                    出生日期&nbsp;&nbsp;\n" +
+                    "                                    <span class=\"pos_r birthday\" style=\"display:inline-block;\">\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<input class=\"f14 star hand insu_input hasDatepicker test27\"\n" +
+                    "                                                                           id=\"dp1569037351779" + idNum + "\" type=\"text\"\n" +
+                    "                                                                           readonly=\"readonly\" placeholder=\"\"\n" +
+                    "                                                                           value=\"1980-01-01\" data-id=\"14\"\n" +
+                    "                                                                           require=\"true\">\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ins class=\"icon_Calendar hand\"\n" +
+                    "                                                                         style=\"top:17px;right:18px\"></ins>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<span class=\"red tip\" style=\"top:-10px;\"></span>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</span>\n" +
+                    "                                </td>\n" +
+                    "                                <td width=\"45%\" class=\"fruzzyBox\" style=\"text-align:left;padding-left:9%;\" colspan=\"2\">\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<span class=\"hide other_rel\">\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t其他投保成人是我的&nbsp;&nbsp;\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<select class=\"relation_sel insur_sel insu_input\"\n" +
+                    "                                                                            style=\"width:25%;\" data-id=\"847\"\n" +
+                    "                                                                            require=\"true\">\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<option value=\"\">请选择</option>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<option value=\"父母亲\">父母亲</option>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<option value=\"兄弟姐妹\">兄弟姐妹</option>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<option value=\"祖父母\">祖父母</option>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<option value=\"其他\">其他</option>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</select>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t  \t\t\t\t<input class=\"hide other_relation insu_input\"\n" +
+                    "                                                                           style=\"width:120px;\" type=\"text\"\n" +
+                    "                                                                           placeholder=\"\" value=\"\" data-id=\"847\"\n" +
+                    "                                                                           require=\"true\">\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<span class=\"red tip\"></span>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</span>\n" +
+                    "                                </td>\n" +
+                    "                            </tr>\n" +
+                    "                            </tbody>\n" +
+                    "                        </table>\n" +
+                    "                    </div>\n" +
+                    "                </div>";
+                $(".insur_peo.insuerInfo").append(div);
+                layui.use('laydate', function () {
+                    var laydate = layui.laydate;
+                    //日期只读
+                    laydate.render({
+                        elem: '#dp1569037351779' + idNum
+                        , trigger: 'click'
+                        , theme: '#58a1eb'
+                    });
+                })
+            }
+        })
+    })
+</script>
+<!-- 选择出行日期 -->
+<script>
+    layui.use('laydate', function () {
+        var laydate = layui.laydate;
+        //日期只读
+        laydate.render({
+            elem: '.test27'
+            , trigger: 'click'
+            , theme: '#58a1eb'
+        });
+    });
+</script>
+<!--成员信息-->
+<script>
+    $(function () {
+        var anum = $("#AInformation").text();
+        var cnum = $("#CInformation").text();
+        var bnum = $("#BInformation").text();
+        if (anum != 0) {
+            for (var i = 0; i < anum; i++) {
+                var table = "<table class=\"table-blue Passager mt10\" width=\"100%\" cellspadding=\"0\" cellspacing=\"0\" border=\"0\">\n" +
+                    "                        <tbody>\n" +
+                    "                        <tr>\n" +
+                    "                            <th class=\"blue f14 normal\" colspan=\"3\">\n" +
+                    "                                <span class=\"icon icon_user mr5\" style=\"vertical-align: middle;margin-top:-3px;\"></span>成人(13岁以上)\n" +
+                    "                                X " + (i + 1) + "<span class=\"orange ml20 pos_r hand personChoseBtn \">选取常旅客</span>\n" +
+                    "                                <div class=\"fr grey f12 mt5\" style=\"margin-top:0\">\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<span class=\"f14 blue mr20 hand saveCLK \">\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<i class=\"icon icon_blue_Hook hand\"></i>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t存储为常旅客\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t</span>\n" +
+                    "                                    <span class=\"icon icon_Inform\"\n" +
+                    "                                          style=\"vertical-align: middle;margin-top:-3px;\"></span>\n" +
+                    "                                    <span class=\"pos_r passportExamBtn\">护照示例\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"passportExam hide\">\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<p>请严格按照登记时所用证件上的信息填写</p>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div><img src=\"//pic.itrip.com/img/passport.jpg\"\n" +
+                    "                                                                          width=\"555\" height=\"311\" border=\"0\" alt=\"护照\"></div>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t</span>\n" +
+                    "                                </div>\n" +
+                    "                            </th>\n" +
+                    "                        </tr>\n" +
+                    "                        <tr>\n" +
+                    "                            <td class=\"fruzzyBox\">\n" +
+                    "                                <p class=\"grey\">护照号码&nbsp;&nbsp;\n" +
+                    "                                </p>\n" +
+                    "                                <input type=\"text\" data-id=\"10\" require=\"true\" class=\"f14 mt5 js_conf_form fruzzyIpt\"\n" +
+                    "                                       value=\"\" placeholder=\"与护照一致\" ischen=\"\">\n" +
+                    "                                <p style=\"margin-top:5px;text-align:right;width:159px;\"><span class=\"red tip\"></span>\n" +
+                    "                                </p>\n" +
+                    "                            </td>\n" +
+                    "                            <td class=\"fruzzyBox\">\n" +
+                    "                                <p class=\"grey\">中文姓名(拼音)&nbsp;&nbsp;\n" +
+                    "                                </p>\n" +
+                    "                                <input type=\"text\" data-id=\"12\" require=\"true\" class=\"f14 mt5 js_conf_form \" value=\"\"\n" +
+                    "                                       placeholder=\"与护照一致\" ischen=\"\">\n" +
+                    "                                <p style=\"margin-top:5px;text-align:right;width:159px;\"><span class=\"red tip\"></span>\n" +
+                    "                                </p>\n" +
+                    "                            </td>\n" +
+                    "                            <td class=\"fruzzyBox\">\n" +
+                    "                                <p class=\"grey\">年龄&nbsp;&nbsp;\n" +
+                    "                                </p>\n" +
+                    "                                <input type=\"text\" data-id=\"7\" number=\"true\" require=\"true\"\n" +
+                    "                                       class=\"f14 mt5 js_conf_form \" value=\"\" placeholder=\"与护照一致\" isrange=\"\">\n" +
+                    "                                <p style=\"margin-top:5px;text-align:right;width:159px;\"><span class=\"red tip\"></span>\n" +
+                    "                                </p>\n" +
+                    "                            </td>\n" +
+                    "                        </tr>\n" +
+                    "                        </tbody>\n" +
+                    "                    </table>";
+                $(".js_product.nmm1").append(table);
+            }
+        }
+        if (cnum != 0) {
+            for (var i = 0; i < anum; i++) {
+                var table = "<table class=\"table-blue Passager mt10\" width=\"100%\" cellspadding=\"0\" cellspacing=\"0\" border=\"0\">\n" +
+                    "                        <tbody>\n" +
+                    "                        <tr>\n" +
+                    "                            <th class=\"blue f14 normal\" colspan=\"3\">\n" +
+                    "                                <span class=\"icon icon_user mr5\" style=\"vertical-align: middle;margin-top:-3px;\"></span>儿童（3-12岁）\n" +
+                    "                                X " + (i + 1) + "<span class=\"orange ml20 pos_r hand personChoseBtn \">选取常旅客</span>\n" +
+                    "                                <div class=\"fr grey f12 mt5\" style=\"margin-top:0\">\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<span class=\"f14 blue mr20 hand saveCLK \">\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<i class=\"icon icon_blue_Hook hand\"></i>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t存储为常旅客\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t</span>\n" +
+                    "                                    <span class=\"icon icon_Inform\"\n" +
+                    "                                          style=\"vertical-align: middle;margin-top:-3px;\"></span>\n" +
+                    "                                    <span class=\"pos_r passportExamBtn\">护照示例\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"passportExam hide\">\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<p>请严格按照登记时所用证件上的信息填写</p>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div><img src=\"//pic.itrip.com/img/passport.jpg\"\n" +
+                    "                                                                          width=\"555\" height=\"311\" border=\"0\" alt=\"护照\"></div>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t</span>\n" +
+                    "                                </div>\n" +
+                    "                            </th>\n" +
+                    "                        </tr>\n" +
+                    "                        <tr>\n" +
+                    "                            <td class=\"fruzzyBox\">\n" +
+                    "                                <p class=\"grey\">护照号码&nbsp;&nbsp;\n" +
+                    "                                </p>\n" +
+                    "                                <input type=\"text\" data-id=\"10\" require=\"true\" class=\"f14 mt5 js_conf_form fruzzyIpt\"\n" +
+                    "                                       value=\"\" placeholder=\"与护照一致\" ischen=\"\">\n" +
+                    "                                <p style=\"margin-top:5px;text-align:right;width:159px;\"><span class=\"red tip\"></span>\n" +
+                    "                                </p>\n" +
+                    "                            </td>\n" +
+                    "                            <td class=\"fruzzyBox\">\n" +
+                    "                                <p class=\"grey\">中文姓名(拼音)&nbsp;&nbsp;\n" +
+                    "                                </p>\n" +
+                    "                                <input type=\"text\" data-id=\"12\" require=\"true\" class=\"f14 mt5 js_conf_form \" value=\"\"\n" +
+                    "                                       placeholder=\"与护照一致\" ischen=\"\">\n" +
+                    "                                <p style=\"margin-top:5px;text-align:right;width:159px;\"><span class=\"red tip\"></span>\n" +
+                    "                                </p>\n" +
+                    "                            </td>\n" +
+                    "                            <td class=\"fruzzyBox\">\n" +
+                    "                                <p class=\"grey\">年龄&nbsp;&nbsp;\n" +
+                    "                                </p>\n" +
+                    "                                <input type=\"text\" data-id=\"7\" number=\"true\" require=\"true\"\n" +
+                    "                                       class=\"f14 mt5 js_conf_form \" value=\"\" placeholder=\"与护照一致\" isrange=\"\">\n" +
+                    "                                <p style=\"margin-top:5px;text-align:right;width:159px;\"><span class=\"red tip\"></span>\n" +
+                    "                                </p>\n" +
+                    "                            </td>\n" +
+                    "                        </tr>\n" +
+                    "                        </tbody>\n" +
+                    "                    </table>";
+                $(".js_product.nmm1").append(table);
+            }
+        }
+        if (bnum != 0) {
+            for (var i = 0; i < anum; i++) {
+                var table = " <table class=\"table-blue Passager mt10\" width=\"100%\" cellspadding=\"0\" cellspacing=\"0\" border=\"0\">\n" +
+                    "                        <tbody>\n" +
+                    "                        <tr>\n" +
+                    "                            <th class=\"blue f14 normal\">\n" +
+                    "                                <span class=\"icon icon_user mr5\" style=\"vertical-align: middle;margin-top:-3px;\"></span>婴儿（0-2岁）\n" +
+                    "                                X " + (i + 1) + "<span class=\"orange ml20 pos_r hand personChoseBtn hide\">选取常旅客</span>\n" +
+                    "                                <div class=\"fr grey f12 mt5\" style=\"margin-top:0\">\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<span class=\"f14 blue mr20 hand saveCLK hide\">\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<i class=\"icon icon_blue_Hook hand\"></i>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t存储为常旅客\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t</span>\n" +
+                    "                                    <span class=\"icon icon_Inform\"\n" +
+                    "                                          style=\"vertical-align: middle;margin-top:-3px;\"></span>\n" +
+                    "                                    <span class=\"pos_r passportExamBtn\">护照示例\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"passportExam hide\">\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<p>请严格按照登记时所用证件上的信息填写</p>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div><img src=\"//pic.itrip.com/img/passport.jpg\"\n" +
+                    "                                                                          width=\"555\" height=\"311\" border=\"0\" alt=\"护照\"></div>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t</span>\n" +
+                    "                                </div>\n" +
+                    "                            </th>\n" +
+                    "                        </tr>\n" +
+                    "                        <tr>\n" +
+                    "                            <td class=\"fruzzyBox\">\n" +
+                    "                                <p class=\"grey\">年龄&nbsp;&nbsp;\n" +
+                    "                                </p>\n" +
+                    "                                <input type=\"text\" data-id=\"7\" number=\"true\" require=\"true\"\n" +
+                    "                                       class=\"f14 mt5 js_conf_form fruzzyIpt\" value=\"\" placeholder=\"与护照一致\" isrange=\"\">\n" +
+                    "                                <p style=\"margin-top:5px;text-align:right;width:159px;\"><span class=\"red tip\"></span>\n" +
+                    "                                </p>\n" +
+                    "                            </td>\n" +
+                    "                        </tr>\n" +
+                    "                        </tbody>\n" +
+                    "                    </table>";
+                $(".js_product.nmm1").append(table);
+            }
+        }
+    })
+</script>
+<!--货币切换-->
+<script>
+    var PRE_CID, CUR_CID;
+
+    function changeCurrency(cid) {
+        var code = exRates[cid].code;
+        var symbol = exRates[cid].symbol;
+        $('.js_curCode').empty().append(code);
+        $('[data-symblo]').empty().append(symbol);
+        $('[data-price]').each(function () {
+            var oriPrice = $(this).data('price');
+            var oriCid = $(this).data('cid');
+            var fromRate = exRates[oriCid].exRate;
+            var toRate = exRates[cid].exRate;
+            var price = (oriPrice * fromRate) / toRate;
+            $(this).empty().text(price.toFixed(2));
+        });
+    }
+
+    // 页面事件 货币切换
+    $('.money_sw a').click(function () {
+        PRE_CID = CUR_CID;
+        CUR_CID = $(this).attr('data-id');
+        changeCurrency(CUR_CID);
+        setTimeout(function () { //增加延迟，确保cookie更新
+            //优惠券货币切换
+            productCouponInit();
+        }, 300)
+    });
+    var exRates = JSON.parse('{"10":{"code":"NZD","symbol":"NZD","exRate":4.52},"11":{"code":"FJD","symbol":"FJD","exRate":3.16},"12":{"code":"RMB","symbol":"¥","exRate":1},"13":{"code":"USD","symbol":"$","exRate":6.88},"14":{"code":"THB","symbol":"฿","exRate":0.23},"15":{"code":"IDR","symbol":"Rp","exRate":5.0E-4},"16":{"code":"MYR","symbol":"MYR","exRate":1.6},"17":{"code":"SGD","symbol":"SGD","exRate":5.01},"20":{"code":"EUR","symbol":"€","exRate":7.8646},"21":{"code":"GBP","symbol":"£","exRate":8.6016},"22":{"code":"CHF","symbol":"CHF","exRate":7.0395},"23":{"code":"ISK","symbol":"kr","exRate":0.06},"24":{"code":"NOK","symbol":"kr","exRate":0.79},"25":{"code":"SEK","symbol":"kr","exRate":0.73},"26":{"code":"CZK","symbol":"Kč","exRate":0.31},"27":{"code":"DKK","symbol":"kr","exRate":1.03},"9":{"code":"AUD","symbol":"AUD","exRate":4.74}}');
+    CUR_CID = $.cookie('cid');
+    if (!CUR_CID) {
+        CUR_CID = 12;
+        $('.money_sw a[data-id="' + CUR_CID + '"]').click();
+    } else {
+        changeCurrency(CUR_CID);
+    }
+    var check = setInterval(checkUserOnline, 3000);
+    function checkUserOnline() {
+        $(".js_insurMoney").text($(".all_price em").text());
+        var bx = $(".js_insurMoney").text();
+        var yh_one = document.getElementsByClassName("zj");
+        var yh_sum = 0;
+        for (var i = 0; i < yh_one.length; i++) {
+            yh_sum += (yh_one[i].innerHTML * 1);
+        }
+        $(".clearfix.pos_r .js_curMoney").text(yh_sum.toFixed(2));
+        var sum = 0;
+        var je_one = document.getElementsByClassName("js_curMoney price");
+        for (var i = 0; i < je_one.length; i++) {
+            sum += (je_one[i].innerHTML * 1);
+        }
+        $(".f24.orange.bold.ml10.js_total").text((sum + bx * 1));
+    }
+</script>
+
+    <script>
+        layui.use('laydate', function(){
+            var laydate = layui.laydate;
+            //执行一个laydate实例
+            laydate.render({
+                elem: '#startDatept', //指定元素
+                min: 'now()',
+                done:function(value,date){//value, date, endDate点击日期、清空、现在、确定均会触发。回调返回三个参数，分别代表：生成的值、日期时间对象、结束的日期时间对象
+                    //其他操作
+
+                }
+            });
+        });
+    </script>
+</div>
+</body>
+</html>

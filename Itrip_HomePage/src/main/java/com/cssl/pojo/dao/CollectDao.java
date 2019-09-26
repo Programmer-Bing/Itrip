@@ -2,6 +2,7 @@ package com.cssl.pojo.dao;
 
 import com.cssl.pojo.po.BrowsingHistory;
 import com.cssl.pojo.po.Collect;
+import com.cssl.pojo.po.DiscountCoupon;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -80,4 +81,21 @@ public interface CollectDao {
      * 个人浏览记录的查询
      */
      public List<BrowsingHistory> SelectBrowsingHistoryUser(int userid);
+
+
+    /***
+     *
+     *
+     * 领取优惠卷
+     *
+     */
+     public int AddDiscountCoupon(DiscountCoupon dc);
+
+
+    /***
+     *
+     *
+     * 查询当前用户是否有优惠券
+     */
+     public int SelectDiscountCouponCount(int userid);
 }
