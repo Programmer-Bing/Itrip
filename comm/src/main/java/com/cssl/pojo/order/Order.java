@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
+import java.math.BigDecimal;
+
 @Setter
 @Getter
 @NoArgsConstructor
@@ -17,12 +19,12 @@ public class Order {
     String order_no;
     String brontime;
     int state;
-    int money;
+    BigDecimal money;
     int uid;
 
     @Override
     public String toString() {
-        return "OProduct{" +
+        return "Order{" +
                 "order_no='" + order_no + '\'' +
                 ", brontime='" + brontime + '\'' +
                 ", state=" + state +

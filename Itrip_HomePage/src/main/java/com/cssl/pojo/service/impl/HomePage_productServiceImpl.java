@@ -4,6 +4,8 @@ import com.cssl.pojo.HomePage_product;
 import com.cssl.pojo.ProductDetails;
 import com.cssl.pojo.Product_shopping;
 import com.cssl.pojo.dao.HomePage_productDao;
+import com.cssl.pojo.order.OProduct;
+import com.cssl.pojo.order.Order;
 import com.cssl.pojo.service.HomePage_productService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -107,5 +109,25 @@ public class HomePage_productServiceImpl implements HomePage_productService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public Product_shopping findNew() {
+        return hpdao.findNew();
+    }
+
+    @Override
+    public Product_shopping findById(Integer psc_id) {
+        return hpdao.findById(psc_id);
+    }
+
+    @Override
+    public int addOrder(Order o) {
+        return hpdao.addOrder(o);
+    }
+
+    @Override
+    public int addOrderProduct(OProduct op) {
+        return hpdao.addOrderProduct(op);
     }
 }
