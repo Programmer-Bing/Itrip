@@ -1,8 +1,6 @@
 package com.cssl.pojo.controller;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import com.cssl.pojo.HomePage_product;
-import com.cssl.pojo.ProductDetails;
 import com.cssl.pojo.Product_shopping;
 import com.cssl.pojo.service.HomePageClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.cssl.pojo.Method.Method.json2map;
+import static com.cssl.pojo.method.Method.json2map;
 
 @Controller
 public class HomePageController_Consumer {
@@ -155,6 +153,5 @@ public class HomePageController_Consumer {
         model.setViewName("Europe");
         return model;
     }
-
 
 }

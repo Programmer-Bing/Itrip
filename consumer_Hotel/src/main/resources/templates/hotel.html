@@ -237,22 +237,29 @@
                 </div>
                 <div class="fr">
 			<span class="pos_r">
-						<a href="//www.itrip.com/about/app" rel="nofollow" class="fl" target="_blank">
-							<span class="app-down"><img src="//pic.itrip.com/img/header/head_icon_appdown.gif" class="fl" />APP下载</span>
+						<a class="fl" href="//www.itrip.com/about/app" target="_blank" rel="nofollow">
+							<span class="app-down"><img class="fl"
+                                                        src="//pic.itrip.com/img/header/head_icon_appdown.gif">APP下载</span>
 						</a>
 					</span>
                     <span class="line">|</span>
-                    <span class="js_loginStatus" style="display:none;margin-left:0px;">
-						<span><a class="blue" href="javascript:void(0);" onclick="login()" rel="nofollow">登录</a></span><span>/</span>
-						<span><a href="https://www.itrip.com/signup/index" rel="nofollow">注册</a></span>
+                    <span class="js_loginStatus" style="margin-left: 0px;" id="logzc">
+						<span><a class="blue" onclick="login()" href="javascript:void(0);"
+                                 rel="nofollow">登录</a></span><span>/</span>
+						<span><a href="login/zhuce.html" rel="nofollow">注册</a></span>
 					</span>
-                    <span class="js_loginStatus" style="display:none;margin-left:0px;">
-						<span class="sw_syb fl pos_r" style="margin-left:0px;"><a class="blue display_name" href="https://www.itrip.com/user/index"></a><i class="sw_sj"></i>
+                    <span class="js_loginStatus" style="display:none;margin-left:0px;" id="user">
+						<span class="sw_syb fl pos_r" style="margin-left:0px;"><a class="blue display_name"
+                                                                                  href="爱去旅行个人信息主页面.html" id="username"></a><i
+                                class="sw_sj"></i>
 							<dl class="down_list">
-								<dd class="js_myOrder"><a href="https://www.itrip.com/user/orders" rel="nofollow" class="pos_r">我的订单<label></label></a></dd>
-								<dd class="js_myFavor"><a href="https://www.itrip.com/user/favor/all" rel="nofollow" class="pos_r">我的收藏 <label></label></a></dd>
-								<dd><a href="https://www.itrip.com/user/reward" rel="nofollow">我的奖金</a></dd>
-								<dd><a href="javascript:void(0);" id="btn_logout" onclick="logout()" rel="nofollow">退出登录</a></dd>
+								<dd class="js_myOrder"><a class="pos_r" href="个人信息订单.html"
+                                                          rel="nofollow">我的订单<label></label></a></dd>
+								<dd class="js_myFavor"><a class="pos_r" href="个人中心我的收藏.html"
+                                                          rel="nofollow">我的收藏 <label></label></a></dd>
+								<dd><a href="个人中心我的奖金.html" rel="nofollow">我的奖金</a></dd>
+								<dd><a id="btn_logout"  href="javascript:void(0);"
+                                       rel="nofollow">退出登录</a></dd>
 							</dl>
 						</span>
 					</span>
@@ -751,8 +758,47 @@
     </div>
 </div>
 <script src="../layui/layui.js"></script>
-<script>
+<script type="text/javascript">
+
+
+    //拿数据
+    $.getJSON("/GetSession",function (data) {
+
+        if(data!=null){
+
+            document.getElementById("logzc").style.display="none";
+            $("#username").text(data.chinese_Name);
+            $("#user").css("display","block");
+            document.getElementById("dtc").style.display="none";
+
+        }
+
+
+    });
+
+    //退出登录
+    $("#btn_logout").click(function () {
+
+        $.getJSON("/logout",function (data) {
+            window.location="../hotel.html"
+
+
+
+
+        })
+    })
+
+    //鼠标悬停事件
+    $("#user").mousemove(function () {
+        $(".down_list").css("display","block");
+    })
+    $("#user").mouseout(function () {
+        $(".down_list").css("display","none");
+    })
+
 
 </script>
+
+
 </body>
 </html>

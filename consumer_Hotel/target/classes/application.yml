@@ -2,7 +2,7 @@ server:
   port: 8090
 spring:
   resources:
-    static-locations: classpath:/templates/,classpath:/js/,classpath:/static/,classpath:/META-NF/resources/,classpath:/resources/,classpath:/public/,classpath:/upload
+    static-locations: classpath:/templates/,classpath:/static/,classpath:/META-NF/resources/,classpath:/resources/,classpath:/public/,classpath:/upload,classpath:/templates/login
   thymeleaf:
     encoding: UTF-8
     #开发时关闭缓存,不然没法看到实时页面
@@ -14,17 +14,63 @@ spring:
   application:
     name: microservice-consumer
 
+
+  #用于分布式存储
+  redis:
+    port: 6379
+    database: 0
+    host: 127.0.0.1
+    password:
+    timeout: 10s
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 5
+        min-idle: -1
+
+
 eureka:
-  enabled: true
   client:
     register-with-eureka: true
     service-url:
-      defaultZone: http://127.0.0.1:6001/eureka/
+      defaultZone: http://localhost:6001/eureka
   instance:
     instance-id: microservice-consumer-80
     prefer-ip-address: true     #访问路径可以显示IP地址
 
 #注释后hystrix服务降级不可用
 feign:
-  hystrix:
+  httpclient:
+    connection-timeout: 30000
     enabled: true
+
+
+
+
+#分页配置
+pagehelper:
+  #  helperDialect: mysql  #方言  默认
+  reasonable: true      #启动合理化
+#  pageSizeZero: true    #小于pageIndex1时，pageIndex=1 默认
+
+#默认支持文件上传:本示例上传七牛云
+servlet:
+  multipart:
+    enabled: true
+    max-file-size: 10000000      #单文件大小
+    max-request-size: 100000000   #总大小
+#hystrix的超时时间
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 9000
+#ribbon的超时时间
+ribbon:
+  ReadTimeout: 3000
+  ConnectTimeout: 3000

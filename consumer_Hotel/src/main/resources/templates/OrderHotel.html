@@ -229,6 +229,8 @@
     </div>
 </div>
 <input id="tyingMainProductId" type="hidden" value="">
+<input id="productRule" type="hidden"
+       value='[{"pid":8053,"spec":{"id":"517164267392534549","travller":[{"travllerId":26,"quantity":3}]}},{"pid":8052,"spec":{"id":"516830180222138064","travller":[{"travllerId":26,"quantity":2}]}},{"pid":8053,"spec":{"id":"517164267392534549","travller":[{"travllerId":26,"quantity":3}]}},{"pid":8053,"spec":{"id":"517164267392534549","travller":[{"travllerId":26,"quantity":2},{"travllerId":23,"quantity":1}]}},{"pid":8053,"spec":{"id":"517164267392534549","travller":[{"travllerId":26,"quantity":1},{"travllerId":23,"quantity":1},{"travllerId":14,"quantity":1}]}},{"pid":8053,"spec":{"id":"517164267392534549","travller":[{"travllerId":26,"quantity":2},{"travllerId":23,"quantity":2},{"travllerId":14,"quantity":1}]}},{"pid":13087}]'>
 <!--主体-->
 <div class="wrap" style="margin-top:30px">
     <div class="w750 fl">
@@ -239,24 +241,24 @@
                 <div class="fl new_contact_left">
                     <div class="contact_info pos_r">
                         <div class="contact_name"><span>*</span>姓名</div>
-                        <input name="contactPersonName" class="f14 cnName" placeholder="请填写参加行程的游客姓名" value=""
+                        <input th:value="${user.Chinese_Name}" name="contactPersonName" class="f14 cnName" placeholder="请填写参加行程的游客姓名" value=""
                                ischen="all" require="true" validate="true">
                         <span class="red tip"></span>
                     </div>
                     <div class="contact_info pos_r mt25">
                         <div class="contact_name"><span>*</span>姓名拼音</div>
-                        <input name="pinyinPersonName" class="f14 pinyinName" placeholder="与护照一致" value="" ischen="en"
+                        <input  name="pinyinPersonName" class="f14 pinyinName" placeholder="与护照一致" value="" ischen="en"
                                require="true" validate="true">
                         <span class="red tip"></span>
                     </div>
                     <div class="contact_info pos_r mt25">
                         <div class="contact_name"><span>*</span>邮箱</div>
-                        <input name="receiveEmail" class="f14 receiveEmail" value="" email="true" require="true" validate="true">
+                        <input th:value="${user.email}" name="receiveEmail" class="f14" value="" email="true" require="true" validate="true">
                         <span class="red tip"></span>
                     </div>
                     <div class="contact_info pos_r mt25">
                         <div class="contact_name">微信号</div>
-                        <input name="weixinCode" class="f14 weixinCode" value="" validate="true">
+                        <input  name="weixinCode" class="f14" value="" validate="true">
                         <span class="red tip"></span>
                     </div>
                 </div>
@@ -266,7 +268,7 @@
                         <div class="contact_name fl mt10"><span>*</span>联系手机</div>
                         <div class="select_country fl pos_r" style="display: inline-block;" select-imitation="">
                             <div class="select_val pos_r">
-                                <input class="select_t hand f14" id="contactPhoneAreaCode"
+                                <input  class="select_t hand f14" id="contactPhoneAreaCode"
                                        style="border-radius: 5px 0px 0px 5px;" type="text" readonly="readonly"
                                        value="86" select-val="">
                                 <i class="iconfont"></i>
@@ -336,7 +338,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <input name="contactPhone" class="f14 phone_cn fl" value="18774903699" require="true"
+                        <input  th:value="${user.Phone_number}" name="contactPhone" class="f14 phone_cn fl" value="18774903699" require="true"
                                validate="true" phone="true">
                         <span class="red tip"></span>
                         <span class="success hide"><i class="iconfont"></i>验证成功</span>
@@ -425,7 +427,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <input name="contactForeignPhone" class="f14 phone_fg fl" value="" validate="true"
+                        <input th:value="${user.Phone_number}"  name="contactForeignPhone" class="f14 phone_fg fl" value="" validate="true"
                                number="true">
                         <span class="red tip"></span>
                     </div>
@@ -434,149 +436,28 @@
             </div>
         </div>
         <!--2.游客信息-->
-        <div class="orderBox mt15 count_title " style="padding:55px 20px 25px 25px">
-            <i class="f16"><span>2</span><em>游客信息</em></i>
-            <div th:each="l1,state:${Pshopping}">
-                <div class="js_product nmm1" data-id="8053">
-                    <p class="f14 bold " th:text="${l1.p_title}"></p>
-                    <p id="AInformation" th:text="${l1.adult_num}" style="display: none"></p>
-                    <p id="CInformation" th:text="${l1.children_num}" style="display: none"></p>
-                    <p id="BInformation" th:text="${l1.baby_num}" style="display: none"></p>
-                </div>
-                <!--<div class="js_product mt20" data-id="8052">
-                    <p class="f14 bold ">【INS网红款】意大利五渔村三村超全观景一日游中文英文可选 (柠檬酒品尝+免打印+佛罗伦萨往返) </p>
-                    <table width="100%" class="table-blue Passager mt10" border="0" cellspacing="0" cellspadding="0">
-                        <tbody>
-                        <tr>
-                            <th class="blue f14 normal" colspan="3">
-                                <span class="icon icon_user mr5" style="vertical-align: middle;margin-top:-3px;"></span>成人(13岁以上)
-                                X 1<span class="orange ml20 pos_r hand personChoseBtn ">选取常旅客</span>
-                                <div class="fr grey f12 mt5" style="margin-top:0">
-														<span class="f14 blue mr20 hand saveCLK ">
-															<i class="icon icon_blue_Hook hand"></i>
-															存储为常旅客
-														</span>
-                                    <span class="icon icon_Inform"
-                                          style="vertical-align: middle;margin-top:-3px;"></span>
-                                    <span class="pos_r passportExamBtn">护照示例
-															<div class="passportExam hide">
-																<p>请严格按照登记时所用证件上的信息填写</p>
-																<div><img width="555" height="311" alt="护照"
-                                                                          src="//pic.itrip.com/img/passport.jpg"
-                                                                          border="0"></div>
-															</div>
-														</span>
-                                </div>
-                            </th>
-                        </tr>
-                        <tr>
-                            <td class="fruzzyBox">
-                                <p class="grey">护照号码&nbsp;&nbsp;
-                                </p>
-                                <input class="f14 mt5 js_conf_form fruzzyIpt" type="text" placeholder="与护照一致" value=""
-                                       data-id="10" ischen="" require="true">
-                                <p style="margin-top:5px;text-align:right;width:159px;"><span class="red tip"></span>
-                                </p>
-                            </td>
-                            <td class="fruzzyBox">
-                                <p class="grey">中文姓名(拼音)&nbsp;&nbsp;
-                                </p>
-                                <input class="f14 mt5 js_conf_form " type="text" placeholder="与护照一致" value=""
-                                       data-id="12" ischen="" require="true">
-                                <p style="margin-top:5px;text-align:right;width:159px;"><span class="red tip"></span>
-                                </p>
-                            </td>
-                            <td class="fruzzyBox">
-                                <p class="grey">年龄&nbsp;&nbsp;
-                                </p>
-                                <input class="f14 mt5 js_conf_form " type="text" placeholder="与护照一致" value=""
-                                       data-id="7" require="true" number="true" isrange="">
-                                <p style="margin-top:5px;text-align:right;width:159px;"><span class="red tip"></span>
-                                </p>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <table width="100%" class="table-blue Passager mt10" border="0" cellspacing="0" cellspadding="0">
-                        <tbody>
-                        <tr>
-                            <th class="blue f14 normal" colspan="3">
-                                <span class="icon icon_user mr5" style="vertical-align: middle;margin-top:-3px;"></span>成人(13岁以上)
-                                X 2<span class="orange ml20 pos_r hand personChoseBtn ">选取常旅客</span>
-                                <div class="fr grey f12 mt5" style="margin-top:0">
-														<span class="f14 blue mr20 hand saveCLK ">
-															<i class="icon icon_blue_Hook hand"></i>
-															存储为常旅客
-														</span>
-                                    <span class="icon icon_Inform"
-                                          style="vertical-align: middle;margin-top:-3px;"></span>
-                                    <span class="pos_r passportExamBtn">护照示例
-															<div class="passportExam hide">
-																<p>请严格按照登记时所用证件上的信息填写</p>
-																<div><img width="555" height="311" alt="护照"
-                                                                          src="//pic.itrip.com/img/passport.jpg"
-                                                                          border="0"></div>
-															</div>
-														</span>
-                                </div>
-                            </th>
-                        </tr>
-                        <tr>
-                            <td class="fruzzyBox">
-                                <p class="grey">护照号码&nbsp;&nbsp;
-                                </p>
-                                <input class="f14 mt5 js_conf_form fruzzyIpt" type="text" placeholder="与护照一致" value=""
-                                       data-id="10" ischen="" require="true">
-                                <p style="margin-top:5px;text-align:right;width:159px;"><span class="red tip"></span>
-                                </p>
-                            </td>
-                            <td class="fruzzyBox">
-                                <p class="grey">中文姓名(拼音)&nbsp;&nbsp;
-                                </p>
-                                <input class="f14 mt5 js_conf_form " type="text" placeholder="与护照一致" value=""
-                                       data-id="12" ischen="" require="true">
-                                <p style="margin-top:5px;text-align:right;width:159px;"><span class="red tip"></span>
-                                </p>
-                            </td>
-                            <td class="fruzzyBox">
-                                <p class="grey">年龄&nbsp;&nbsp;
-                                </p>
-                                <input class="f14 mt5 js_conf_form " type="text" placeholder="与护照一致" value=""
-                                       data-id="7" require="true" number="true" isrange="">
-                                <p style="margin-top:5px;text-align:right;width:159px;"><span class="red tip"></span>
-                                </p>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="js_product mt20" data-id="13087">
-                    <div data-persons="2" data-specid="525321102975783439">
-                        <p class="f14 bold">【Room&nbsp;1】&nbsp;悉尼 Base Sydney背包客青年公寓(市中心+近情人港）-双人间 - 无早(公共卫浴)<label
-                                class="f12 grey">(可住2人，请至少填写一位住客信息)</label></p>
-                        <table width="100%" class="table-blue Passager mt10" border="0" cellspacing="0"
-                               cellspadding="0">
-                            <tbody>
+        <div  class="orderBox mt15 count_title " style="padding:55px 20px 25px 25px">
+            <i class="f16"><span>2</span><em>住客信息</em></i>
+            <div>
+                <div  data-id="8442" class="js_product ">
+                    <div th:each="ro:${room}" data-specId="62933665633269606" data-persons="2">
+                        <p th:text="'【Room&nbsp;1】&nbsp;'+${hotel.get(0).get('h_name')}+'-'+${room.get(roStat.index).get('rif_name')}" class="f14 bold">【Room&nbsp;1】&nbsp;悉尼南方大酒店 Great Southern Hotel 4星酒店(近中央车站+唐人街旁+近旅游景点)-标准双人间 - 无早(最多住2人)<label class="f12 grey">(可住2人，请至少填写一位住客信息)</label></p>
+                        <table class="table-blue Passager mt10" width="100%" cellspadding="0" cellspacing="0" border="0">
                             <tr>
                                 <th class="blue f14 normal" colspan="3">
-                                    <span class="icon icon_user mr5"
-                                          style="vertical-align: middle;margin-top:-3px;"></span><span
-                                        class="personTitle">住客1</span>
+                                    <span class="icon icon_user mr5" style="vertical-align: middle;margin-top:-3px;"></span><span class="personTitle" th:text="'住客'+${roStat.index+1}">住客1</span>
                                     <span class="orange ml20 pos_r hand personChoseBtn hide">选取常旅客</span>
                                     <div class="fr grey f12 mt5" style="margin-top:0">
-                                        <a class="removePerson hide blue" href="javascript:void(0);">移除入住人</a>
+                                        <a href="javascript:void(0);" class="removePerson hide blue">移除入住人</a>
                                         <span class="f14 blue mr20 hand saveCLK hide">
 																	<i class="icon icon_blue_Hook hand"></i>
 																	存储为常旅客
 																</span>
-                                        <span class="icon icon_Inform"
-                                              style="vertical-align: middle;margin-top:-3px;"></span>
+                                        <span class="icon icon_Inform" style="vertical-align: middle;margin-top:-3px;"></span>
                                         <span class="pos_r passportExamBtn">护照示例
 																	<div class="passportExam hide">
 																		<p>请严格按照登记时所用证件上的信息填写</p>
-																		<div><img width="555" height="311" alt="护照"
-                                                                                  src="//pic.itrip.com/img/passport.jpg"
-                                                                                  border="0"></div>
+																		<div><img src="//pic.itrip.com/img/passport.jpg" width="555" height="311" border="0" alt="护照"/></div>
 																	</div>
 																</span>
                                     </div>
@@ -584,27 +465,38 @@
                             </tr>
                             <tr>
                                 <td class="fruzzyBox">
-                                    <p class="grey">中文名（拼音）&nbsp;&nbsp;
-                                        <span class="red tip"></span>
-                                    </p>
-                                    <input class="f14 mt5 js_conf_form fruzzyIpt" type="text" placeholder="与护照一致"
-                                           value="" data-id="3987" ischen="" require="true">
-                                </td>
-                                <td class="fruzzyBox">
                                     <p class="grey">中文姓（拼音）&nbsp;&nbsp;
                                         <span class="red tip"></span>
                                     </p>
-                                    <input class="f14 mt5 js_conf_form " type="text" placeholder="与护照一致" value=""
-                                           data-id="3988" ischen="" require="true">
+                                    <input type="text"
+                                           data-id="3988"
+                                           require="true"
+                                           class="f14 mt5 js_conf_form fruzzyIpt"
+                                           value=""
+                                           placeholder="与护照一致"
+                                           isChEn = ""/>
+                                </td>
+                                <td class="fruzzyBox">
+                                    <p class="grey">中文名（拼音）&nbsp;&nbsp;
+                                        <span class="red tip"></span>
+                                    </p>
+                                    <input type="text"
+                                           data-id="3987"
+                                           require="true"
+                                           class="f14 mt5 js_conf_form "
+                                           value=""
+                                           placeholder="与护照一致"
+                                           isChEn = ""/>
                                 </td>
                                 <td class="fruzzyBox">
                                     <p class="grey">性别&nbsp;&nbsp;
                                         <span class="red tip"></span>
                                     </p>
-                                    <select class="f14 mt5 js_conf_form hand" style="width:140px;" data-id="9"
-                                            require="true">
+                                    <select data-id="9"
+                                            require="true"
+                                            class="f14 mt5 js_conf_form hand" style="width:140px;">
                                         <option selected="selected" value="Male">男</option>
-                                        <option value="Female">女</option>
+                                        <option  value="Female">女</option>
                                     </select>
                                 </td>
                             </tr>
@@ -613,17 +505,45 @@
                                     <p class="grey">年龄&nbsp;&nbsp;
                                         <span class="red tip"></span>
                                     </p>
-                                    <input class="f14 mt5 js_conf_form " type="text" placeholder="与护照一致" value=""
-                                           data-id="7" require="true" number="true" isrange="">
+                                    <input type="text"
+                                           data-id="7"
+                                           number="true"
+                                           require="true"
+                                           class="f14 mt5 js_conf_form "
+                                           value=""
+                                           placeholder="与护照一致"
+                                           isRange = ''
+                                    />
                                 </td>
                                 <td class="fruzzyBox">&nbsp;</td>
                                 <td class="fruzzyBox">&nbsp;</td>
                             </tr>
-                            </tbody>
                         </table>
-                        <a class="addPerson blue" href="javascript:void(0);">添加入住人</a>
+                        <a href="javascript:void(0);" class="addPerson blue">添加入住人</a>
                     </div>
-                </div>-->
+                    <table data-id="8442" border="0" cellspadding="0" cellspacing="0" width="100%" class="mt20 Message f14 OtherInfo extraConf product-item-group" style="color:#666666">
+                        <tr>
+                            <td width="12%" valign="top" class="f16 blue">附加信息：</td>
+                            <td width="88%" class="f16 padl"></td>
+                        </tr>
+                        <tr>
+                            <td width="12%"></td>
+                            <td width="88%" class="padl" data-id="27">
+                                床型选择<span class="on_choice blue js_conf_form" data-id="27" data-value="1queen bed">
+									    				1大床</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="12%"></td>
+                            <td width="88%" class="pad1">
+                                <dl>
+                                    <dd 	class="on_cur" data-value="1queen bed">1大床</dd>
+                                    <dd  data-value="2single bed">2小床</dd>
+                                </dl>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
         <!--3.保险预定-->
@@ -639,11 +559,13 @@
             <div class="time_cycle f14">
                 <span>起保时间：</span>
                 <div class="ipt date pt">
-                    <input class="startDate pt hasDatepicker test27"
-                           id="dp1569037351778" readonly="readonly"
+                    <input th:id="startDatept" class="startDate pt hasDatepicker test27"
+                           id="startDatept" readonly="readonly"
                            type="text" placeholder="选择出行日期" style="width: 130px;">
                     <span class="icon icon_timer" style="top:8px;"></span>
                 </div>
+
+
                 <!--样式（不需了解）-->
                 <style>
                     .insur_list {
@@ -722,10 +644,8 @@
                         <span class="fl w160">
 
 													承保年龄：1岁-88岁</span>
-                        <span class="fl w110 "><label class="js_curCode">RMB</label> <em id="ourPrice"
-                                                                                         data-to-currencyid="21"
-                                                                                         data-cid="12"
-                                                                                         data-price="350">350</em>/份</span>
+                        <span class="fl w110">RMB <em id="ourPrice" data-to-currencyid="21" data-ocurrencyid="12"
+                                                      data-oprice="350">350</em>/份</span>
                         <span class="fr ml5">份</span>
                         <select class="fr insur_sel hand" data-orgvalue="2">
                             <option>0</option>
@@ -757,7 +677,7 @@
                         <span class="fl w160">
 
 													承保年龄：1岁-88岁</span>
-                        <span class="fl w110">RMB <em class="ourPrice" data-to-currencyid="21" data-ocurrencyid="12"
+                        <span class="fl w110">RMB <em id="ourPrice" data-to-currencyid="21" data-ocurrencyid="12"
                                                       data-oprice="30">30</em>/份</span>
                         <span class="fr ml5">份</span>
                         <select class="fr insur_sel hand" data-orgvalue="0">
@@ -790,7 +710,7 @@
                         <span class="fl w160">
 
 													承保年龄：1岁-88岁</span>
-                        <span class="fl w110">RMB <em class="ourPrice" data-to-currencyid="21" data-ocurrencyid="12"
+                        <span class="fl w110">RMB <em id="ourPrice" data-to-currencyid="21" data-ocurrencyid="12"
                                                       data-oprice="265">265</em>/份</span>
                         <span class="fr ml5">份</span>
                         <select class="fr insur_sel hand" data-orgvalue="0">
@@ -817,7 +737,7 @@
                             <option>20</option>
                         </select>
                     </li>
-                    <!--<li class="hide" data-specid="78305945653300839" data-spename="8天">
+                    <li class="hide" data-specid="78305945653300839" data-spename="8天">
                         <a class="fl productInfo" href="https://www.itrip.com/help?menuId=394" target="_blank"
                            data-id="13440" data-productname="利宝完美境外保障—尊崇型(人在境外不可购买）">利宝完美境外保障—尊崇型(人在境外不可购买）</a>
                         <span class="fl w160">
@@ -915,13 +835,13 @@
                             <option>19</option>
                             <option>20</option>
                         </select>
-                    </li>-->
+                    </li>
                 </ul>
                 <div class="more_in mt10 ml30 f12">
                     <ins>+</ins>
                     其他保险
                 </div>
-                <div class="all_price">合计：<label class="js_curCode">RMB</label> <em data-oprice="78.98">700</em></div>
+                <div class="all_price">合计：RMB <em data-oprice="78.98">700</em></div>
             </div>
             <!--保险投保人信息录入-->
             <div class="insur_peo insuerInfo">
@@ -1083,90 +1003,65 @@
         <div class="orderlistbox w360" style="top: 0px; right: -192px; position: fixed; z-index: 10;">
             <!--产品清单-->
             <div class="boxRightBlue orderlist">
-                <div class="con">
-                    <p class="tc" style="border-bottom:1px #e3e3e3 solid;height:12px;margin:15px 25px;">
-                        <span class="f16" style="background:#FFF;padding:0 10px;">产品清单</span>
-                    </p>
-                    <div class="orderlistcon mt15">
-                        <ul th:each="l1,state:${Pshopping}" class="product_list" data-id="8053" data-promotionid=""
-                            data-date="2019/09/23">
-                            <li>
-                                <p class="f16" th:text="${l1.p_title}"></p>
-                                <p class="f14 grey mt5 clearfix">
-                                    <span th:text="'出行日期：'+${#strings.substring(l1.travel_date,0,10)}"></span>
-                                    <span class="orange bold fr"><label class="js_curCode">RMB</label>&nbsp;&nbsp;<label
-                                            class="js_curMoney price"
-                                            th:data-price="${#numbers.formatDecimal(l1.settlement_price,2,2)}"
-                                            data-cid="12"
-                                            th:text="${#numbers.formatDecimal(l1.settlement_price,2,2)}"></label></span>
-                                </p>
-                                <p class="f14 grey mt5" th:text="${#strings.substring(l1.product_specification,5)}"></p>
-                                <p class="f14 mt5"
-                                   th:text="'成人 X '+${l1.adult_num}+'  儿童  X '+${l1.children_num}+'  婴儿 X '+${l1.baby_num}"></p>
-                                <p style="display: none"> <span
-                                        class="orange bold fr"><label class="js_curCode">RMB</label>&nbsp;&nbsp;<label
-                                        class="zj" th:data-price="${l1.discount}" data-cid="12"
-                                        th:text="${l1.discount}"></label></span></p>
-                            </li>
-                        </ul>
-                        <!--<ul class="product_list" data-id="13087" data-promotionid="" data-date="2019/10/09">
-                            <li>
-                                <p class="f16">悉尼 Base Sydney背包客青年公寓(市中心+近情人港）</p>
-                                <p class="f14 grey mt5 clearfix">
-                                    入住日期：2019/10/09至2019/10/11<span class="orange bold fr"><label
-                                        class="js_curCode">GBP</label>&nbsp;&nbsp;<label class="js_curMoney"
-                                                                                         data-price="870" data-cid="9">476.11</label></span>
-                                </p>
-                                <p class="f14 grey mt5">
-                                    双人间 - 无早(公共卫浴)&nbsp;&nbsp;&nbsp;&nbsp;3间 <br>
-                                </p>
-                            </li>
+                        <div class="con">
+                            <p class="tc" style="border-bottom:1px #e3e3e3 solid;height:12px;margin:15px 25px;">
+                                <span class="f16" style="background:#FFF;padding:0 10px;">产品清单</span>
+                            </p>
+                            <div class="orderlistcon mt15">
+                                <ul data-id="8442" class="product_list" data-promotionId="" data-date="2019/10/01">
+                                    <li>
+                                        <p class="f16" th:text="${hotel.get(0).get('h_name')}">悉尼南方大酒店 Great Southern Hotel 4星酒店(近中央车站+唐人街旁+近旅游景点)</p>
+                                        <p th:text="'入住日期：'+${sp1}+'至'+${sp2}" class="f14 grey mt5 clearfix">
+                                            入住日期：2019/10/01至2019/10/02<span class="orange bold fr"><label class="js_curCode">RMB</label>&nbsp;&nbsp;<label class="js_curMoney" data-cid="9" data-price="592">2871.2</label></span>
+                                        </p>
+                                        <p class="f14 grey mt5">
+                                        <p th:each="r:${room}" th:text="${room.get(rStat.index).get('rif_name')}+'&nbsp;&nbsp;&nbsp;&nbsp;1间'">
 
-                        </ul>-->
-                        <!--保险-->
-                        <ul class="insur_ul">
-                            <li class="oh">
-                                <p class="f16 fl">
-                                    保险 X<em class="toal_insur">2</em>
-                                </p>
-                                <span class="orange bold fr f14"><label class="js_curCode">GBP</label>&nbsp;&nbsp;<label
-                                        class="js_insurMoney"></label></span>
-                            </li>
-                        </ul>
-                        <ul class="vip hide">
-                            <li class="oh">
-                                <p class="f16 fl">
-                                    旅途无忧 X1
-                                </p>
-                                <span class="orange bold fr f14">
-										<label class="js_curCode">GBP</label>&nbsp;&nbsp;
-										<label class="js_curMoney" data-price="99" data-cid="12">
-											11.17</label>
+                                        </p>
+                                    </li>
+
+                                </ul>
+                                <ul class="insur_ul hide">
+                                    <li class="oh">
+                                        <p class="f16 fl">
+                                            保险 X<em class="toal_insur">0</em>
+                                        </p>
+                                        <span class="orange bold fr f14"><label class="js_curCode">RMB</label>&nbsp;&nbsp;<label class="js_insurMoney"  data-cid = "" data-oprice="0">0</label></span>
+                                    </li>
+                                </ul>
+                                <ul class="vip hide">
+                                    <li class="oh">
+                                        <p class="f16 fl">
+                                            旅途无忧 X1
+                                        </p>
+                                        <span class="orange bold fr f14">
+										<label class="js_curCode">RMB</label>&nbsp;&nbsp;
+										<label class="js_curMoney" data-cid="12" data-price="99">
+											99</label>
 									</span>
-                            </li>
-                        </ul>
-                        <!--优惠-->
-                        <ul>
-                            <li class="clearfix pos_r">
-                                <p class="f16 fl">
-                                    <span class="pupup-bottom-target">优惠金额<!--<def
-                                            class="popup-discounted-price">[优惠明细]</def>--></span>
-                                </p>
-                                <span class="orange bold fr f14 have-discount-total">
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li class="clearfix pos_r">
+                                        <p class="f16 fl">
+                                            <span class="pupup-bottom-target">优惠金额<def class="popup-discounted-price">[优惠明细]</def></span>
+                                        </p>
+                                        <span class="orange bold fr f14 have-discount-total">
 											<label class="js_curCode">RMB</label>&nbsp;&nbsp;
-											<label class="js_curMoney" data-price="209.99" data-cid="21"></label>
+											<label class="js_curMoney" data-cid="12" data-price="1353.15">
+												1353.15</label>
 										</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!--应付金额-->
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!--应付金额-->
             <div class="resultPrice tc">
                 <p class="f16">应付：
                     <input id="couponValues" type="hidden" data-discount="20">
                     <label class="js_curCode" data-id="21" data-cur-currid="21">GBP</label>
-                    <span class="f24 orange bold ml10 js_total"></span>
+                    <span class="f24 orange bold ml10 js_total" data-org-price="1129.15">1205.88</span>
                     <span class="orange f12 tr mr50 discount_tip">保险不参加优惠</span>
                     <span class="count f12 discount_info" style="display:none;">
 							<em>已优惠</em>
@@ -1176,7 +1071,7 @@
                 </p>
                 <div class="pos_r">
                     <p class=" rmb_p">
-                        <span class="f18 orange js_rmb"></span>
+                        <span class="f18 orange js_rmb" data-rmb="10007.09">=RMB 10687.09</span>
                         <!--<span class="grey" id="ratesIds" data-rmb-rates-id="1" data-rates-id="8.86">汇率：8.86</span>-->
                     </p>
                     <div class="popup-bottm-tip discount-details" style="float:none; display:inline-block;"
@@ -3447,6 +3342,8 @@ data-i-op-reviewid
         $(".fr.insur_sel.hand").change(function () {
             var times = $(this).val();//几个投保人
             var name = $(this).siblings(".fl.productInfo").text(); //保险名
+            var price = $("#ourPrice").text();//保险单价
+            $(".all_price em").text(times * price);//保险合计
             $(".insur_info.Passager.pos_r").remove();
             for (var i = 0; i < times; i++) {
                 var idNum = getRandomNum();//获取随机数
@@ -3745,32 +3642,8 @@ data-i-op-reviewid
     } else {
         changeCurrency(CUR_CID);
     }
-    var check = setInterval(checkUserOnline, 300);
-
+    var check = setInterval(checkUserOnline, 3000);
     function checkUserOnline() {
-        if (!CUR_CID) {
-            CUR_CID = 12;
-            $('.money_sw a[data-id="' + CUR_CID + '"]').click();
-        } else {
-            if (CUR_CID == 12) {
-                $(".f18.orange.js_rmb").empty().text(" = RMB" + $(".f24.orange.bold.ml10.js_total").text());
-            }
-        }
-    }
-</script>
-<!--保险总额 结算总金额-->
-<script>
-    var check = setInterval(checkUserOnline, 300);
-
-    function checkUserOnline() {
-        if ($(".sw_syb.fl.blue").text() == "RMB") {
-            $(".rmb_p").addClass("hide");
-        } else {
-            $(".rmb_p").removeClass("hide");
-        }
-        var price = $("#ourPrice").text();//保险单价
-        var times = $(".fr.insur_sel.hand").val();//几个投保人
-        $(".all_price em").text(times * price);//保险合计
         $(".js_insurMoney").text($(".all_price em").text());
         var bx = $(".js_insurMoney").text();
         var yh_one = document.getElementsByClassName("zj");
@@ -3784,22 +3657,24 @@ data-i-op-reviewid
         for (var i = 0; i < je_one.length; i++) {
             sum += (je_one[i].innerHTML * 1);
         }
-        $(".f24.orange.bold.ml10.js_total").text((sum + bx * 1).toFixed(2));
+        $(".f24.orange.bold.ml10.js_total").text((sum + bx * 1));
     }
 </script>
-<!--支付-->
-<script>
-    $(".btn-orange.fr.f24").click(function () {
-        //获取联系人信息
-        var name = $(".cnName").val();
-        var namepingyin = $(".pinyinName").val();
-        var receiveEmail = $(".receiveEmail").val();
-        var weixinCode = $(".weixinCode").val();
-        var contactPhoneAreaCode = $(".f14.phone_cn.fl").val();
-        var contactForeignPhoneAreaCode = $(".f14.phone_fg.fl").val();
-        //获取游客信息
 
-    })
-</script>
+    <script>
+        layui.use('laydate', function(){
+            var laydate = layui.laydate;
+            //执行一个laydate实例
+            laydate.render({
+                elem: '#startDatept', //指定元素
+                min: 'now()',
+                done:function(value,date){//value, date, endDate点击日期、清空、现在、确定均会触发。回调返回三个参数，分别代表：生成的值、日期时间对象、结束的日期时间对象
+                    //其他操作
+
+                }
+            });
+        });
+    </script>
+</div>
 </body>
 </html>

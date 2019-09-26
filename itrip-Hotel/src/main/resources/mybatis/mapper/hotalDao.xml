@@ -13,6 +13,7 @@
                 h.h_id = #{id}
             </if>
         </trim>
+        ORDER BY p.Product_id
     </select>
 
     <select id="showInfo" parameterType="int" resultType="map">
