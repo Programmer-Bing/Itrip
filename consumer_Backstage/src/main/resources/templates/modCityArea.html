@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,18 +10,71 @@
 <link rel="stylesheet" href="css/admin.css">
 <script src="js/jquery.js"></script>
 <script src="js/pintuer.js"></script>
+    <script type="text/javascript" src="scripts/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var lp_id=0;
+            var sp_id=0;
+
+            $.getJSON("smallplate","lp_id="+lp_id,function (json) {
+                var tr="";
+                for (var i=0;i<json.length;i++){
+                    if([[${list[0].sp_id}]]==json[i].sp_id){
+                        sp_id=json[i].sp_id;
+                        guojia(sp_id);
+                        tr+="<option value='"+json[i].sp_id+"' selected='selected'>"+json[i].sp_name+"</option>";
+                    }else{
+                        tr+="<option value='"+json[i].sp_id+"'>"+json[i].sp_name+"</option>";
+                    }
+                }
+                $("#sp_id").append(tr);
+            });
+
+            $("#sp_id").change(function () {
+                sp_id=$(this).val();
+                guojia(sp_id);
+            });
+
+
+            function guojia(sp_id){
+                $.getJSON("citiesstatesIsNull","sp_id="+sp_id,function (json) {
+                    var tr="";
+                    $("#cs_id option:not(:first)").remove();
+                    for (var i=0;i<json.length;i++){
+                        if([[${list[0].sb_cs}]]==json[i].cs_id){
+                            tr+="<option value='"+json[i].cs_id+"' selected='selected'>"+json[i].cs_name+"</option>";
+                        }else if([[${list[0].cs_id}]]==json[i].cs_id){
+                            tr+="<option value='0'>"+json[i].cs_name+"</option>";
+                        }else{
+                            tr+="<option value='"+json[i].cs_id+"'>"+json[i].cs_name+"</option>";
+                        }
+                    }
+                    $("#cs_id").append(tr);
+                });
+            }
+
+        });
+    </script>
 </head>
 <body>
 <div class="panel admin-panel">
   <div class="panel-head"><strong><span class="icon-key"></span> 修改城市地区</strong></div>
   <div class="body-content">
-    <form method="post" class="form-x" action="">
+    <form method="get" class="form-x" action="setCitiesstates">
+        <div class="form-group">
+            <div class="label">
+                <label for="sitename">城市地区ID:</label>
+            </div>
+            <div class="field">
+                <input type="text" class="input w50" th:value="${list[0].get('cs_id') }" readonly="readonly" name="c_id" id="c_id" size="50" placeholder="请输入热度" data-validate="required:请输入"/>
+            </div>
+        </div>
 	  <div class="form-group">
         <div class="label">
-          <label for="sitename">城市地区名：</label>
+          <label for="sitename">城市地区名:</label>
         </div>
         <div class="field">
-          <input type="text" class="input w50" id="cs_name" name="cs_name" size="50" placeholder="请输入地区名" data-validate="required:请输入地区名" />       
+          <input type="text" class="input w50" th:value="${list[0].get('cs_name') }" id="cs_name" name="cs_name" size="50" placeholder="请输入地区名" data-validate="required:请输入地区名" />
         </div>
       </div>  
 	<div class="form-group">
@@ -29,35 +82,28 @@
           <label for="sitename">所属小模块：</label>
         </div>
         <div class="field">
-          <select name="sp_id" class="input" onchange="changesearch()" style="width:60px; line-height:17px; display:inline-block">
-            <option value="">选择</option>
-            <option value="0">大堡厦城市</option>
-            <option value="1">大都市</option>
-			<option value="2">周边地区</option>
+          <select name="sp_id" id="sp_id" class="input" style="width:150px; line-height:17px; display:inline-block">
           </select>     
         </div>
-      </div>   
-	  <div class="form-group">
+      </div>
+        <div class="form-group">
+            <div class="label">
+                <label for="sitename">所属城市：</label>
+            </div>
+            <div class="field">
+                <select name="cs_id" id="cs_id" class="input" style="width:150px; line-height:17px; display:inline-block">
+                    <option value="0">选择</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
         <div class="label">
           <label for="sitename">城市地区热度：</label>
         </div>
         <div class="field">
-		<input type="text" class="input w50" name="Popular" id="Popular" size="50" placeholder="请输入热度" data-validate="required:请输入热度"/>
+		<input type="text" class="input w50" th:value="${list[0].get('Popular')}" name="Popular" id="Popular" size="50" placeholder="请输入热度" data-validate="required:请输入热度"/>
         </div>
       </div>
-     <div class="form-group">
-        <div class="label">
-          <label for="sitename">所属城市：</label>
-        </div>
-        <div class="field">
-          <select name="sp_id" class="input" onchange="changesearch()" style="width:60px; line-height:17px; display:inline-block">
-            <option value="">选择</option>
-            <option value="0">凯思恩</option>
-            <option value="1">圣灵群岛</option>
-			<option value="2"费沙岛</option>
-          </select>     
-        </div>
-      </div>  	  
       <div class="form-group">
         <div class="label">
           <label></label>

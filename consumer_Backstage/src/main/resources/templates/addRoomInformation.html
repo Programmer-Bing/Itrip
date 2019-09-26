@@ -10,18 +10,36 @@
 <link rel="stylesheet" href="css/admin.css">
 <script src="js/jquery.js"></script>
 <script src="js/pintuer.js"></script>
+  <script type="text/javascript" src="scripts/jquery-1.8.3.min.js"></script>
+  <script type="text/javascript">
+    $(function () {
+        $.getJSON("hotel",function(json){
+            var tr="";
+            for (var i=0;i<json.length;i++){
+                var biaoti="";
+                if(json[i].h_name.length>10){
+                    biaoti = json[i].h_name.substring(0,10)+"...";
+                }else{
+                    biaoti = json[i].h_name;
+                }
+                tr+="<option value='"+json[i].h_id+"'>"+biaoti+"</option>";
+            }
+            $("#h_id").append(tr);
+        });
+    });
+  </script>
 </head>
 <body>
 <div class="panel admin-panel">
   <div class="panel-head"><strong><span class="icon-key"></span> 添加房间信息</strong></div>
   <div class="body-content">
-    <form method="post" class="form-x" action="">
+    <form method="post" class="form-x" action="addroom" enctype="multipart/form-data">
 	  <div class="form-group">
         <div class="label">
           <label for="sitename">房间名称：</label>
         </div>
         <div class="field">
-          <input type="text" class="input w50" id="rif_name" name="rif_name" size="50" placeholder="请输入房间名" data-validate="required:请输入房间名" />       
+          <input type="text" class="input w50" id="rif_name" name="rif_name" size="50" placeholder="请输入房间名" data-validate="required:" />
         </div>
       </div>  
 	<div class="form-group">
@@ -29,7 +47,7 @@
           <label for="sitename">入住人数：</label>
         </div>
         <div class="field">
-			<input type="text" class="input w50" id="occupants_num" name="occupants_num" size="50" placeholder="入住人数" data-validate="required:请输入入住人数" />		
+			<input type="text" class="input w50" id="occupants_num" name="occupants_num" size="50" placeholder="入住人数" data-validate="required:" />
         </div>
       </div>   
 	  <div class="form-group">
@@ -37,7 +55,7 @@
           <label for="sitename">面积：</label>
         </div>
         <div class="field">
-		<input type="text" class="input w50" name="area" id="area" size="50" placeholder="面积" data-validate="required:请输入面积"/>
+		<input type="text" class="input w50" name="area" id="area" size="50" placeholder="面积" data-validate="required:"/>
         </div>
       </div>
 	<div class="form-group">
@@ -45,7 +63,7 @@
           <label for="sitename">可入住时间：</label>
         </div>
         <div class="field">
-		<input type="date" class="input w50" name="Check_time" id="Check_time" size="50" placeholder="入住时间" data-validate="required:请输入可入住时间"/>
+		<input type="date" class="input w50" name="Check_time" id="Check_time" size="50" placeholder="入住时间" data-validate="required:"/>
         </div>
       </div>
 	<div class="form-group">
@@ -53,7 +71,7 @@
           <label for="sitename">价格：</label>
         </div>
         <div class="field">
-		<input type="text" class="input w50" name="price" id="price" size="50" placeholder="价格" data-validate="required:请输入价格"/>
+		<input type="text" class="input w50" name="price" id="price" size="50" placeholder="价格" data-validate="required:,double:"/>
         </div>
       </div>
 	<div class="form-group">
@@ -69,7 +87,7 @@
           <label for="sitename">图片：</label>
         </div>
         <div class="field">
-		<input type="file" accept="image/*" class="input w50" name="phone" id="phone" size="50" placeholder="图片" data-validate="required:请选择图片"/>
+		<input type="file" accept="image/*" class="input w50" name="photo" id="photo" size="50" placeholder="图片" data-validate="required:"/>
         </div>
       </div>
 	<div class="form-group">
@@ -77,9 +95,27 @@
           <label for="sitename">酒店编号：</label>
         </div>
         <div class="field">
-		<input type="text" class="input w50" name="h_id" id="h_id" size="50" placeholder="酒店编号：" data-validate="required:请输入酒店编号"/>
+          <select name='h_id' id='h_id' class='input'  style='width:200px; line-height:17px;display:inline-block' data-validate="required:">
+            <option value="">选择</option>
+              </select>
         </div>
-      </div>	  
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label for="sitename">床型:</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" name="bed_type" id="bed_type" size="50" placeholder="床型" data-validate="required:"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label for="sitename">早餐:</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" name="breakfast" id="breakfast" size="50" placeholder="早餐"/>
+        </div>
+      </div>
       <div class="form-group">
         <div class="label">
           <label></label>

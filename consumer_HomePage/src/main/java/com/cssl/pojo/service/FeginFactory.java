@@ -7,6 +7,7 @@ import java.util.Map;
 import com.cssl.pojo.HomePage_product;
 import com.cssl.pojo.ProductDetails;
 import com.cssl.pojo.Product_shopping;
+import com.cssl.pojo.order.Order;
 import com.cssl.pojo.po.*;
 import org.springframework.stereotype.Component;
 
@@ -193,6 +194,37 @@ public class FeginFactory implements FallbackFactory<HomePageClientService> {
 
             @Override
             public List<BrowsingHistory> SelectBrowsingHistoryUser(int userid) {
+                return null;
+            }
+
+            @Override
+            public Product_shopping findNew() {
+                return null;
+            }
+
+            @Override
+            public Product_shopping findById(Integer pscid) {
+                return null;
+            }
+
+            @Override
+            public int addOrder(String map) {
+                return 0;
+            }
+
+
+            @Override
+            public int AddDiscountCoupon(DiscountCoupon dc) {
+                return 0;
+            }
+
+            @Override
+            public int SelectDiscountCouponCount(int userid) {
+                return 0;
+            }
+
+            @Override
+            public List<DiscountCoupon> SelectDiscountCouponUserShow(int userid) {
                 return null;
             }
         };

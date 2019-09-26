@@ -2,6 +2,7 @@ package com.cssl.pojo.controller;
 
 import com.cssl.pojo.HomePage_product;
 import com.cssl.pojo.Product_shopping;
+import com.cssl.pojo.order.Order;
 import com.cssl.pojo.service.HomePageClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.cssl.pojo.method.Method.getOrderIdByTime;
 import static com.cssl.pojo.method.Method.json2map;
 
 @Controller
@@ -97,17 +99,8 @@ public class HomePageController_Consumer {
         System.out.println("进入立即结算");
         Integer num = this.service.addShopping(map);
         Map<String, Object> map2 = json2map(map);
-        Product_shopping product_shopping = new Product_shopping();
-        HomePage_product hp = this.service.findByP_id(Integer.valueOf((String) map2.get("p_id")));
-        product_shopping.setP_id(Integer.valueOf((String) map2.get("p_id")));
-        product_shopping.setTravel_date((String) map2.get("Travel_date"));
-        product_shopping.setSettlement_price(BigDecimal.valueOf((Double) map2.get("Settlement_price")));
-        product_shopping.setProduct_specification((String) map2.get("Product_specification"));
-        product_shopping.setAdult_num(Integer.parseInt((String) map2.get("Adult_num")));
-        product_shopping.setChildren_num(Integer.parseInt((String) map2.get("children_num")));
-        product_shopping.setBaby_num(Integer.parseInt((String) map2.get("baby_num")));
-        product_shopping.setDiscount(BigDecimal.valueOf((Double) map2.get("Discount")));
-        product_shopping.setUid(Integer.parseInt((String) map2.get("uid")));
+        Product_shopping product_shopping = this.service.findNew();
+        HomePage_product hp = this.service.findByP_id(product_shopping.getP_id());
         product_shopping.setP_title(hp.getProduct_name());
         List<Product_shopping> list1 = new ArrayList<>();
         List<Product_shopping> list2 = new ArrayList<>();
@@ -153,5 +146,11 @@ public class HomePageController_Consumer {
         model.setViewName("Europe");
         return model;
     }
-
+    @RequestMapping("/PlacingOrder")
+    @ResponseBody
+    public ModelAndView PlacingOrder(HttpSession session, @RequestParam(value = "map", required = false) String map,ModelAndView model, Model model2) {
+        int num = this.service.addOrder(map);
+        System.out.println(num);
+        return null;
+    }
 }

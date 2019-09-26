@@ -3,6 +3,8 @@ package com.cssl.pojo.service;
 import com.cssl.pojo.HomePage_product;
 import com.cssl.pojo.ProductDetails;
 import com.cssl.pojo.Product_shopping;
+import com.cssl.pojo.order.OProduct;
+import com.cssl.pojo.order.Order;
 
 import java.util.List;
 import java.util.Map;
@@ -52,5 +54,26 @@ public interface HomePage_productService {
     List<List> showMycart();
 
     boolean delHotel(Integer sht);
-
+    /***
+     * 查询数据库最新添加的一条数据
+     * @return
+     */
+    Product_shopping findNew();
+    /***
+     * 通过id查购物车的商品
+     * @return
+     */
+    Product_shopping findById(Integer psc_id);
+    /***
+     * 添加订单
+     * @param o
+     * @return
+     */
+    int addOrder(Order o);
+    /***
+     * 新增订单商品
+     * @param op
+     * @return
+     */
+    int addOrderProduct(OProduct op);
 }

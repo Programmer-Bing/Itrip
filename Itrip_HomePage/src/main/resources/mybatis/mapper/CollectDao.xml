@@ -87,6 +87,18 @@
         </select>
 
 
+        <insert id="AddDiscountCoupon" parameterType="DiscountCoupon">
+
+            INSERT INTO discountcoupon() VALUES(DEFAULT,#{userid},#{dprice},#{dstatetime},#{meet},#{dmrtime},0,#{dname});
+        </insert>
+
+
+        <select id="SelectDiscountCouponCount" resultType="java.lang.Integer" parameterType="int">
+
+            SELECT COUNT(0)  FROM discountcoupon WHERE userid=#{userid}
+        </select>
+
+
 
 
 </mapper>

@@ -3,6 +3,7 @@ package com.cssl.pojo.service;
 import com.cssl.pojo.HomePage_product;
 import com.cssl.pojo.ProductDetails;
 import com.cssl.pojo.Product_shopping;
+import com.cssl.pojo.order.Order;
 import com.cssl.pojo.po.*;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.ui.Model;
@@ -245,7 +246,62 @@ public interface HomePageClientService {
     @RequestMapping(method = RequestMethod.POST,value = "/SelectBrowsingHistory")
     public int SelectBrowsingHistory(@RequestBody  BrowsingHistory bb);
 
-
+    /***
+     *
+     * 个人浏览记录的查询
+     * @param userid
+     * @return
+     */
     @RequestMapping(method = RequestMethod.GET,value = "/SelectBrowsingHistoryUser")
     public List<BrowsingHistory> SelectBrowsingHistoryUser(@RequestParam(value = "111") int userid);
+    /***
+     * 查询数据库最新添加的一条数据
+     * @return
+     */
+    @RequestMapping("findNew")
+    public Product_shopping findNew();
+
+    /***
+     * 跟据id查购物车的商品
+     * @return
+     */
+    @RequestMapping("findById")
+    public Product_shopping findById(@RequestParam(value = "psc_id") Integer psc_id);
+
+    /***
+     * 新增订单
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET,value = "addOrder")
+    public int addOrder(@RequestParam("map") String map);
+
+
+    /***
+     *添加优惠卷
+     * @param dc
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST,value = "/AddDiscountCoupon")
+    public int AddDiscountCoupon(@RequestBody  DiscountCoupon dc);
+
+    /****
+     *
+     *
+     *
+     * 查询当前用户是否拥有优惠卷
+     * @param userid
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET,value = "/SelectDiscountCouponCount")
+    public int SelectDiscountCouponCount(@RequestParam(value = "1") int userid);
+
+
+    /***
+     *
+     *
+     *
+     * 查询当前用户拥有优惠卷
+     */
+    @RequestMapping(method = RequestMethod.GET,value = "/SelectDiscountCouponCount")
+    public List<DiscountCoupon> SelectDiscountCouponUserShow(@RequestParam(value = "1") int userid);
 }

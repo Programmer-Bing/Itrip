@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cssl.pojo.dao.largeplateMapper">
+    <select id="Finlargeplate" resultType="map">
+        SELECT * FROM largeplate
+    </select>
+
+    <select id="smallplate" resultType="map" parameterType="int">
+        SELECT * FROM smallplate
+    <trim prefix="where" prefixOverrides="or||and">
+    <if test="lp_id!=0 and lp_id!=null">
+        and lp_id=#{lp_id}
+    </if>
+    </trim>
+    </select>
+
+    <select id="pageCitiesstates" resultType="map" parameterType="map">
+        SELECT * FROM citiesstates
+    <trim prefix="where" prefixOverrides="or||and">
+        sb_cs=0
+        <if test="cs_name!=null and cs_name!=0">
+            and cs_name like concat('%',#{cs_name},'%')
+        </if>
+        <if test="sp_id!=null and sp_id!=0">
+            and sp_id=#{sp_id}
+        </if>
+    </trim>
+        <if test="pageindex!=null and pagesize!=null">
+        LIMIT #{pageindex},#{pagesize}
+        </if>
+    </select>
+
+    <select id="sonCitiesstates" parameterType="int" resultType="map">
+        SELECT * FROM Citiesstates
+        <trim prefix="where" prefixOverrides="or||and">
+        <if test="sb_cs!=null and sb_cs!=0">
+            sb_cs=#{sb_cs}
+        </if>
+        </trim>
+    </select>
+
+    <insert id="addCitiesstates1" parameterType="map">
+        insert into Citiesstates(cs_name,sp_id,Popular)values(#{cs_name},#{sp_id},#{Popular})
+    </insert>
+
+    <insert id="addCitiesstates2" parameterType="map">
+        insert into Citiesstates(cs_name,sp_id,Popular,sb_cs)values(#{cs_name},#{sp_id},#{Popular},#{cs_id})
+    </insert>
+
+    <select id="selCityWhereNameAndsp_id" parameterType="map" resultType="map">
+        SELECT * FROM `citiesstates` WHERE cs_name=#{cs_name} and sp_id=#{sp_id}
+    </select>
+
+    <update id="setCitiesstates" parameterType="map">
+        update `citiesstates` set cs_name=#{cs_name},sb_cs=#{sb_cs},sp_id=#{sp_id},Popular=#{Popular} where cs_id=#{cs_id}
+    </update>
+
+    <select id="selCitiesstatesID" resultType="map" parameterType="int">
+        SELECT * FROM citiesstates WHERE cs_id=#{cs_id}
+    </select>
+
+    <delete id="delCitiesstates" parameterType="int">
+        DELETE FROM citiesstates WHERE cs_id=#{cs_id}
+    </delete>
+</mapper>

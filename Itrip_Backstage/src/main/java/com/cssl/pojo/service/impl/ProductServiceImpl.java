@@ -24,8 +24,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Map<String, Object>> citiesstates() {
-        return productMapper.citiesstates();
+    public List<Map<String, Object>> citiesstatesLs() {
+        return productMapper.citiesstatesLs();
     }
 
     @Override
@@ -62,4 +62,126 @@ public class ProductServiceImpl implements ProductService {
     public int selProCount(Map<String, Object> map) {
         return productMapper.selProCount(map);
     }
+
+    @Override
+    public int delproduct(int p_id) {
+        return productMapper.delproduct(p_id);
+    }
+
+    @Override
+    public int deltourism(int p_id) {
+        return productMapper.deltourism(p_id);
+    }
+
+    @Override
+    public int delhotel(int p_id) {
+        return productMapper.delhotel(p_id);
+    }
+
+    @Override
+    public int addcost_description(Map<String, Object> map) {
+        return productMapper.addcost_description(map);
+    }
+
+    @Override
+    public Map<String, Object> tourismproductsP_id(int p_id) {
+        return productMapper.tourismproductsP_id(p_id);
+    }
+
+    @Override
+    public Map<String, Object> productP_id(int p_id) {
+        return productMapper.productP_id(p_id);
+    }
+
+    @Override
+    public Map<String, Object> cost_descriptionC_id(int cd_id) {
+        return productMapper.cost_descriptionC_id(cd_id);
+    }
+
+    @Override
+    public Map<String, Object> cost_descriptionOrder() {
+        return productMapper.cost_descriptionOrder();
+    }
+
+    @Override
+    public Map<String, Object> hotelP_id(int p_id) {
+        return productMapper.hotelP_id(p_id);
+    }
+
+    @Override
+    public int setProduct(Map<String, Object> map) {
+        return productMapper.setProduct(map);
+    }
+
+    @Override
+    public int setProduct1(Map<String, Object> map) {
+        return productMapper.setProduct1(map);
+    }
+
+    @Override
+    public int setTourism(Map<String, Object> map) {
+        return productMapper.setTourism(map);
+    }
+
+    @Override
+    public int setTourism1(Map<String, Object> map) {
+        return productMapper.setTourism1(map);
+    }
+
+    @Override
+    public int setDescription(Map<String, Object> map) {
+        return productMapper.setDescription(map);
+    }
+
+    @Override
+    public int setHotel(Map<String, Object> map) {
+        return productMapper.setHotel(map);
+    }
+
+    @Override
+    public int setHotel1(Map<String, Object> map) {
+        return productMapper.setHotel1(map);
+    }
+
+    @Override
+    public List<Map<String, Object>> roominformation(Map<String, Object> map) {
+        return productMapper.roominformation(map);
+    }
+
+    @Override
+    public List<Map<String, Object>> productName(String name) {
+        return productMapper.productName(name);
+    }
+
+    @Override
+    public List<Map<String, Object>> hotel() {
+        return productMapper.hotel();
+    }
+
+    @Override
+    public int addroom(Map<String, Object> map) {
+        return productMapper.addroom(map);
+    }
+
+    @Override
+    public int setRoom(Map<String, Object> map) {
+        return productMapper.setRoom(map);
+    }
+
+    @Override
+    public Map<String, Object> selsetRoom(int id) {
+        return productMapper.selsetRoom(id);
+    }
+
+    @Override
+    public int setRoom1(Map<String, Object> map) {
+        return productMapper.setRoom1(map);
+    }
+
+    @Override
+    public int delRoom(int id) {
+        return productMapper.delRoom(id);
+    }
+
+
 }
