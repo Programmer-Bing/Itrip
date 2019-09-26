@@ -118,6 +118,7 @@
                 document.getElementById("pwd0").style.border="";
                 $("#phonePwd").blur();
                 $.getJSON("/loginUser",{"phone":phonenumber,"pwd":phonePwd},function (data) {
+
                     if(data==0){
                         $("#hint0").text("账号或密码错误")
                     }
