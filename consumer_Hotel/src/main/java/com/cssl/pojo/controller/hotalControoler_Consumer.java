@@ -1,6 +1,6 @@
 package com.cssl.pojo.controller;
 
-import com.cssl.pojo.DeptConsumerFeign80_App;
+import com.cssl.pojo.DeptConsumerFeign81_App;
 import com.cssl.pojo.po.User;
 import com.cssl.pojo.service.HomePageClientService;
 import org.springframework.beans.factory.annotation.Autowired;
