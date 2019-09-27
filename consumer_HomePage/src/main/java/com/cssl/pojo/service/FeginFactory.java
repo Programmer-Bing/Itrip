@@ -167,12 +167,12 @@ public class FeginFactory implements FallbackFactory<HomePageClientService> {
             }
 
             @Override
-            public List<List> showMycart(Integer id) {
-                return null;
+            public List<List> showMycart() {
+                return  null;
             }
 
             @Override
-            public boolean delHotel(Long sht) {
+            public boolean delHotel(Integer sht) {
                 return false;
             }
 
@@ -207,10 +207,7 @@ public class FeginFactory implements FallbackFactory<HomePageClientService> {
                 return null;
             }
 
-            @Override
-            public int addOrder(String map) {
-                return 0;
-            }
+
 
 
             @Override
@@ -226,6 +223,21 @@ public class FeginFactory implements FallbackFactory<HomePageClientService> {
             @Override
             public List<DiscountCoupon> SelectDiscountCouponUserShow(int userid) {
                 return null;
+            }
+
+            @Override
+            public List<DiscountCoupon> SelectDiscountCouponCountUser(int userid) {
+                return null;
+            }
+
+            @Override
+            public Map addOrder(String map) {
+                return null;
+            }
+
+            @Override
+            public int updOrder(String order_no) {
+                return 0;
             }
         };
     }

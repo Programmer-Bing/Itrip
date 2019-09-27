@@ -69,4 +69,26 @@
             SELECT*FROM orders WHERE order_id=#{order_id}
         </select>
 
+
+            <select id="SelectOrderFindAll" resultType="Orders" parameterType="Map">
+
+
+                SELECT COUNT(0) AS psum,o.* FROM `order` o INNER JOIN order_product p
+                ON o.`order_no`=p.`order_no`
+                where uid=#{userid} GROUP BY o.`order_no` limit #{state},#{pagesize}
+            </select>
+
+            <select id="SelectOrderProduct" resultType="OrderXQ" parameterType="String">
+
+
+
+                SELECT * FROM order_product  WHERE  order_no=#{orderno}
+            </select>
+
+            <select id="SelectOrderProductCount" resultType="java.lang.Integer" parameterType="int">
+
+
+
+                SELECT COUNT(0)       FROM `order` WHERE uid=#{userid}
+            </select>
 </mapper>

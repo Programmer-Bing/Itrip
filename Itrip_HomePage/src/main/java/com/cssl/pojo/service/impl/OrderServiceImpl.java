@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -40,5 +41,20 @@ public class OrderServiceImpl implements OrderService {
     }
 
 
+    @Override
+    public List<Orders> SelectOrderFindAll(Map<String,Object> map) {
+        return orderDao.SelectOrderFindAll(map);
+    }
 
+
+    @Override
+    public List<OrderXQ> SelectOrderProduct(String orderno) {
+        return orderDao.SelectOrderProduct(orderno);
+    }
+
+
+    @Override
+    public int SelectOrderProductCount(int userid) {
+        return orderDao.SelectOrderProductCount(userid);
+    }
 }

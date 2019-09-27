@@ -13,41 +13,4 @@ import java.util.Map;
 @Repository
 public interface OrderDao {
 
-    /***
-     *
-     * 查询订单用户
-     * @param id
-     * @return
-     */
-      public List<Orders> SelectUser(int id);
-
-    /***
-     *
-     *
-     * 订单加产品
-     * @param userid
-     * @return
-     */
-    public List<Orders> SelectOrderProdoct(int userid);
-
-
-
-
-    /***
-     *
-     * 查询订单编号
-     * @return
-     */
-    public List<Orders> SelectOrderNumb(int userid);
-
-    /***
-     *
-     *存储
-     * @param ordernum
-     * @return
-     */
-    public List<OrderXQ> SelectOrderProduct(String ordernum);
-
-
-
 }
