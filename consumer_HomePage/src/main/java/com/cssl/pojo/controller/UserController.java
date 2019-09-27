@@ -195,7 +195,6 @@ public class UserController {
             se.setAttribute(se.getId()+"123",user.getPhone_number());
             System.out.println("sessionid: "+se.getId());
             User uu = (User) se.getAttribute(se.getId());
-            se.setAttribute("name",user.getChinese_Name());
             System.out.println("redis取出来的数据: "+uu.getChinese_Name());
             int administration = list.get(0).getAdministration();
             if(administration==1){
@@ -351,7 +350,7 @@ public class UserController {
         String hedr=list.get(0).getHead_portrait();
 
         System.out.println("session里面的邮箱: "+email);
-        System.out.println("session图片地址: "+hedr);
+        System.out.println("用户id: "+list.get(0).getUser_id());
         user.setEmail(email);
         user.setHead_portrait(hedr);
 

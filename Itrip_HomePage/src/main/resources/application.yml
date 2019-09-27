@@ -54,6 +54,14 @@ info:
   build.artifactId: microservice
   build.version: 1.0-SNAPSHOT
 
+logging:
+
+  level:
+
+    com.cssl.pojo: DEBUG
+
+    jdbc.sqltiming: DEBUG
+
 
 #spring:
 #  boot:

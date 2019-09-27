@@ -73,16 +73,4 @@ public interface ProductService {
     public int setRoom1(Map<String, Object> map);
 
     public int delRoom(int id);
-
-    public List<Map<String,Object>> order_no(Map<String,Object> map);
-
-    public List<Map<String,Object>> order_Product(String no);
-
-    public int delOrder(String no);
-
-    public int delOrderPro(String no);
-
-    public int setState(Map<String,Object> map);
-
-    public int setProState(Map<String,Object> map);
 }

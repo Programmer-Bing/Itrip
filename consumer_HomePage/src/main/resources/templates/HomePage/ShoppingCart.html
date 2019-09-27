@@ -30,7 +30,6 @@
     <script src="https://api.weibo.com/2/oauth2/query?source=1474373704&amp;callback=STK_5731568854224686"
             charset="UTF-8"></script>
     <script src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/949765398/?random=1568854224887&amp;cv=9&amp;fst=1568854224887&amp;num=1&amp;bg=ffffff&amp;guid=ON&amp;resp=GooglemKTybQhCsO&amp;u_h=864&amp;u_w=1536&amp;u_ah=824&amp;u_aw=1536&amp;u_cd=24&amp;u_his=4&amp;u_tz=480&amp;u_java=true&amp;u_nplug=1&amp;u_nmime=1&amp;gtm=2oa9b0&amp;sendb=1&amp;ig=1&amp;data=event%3Dgtag.config&amp;frm=0&amp;url=https%3A%2F%2Fwww.itrip.com%2FshoppingCart&amp;ref=https%3A%2F%2Fwww.itrip.com%2Fouzhou%2F&amp;tiba=iTrip%E7%88%B1%E5%8E%BB%20-%20%E8%B4%AD%E7%89%A9%E8%BD%A6&amp;async=1&amp;rfmt=3&amp;fmt=4"></script>
-    <script src="../layui/layui.all.js"></script>
 </head>
 <body>
 <div id="nTalk_post_hiddenElement"
@@ -221,7 +220,7 @@
             <img src="//pic.itrip.com/img/ad/917banner.jpg">
         </a>
     </div>
-    <div th:id="tup" class="cartBanner blue hide">
+    <div class="cartBanner blue hide">
         <div class="cartBannerImg"></div>
         <div class="cartBannerTxt f18">
             <p>来一场说走就走的旅行，精彩的世界在等你~</p>
@@ -230,7 +229,7 @@
         </div>
     </div>
     <!--商品的详情列表-->
-    <div th:id="cp" class="boxRadiu horiz shopCartList">
+    <div class="boxRadiu horiz shopCartList">
         <ul class="cart_head">
             <li><span class="icon chose_cart_all_ipt hand icon_Circle"></span></li>
             <li class="chose_cart_all hand" style="width:110px;">全选</li>
@@ -242,7 +241,7 @@
             <li>操作</li>
         </ul>
         <!--商品-->
-        <ul th:id="cartbodyL" class="cart_body clearfix" style="overflow:inherit" data-id="29b603b2-b5de-44be-99b4-3375c1779821"
+        <ul class="cart_body clearfix" style="overflow:inherit" data-id="29b603b2-b5de-44be-99b4-3375c1779821"
             data-productid="8052" data-ispormotion="false" data-state="1" data-type="1"
             th:each="shop,state:${ShoppingC}">
             <li style="line-height:72px;">
@@ -312,12 +311,12 @@
                 <p class=" mt15"><a class="blue addFav hide" style="display: inline;" href="javascript:;"
                                     data-id="8052"
                                     data-typeid="1">加入收藏</a></p>
-                <p class="mt10"><a id="delcart" class="blue del" th:href="@{'http://localhost:8089/delShopping'(psc_id=${shop.psc_id})}">删除</a></p>
+                <p class="mt10"><a class="blue del" th:href="@{'http://localhost:8089/delShopping'(psc_id=${shop.psc_id})}">删除</a></p>
             </li>
         </ul>
 
 
-        <ul th:id="'cartbody'+${shop.get(1).get('id')}" class="cart_body clearfix" style="overflow:inherit" data-id="29b603b2-b5de-44be-99b4-3375c1779821"
+        <ul class="cart_body clearfix" style="overflow:inherit" data-id="29b603b2-b5de-44be-99b4-3375c1779821"
             data-productid="8052" data-ispormotion="false" data-state="1" data-type="1"
             th:each="shop,state:${ShoppingH}">
             <li style="line-height:72px;">
@@ -388,9 +387,11 @@
                 <p class=" mt15"><a class="blue addFav hide" style="display: inline;" href="javascript:;"
                                     data-id="8052"
                                     data-typeid="1">加入收藏</a></p>
-                <p class="mt10"><a th:id="delho" href="#" class="blue del" >删除</a><span hidden th:text="${shop.get(0)}"></span></p>
+                <p class="mt10"><a th:id="delho" class="blue del" th:href="@{'http://localhost:8089/delHotel'(sht=${shop.get(1).sht_id})}">删除</a></p>
             </li>
         </ul>
+
+
 
         <!--全选-->
         <div class="cartBar mb30 clearfix">
@@ -1544,14 +1545,8 @@
     /&gt;
 </noscript>
 <!-- DO NOT MODIFY -->
-<!-- End Facebook 删除Pixel Code -->
+<!-- End Facebook Pixel Code -->
 <style>
-
-    body .demo-class .layui-layer-title{background:#c00; color:#fff; border: none;}
-    body .demo-class .layui-layer-btn{border-top:1px solid #E9E7E7}
-    body .demo-class .layui-layer-btn a{background:#333;}
-    body .demo-class .layui-layer-btn .layui-layer-btn1{background:#999;}
-
     .rightBar .linkphone a:hover {
         text-decoration: underline;
     }
@@ -1860,7 +1855,6 @@
 <script src="//dl.ntalker.com/js/xn6/ntkfstat.js?siteid=kf_9680" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
     $(function () {
-        window.onload= cp;
         //所有footer图懒加载
         $('img.lazy_footer').lazyload({
             placeholder: picHome + "/loading2.gif",
@@ -2109,6 +2103,8 @@
     $.getJSON("/GetSession",function (data) {
 
         if(data!=null){
+
+
             $("#username").text(data.chinese_Name);
             $("#user").css("display","block");
             $("#useridd").text(data.user_id);
@@ -2137,35 +2133,10 @@
 
 <script>
     function  login() {
-        window.location = "login/login.html";
+        window.location="login/login.html";
     }
-
-
-    <!--删除-->
-    $(document).on("click","#delho",function () {
-        var sht = $(this).next().html();
-        $.ajax({
-            url:"http://localhost:8089/delHotel/"+sht,
-            type:"GET",
-            success:function(data){
-                location.reload();
-                cp();
-            }
-        });
-    });
-
-    function cp() {
-        var je = $(".js_amount").html();
-        if(je==0){
-            $("#cp").html(" ");
-            $("#tup").css("display","block")
-        }
-    }
-
 
 
 </script>
-
-
 </body>
 </html>

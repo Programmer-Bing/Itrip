@@ -170,36 +170,6 @@ public class DeptClientServiceFallbackFactory implements FallbackFactory<UserSer
             public Map<String, Object> selUserAdmin(Map<String, Object> map) {
                 return null;
             }
-
-            @Override
-            public Page order_no(Map<String, Object> map) {
-                return new Page();
-            }
-
-            @Override
-            public int delOrder(String no) {
-                return 0;
-            }
-
-            @Override
-            public List<Map<String, Object>> userIsTwo() {
-                return null;
-            }
-
-            @Override
-            public int setState(Map<String, Object> map) {
-                return 0;
-            }
-
-            @Override
-            public int setProState(Map<String, Object> map) {
-                return 0;
-            }
-
-            @Override
-            public int setblock(Map<String, Object> map) {
-                return 0;
-            }
         };
     }
 }

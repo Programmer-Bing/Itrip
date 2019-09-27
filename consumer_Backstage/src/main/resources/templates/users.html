@@ -12,27 +12,12 @@
     <script src="js/pintuer.js"></script>
     <script type="text/javascript" src="scripts/jquery-1.8.3.min.js"></script>
     <script type="text/javascript">
-        //$(function(){
+        $(function(){
             var Chinese_Name=null;
             var English_Name=null;
             var pageNumber=1;
             var pages;
-
-            function regEmail(email) {
-                if (String(email).indexOf('@') > 0) {
-                    var str = email.split('@'),
-                        _s = '';
-                    if (str[0].length > 3) {
-                        for (var i = 0; i < str[0].length - 3; i++) {
-                            _s += '*';
-                        }
-                    }
-                    var new_email = str[0].substr(0, 3) + _s + '@' + str[1]
-                }
-                return new_email
-            }
-
-
+            fenye(Chinese_Name,English_Name,pageNumber);
 
             function fenye(Chinese_Name,English_Name,pageNumber){
                 $.getJSON("findAll","pageNumber="+pageNumber+"&English_Name="+English_Name+"&Chinese_Name="+Chinese_Name,function(json){
@@ -43,25 +28,19 @@
                         var list=json.list;
                         tr+="";
                         tr+="<tr>";
-                        tr+="    <td>"+(json.pageSize*(pageNumber-1)*1+(i*1+1))+"</td>";
+                        tr+="    <td>"+list[i].user_id+"</td>";
                         tr+="    <td>"+list[i].user_name+"</td>";
                         tr+="    <td>"+list[i].Chinese_Name+"</td>";
                         tr+="    <td>"+list[i].English_Name+"</td>";
                         tr+="    <td>"+list[i].Gender+"</td>  ";
-                        tr+="    <td id='email'>"+regEmail(list[i].email)+"</td>";
+                        tr+="    <td>"+list[i].email+"</td>";
                         tr+="    <td><img src='"+list[i].Head_portrait+"' alt='' width='120' height='70' style=\"border: solid 1px\" /></td> ";
                         if(list[i].Administration=="1"){
                             tr+="    <td>管理员</td>";
                         }else{
                             tr+="    <td>普通用户</td>";
                         }
-                        tr+="<td><div class='button-group'>";
-                        if(list[i].block==1){
-                            tr+="<a class='button border-main' onclick='return blocks("+2+","+list[i].user_id+")'>拉黑用户</a>";
-                        }else{
-                            tr+="<a class='button border-main' onclick='return blocks("+1+","+list[i].user_id+")'>取消拉黑</a>";
-                        }
-                        tr+="<a class='button border-main' href='skipModUser?uid="+list[i].user_id+"'><span class='icon-edit'></span> 修改</a> ";
+                        tr+="    <td><div class='button-group'> <a class='button border-main' href='skipModUser?uid="+list[i].user_id+"'><span class='icon-edit'></span> 修改</a> ";
                         tr+="<a class='button border-red' href='javascript:void(0)' onclick='return del("+list[i].user_id+")'><span class='icon-trash-o'></span> 删除</a> </div></td>";
                         tr+="</tr>";
                     }
@@ -78,16 +57,6 @@
                     }
                 });
             }
-
-
-        //});
-        function blocks(num,id){
-            $.getJSON("setblock","num="+num+"&id="+id,function (json) {
-                fenye(Chinese_Name,English_Name,pageNumber);
-            });
-        }
-        $(function () {
-            fenye(Chinese_Name,English_Name,pageNumber);
             $("#ss").click(function(){
                 Chinese_Name=$("#chinese_name").val();
                 English_Name=$("#english_name").val();
@@ -127,10 +96,6 @@
                 pageNumber=pagination;
                 fenye(Chinese_Name,English_Name,pageNumber);
             });
-
-            $("#refresh").click(function () {
-                fenye(Chinese_Name,English_Name,pageNumber);
-            });
         });
     </script>
 </head>
@@ -146,8 +111,7 @@
           <li>
               <input type="text" placeholder="请输入中文名" name="chinese_name" id="chinese_name" class="input" style="width:250px; line-height:17px;display:inline-block" />
               <input type="text" placeholder="请输入英文名" name="english_name" id="english_name" class="input" style="width:250px; line-height:17px;display:inline-block" />
-              <a class="button border-main icon-search" id="ss"> 搜索</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <a class="button border-main" id="refresh" style="float: right">刷新</a>
+              <a class="button border-main icon-search" id="ss"> 搜索</a>
           </li>
       </ul>
     </div>
@@ -163,6 +127,8 @@
 		<th>权限</th>
 		<th>操作</th>
       </tr>
+
+
       <tr id="sxy">
         <td colspan="10">
             <div class="pagelist" id="pagelist">
@@ -186,11 +152,13 @@ function del(id){
                window.location.reload();
            }else{
                alert("删除失败！");
+               window.location.reload();
            }
 
         });
 	}
 }
+
 $("#checkall").click(function(){ 
   $("input[name='id[]']").each(function(){
 	  if (this.checked) {

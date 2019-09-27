@@ -11,9 +11,7 @@
     <if test="english_name!='' and english_name!='null'">
          and English_Name like concat('%',#{english_name},'%')
     </if>
-    and Administration=2
     </trim>
-        order by user_id desc
     <if test="index!=null and size!=null">
         LIMIT #{index},#{size}
     </if>
@@ -32,22 +30,10 @@
     </select>
 
     <update id="modUser" parameterType="map">
-        UPDATE `user` SET user_name=#{user_name} ,Chinese_Name=#{Chinese_Name} ,English_Name=#{English_Name} ,Gender=#{Gender} ,Birthday=#{Birthday} ,`Password`=#{newpass} ,Head_portrait=#{Head_portrait} ,Administration=#{admin} WHERE user_id=#{user_id}
-    </update>
-
-    <update id="modUser1" parameterType="map">
-        UPDATE `user` SET user_name=#{user_name} ,Chinese_Name=#{Chinese_Name} ,English_Name=#{English_Name} ,Gender=#{Gender} ,Birthday=#{Birthday} ,`Password`=#{newpass} ,Administration=#{admin} WHERE user_id=#{user_id}
+        UPDATE `user` SET user_name=#{user_name} ,Chinese_Name=#{Chinese_Name} ,English_Name=#{English_Name} ,Gender=#{Gender} ,Birthday=#{Birthday} ,Phone_number=#{Phone_number} ,email=#{email} ,`Password`=#{newpass} ,Head_portrait=#{Head_portrait} ,Administration=#{admin} WHERE user_id=#{user_id}
     </update>
 
     <select id="selUserAdmin" resultType="map" parameterType="map">
         SELECT * FROM `user` WHERE Account_number=#{account} and `Password`=#{pass}
     </select>
-
-    <select id="userIsTwo" resultType="map">
-        select * from `user` where Administration=2
-    </select>
-
-    <update id="setblock" parameterType="map">
-        UPDATE `user` SET block=#{num} where user_id=#{id}
-    </update>
 </mapper>

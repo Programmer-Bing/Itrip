@@ -363,7 +363,7 @@
 					<a class="fr link_blue" href="https://www.itrip.com/help?menuId=373" style="line-height:24px;">什么是优惠券<i class="icon icon_Inform ml5"></i></a>
 				</div>
 				<div class="white f18 fr mt50">
-					未使用（<a href="个人中心优惠券.html" class="link_yel">0</a>）
+					未使用（<a href="https://www.itrip.com/user/coupons/aval" class="link_yel">0</a>）
 				</div>
 			</div>
 		</div>
@@ -835,13 +835,13 @@
 
     })
 
-	$.getJSON("/ShowOrderSum",function (data) {
+    $.getJSON("/ShowOrderSum",function (data) {
 
-			$("#ordersum").text(data)
+        $("#ordersum").text(data)
     })
 
-	$.getJSON("/SelectDiscountCouponCount",function (data) {
-			$(".link_yel").text(data);
+    $.getJSON("/SelectDiscountCouponCount",function (data) {
+        $(".link_yel").text(data);
     })
 </script>
 

@@ -4,12 +4,10 @@ import com.cssl.pojo.po.OrderXQ;
 import com.cssl.pojo.po.Orders;
 import com.cssl.pojo.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class OrderController {
@@ -17,55 +15,42 @@ public class OrderController {
     @Autowired
     private OrderService os;
 
+
     /***
      *
-     * 根据用户查询订单
-     * @param id
+     *
+     * 订单的全部查询
      * @return
      */
-    @RequestMapping(method = RequestMethod.GET,value = "/SelectUserID")
-    public List<Orders> SelectUser(@RequestParam(value = "1") int id) {
+    @RequestMapping(method = RequestMethod.POST,value = "/SelectOrderFindAll")
+    public List<Orders> SelectOrderFindAll(@RequestBody  Map<String,Object> map) {
+        return os.SelectOrderFindAll(map);
 
-        return os.SelectUser(id);
     }
 
     /***
      *
-     * 查询商品和订单
+     *
+     * 根据订单查询产品
+     * @param orderno
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET,value = "/SelectOrderProductUser")
+    public List<OrderXQ> SelectOrderProductUser(@RequestParam(value = "1") String orderno) {
+        return os.SelectOrderProduct(orderno);
+    }
+
+
+    /***
+     *
+     *
+     * 根据订单查询产品总数
      * @param userid
      * @return
      */
-    @RequestMapping(method = RequestMethod.GET,value = "/SelectOrderProdoct")
-    public List<Orders> SelectOrderProdoct(@RequestParam(value = "1") int userid) {
-        System.out.println("消费者根据用户查询订单");
-        return os.SelectOrderProdoct(userid);
-
-
-    }
-
-
-    /****
-     *
-     * 订单查询
-     * @param userid
-     * @return
-     */
-
-    @RequestMapping(method = RequestMethod.GET,value = "/SelectOrderNumb")
-    public List<Orders> SelectOrderNumb(@RequestParam(value = "1") int userid) {
-        System.out.println("ss");
-        return os.SelectOrderNumb(userid);
-
-
-    }
-
-    /***
-     *
-     * 根据编号订单查询产品
-     */
-    @RequestMapping(method = RequestMethod.GET,value = "/SelectOrderXQ")
-    public List<OrderXQ> SelectOrderProduct(@RequestParam(value = "ordernum") String ordernum) {
-        return os.SelectOrderProduct(ordernum);
+    @RequestMapping(method = RequestMethod.GET,value = "/SelectOrderProductCount")
+    public int SelectOrderProductCount(@RequestParam(value = "1") int userid) {
+        return os.SelectOrderProductCount(userid);
     }
 
     /****

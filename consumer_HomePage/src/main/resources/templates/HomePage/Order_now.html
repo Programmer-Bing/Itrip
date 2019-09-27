@@ -87,21 +87,23 @@
 						</a>
 					</span>
                 <span class="line">|</span>
-                <span class="js_loginStatus" style="margin-left: 0px; display: none;">
+                <span class="js_loginStatus" style="margin-left: 0px; display: none;" id="logzc">
 						<span><a class="blue" onclick="login()" href="javascript:void(0);"
                                  rel="nofollow">登录</a></span><span>/</span>
 						<span><a href="https://www.itrip.com/signup/index" rel="nofollow">注册</a></span>
 					</span>
-                <span class="js_loginStatus" style="margin-left: 0px;">
+                <span class="js_loginStatus" style="margin-left: 0px;" id="user">
 						<span class="sw_syb fl pos_r" style="margin-left:0px;"><a class="blue display_name"
-                                                                                  href="https://www.itrip.com/user/index">きぼうする</a><i
+                                                                                  href="../爱去旅行个人信息主页面.html" id="username"></a>
+                            <span id="uid" style="display: none"></span>
+                            <i
                                 class="sw_sj"></i>
 							<dl class="down_list">
-								<dd class="js_myOrder"><a class="pos_r" href="https://www.itrip.com/user/orders"
+								<dd class="js_myOrder"><a class="pos_r" href="../个人信息订单.html"
                                                           rel="nofollow">我的订单<label></label></a></dd>
-								<dd class="js_myFavor"><a class="pos_r" href="https://www.itrip.com/user/favor/all"
+								<dd class="js_myFavor"><a class="pos_r" href="../个人中心我的收藏.html"
                                                           rel="nofollow">我的收藏 <label></label></a></dd>
-								<dd><a href="https://www.itrip.com/user/reward" rel="nofollow">我的奖金</a></dd>
+								<dd><a href="../个人中心我的奖金.html" rel="nofollow">我的奖金</a></dd>
 								<dd><a id="btn_logout" onclick="logout()" href="javascript:void(0);"
                                        rel="nofollow">退出登录</a></dd>
 							</dl>
@@ -3550,6 +3552,42 @@ data-i-op-reviewid
         });
     });
 </script>
+<script type="text/javascript">
+    $(function () {
+        //拿数据
+        $.getJSON("/GetSession",function (data) {
+            if(data!=null){
+                $("#username").text(data.chinese_Name);
+                $("#uid").text(data.user_id);
+            }
+        });
+
+        //拿手机号
+        $.getJSON("/xsphone",function (data) {
+            $("#txtshann").text(data.phone_number)
+            $("#uid").text(data.user_id)
+            document.getElementById("touz").src=data.head_portrait;
+        })
+
+        //鼠标悬停事件
+        $("#user").mousemove(function () {
+            $(".down_list").css("display","block");
+        })
+        $("#user").mouseout(function () {
+            $(".down_list").css("display","none");
+        })
+
+        //退出登录
+        $("#btn_logout").click(function () {
+
+            $.getJSON("/logout",function (data) {
+                window.location="Europe.html"
+            })
+        })
+    })
+
+
+</script>
 <!--成员信息-->
 <script>
     $(function () {
@@ -3805,23 +3843,21 @@ data-i-op-reviewid
         $(".pscid").each(function () {
             pscids.push($(this).text())
         });
-        alert("订单id:"+pscids[0]);
         //订单总金额
         var Allmoney = $(".f18.orange.js_rmb").text().split(" ")[3];
-        alert("总金额："+Allmoney);
         /*保险信息*/
         //起保时间
         var starttime = $("#dp1569037351778").val();
-        alert("起保时间："+starttime);
         //保险编号
         var InsuranceNo = 1004;
         //保险费用
         var InsuranceMoney = $(".js_insurMoney").text();
-        alert("保险费用："+InsuranceMoney);
         //参数
+        var uid = $("#uid").text();
+
         var testMap = {
             "pscids":pscids,"Allmoney":Allmoney,"starttime":starttime,"InsuranceNo":InsuranceNo,
-            "InsuranceMoney":InsuranceMoney,"uid":"2"
+            "InsuranceMoney":InsuranceMoney,"uid":"16"
         };
         //跳转到controller层
         var str = JSON.stringify(testMap).replace("{","%7B");
@@ -3832,5 +3868,7 @@ data-i-op-reviewid
         location.href = "/PlacingOrder?map=" + str4;
     })
 </script>
+
+
 </body>
 </html>

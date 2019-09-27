@@ -28,12 +28,13 @@
                     for (var i=0;i<json.list.length;i++){
                         var lists=json.list[i];
                         tr+="<tr>"
-                        tr+="    <td><input type='checkbox' name='id[]' value='"+lists.rif_id+"' />"+(json.pageSize*(pageIndex-1)*1+(i*1+1))+"</td>"
+                        tr+="    <td><input type='checkbox' name='id[]' value='"+lists.rif_id+"' />"+(i+1)+"</td>"
                         tr+="        <td>"+lists.rif_name+"</td>"
-                        tr+="        <td>"+lists.occupants_num+" 人</td>"
+                        tr+="        <td>"+lists.occupants_num+"</td>"
                         tr+="        <td><span>"+lists.area+"</span>平方米</td>"
                         tr+="    <td>"+lists.price+"￥</td>"
                         tr+="    <td><img src='"+lists.photo+"' alt='' width='70' height='50' /></td>"
+                        tr+="    <td>"+lists.h_id+"</td>"
                         tr+="    <td><div class='button-group'> <a class='button border-main' href='selsetRoom?id="+lists.rif_id+"'><span class='icon-edit'></span> 修改</a>"
                         tr+="<a class='button border-red' href='javascript:void(0)' onclick='return del("+lists.rif_id+")'><span class='icon-trash-o'></span> 删除</a> </div></td>"
                         tr+="</tr>"
@@ -122,6 +123,7 @@
 		<th>面积</th>
 		<th>价格</th>   		
 		<th>图片</th>
+		<th>酒店编号</th>
 		<th>操作</th>
       </tr>
       <tr id="sxy">

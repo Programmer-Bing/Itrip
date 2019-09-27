@@ -47,20 +47,5 @@ public class UserServiceImpl implements UserService {
         return userMapper.selUserAdmin(map);
     }
 
-    @Override
-    public List<Map<String, Object>> userIsTwo() {
-        return userMapper.userIsTwo();
-    }
-
-    @Override
-    public int modUser1(Map<String, Object> map) {
-        return userMapper.modUser1(map);
-    }
-
-    @Override
-    public int setblock(Map<String, Object> map) {
-        return userMapper.setblock(map);
-    }
-
 
 }

@@ -47,8 +47,6 @@ public class UserController {
 
         page.setList(list1);
         page.setTotalPage(pages);
-        page.setPageSize(pageSize);
-        page.setPageNumber(pageIndex);
 
         return page;
     }
@@ -96,37 +94,27 @@ public class UserController {
     public int modUser(@RequestBody Map<String,Object> map){
         System.out.println("服务者modUserMap:"+map);
         Map<String,Object> map1=new HashMap<>();
-        int num=0;
+        Session session= JschUtil.getSession("39.107.103.69",22,"root","ailvxing@123");
+        Sftp stfp=JschUtil.createSftp(session);
         map1.put("user_name",map.get("user_name"));
         map1.put("Chinese_Name",map.get("Chinese_Name"));
         map1.put("English_Name",map.get("English_Name"));
         map1.put("Gender",map.get("sex"));
         map1.put("Birthday",map.get("Birthday"));
+        map1.put("Phone_number",map.get("Phone_number"));
+        map1.put("email",map.get("email"));
+        String img="http://39.107.103.69/images/user/"+map.get("Head_portrait");
+        Sftp put=stfp.put("C:\\Users\\Lenovo\\Desktop\\itrip项目\\图片\\"+map.get("Head_portrait"),"/home/ftpuser/www/images/user");
+        map1.put("Head_portrait",img);
         map1.put("newpass",map.get("newpass"));
         map1.put("admin",map.get("admin"));
         map1.put("user_id",map.get("user_id"));
-        if(map.get("Head_portrait")!=null){
-            String img="http://39.107.103.69/images/user/"+map.get("Head_portrait");
-            map1.put("Head_portrait",img);
-            num=userService.modUser(map1);
-        }else{
-            num=userService.modUser1(map1);
-        }
+        int num=userService.modUser(map1);
         return num;
     }
 
     @RequestMapping("selUserAdmin")
     public Map<String,Object> selUserAdmin(@RequestBody Map<String,Object> map){
         return userService.selUserAdmin(map);
-    }
-
-    @RequestMapping("userIsTwo")
-    public List<Map<String,Object>> userIsTwo(){
-        return userService.userIsTwo();
-    }
-
-    @RequestMapping("setblock")
-    public int setblock(@RequestBody Map<String,Object> map){
-        return userService.setblock(map);
     }
 }

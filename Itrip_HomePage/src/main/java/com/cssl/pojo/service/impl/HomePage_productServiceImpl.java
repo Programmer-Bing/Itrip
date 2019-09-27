@@ -74,8 +74,8 @@ public class HomePage_productServiceImpl implements HomePage_productService {
     }
 
     @Override
-    public List<List> showMycart(Integer id) {
-        List<Map> maps = hpdao.showMycart(id);
+    public List<List> showMycart() {
+        List<Map> maps = hpdao.showMycart();
         List<List> list = new ArrayList<>();
         for (int i = 0; i < maps.size(); i++) {
             int p = 1;
@@ -83,9 +83,8 @@ public class HomePage_productServiceImpl implements HomePage_productService {
             List map = new ArrayList();
             for (int j = 0; j < list.size(); j++) {
                 System.out.println("c");
-                if(maps.get(i).get("sht_id").equals(list.get(j).get(0))){
+                if(maps.get(i).get("sht_id")==list.get(j).get(0)){
                     p = 0;
-                    System.out.println("[][]");
                     list.get(j).add(maps.get(i));
                     break;
                 }
@@ -97,12 +96,15 @@ public class HomePage_productServiceImpl implements HomePage_productService {
                 list.add(map);
             }
         }
+        for (List list1 : list) {
+            System.out.println(list1);
+        }
         return list;
     }
 
 
     @Override
-    public boolean delHotel(Long sht) {
+    public boolean delHotel(Integer sht) {
         if(hpdao.delroom(sht)&&hpdao.delHotel(sht)){
             return true;
         }
@@ -111,21 +113,31 @@ public class HomePage_productServiceImpl implements HomePage_productService {
 
     @Override
     public Product_shopping findNew() {
-        return null;
+        return hpdao.findNew();
     }
 
     @Override
     public Product_shopping findById(Integer psc_id) {
-        return null;
+        return hpdao.findById(psc_id);
     }
 
     @Override
     public int addOrder(Order o) {
-        return 0;
+        return hpdao.addOrder(o);
     }
 
     @Override
     public int addOrderProduct(OProduct op) {
-        return 0;
+        return hpdao.addOrderProduct(op);
+    }
+
+    @Override
+    public int updOrderState(String order_no) {
+        return hpdao.updOrderState(order_no);
+    }
+
+    @Override
+    public int updOrderProductState(String order_no) {
+        return hpdao.updOrderProductState(order_no);
     }
 }
