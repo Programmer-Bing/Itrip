@@ -316,6 +316,36 @@ public interface HomePageClientService {
     @RequestMapping(method = RequestMethod.GET,value = "addOrder")
     public Map addOrder(@RequestParam("map") String map);
 
+
+    /***
+     *
+     * 查询全部订单
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST,value = "/SelectOrderFindAll")
+    public List<Orders> SelectOrderFindAll(@RequestBody Map<String,Object> map);
+
+
+    /***
+     *
+     *
+     * 根据订单查询产品
+     * @param orderno
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET,value = "/SelectOrderProductUser")
+    public List<OrderXQ> SelectOrderProductUser(@RequestParam(value = "1") String orderno);
+
+
+    /****
+     *
+     *
+     * 根据订单查询产品总数
+     */
+    @RequestMapping(method = RequestMethod.GET,value = "/SelectOrderProductCount")
+    public int SelectOrderProductCount(@RequestParam(value = "1") int userid);
+
+
     /***
      * 更新订单状态
      * @param order_no

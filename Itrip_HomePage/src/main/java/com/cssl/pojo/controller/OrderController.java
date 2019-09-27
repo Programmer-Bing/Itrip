@@ -4,12 +4,10 @@ import com.cssl.pojo.po.OrderXQ;
 import com.cssl.pojo.po.Orders;
 import com.cssl.pojo.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class OrderController {
@@ -18,4 +16,40 @@ public class OrderController {
     private OrderService os;
 
 
+    /***
+     *
+     *
+     * 订单的全部查询
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST,value = "/SelectOrderFindAll")
+    public List<Orders> SelectOrderFindAll(@RequestBody  Map<String,Object> map) {
+        return os.SelectOrderFindAll(map);
+
+    }
+
+    /***
+     *
+     *
+     * 根据订单查询产品
+     * @param orderno
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET,value = "/SelectOrderProductUser")
+    public List<OrderXQ> SelectOrderProductUser(@RequestParam(value = "1") String orderno) {
+        return os.SelectOrderProduct(orderno);
+    }
+
+
+    /***
+     *
+     *
+     * 根据订单查询产品总数
+     * @param userid
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET,value = "/SelectOrderProductCount")
+    public int SelectOrderProductCount(@RequestParam(value = "1") int userid) {
+        return os.SelectOrderProductCount(userid);
+    }
 }

@@ -107,4 +107,7 @@ public interface CollectDao {
      */
     public List<DiscountCoupon> SelectDiscountCouponCountUser(int userid);
 
+
+
+
 }
