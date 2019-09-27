@@ -6,8 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
 @AllArgsConstructor
@@ -15,20 +13,25 @@ import java.util.List;
 public class Orders {
 
 
-   private String order_no; //订单编号
+    private int order_id; //订单编号
 
-   private String brontime; //订单提交时间
 
-   private int state;//订单状态
+    private String Submission_time;//订单提交时间
 
-   private double money;//订单总金额
+    private String stt_id;//订单支付状态
 
-   private int uid;//用户id
+    private Integer user_id;//用户ID
 
-   private int psum;//订单商品总数
+    private double summoney;//产品总价格
 
-   private List<OrderXQ> orderproduct; //订单号下的产品
+    private Integer Product_num;//商品数量
 
+    private double accountpaid;//已付款
+
+    private String orderNumber;//订单编号
+
+
+    private int productnumb;//总数
 
 
 

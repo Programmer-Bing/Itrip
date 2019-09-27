@@ -9,49 +9,203 @@
     <link rel="stylesheet" href="css/pintuer.css">
     <link rel="stylesheet" href="css/admin.css">
     <script src="js/jquery.js"></script>
-    <script src="js/pintuer.js"></script>  
+    <script src="js/pintuer.js"></script>
+    <script type="text/javascript" src="scripts/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var pageIndex=1;
+            var pages=0;
+            var no=0;
+            var uid=0;
+
+            $.getJSON("userIsTwo",function (json) {
+                var tr="";
+                for (var i=0;i<json.length;i++){
+                    tr+="<option value="+json[i].user_id+">"+json[i].user_name+"</option>";
+                }
+                $("#user").append(tr);
+            });
+
+            function timeFormatter(value) {
+
+                var da = new Date(value.replace("/Date(", "").replace(")/" , "").split( "+")[0]);
+                return da.getFullYear() + "-" + ((da.getMonth() + 1) < 10 ? "0" + (da.getMonth() + 1):(da.getMonth() + 1))+ "-" + (da.getDate() < 10 ? "0" + da.getDate():da.getDate()) + " " + (da.getHours()<10?"0"+da.getHours():da.getHours()) + ":" + (da.getMinutes()<10?"0"+da.getMinutes():da.getMinutes()) + ":" + (da.getSeconds()<10?"0"+da.getSeconds():da.getSeconds());
+            }
+
+            fenye(pageIndex,no,uid);
+
+            function fenye(pageIndex,no,uid) {
+                $.getJSON("order_no","pageIndex="+pageIndex+"&no="+no+"&uid="+uid,function (json) {
+                    pages=json.totalPage;
+                    var tr="";
+                    $("#xianshi tr:not(:first):not(:last)").remove();
+                    for (var i=0;i<json.list.length;i++){
+                        var lists=json.list[i];
+                        tr+='<tr><td><input type="checkbox" name="id[]" value="'+lists.order_no+'" />'+lists.order_no+'</td>';
+                        tr+='    <td>'+timeFormatter(lists.brontime)+'</td>';
+                        tr+='    <td>'+lists.money+'￥</td>';
+                        tr+='<td>';
+                        tr+='<select id="state">';
+                        if(lists.state==1){
+                            tr+='<option value="1" selected>未付款</option>';
+                        }else{
+                            tr+='<option value="1">未付款</option>';
+                        }
+
+                        if(lists.state==2){
+                            tr+='<option value="2" selected>已付款</option>';
+                        }else{
+                            tr+='<option value="2">已付款</option>';
+                        }
+
+                        if(lists.state==3){
+                            tr+='<option value="3" selected>无需付款</option>';
+                        }else{
+                            tr+='<option value="3">无需付款</option>';
+                        }
+
+                        tr+='</select>';
+                        tr+='</td>';
+                        tr+='    <td><div class="button-group">';
+                        tr+='<a class="button border-red" href="javascript:void(0)" onclick="return del('+lists.order_no+')"><span class="icon-trash-o"></span> 删除</a> </div></td>';
+                        tr+='</tr>';
+                        for (var j=0;j<lists.product.length;j++){
+                            var prolist=lists.product[j];
+                            tr+='<tr>';
+                            tr+='    <td><img src='+prolist.p_img+' alt="" width="120" height="70" style="border: solid 1px;" /></td>';
+                            tr+='    <td>'+prolist.p_name.substring(0,20)+"..."+'</td>';
+                            tr+='    <td>'+prolist.money+'￥</td>';
+                            tr+='<td>';
+                            tr+='<select id="pro_state">';
+                            if(prolist.p_state==1){
+                                tr+='<option value="1" selected>待支付</option>';
+                            }else{
+                                tr+='<option value="1">待支付</option>';
+                            }
+                            if(prolist.p_state==2){
+                                tr+='<option value="2" selected>待出行</option>';
+                            }else{
+                                tr+='<option value="2">待出行</option>';
+                            }
+                            if(prolist.p_state==3){
+                                tr+='<option value="3" selected>待评价</option>';
+                            }else{
+                                tr+='<option value="3">待评价</option>';
+                            }
+                            tr+='</select>';
+                            tr+='</td>';
+                            tr+='    <td><span hidden>'+prolist.order_no+'</span></td>';
+                            tr+='</tr>';
+                        }
+                    }
+                    $("#xianshi tr:first").after(tr);
+                    $("#yema").children().remove();
+                    var a="";
+                    for(var t=1;t<pages+1;t++){
+                        if(t==pageIndex){
+                            a+="<span class=\"current\" id='mashu'>"+t+"</span>";
+                        }else{
+                            a+="<a id='mashu'>"+t+"</a>";
+                        }
+                    }
+                    $("#yema").append(a);
+                });
+            }
+            $("#mashu").live("click",function () {
+               var mashu=$(this).text();
+               pageIndex=mashu;
+               fenye(pageIndex,no,uid);
+            });
+            $("#shou").click(function () {
+               pageIndex=1;
+               fenye(pageIndex,no,uid);
+            });
+            $("#wei").click(function () {
+                pageIndex=pages;
+                fenye(pageIndex,no,uid);
+            });
+            $("#shang").click(function () {
+                if(pageIndex==1){
+                    fenye(pageIndex,no,uid);
+                }else{
+                    pageIndex=pageIndex*1-1;
+                    fenye(pageIndex,no,uid)
+                }
+            });
+            $("#xia").click(function () {
+                if(pageIndex==pages){
+                    fenye(pageIndex,no,uid);
+                }else{
+                    pageIndex=pageIndex*1+1;
+                    fenye(pageIndex,no,uid);
+                }
+            });
+
+            $("#ss").click(function () {
+               no=$("#keywords").val();
+               fenye(1,no,uid);
+            });
+            $("#user").change(function () {
+               uid=$(this).val();
+               fenye(1,no,uid);
+            });
+
+            $("#state").live("change",function () {
+                var state= $(this).val();
+                var order_no=$(this).parent().parent().children().eq(0).text();
+                $.getJSON("setState","state="+state+"&order_no="+order_no,function (json) {
+                    if(json>0){
+                        alert("修改成功！");
+                    }else{
+                        alert("修改失败！");
+                    }
+                });
+            });
+
+            $("#pro_state").live("change",function () {
+                var state_pro=$(this).val();
+                var order_no=$(this).parent().next().children().text();
+                $.getJSON("setProState","state="+state_pro+"&no="+order_no,function (json) {
+                    if(json>0){
+                        alert("修改成功！");
+                    }else{
+                        alert("修改失败！");
+                    }
+                })
+            });
+        });
+    </script>
 </head>
 <body>
 <form method="post" action="">
   <div class="panel admin-panel">
-    <div class="panel-head"><strong class="icon-reorder">住客信息管理</strong></div>
+    <div class="panel-head"><strong class="icon-reorder">订单信息管理</strong></div>
     <div class="padding border-bottom">
       <ul class="search">
         <li>
-		<li><a class="button border-main icon-plus-square-o" href="addGuestInformation.html">添加住客信息</a> </li>
+            用户:
+            <select name="user" id="user" class="input" style="width:150px; line-height:17px;display:inline-block">
+                <option value="0">选择</option>
+            </select>
+           <input type="text" placeholder="请输入搜索关键字" name="keywords" id="keywords" class="input" style="width:250px; line-height:17px;display:inline-block" />
+           <a href="javascript:void(0)" id="ss" class="button border-main icon-search"> 搜索</a></li>
+        <li>
           <button type="button"  class="button border-green" id="checkall"><span class="icon-check"></span> 全选</button>
-          <button type="submit" class="button border-red"><span class="icon-trash-o"></span> 批量删除</button>
+          <button type="button" onclick="return DelSelect()" class="button border-red"><span class="icon-trash-o"></span> 批量删除</button>
         </li>
-		<li>
-          <input type="text" placeholder="请输入搜索关键字" name="keywords" class="input" style="width:250px; line-height:17px;display:inline-block" />
-          <a href="javascript:void(0)" class="button border-main icon-search" onclick="changesearch()" > 搜索</a></li>
       </ul>
     </div>
-    <table class="table table-hover text-center">
+    <table class="table table-hover text-center" id="xianshi">
       <tr>
-        <th>住客编号</th>
-        <th>姓名</th>
-        <th>拼音</th>
-		<th>性别</th>
-		<th>年龄</th>
-		<th>房间编号</th>
-		<th>附加信息</th>
+        <th>订单编号</th>
+        <th>订单生成时间</th>
+        <th>价格</th>
+        <th>状态</th>
 		<th>操作</th>
       </tr>      
-        <tr>
-          <td><input type="checkbox" name="id[]" value="1" />
-            1</td>
-          <td>许比</td>
-		  <td>xuhuan</td>
-		  <td>男</td>
-		  <td>18</td>
-		  <td>1</td>
-		  <td>XXXX</td>
-          <td><div class="button-group"> <a class="button border-main" href="modGuestInformation.html"><span class="icon-edit"></span> 修改</a>
-		  <a class="button border-red" href="javascript:void(0)" onclick="return del(1,2)"><span class="icon-trash-o"></span> 删除</a> </div></td>
-        </tr>
+
       <tr>
-        <td colspan="8"><div class="pagelist"> <a href="">上一页</a> <span class="current">1</span><a href="">2</a><a href="">3</a><a href="">下一页</a><a href="">尾页</a> </div></td>
+        <td colspan="8"><div class="pagelist"><a id="shou">首页</a><a id="shang">上一页</a><div id="yema" style="display: inline-block"></div><a id="xia">下一页</a><a id="wei">尾页</a></div></td>
       </tr>
     </table>
   </div>
@@ -60,7 +214,14 @@
 
 function del(id){
 	if(confirm("您确定要删除吗?")){
-		
+	    $.getJSON("delOrder","no="+id,function (json) {
+            if(json>0){
+                alert("删除成功！");
+                window.location.reload();
+            }else{
+                alert("删除失败！");
+            }
+        });
 	}
 }
 
@@ -77,14 +238,28 @@ $("#checkall").click(function(){
 
 function DelSelect(){
 	var Checkbox=false;
+	var delOrder="0";
 	 $("input[name='id[]']").each(function(){
 	  if (this.checked==true) {		
-		Checkbox=true;	
+		Checkbox=true;
+		delOrder+=","+$(this).val();
 	  }
 	});
 	if (Checkbox){
 		var t=confirm("您确认要删除选中的内容吗？");
-		if (t==false) return false; 		
+		if (t==false){
+            return false;
+        }else{
+		    delOrder
+            $.getJSON("fordelorder","fordel="+delOrder,function (json) {
+               if(json>0){
+                   alert("删除成功！");
+                   window.location.reload();
+               }else{
+                   alert("删除失败！");
+               }
+            });
+        }
 	}
 	else{
 		alert("请选择您要删除的内容!");

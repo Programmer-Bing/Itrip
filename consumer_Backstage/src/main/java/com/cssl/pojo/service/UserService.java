@@ -106,4 +106,23 @@ public interface UserService {
 
     @RequestMapping("selUserAdmin")
     public Map<String,Object> selUserAdmin(Map<String,Object> map);
+
+    @RequestMapping("order_no")
+    public Page order_no(Map<String,Object> map);
+
+    @RequestMapping("delOrder")
+    public int delOrder(String no);
+
+    @RequestMapping("userIsTwo")
+    public List<Map<String,Object>> userIsTwo();
+
+    @RequestMapping("setState")
+    public int setState(Map<String,Object> map);
+
+    @RequestMapping("setProState")
+    public int setProState(Map<String,Object> map);
+
+    @RequestMapping("setblock")
+    public int setblock(Map<String,Object> map);
+
 }

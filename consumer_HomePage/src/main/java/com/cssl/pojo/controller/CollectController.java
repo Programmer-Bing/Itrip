@@ -208,14 +208,10 @@ public class CollectController {
     public List<Integer> EuropeShowCollect(HttpSession se){
 
         User user = (User)se.getAttribute(se.getId());
-        if(user!=null){
-            int totle = service.SelectCollectCountUser(user.getUser_id());
-            List<Integer> list=new ArrayList<>();
-            list.add(totle);
-            return  list;
-        }
-
-        return  null;
+        int totle = service.SelectCollectCountUser(user.getUser_id());
+        List<Integer> list=new ArrayList<>();
+        list.add(totle);
+        return  list;
     }
 
     /***
@@ -266,21 +262,6 @@ public class CollectController {
         return i;
     }
 
-
-    /***
-     *
-     * 当前用户查询优惠卷
-     */
-    @RequestMapping("/SelectDiscountCouponUserShow")
-    @ResponseBody
-    public List<DiscountCoupon> SelectDiscountCouponUserShow(HttpSession se){
-        User user = (User)se.getAttribute(se.getId());
-
-        List<DiscountCoupon> discountCoupons = service.SelectDiscountCouponCountUser(user.getUser_id());
-
-
-        return  discountCoupons;
-    }
 
 
 

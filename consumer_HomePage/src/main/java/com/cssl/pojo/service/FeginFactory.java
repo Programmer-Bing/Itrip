@@ -207,7 +207,10 @@ public class FeginFactory implements FallbackFactory<HomePageClientService> {
                 return null;
             }
 
-
+            @Override
+            public int addOrder(String map) {
+                return 0;
+            }
 
 
             @Override

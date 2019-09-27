@@ -311,8 +311,7 @@
 					</span>
                     <span class="line">|</span>
                     <span class="pos_r">
-
-						<a class="fl" href="https://www.itrip.com/shoppingCart" rel="nofollow">
+						<a class="fl" href="#" id="shoppingcart" rel="nofollow">
 							<span class="buy_car js_sc"><i></i>购物车 <label></label></span>
 							<div class="prompt-price-warp hide">
 						        <i class="icon_arrow_up-in"></i>
@@ -3484,17 +3483,26 @@
 
     //拿数据
     $.getJSON("/GetSession",function (data) {
-
         if(data!=null){
-
             document.getElementById("logzc").style.display="none";
             $("#username").text(data.chinese_Name);
             $("#user").css("display","block");
             document.getElementById("dtc").style.display="none";
 
+
         }
 
 
+    });
+
+    $(document).on("click","#shoppingcart",function(){
+        var blue = $("#username").html();
+        if(blue==""){
+            window.location="http://localhost:8089/findShoppingByUid?uid="+0;
+        }
+        $.getJSON("/GetSession",function (data) {
+            window.location="http://localhost:8089/findShoppingByUid?uid="+data.user_id;
+        });
     });
 
     //退出登录

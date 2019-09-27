@@ -400,5 +400,43 @@ public class ProductController {
         return num;
     }
 
+    @RequestMapping("order_no")
+    @ResponseBody
+    public Page order_no(@RequestParam Map<String,Object> map){
+        return userService.order_no(map);
+    }
 
+    @RequestMapping("delOrder")
+    @ResponseBody
+    public int delOrder(@RequestParam String no){
+        System.out.println("delOrder:"+no);
+        return userService.delOrder(no);
+    }
+
+    @RequestMapping("fordelorder")
+    @ResponseBody
+    public int fordelOrder(@RequestParam String fordel){
+        String[] fordelorder=fordel.split("\\,");
+        int num=0;
+        for (int i=1;i<fordelorder.length;i++){
+            num+=userService.delOrder(fordelorder[i]);
+        }
+        if(num==fordelorder.length-1){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
+    @RequestMapping("setState")
+    @ResponseBody
+    public int setState(@RequestParam Map<String,Object> map){
+        return userService.setState(map);
+    }
+
+    @RequestMapping("setProState")
+    @ResponseBody
+    public int setProState(@RequestParam Map<String,Object> map){
+        return userService.setProState(map);
+    }
 }

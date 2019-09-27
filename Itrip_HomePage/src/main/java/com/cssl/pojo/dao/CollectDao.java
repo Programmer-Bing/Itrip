@@ -95,7 +95,7 @@ public interface CollectDao {
     /***
      *
      *
-     * 查询当前用户是否有优惠券总数
+     * 查询当前用户是否有优惠券
      */
      public int SelectDiscountCouponCount(int userid);
 

@@ -317,17 +317,17 @@
 			<div class="uc_orderList">
 				<div class="uc_orderListHead horiz">
 					<ul>
-						<li class="tagSwichHeadItem tip_blue" style="cursor: pointer;" id="lbl_qbod">
-							<a href="个人信息订单.html">全部订单</a><label id="userorder">0</label><i></i>
+						<li class="tagSwichHeadItem tip_blue" style="cursor: pointer;">
+							<a href="个人信息订单.html">全部订单</a><label>0</label><i></i>
 						</li>
 						<li class="tagSwichHeadItem " style="cursor: pointer;" id="lbl_unpaid">
-							<a >待付款订单</a><span class="stod" style="display: none">1</span><label id="userorder0">0</label><i></i>
+							<a href="个人订单待付款订单.html">待付款订单</a><label>0</label><i></i>
 						</li>
 						<li class="tagSwichHeadItem " style="cursor: pointer;" id="lbl_unstart">
-							<a >未出行订单</a><span class="stod"  style="display: none">2</span><label id="userorder1">0</label><i></i>
+							<a href="个人订单待出行订单.html">未出行订单</a><label>0</label><i></i>
 						</li>
 						<li class="tagSwichHeadItem " style="cursor: pointer;" id="lbl_unreview">
-							<a >待评价订单</a><span class="stod"  style="display: none">3</span><label id="userorder2">0</label><i></i>
+							<a href="个人信息待评价订单.html">待评价订单</a><label>0</label><i></i>
 						</li>
 					</ul>
 					
@@ -477,12 +477,7 @@
 				</li>
 			</ul>-->
 		</div>
-		<p class="pagenation tr " id="sta00" style="margin-bottom: 6px;"><span>共 <label class="totalresult">1</label> 条</span><span>第<label class="curpage">1</label>页 / 共<label class="totlepage">1</label>页</span><span class="pagenation_str"><a class="num" id="num" href="javascript:;">&lt;&lt;</a><a class="prev" id="prev0" href="javascript:;">&lt;</a><a class="current num" href="https://www.itrip.com/user/orders/all?pageNo=1">1</a><a class="next" id="next0" href="javascript:;">&gt;</a><a href="javascript:;" class="num" id="numda">&gt;&gt;</a></span></p>
-		<p class="pagenation tr " id="sta01" style="margin-bottom: 6px; display: none"><span>共 <label class="totalresult" id="gonsum1">1</label> 条</span><span>第<label class="curpage" id="di1">1</label>页 / 共<label class="totlepage" id="gong1">1</label>页</span><span class="pagenation_str"><a class="num" id="num1" href="javascript:;">&lt;&lt;</a><a class="prev" id="prev1" href="javascript:;">&lt;</a><a class="current num" href="https://www.itrip.com/user/orders/all?pageNo=1">1</a><a class="next" id="next1" href="javascript:;">&gt;</a><a href="javascript:;" class="num" id="numda1">&gt;&gt;</a></span></p>
-
-		<p class="pagenation tr" id="sta02" style="margin-bottom: 6px;display:none "><span>共 <label class="totalresult" id="gonsum2">1</label> 条</span><span>第<label class="curpage" id="di2">1</label>页 / 共<label class="totlepage">1</label>页</span><span class="pagenation_str"><a class="num" id="num2" href="javascript:;">&lt;&lt;</a><a class="prev" id="prev2" href="javascript:;">&lt;</a><a class="current num" href="https://www.itrip.com/user/orders/all?pageNo=1">1</a><a class="next" id="nexr2" href="javascript:;">&gt;</a><a href="javascript:;" class="num" id="numda2">&gt;&gt;</a></span></p>
-		<p class="pagenation tr" id="sta03" style="margin-bottom: 6px;display: none"><span>共 <label class="totalresult" id="gonsum3">1</label> 条</span><span>第<label class="curpage" id="di3">1</label>页 / 共<label class="totlepage">1</label>页</span><span class="pagenation_str"><a class="num" id="num3" href="javascript:;">&lt;&lt;</a><a class="prev" id="prev3" href="javascript:;">&lt;</a><a class="current num" href="https://www.itrip.com/user/orders/all?pageNo=1">1</a><a class="next" id="next3" href="javascript:;">&gt;</a><a href="javascript:;" class="num" id="numda3">&gt;&gt;</a></span></p>
-
+		<p class="pagenation tr" style="margin-bottom: 6px;"><span>共 <label class="totalresult">1</label> 条</span><span>第<label class="curpage">1</label>页 / 共<label class="totlepage">1</label>页</span><span class="pagenation_str"><a class="num" id="num" href="javascript:;">&lt;&lt;</a><a class="prev" href="javascript:;">&lt;</a><a class="current num" href="https://www.itrip.com/user/orders/all?pageNo=1">1</a><a class="next" href="javascript:;">&gt;</a><a href="javascript:;" class="num" id="numda">&gt;&gt;</a></span></p>
 	</div>
 
 	<div class="canse_box hide">
@@ -842,7 +837,15 @@
                     }
 
                 }
-                $("#prev0").after(a);
+                $(".prev").after(a);
+
+
+
+
+
+
+
+
 
 
 
@@ -907,8 +910,8 @@
         }
 
 	})
-    
-    
+
+
 
 </script>
 

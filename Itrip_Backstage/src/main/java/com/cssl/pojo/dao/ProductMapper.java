@@ -77,4 +77,16 @@ public interface ProductMapper {
     public int setRoom1(Map<String, Object> map);
 
     public int delRoom(@Param("id") int id);
+
+    public List<Map<String,Object>> order_no(Map<String,Object> map);
+
+    public List<Map<String,Object>> order_Product(@Param("no") String no);
+
+    public int delOrder(@Param("no") String no);
+
+    public int delOrderPro(@Param("no") String no);
+
+    public int setState(Map<String,Object> map);
+
+    public int setProState(Map<String,Object> map);
 }

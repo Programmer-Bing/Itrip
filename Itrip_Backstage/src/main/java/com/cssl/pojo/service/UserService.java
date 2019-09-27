@@ -18,4 +18,10 @@ public interface UserService {
     public int modUser(Map<String, Object> map);
 
     public Map<String,Object> selUserAdmin(Map<String, Object> map);
+
+    public List<Map<String,Object>> userIsTwo();
+
+    public int modUser1(Map<String,Object> map);
+
+    public int setblock(Map<String,Object> map);
 }

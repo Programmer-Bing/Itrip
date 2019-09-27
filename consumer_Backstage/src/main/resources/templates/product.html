@@ -32,7 +32,7 @@
             var pt_id=0;
             var p_cid=0;
             var title=null;
-            var zong;
+            var zong=0;
 
             fenye(pageNumber,pt_id,p_cid,title);
             function fenye(pageNumber,pt_id,p_cid,title) {
@@ -50,7 +50,7 @@
                             biaoti = prolist[i].Product_Name;
                         }
                         tr+="<tr>"
-                        tr+="<td><input type='checkbox' name='id[]' id='p_id' value='"+prolist[i].Product_id+"' />"+(i+1)+"</td>"
+                        tr+="<td><input type='checkbox' name='id[]' id='p_id' value='"+prolist[i].Product_id+"' />"+(json.pageSize*(pageNumber-1)*1+(i*1+1))+"</td>"
                         tr+="    <td id='biaoti'>"+biaoti+"</td>"
                         tr+="<td><img src='"+prolist[i].P_imgpath+"' alt='' width='120' height='70' style=\"border: solid 1px\" /></td>"
                         tr+="<td>"+prolist[i].P_price+"<span>￥</span></td>"
@@ -60,15 +60,79 @@
                     }
                     $("#xianshi tr:first").after(tr);
                     $("#numberpage").children().remove();
-                    for(var j=1;j<=zong;j++){
-                        var a="";
-                        if(pageNumber==j){
-                            a+="<span class='current' id='pagination'>"+j+"</span>";
-                        }else{
-                            a+="<a id='pagination'>"+j+"</a>";
+                    var td="";
+                    var t=1;
+
+                    if(zong<=5){  //如果页码小于等于五页 则正常加载所有页面
+                        for (t;t<=zong;t++){
+                            if(t==pageNumber){
+                                td+="<span class='current' id='pagination'>"+t+"</span>";
+                            }else{
+                                td+="<a id='pagination'>"+t+"</a>";
+                            }
                         }
-                        $("#numberpage").append(a);
+                        $("#numberpage").append(td);
+                    }else if(zong >5){
+                        if(pageNumber<5){
+                            for (t;t<=5;t++){
+                                if(t==pageNumber){
+                                    td+="<span class='current' id='pagination'>"+t+"</span>";
+                                }else{
+                                    td+="<a id='pagination'>"+t+"</a>";
+                                }
+                            }
+                            if(pageNumber<=zong-2){
+                                td+="<span>...</span>";
+                                for (t = zong - 1; t <= zong;t++){
+                                    td+="<a id='pagination'>"+t+"</a>";
+                                }
+                            }
+                            $("#numberpage").append(td);
+                        }else if(pageNumber>=5){  //当前页大于五页
+                            td+="<span>...</span>";
+                            if(pageNumber*1+2==zong || pageNumber*1+1==zong){
+                                for (t=pageNumber-1;t<=zong;t++){
+                                    if(t==pageNumber){
+                                        td+="<span class='current' id='pagination'>"+t+"</span>";
+                                    }else{
+                                        td+="<a id='pagination'>"+t+"</a>";
+                                    }
+                                }
+                            }else if(pageNumber==zong){
+                                for (t=pageNumber-2;t<=zong;t++){
+                                    if(t==pageNumber){
+                                        td+="<span class='current' id='pagination'>"+t+"</span>";
+                                    }else{
+                                        td+="<a id='pagination'>"+t+"</a>";
+                                    }
+                                }
+                            }else{
+                                var pageNumbers=pageNumber*1+1;
+                                for (t=(pageNumber-1);t<=pageNumbers;t++){
+                                    if(t==pageNumber){
+                                        td+="<span class='current' id='pagination'>"+t+"</span>";
+                                    }else{
+                                        td+="<a id='pagination'>"+t+"</a>";
+                                    }
+                                }
+                                td+="<span>...</span>";
+                                for (t = zong - 1; t <= zong;t++){
+                                    td+="<a id='pagination'>"+t+"</a>";
+                                }
+                            }
+                            $("#numberpage").append(td);
+                        }
                     }
+
+                    // for(var j=1;j<=zong;j++){
+                    //     var a="";
+                    //     if(pageNumber==j){
+                    //         a+="<span class='current' id='pagination'>"+j+"</span>";
+                    //     }else{
+                    //         a+="<a id='pagination'>"+j+"</a>";
+                    //     }
+                    //     $("#numberpage").append(a);
+                    // }
                 });
             }
 
@@ -143,7 +207,7 @@
         </li>
           <li>
               城市:
-              <select name="citiesstates" id="citiesstates" class="input" onchange="changesearch()"  style="width:150px; line-height:17px;display:inline-block">
+              <select name="citiesstates" id="citiesstates" class="input" style="width:150px; line-height:17px;display:inline-block">
                   <option value="0">选择</option>
               </select>
           </li>

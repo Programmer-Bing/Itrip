@@ -25,6 +25,7 @@
     and p_cid=#{p_cid}
     </if>
     </trim>
+        order by Product_id desc
     <if test="index!=null and size!=null">
         LIMIT #{index},#{size}
     </if>
@@ -128,6 +129,7 @@
             </foreach>
             </if>
         </trim>
+            order by rif_id desc
         <if test="index!=null and size!=null">
             LIMIT #{index},#{size}
         </if>
@@ -161,5 +163,39 @@
         DELETE FROM roominformation WHERE rif_id=#{id}
     </delete>
 
+    <select id="order_no" resultType="map" parameterType="map">
+        select * from `order`
+    <trim prefix="where" prefixOverrides="or||and">
+    <if test="no!=null and no!=0">
+        and order_no=#{no}
+    </if>
+    <if test="uid!=null and uid!=0">
+        and uid=#{uid}
+    </if>
+    </trim>
+        ORDER BY brontime DESC
+    <if test="pageIndex!=null and pageSize!=null">
+    LIMIT #{pageIndex},#{pageSize}
+    </if>
+    </select>
 
+    <select id="order_Product" parameterType="String" resultType="map">
+        SELECT * FROM order_product WHERE order_no=#{no}
+    </select>
+
+    <delete id="delOrder" parameterType="String">
+        DELETE FROM `order` WHERE order_no=#{no}
+    </delete>
+
+    <delete id="delOrderPro" parameterType="String">
+        DELETE FROM `order_product` WHERE order_no=#{no}
+    </delete>
+
+    <update id="setState" parameterType="map">
+        UPDATE `order` SET state=#{state} where order_no=#{order_no}
+    </update>
+
+    <update id="setProState" parameterType="map">
+        UPDATE `order_product` SET p_state=#{state} where order_no=#{no}
+    </update>
 </mapper>
