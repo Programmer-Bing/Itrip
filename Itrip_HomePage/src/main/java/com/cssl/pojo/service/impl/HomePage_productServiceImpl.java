@@ -128,14 +128,4 @@ public class HomePage_productServiceImpl implements HomePage_productService {
     public int addOrderProduct(OProduct op) {
         return 0;
     }
-
-    @Override
-    public int updOrderState(String order_no) {
-        return hpdao.updOrderState(order_no);
-    }
-
-    @Override
-    public int updOrderProductState(String order_no) {
-        return hpdao.updOrderProductState(order_no);
-    }
 }

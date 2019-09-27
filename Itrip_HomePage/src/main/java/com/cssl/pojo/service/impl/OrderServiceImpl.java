@@ -17,6 +17,28 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderDao orderDao;
 
+    @Override
+    public List<Orders> SelectUser(int id) {
+        return orderDao.SelectUser(id);
+    }
+
+
+    @Override
+    public List<Orders> SelectOrderProdoct(int userid) {
+        return orderDao.SelectOrderProdoct(userid);
+    }
+
+    @Override
+    public List<Orders> SelectOrderNumb(int userid) {
+        return orderDao.SelectOrderNumb(userid);
+    }
+
+
+    @Override
+    public List<OrderXQ> SelectOrderProduct(String ordernum) {
+        return orderDao.SelectOrderProduct(ordernum);
+    }
+
 
 
 }

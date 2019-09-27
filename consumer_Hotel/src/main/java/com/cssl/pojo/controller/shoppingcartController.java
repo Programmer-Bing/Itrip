@@ -98,5 +98,13 @@ public class shoppingcartController {
         return model;
     }
 
+    @RequestMapping(value = "MyZf/{sp3}",method = RequestMethod.GET)
+    public ModelAndView zf(ModelAndView model,@PathVariable("sp3") Object sp3){
+        model.addObject("je",sp3);
+        model.setViewName("zf");
+        return model;
+    }
+
+
 
 }

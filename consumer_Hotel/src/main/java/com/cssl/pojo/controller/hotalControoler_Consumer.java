@@ -48,6 +48,11 @@ public class hotalControoler_Consumer {
         List<Map> hotel = homePageClientService.hotel(id);
         List<Map> maps = homePageClientService.showInfo(id);
         User user = (User) session.getAttribute(session.getId());
+        if(user==null){
+            User user1 = new User();
+            user1.setUser_id(0);
+            user = user1;
+        }
         model.addObject("hotel",hotel);
         model.addObject("lable",homePageClientService.showlable(id));
         model.addObject("home",maps);

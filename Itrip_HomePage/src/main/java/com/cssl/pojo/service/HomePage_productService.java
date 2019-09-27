@@ -76,9 +76,4 @@ public interface HomePage_productService {
      * @return
      */
     int addOrderProduct(OProduct op);
-    /***
-     * 更新订单表的订单状态
-     */
-    int updOrderState(String order_no);
-    int updOrderProductState(String order_no);
 }

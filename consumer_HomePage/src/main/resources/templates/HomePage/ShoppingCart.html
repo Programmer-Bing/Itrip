@@ -2148,20 +2148,20 @@
             url:"http://localhost:8089/delHotel/"+sht,
             type:"GET",
             success:function(data){
-                location.replace(document.referrer);
+                location.reload();
                 cp();
             }
         });
     });
 
-
     function cp() {
         var je = $(".js_amount").html();
-        if(je==""){
-            $("#cp").remove();
+        if(je==0){
+            $("#cp").html(" ");
             $("#tup").css("display","block")
         }
     }
+
 
 
 </script>

@@ -98,12 +98,6 @@
             SELECT COUNT(0)  FROM discountcoupon WHERE userid=#{userid}
         </select>
 
-        <select id="SelectDiscountCouponCountUser" resultType="DiscountCoupon" parameterType="int">
-
-
-            SELECT*FROM discountcoupon WHERE userid=#{userid}
-        </select>
-
 
 
 

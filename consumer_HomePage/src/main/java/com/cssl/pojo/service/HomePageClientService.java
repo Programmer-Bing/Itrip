@@ -268,7 +268,12 @@ public interface HomePageClientService {
     @RequestMapping("findById")
     public Product_shopping findById(@RequestParam(value = "psc_id") Integer psc_id);
 
-
+    /***
+     * 新增订单
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET,value = "addOrder")
+    public int addOrder(@RequestParam("map") String map);
 
 
     /***
@@ -295,32 +300,8 @@ public interface HomePageClientService {
      *
      *
      *
-     * 查询当前用户拥有优惠卷总数
+     * 查询当前用户拥有优惠卷
      */
     @RequestMapping(method = RequestMethod.GET,value = "/SelectDiscountCouponCount")
     public List<DiscountCoupon> SelectDiscountCouponUserShow(@RequestParam(value = "1") int userid);
-
-    /****
-     *
-     * 查询当前用户拥有优惠卷集合
-     * @param userid
-     * @return
-     */
-    @RequestMapping(method = RequestMethod.GET,value = "/SelectDiscountCouponCountUser")
-    public List<DiscountCoupon> SelectDiscountCouponCountUser(@RequestParam(value = "1") int userid);
-
-    /***
-     * 新增订单
-     * @return
-     */
-    @RequestMapping(method = RequestMethod.GET,value = "addOrder")
-    public Map addOrder(@RequestParam("map") String map);
-
-    /***
-     * 更新订单状态
-     * @param order_no
-     * @return
-     */
-    @RequestMapping(method = RequestMethod.GET,value = "updOrder")
-    public int updOrder(@RequestParam("order_no") String order_no);
 }

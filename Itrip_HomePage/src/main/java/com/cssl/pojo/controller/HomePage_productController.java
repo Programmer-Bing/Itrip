@@ -5,8 +5,6 @@ import com.alibaba.fastjson.JSON;
 import com.cssl.pojo.HomePage_product;
 import com.cssl.pojo.ProductDetails;
 import com.cssl.pojo.Product_shopping;
-import com.cssl.pojo.order.OProduct;
-import com.cssl.pojo.order.Order;
 import com.cssl.pojo.service.HomePage_productService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,14 +13,12 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 import java.util.*;
 
-import static com.cssl.pojo.method.Method.getOrderIdByTime;
 import static com.cssl.pojo.method.Method.json2map;
 
 @Controller
 public class HomePage_productController {
     @Autowired
     private HomePage_productService homePage_productService;
-
     /*特价商品*/
     @RequestMapping("findBargains")
     @ResponseBody
@@ -90,6 +86,7 @@ public class HomePage_productController {
         System.out.println("AddShopping成功到服务者模块！！");
         Product_shopping product_shopping = new Product_shopping();
         Map<String, Object> map2 = json2map(map);
+        System.out.println(map2);
         HomePage_product hp = homePage_productService.findByP_id(Integer.valueOf((String) map2.get("p_id")));
         product_shopping.setP_id(Integer.valueOf((String) map2.get("p_id")));
         product_shopping.setTravel_date((String) map2.get("Travel_date"));
@@ -102,6 +99,7 @@ public class HomePage_productController {
         product_shopping.setUid(Integer.parseInt((String) map2.get("uid")));
         product_shopping.setP_imgpath(hp.getProduct_imgPath());
         product_shopping.setP_title(hp.getProduct_name());
+        System.out.println(product_shopping);
         return homePage_productService.addShopping(product_shopping);
     }
 
@@ -113,7 +111,6 @@ public class HomePage_productController {
         System.out.println(uid);
         return homePage_productService.findShoppingByUid(uid);
     }
-
     /*删除购物车里的商品*/
     @RequestMapping("delShopping")
     @ResponseBody
@@ -124,7 +121,7 @@ public class HomePage_productController {
 
     /*地区显示*/
     @RequestMapping("showregion")
-    public List<Map> showregion() {
+    public List<Map> showregion(){
         return homePage_productService.showregion();
     }
 
@@ -132,69 +129,16 @@ public class HomePage_productController {
     /*显示购物车*/
     @RequestMapping("showMycart")
     @ResponseBody
-    public List<List> showMycart() {
-        return homePage_productService.showMycart();
+    public List<List> showMycart(@RequestParam(value = "id", required = false) Integer id){
+        return homePage_productService.showMycart(id);
     }
 
     /*删除酒店购物车*/
     @RequestMapping("delHotel")
     @ResponseBody
-    public boolean delHotel(Integer sht) {
-        return homePage_productService.delHotel(sht);
+    public boolean delHotel(@RequestParam(value = "sht", required = false) Long sht){
+        return  homePage_productService.delHotel(sht);
     }
 
-    /* 查询数据库最新添加的一条数据*/
-    @RequestMapping("findNew")
-    @ResponseBody
-    public Product_shopping findNew() {
-        return homePage_productService.findNew();
-    }
 
-    /* 跟据id查购物车的商品*/
-    @RequestMapping("findById")
-    @ResponseBody
-    public Product_shopping findById(Integer psc_id) {
-        return homePage_productService.findById(psc_id);
-    }
-
-    /* 添加订单*/
-    @RequestMapping("addOrder")
-    @ResponseBody
-    public Map addOrder(@RequestParam(value = "map", required = false) String map) {
-        Map<String, Object> map2 = json2map(map);
-        Order o = new Order();
-        String orderno = getOrderIdByTime();
-        o.setMoney(BigDecimal.valueOf(Double.valueOf((String) map2.get("Allmoney"))));
-        o.setUid(Integer.parseInt((String) map2.get("uid")));
-        o.setOrder_no(orderno);
-        int num1 = 0;
-        num1 = homePage_productService.addOrder(o);
-        List<String> strings = (List<String>) map2.get("pscids");
-        for (String string : strings) {
-            Product_shopping ps = homePage_productService.findById(Integer.valueOf(string));
-            OProduct op = new OProduct();
-            op.setP_id(ps.getP_id());
-            op.setP_img(ps.getP_imgpath());
-            op.setP_name(ps.getP_title());
-            op.setTraveltime(ps.getTravel_date());
-            op.setOrder_no(orderno);
-            num1 = homePage_productService.addOrderProduct(op);
-        }
-        Map<String, Object> omap = new HashMap<>();
-        omap.put("orderNo", orderno);
-        omap.put("orderMoney", (String) map2.get("Allmoney"));
-        omap.put("num", num1);
-        return omap;
-    }
-
-    @RequestMapping("updOrder")
-    @ResponseBody
-    public int updOrder(@RequestParam(value = "order_no", required = false) String order_no) {
-        int num = 0;
-        num = homePage_productService.updOrderState(order_no);
-        System.out.println(order_no+"ij"+num);
-        num = homePage_productService.updOrderProductState(order_no);
-        System.out.println(num);
-        return num;
-    }
 }

@@ -72,33 +72,17 @@
     </select>
     <!--添加购物车-->
     <insert id="addShopping" parameterType="product_shopping">
-        INSERT INTO productshoppingcart(`psc_id`,
-                                        `p_id`,
-                                        `Travel_date`,
-                                        `Product_specification`,
-                                        `Adult_num`,
-                                        `children_num`,
-                                        `baby_num`,
-                                        `Discount`,
-                                        `Settlement_price`,
-                                        `uid`,
-                                        `p_imgpath`,
-                                        `p_title`)
+        INSERT INTO productshoppingcart()
         VALUES (DEFAULT, #{p_id}, #{Travel_date}, #{Product_specification}, #{Adult_num}, #{children_num}, #{baby_num},
                 #{Discount}, #{Settlement_price}, #{uid}, #{p_imgpath}, #{p_title});
     </insert>
     <!--查xx购物车里的所有商品-->
     <select id="findShoppingByUid" parameterType="Integer" resultType="product_shopping">
-        SELECT *
-        FROM productshoppingcart
-        WHERE uid = #{uid}
-        ORDER BY psc_id
+        SELECT * FROM productshoppingcart WHERE uid = #{uid} ORDER BY psc_id
     </select>
     <!--删除购物车里的商品-->
     <delete id="delShopping" parameterType="Integer">
-        DELETE
-        FROM productshoppingcart
-        WHERE psc_id = #{psc_id}
+        DELETE FROM productshoppingcart WHERE psc_id = #{psc_id}
     </delete>
     <!--主页地址显示-->
     <resultMap id="small" type="com.cssl.pojo.largeplate">
@@ -120,31 +104,29 @@
         </association>
     </resultMap>
     <select id="showregion" resultMap="small">
-        SELECT s.sp_name,c.*
-        FROM largeplate l
-                 INNER JOIN smallplate s ON s.lp_id = l.lp_id
-                 INNER JOIN citiesstates c ON c.sp_id = s.sp_id
-        WHERE l.lp_id = 3
+        SELECT s.sp_name,c.* FROM largeplate l
+        INNER JOIN smallplate s ON s.lp_id = l.lp_id
+        INNER JOIN citiesstates c ON c.sp_id=s.sp_id WHERE l.lp_id=3
     </select>
+
     <!--查询购物车的商品-->
-    <select id="showMycart" resultType="map">
-        SELECT *
-        FROM shoppingcart s
-                 INNER JOIN product p ON p.Product_id = s.Product_id
-                 LEFT JOIN roomtype r ON r.id = s.sht_id
-                 LEFT JOIN roominformation rf ON rf.rif_id = r.rif_id
+    <select id="showMycart" resultType="map" parameterType="int">
+        SELECT * FROM shoppingcart s
+        INNER JOIN product p ON p.Product_id=s.Product_id
+        LEFT JOIN roomtype r ON r.id=s.sht_id
+        LEFT JOIN roominformation rf ON rf.rif_id = r.rif_id
+        where s.user_id = #{id}
     </select>
-    <delete id="delroom" parameterType="Integer">
-        DELETE
-        FROM roomtype
-        WHERE id = #{id}
+
+    <delete id="delroom" parameterType="Long">
+        DELETE FROM roomtype WHERE id = #{id}
     </delete>
+
     <!--删除酒店购物车-->
-    <delete id="delHotel" parameterType="Integer">
-        DELETE
-        FROM shoppingcart
-        WHERE sht_id = #{sht}
+    <delete id="delHotel" parameterType="Long">
+        DELETE FROM shoppingcart WHERE sht_id = #{sht}
     </delete>
+
     <resultMap id="rtype" type="map">
         <id property="sht_id" column="sht_id"></id>
         <result property="Product_id" column="Product_id"></result>
@@ -158,41 +140,12 @@
             <result property="rif_id" column="rif_id"></result>
             <result property="rif_num" column="rif_num"></result>
             <result property="id" column="id"></result>
-            <collection property="room" ofType="map">
+            <collection property="room" ofType="map" >
                 <id property="rif_id" column="rif_id"></id>
                 <result property="rif_name" column="rif_name"></result>
             </collection>
         </association>
     </resultMap>
-    <!--查询数据库最新添加的一条数据-->
-    <select id="findNew" resultType="product_shopping">
-        SELECT *
-        FROM `productshoppingcart`
-        WHERE create_time<![CDATA[ <= ]]>"2099-12-12 23:59:59"
-        ORDER BY create_time DESC
-                 LIMIT 1
-    </select>
-    <!--跟据id查购物车的商品-->
-    <select id="findById" parameterType="Integer" resultType="product_shopping">
-        SELECT *
-        FROM `productshoppingcart`
-        WHERE psc_id = #{psc_id}
-    </select>
-    <!--添加订单-->
-    <insert id="addOrder" parameterType="order">
-        INSERT INTO `order` (`order_no`, `money`, `uid`)
-        VALUES (#{order_no}, #{money}, #{uid});
-    </insert>
-    <!--新增订单商品-->
-    <insert id="addOrderProduct" parameterType="oProduct">
-        INSERT INTO `order_product` (`p_id`, `p_img`, `p_name`, `Traveltime`, `order_no`)
-        VALUES (#{p_id}, #{p_img}, #{p_name}, #{Traveltime}, #{order_no});
-    </insert>
-    <!--更新订单状态-->
-    <update id="updOrderState" parameterType="String">
-        UPDATE `order` SET state = 2 WHERE order_no = #{order_no};
-    </update>
-    <update id="updOrderProductState" parameterType="String">
-        UPDATE `order_product` SET p_state = 2 WHERE order_no = #{order_no};
-    </update>
+
+
 </mapper>
