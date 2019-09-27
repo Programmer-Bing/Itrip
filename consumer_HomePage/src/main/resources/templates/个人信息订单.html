@@ -119,7 +119,7 @@
 								<dd class="js_myOrder"><a href="个人信息订单.html" rel="nofollow" class="pos_r">我的订单<label></label></a></dd>
 								<dd class="js_myFavor"><a href="个人中心我的收藏.html" rel="nofollow" class="pos_r">我的收藏 <label></label></a></dd>
 								<dd><a href="个人中心我的奖金.html" rel="nofollow">我的奖金</a></dd>
-								<dd><a href="javascript:void(0);" id="btn_logout"  rel="nofollow">退出登录</a></dd>
+								<dd><a href="javascript:void(0);" id="btn_logout" onclick="logout()" rel="nofollow">退出登录</a></dd>
 							</dl>
 						</span>
 					</span>
@@ -477,7 +477,7 @@
 				</li>
 			</ul>-->
 		</div>
-		<p class="pagenation tr" style="margin-bottom: 6px;"><span>共 <label class="totalresult">1</label> 条</span><span>第<label class="curpage">1</label>页 / 共<label class="totlepage">1</label>页</span><span class="pagenation_str"><a class="num" id="num" href="javascript:;">&lt;&lt;</a><a class="prev" href="javascript:;">&lt;</a><a class="current num" href="https://www.itrip.com/user/orders/all?pageNo=1">1</a><a class="next" href="javascript:;">&gt;</a><a href="javascript:;" class="num" id="numda">&gt;&gt;</a></span></p>
+		<p class="pagenation tr" style="margin-bottom: 6px;"><span>共 <label class="totalresult">1</label> 条</span><span>第<label class="curpage">1</label>页 / 共<label class="totlepage">1</label>页</span><span class="pagenation_str"><a class="num" href="javascript:;">&lt;&lt;</a><a class="prev" href="javascript:;">&lt;</a><a class="current num" href="https://www.itrip.com/user/orders/all?pageNo=1">1</a><a class="next" href="javascript:;">&gt;</a><a href="javascript:;" class="num">&gt;&gt;</a></span></p>
 	</div>
 
 	<div class="canse_box hide">
@@ -713,30 +713,29 @@
     var pagetotalpage=0;
 	$(function () {
 
-	 syxs(pageno);
+/*		syxs();*/
 
     })
 
 
-	function  syxs(pageno) {
-	    $(".dataList_order.mt10 ul").remove();
+	function  syxs() {
         //查询订单
-        $.getJSON("/SelectFindAll",{"pageno":pageno},function (data) {
+        $.getJSON("/SelectOrder",function (data) {
 
-            if(data!=null) {
+            if(true) {//data!=null
                 $("#xgxx").css("display", "none")
                 $("#tab_order_all").css("display", "block");
-                pagetotalpage=data.totalPage;
-                for (var i = 0; i < data.list.length; i++) {
+
+                for (var i = 0; i < data.length; i++) {
                     var offsetHeight = document.getElementById("grid").offsetHeight;
 
                     if (offsetHeight > 400) {
-                        var heg = data.length * 150;
+                        var heg = 2 * 150;
                         document.getElementById("grid").style.height = heg + "px";
                     }
-                    var da = data.list[i];
+                    var da = data[i];
 
-                    var state = da.state;
+                    var state = da.stt_id;
                     var sta = "";
                     if (state == 1) {
                         sta = "待付款";
@@ -745,22 +744,22 @@
                     } else {
                         sta = "待评价";
                     }
-                    var time =da.brontime.split(" ");
+                    if (da != null) {
                         var li = "\t<ul class=\"dataList_order_head\" style='margin-top: 10px;border: 1px solid #dcdddf '>";
                         li += "<li style=\"width: 890px; line-height: 22px; border-right: none;margin-top: 10px\">";
-                        li += "<span>" + time[0] + "</span>";
-                        li += "<span style=\"margin-left: 20px;\" class='ss'>订单号：<label id='"+da.order_no +"' >" + da.order_no + "</label></span>";
+                        li += "<span>" + da.submission_time + "</span>";
+                        li += "<span style=\"margin-left: 20px;\" class='ss'>订单号：<label class=\"grey0\" id='" + da.orderNumber + "'>" + da.orderNumber + "</label></span>";
                         li += "<span style=\"margin-left: 20px;\">支付状态：<label class=\"grey\">" + sta + "</label></span>";
                         li += "<div class=\"fr\">";
-                        li += "<span class=\"fl\">总共" + da.psum + "个产品</span>";
+                        li += "<span class=\"fl\">总共" + da.productnumb + "个产品</span>";
                         li += "<span class=\"fl  ml15\">";
                         li += "总价：";
                         li += "<label class=\"orange bold f14\">";
                         li += "<label class=\"js_curCode\">RMB</label>&nbsp;";
-                        li += "<label class=\"js_curMonery_exten\" data-cid=\"12\" data-exrates=\"{&quot;9&quot;:4.85,&quot;10&quot;:4.52,&quot;11&quot;:3.16,&quot;12&quot;:1.0,&quot;13&quot;:7.0887,&quot;14&quot;:0.23,&quot;15&quot;:5.0E-4,&quot;17&quot;:5.1632,&quot;16&quot;:1.6,&quot;21&quot;:8.8625,&quot;20&quot;:7.8646,&quot;23&quot;:0.06,&quot;22&quot;:7.1867,&quot;25&quot;:0.73,&quot;24&quot;:0.79,&quot;27&quot;:1.03,&quot;26&quot;:0.31}\" data-price=\"1249.48\">"+da.money+"</label>";
+                        li += "<label class=\"js_curMonery_exten\" data-cid=\"12\" data-exrates=\"{&quot;9&quot;:4.85,&quot;10&quot;:4.52,&quot;11&quot;:3.16,&quot;12&quot;:1.0,&quot;13&quot;:7.0887,&quot;14&quot;:0.23,&quot;15&quot;:5.0E-4,&quot;17&quot;:5.1632,&quot;16&quot;:1.6,&quot;21&quot;:8.8625,&quot;20&quot;:7.8646,&quot;23&quot;:0.06,&quot;22&quot;:7.1867,&quot;25&quot;:0.73,&quot;24&quot;:0.79,&quot;27&quot;:1.03,&quot;26&quot;:0.31}\" data-price=\"1249.48\">"+da.summoney+"</label>";
                         li += "</label>";
-                        li += "</span> <!--<span class=\"fl  ml15\">已付款： <label class=\"orange bold f14\"> <label class=\"js_curCode\">RMB</label>&nbsp;-->";
-                        //li += "<label class=\"js_curMonery_exten\" data-cid=\"12\" data-exrates=\"{&quot;9&quot;:4.85,&quot;10&quot;:4.52,&quot;11&quot;:3.16,&quot;12&quot;:1.0,&quot;13&quot;:7.0887,&quot;14&quot;:0.23,&quot;15&quot;:5.0E-4,&quot;17&quot;:5.1632,&quot;16&quot;:1.6,&quot;21&quot;:8.8625,&quot;20&quot;:7.8646,&quot;23&quot;:0.06,&quot;22&quot;:7.1867,&quot;25&quot;:0.73,&quot;24&quot;:0.79,&quot;27&quot;:1.03,&quot;26&quot;:0.31}\" data-price=\"0.0\">" + da.accountpaid + "</label>\n";
+                        li += "</span> <span class=\"fl  ml15\">已付款： <label class=\"orange bold f14\"> <label class=\"js_curCode\">RMB</label>&nbsp;";
+                        li += "<label class=\"js_curMonery_exten\" data-cid=\"12\" data-exrates=\"{&quot;9&quot;:4.85,&quot;10&quot;:4.52,&quot;11&quot;:3.16,&quot;12&quot;:1.0,&quot;13&quot;:7.0887,&quot;14&quot;:0.23,&quot;15&quot;:5.0E-4,&quot;17&quot;:5.1632,&quot;16&quot;:1.6,&quot;21&quot;:8.8625,&quot;20&quot;:7.8646,&quot;23&quot;:0.06,&quot;22&quot;:7.1867,&quot;25&quot;:0.73,&quot;24&quot;:0.79,&quot;27&quot;:1.03,&quot;26&quot;:0.31}\" data-price=\"0.0\">" + da.accountpaid + "</label>\n";
                         li += "</label>";
                         li += "</span>";
                         li += "<a class=\"btn-dark-orange fl ml15\" href=\"https://www.itrip.com/pay/toPay?orderId=320653174\" style=\"width: 71px; line-height: 22px;\" target=\"_blank\">立即付款</a>\n";
@@ -768,41 +767,54 @@
                         li += " </div>";
                         li += "</li>";
                         li += "</ul>";
-                    	$(".dataList_order.mt10").append(li);
+                        $(".dataList_order.mt10").append(li);
 
-                    	for (var j = 0; j <da.orderproduct.length; j++) {
-                    	    var aa=da.orderproduct[j];
-                            var sta =aa.p_state;
-                            var hint="";
-                            if (sta==1){
-                                hint="待处理"
-                            }
-                            else{
-                                hint="已取消"
-                            }
+                    }
+
+                }
+
+
+				var elementsByClassName = document.getElementsByClassName("grey0");
+                for (var i = 0; i <elementsByClassName.length ; i++) {
+
+					var ordernum=elementsByClassName[i].innerHTML;
+
+					$.getJSON("/SelectOrderProduct",{"ordernum":ordernum},function (data) {
+                        for (var j = 0; j <data.length; j++) {
+							var da=data[j];
+							 var sta =da.state;
+
+							
+							 var hint="";
+							 if (sta==1){
+                                 hint="待处理"
+							 }
+							 else{
+                                 hint="已取消"
+							 }
                             var lii = "";
                             lii += "<ul class=\"order_list\">";
                             lii += "<li>";
                             lii += "<div class=\"fl\">";
                             lii += "<a href=\"https://www.itrip.com/p24108\" target=\"_blank\" style=\"width:122px;height:74px;display:inline-block;\">\n";
-                            lii += "<img width=\"122\" height=\"74\" src='"+aa.p_img+"' alt=\"\"></a>\n";
+                            lii += "<img width=\"122\" height=\"74\" src=\"//pic2.itrip.com/p/20190308180532-standard-539.jpg?imageView2/5/w/122/h/74\" alt=\"\"></a>\n";
                             lii += "</div>";
                             lii += "<div class=\"fl ml20 w280 mt10\">";
                             lii += "<p class=\"grey\">";
-                            lii += "产品编号："+aa.p_id+"</p>";
+                            lii += "产品编号："+da.pp.productNumber+"</p>";
                             lii += "<p class=\"f14\">";
-                            lii += "<a href=\"javascript:;\" style=\"cursor:default;color:#333\">"+aa.p_name+"</a>\n";
+                            lii += "<a href=\"javascript:;\" style=\"cursor:default;color:#333\">"+da.pp.product_Name+"</a>\n";
                             lii += "</p>";
                             lii += "</div>";
                             lii += "<div class=\"fl ml20 w90 mt15\">";
                             lii += "<p class=\"grey\">";
                             lii += "出行时间</p>";
                             lii += "<p>";
-                            lii += ""+aa.traveltime+"</p>";
+                            lii += ""+da.traveltime+"</p>";
                             lii += "</div>";
                             lii += "<div class=\"fl ml20 w90 mt30\">";
                             lii += "<p class=\"blue\">";
-                            lii += "<label class=\"js_curCode\">RMB</label>&nbsp; <label class=\"js_curMonery_exten\" data-cid=\"12\" data-exrates=\"{&quot;9&quot;:4.85,&quot;10&quot;:4.52,&quot;11&quot;:3.16,&quot;12&quot;:1.0,&quot;13&quot;:7.0887,&quot;14&quot;:0.23,&quot;15&quot;:5.0E-4,&quot;17&quot;:5.1632,&quot;16&quot;:1.6,&quot;21&quot;:8.8625,&quot;20&quot;:7.8646,&quot;23&quot;:0.06,&quot;22&quot;:7.1867,&quot;25&quot;:0.73,&quot;24&quot;:0.79,&quot;27&quot;:1.03,&quot;26&quot;:0.31}\" data-price=\"274.7375\">"+aa.money+"</label>\n";
+                            lii += "<label class=\"js_curCode\">RMB</label>&nbsp; <label class=\"js_curMonery_exten\" data-cid=\"12\" data-exrates=\"{&quot;9&quot;:4.85,&quot;10&quot;:4.52,&quot;11&quot;:3.16,&quot;12&quot;:1.0,&quot;13&quot;:7.0887,&quot;14&quot;:0.23,&quot;15&quot;:5.0E-4,&quot;17&quot;:5.1632,&quot;16&quot;:1.6,&quot;21&quot;:8.8625,&quot;20&quot;:7.8646,&quot;23&quot;:0.06,&quot;22&quot;:7.1867,&quot;25&quot;:0.73,&quot;24&quot;:0.79,&quot;27&quot;:1.03,&quot;26&quot;:0.31}\" data-price=\"274.7375\">"+da.pp.price+"</label>\n";
                             lii += "</p>";
                             lii += "</div>";
                             lii += "<div class=\"fl ml20 w120 mt30\">"+hint+"</div>";
@@ -814,32 +826,14 @@
                             lii += "</div>";
                             lii += "</li>";
                             lii += "</ul>";
+						
+                             var  clientHeight = document.getElementById("grid").clientHeight;
 
-                            $("#"+aa.order_no).parent().parent().parent().append(lii);
+							document.getElementById("grid").style.height=clientHeight+50+"px";
+                            $("#"+da.oo.orderNumber).parent().parent().parent().append(lii);
                         }
-
-
-
+                    })
                 }
-                $(".totalresult").text(data.totalCount);
-                $(".totlepage").text(data.totalPage);
-                $(".current.num").remove()
-                var a="";
-
-                for (var j = 1; j <data.totalPage+1 ; j++) {
-                    if(j==pageno){
-                        a+="<a class=\"current num\">"+j+"</a>";
-                    }
-                    else{
-
-                        a+="<a class=\"current num\" style='background: #46a3ff;color: white' >"+j+"</a>";
-                    }
-
-                }
-                $(".prev").after(a);
-
-
-
 
 
 
@@ -862,53 +856,6 @@
         })
 
     }
-
-    //首页
-    $("#num").click(function () {
-
-        pageno=1;
-        $(".curpage").text(pageno);
-     	syxs(pageno)
-
-
-
-    });
-    //末页
-    $("#numda").click(function () {
-
-        pageno=pagetotalpage;
-        $(".curpage").text(pageno);
-        syxs(pagetotalpage)
-    });
-
-
-    //上一页
-    $(".prev").click(function () {
-        if(pageno==1){
-            syxs(1)
-        }
-        else{
-            pageno=pageno-1;
-            $(".curpage").text(pageno);
-            syxs(pageno)
-
-        }
-    })
-
-    //下一页
-    $(".next").click(function () {
-        if(pageno==pagetotalpage){
-            pageno=pagetotalpage;
-            $(".curpage").text(pageno);
-            syxs(pageno)
-        }
-        else {
-            pageno = pageno + 1;
-            $(".curpage").text(pageno);
-            syxs(pageno)
-        }
-
-	})
 </script>
 </html>
 

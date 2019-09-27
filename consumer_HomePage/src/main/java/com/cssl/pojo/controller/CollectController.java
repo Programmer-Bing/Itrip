@@ -208,14 +208,10 @@ public class CollectController {
     public List<Integer> EuropeShowCollect(HttpSession se){
 
         User user = (User)se.getAttribute(se.getId());
-        if(user!=null){
-            int totle = service.SelectCollectCountUser(user.getUser_id());
-            List<Integer> list=new ArrayList<>();
-            list.add(totle);
-            return  list;
-        }
-
-        return  null;
+        int totle = service.SelectCollectCountUser(user.getUser_id());
+        List<Integer> list=new ArrayList<>();
+        list.add(totle);
+        return  list;
     }
 
     /***

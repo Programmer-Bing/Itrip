@@ -1,7 +1,10 @@
 package com.cssl.pojo.po;
 
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Setter
 @Getter
@@ -9,23 +12,23 @@ import lombok.*;
 @NoArgsConstructor
 public class OrderXQ {
 
-        private  int p_id;//产品编号
 
-        private String p_img; //产品图片
+    private int oid; //订单详情id
 
-        private  String p_name;//产品名字
+    private  int orderid; //订单id
 
-        private String Traveltime;//产品出行时间
+    private  int productid; //产品id
 
-        private  String Startingtime;//保险时间
+    private int productnumb; //产品数量
 
-        private String p_state;//产品状态
+    private int userid; //用户id
 
-        private String order_no;//订单号
+    private Product pp;  //产品
 
-        private double money;//价格
+    private Orders oo;  //订单
+
+    private String traveltime; //出行时间
 
 
-
-
+    private int state;//待处理
 }
