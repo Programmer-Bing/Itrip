@@ -74,8 +74,8 @@ public class HomePage_productServiceImpl implements HomePage_productService {
     }
 
     @Override
-    public List<List> showMycart() {
-        List<Map> maps = hpdao.showMycart();
+    public List<List> showMycart(Integer id) {
+        List<Map> maps = hpdao.showMycart(id);
         List<List> list = new ArrayList<>();
         for (int i = 0; i < maps.size(); i++) {
             int p = 1;
@@ -83,8 +83,9 @@ public class HomePage_productServiceImpl implements HomePage_productService {
             List map = new ArrayList();
             for (int j = 0; j < list.size(); j++) {
                 System.out.println("c");
-                if(maps.get(i).get("sht_id")==list.get(j).get(0)){
+                if(maps.get(i).get("sht_id").equals(list.get(j).get(0))){
                     p = 0;
+                    System.out.println("[][]");
                     list.get(j).add(maps.get(i));
                     break;
                 }
@@ -96,15 +97,12 @@ public class HomePage_productServiceImpl implements HomePage_productService {
                 list.add(map);
             }
         }
-        for (List list1 : list) {
-            System.out.println(list1);
-        }
         return list;
     }
 
 
     @Override
-    public boolean delHotel(Integer sht) {
+    public boolean delHotel(Long sht) {
         if(hpdao.delroom(sht)&&hpdao.delHotel(sht)){
             return true;
         }
@@ -113,21 +111,21 @@ public class HomePage_productServiceImpl implements HomePage_productService {
 
     @Override
     public Product_shopping findNew() {
-        return hpdao.findNew();
+        return null;
     }
 
     @Override
     public Product_shopping findById(Integer psc_id) {
-        return hpdao.findById(psc_id);
+        return null;
     }
 
     @Override
     public int addOrder(Order o) {
-        return hpdao.addOrder(o);
+        return 0;
     }
 
     @Override
     public int addOrderProduct(OProduct op) {
-        return hpdao.addOrderProduct(op);
+        return 0;
     }
 }

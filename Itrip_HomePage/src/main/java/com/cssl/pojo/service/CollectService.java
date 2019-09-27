@@ -35,6 +35,4 @@ public interface CollectService {
     public int SelectDiscountCouponCount(int userid);
 
 
-    public List<DiscountCoupon> SelectDiscountCouponCountUser(int userid);
-
 }

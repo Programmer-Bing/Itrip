@@ -128,7 +128,7 @@
                     <span class="line">|</span>
                     <span class="pos_r">
 
-						<a href="https://www.itrip.com/shoppingCart" rel="nofollow" class="fl">
+						<a th:href="'http://localhost:8089/findShoppingByUid?uid='+${user.user_id}" rel="nofollow" class="fl">
 							<span class="buy_car js_sc"><i></i>购物车 <label></label></span>
 							<div class="prompt-price-warp hide">
 						        <i class="icon_arrow_up-in"></i>
@@ -399,7 +399,7 @@
 
                                         床型：一张大床<br>
                                     </p>
-                                    <p th:text="${ho.get('instroduce')}">
+                                    <p th:text="${ho.get('introduce')}">
                                         15平方米|1大床|暖气,卫生间,办公桌,浴室,冰箱</p>
                                 </div>
                                 <div class="fr">
@@ -430,7 +430,7 @@
                         Great Southern Hotel酒店位于悉尼市中心，坐落在历史悠久的19世纪建筑内，距离中央车站仅有5分钟的步行路程。所有客房的标准设施包括空调和有线电视。酒店毗邻唐人街，还设有餐厅和酒吧。<br><br>酒店设有24小时前台和客用洗衣房。旅游咨询台可以提供观光建议，亦可帮助客人安排旅游行程。<br><br>Restaurant 1903餐厅每天早晨供应丰盛的自助早餐。私人拥有的Great Southern Bar酒吧在午餐和晚餐时段供应各种传统的酒吧风味菜肴。<div class="icon_dian"></div>
                     </div>
                 </div>
-                <div class="hotel_info hei width">
+                <div class="hotel_info hei widtfl discount pos_r j_cur_blockh">
                     <div class="hotel_tit f14 bold">酒店描述</div>
                     <div class="f14 hotel_detail" th:text="${hotel.get(0).get('tidescribesps')}">
                         Great Southern Hotel酒店位于悉尼市中心，坐落在历史悠久的19世纪建筑内，距离中央车站仅有5分钟的步行路程。所有客房的标准设施包括空调和有线电视。酒店毗邻唐人街，还设有餐厅和酒吧。<br><br>酒店设有24小时前台和客用洗衣房。旅游咨询台可以提供观光建议，亦可帮助客人安排旅游行程。<br><br>Restaurant 1903餐厅每天早晨供应丰盛的自助早餐。私人拥有的Great Southern Bar酒吧在午餐和晚餐时段供应各种传统的酒吧风味菜肴。</div>
@@ -442,7 +442,8 @@
             </div>
             <div class="hotel_info mt10 black minh">
                 <div class="hotel_tit f20 bold border-b">
-                    <label style="font-weight:normal; font-size:13px;line-height: 22px; display:none;">总价</label>
+                    <label class="js_curCode" th:id="zsfj">0</label>
+                    <label  style="font-weight:normal; font-size:13px;line-height: 22px; " th:id="zsfj"> 晚房价：</label>
                     <label class="js_curCode">RMB</label>&nbsp;
                     <span th:text="${hotel.get(0).get('P_price')}" th:id="js_curMoney" class="js_curMoney" data-cid="9" data-price="183.04" data-reward="1.2">
        						867.61</span>
@@ -454,13 +455,13 @@
                 </form>
                 <!-- 银联满减 -->
                 <div class="sale_count clearfix mt10 orange hide j_cur_content" th:style="'display: block;'" style="display: none;">
-                    <span class="fl f14" th:text="${pre.size()!=0?'活动':' '}">活动</span>
+                    <span class="fl f14" th:text="${pre.size()!=0?'活动':''}">活动</span>
                     <div class="fl sale_info">
                         <div class="fl discount pos_r j_cur_block">
 											<span>
-												<label class="js_cur_discount" th:text="${pre.size()!=0?pre.get(0).get('name'):' '}">银联支付(RMB)-满11000减550,满8500减400,满6000减260,满4000减160,满2000减60</label>
+												<label class="js_cur_discount" th:text="${pre.size()!=0?pre.get(0).get('name'):''}">银联支付(RMB)-满11000减550,满8500减400,满6000减260,满4000减160,满2000减60</label>
 											</span>
-                            <div class="discount_info j_discount_txt_box" th:text="${pre.size()!=0?pre.get(0).get('describes'):' '}" >
+                            <div class="discount_info j_discount_txt_box" th:text="${pre.size()!=0?pre.get(0).get('describes'):''}" >
                                 支付订单时，选择银联在线支付（RMB）,满11000减550,满8500减400,满6000减260,满4000减160,满2000减60</div>
                         </div>
                     </div>
@@ -821,6 +822,7 @@
             done:function(value,date){//value, date, endDate点击日期、清空、现在、确定均会触发。回调返回三个参数，分别代表：生成的值、日期时间对象、结束的日期时间对象
                 //其他操作
                 nol();
+                zsfj();
             }
         });
         laydate.render({
@@ -829,9 +831,21 @@
             done:function(value,date){//value, date, endDate点击日期、清空、现在、确定均会触发。回调返回三个参数，分别代表：生成的值、日期时间对象、结束的日期时间对象
                 //其他操作
                 nol();
+                zsfj();
             }
         });
     });
+
+    function zsfj(){
+        var start = new Date($("#start").val());
+        var end = new Date($("#end").val());
+        var sj = (end - start)/24/60/60/1000;
+        if(sj>=0){
+            $("#zsfj").html(sj);
+        }else{
+            $("#zsfj").html(0);
+        }
+    }
 
 
     $(document).on("click","#btn_jsjsorderhand",function() {
@@ -872,7 +886,8 @@
         }else{
             var start =  $("#start").val();
             var end = $("#end").val();
-            c += "'"+start+"'"+end;
+            var je = $("#js_curMoney").html();
+            c += "'"+start+"'"+end+"'"+je;
             window.location="http://localhost:8090/addHorder/"+c;
         }
     })
@@ -940,12 +955,18 @@
 
         }
     })
-    
+
+
 
 
 </script>
 
 <script>
+
+    $(function () {
+        nol();
+        zsfj();
+    })
 
     function nol() {
         var start = new Date($("#start").val());
@@ -967,6 +988,8 @@
             }else {
                 $("#js_curMoney").html("0.00");
             }
+        }else{
+            $("#js_curMoney").html("0.00");
         }
     }
 

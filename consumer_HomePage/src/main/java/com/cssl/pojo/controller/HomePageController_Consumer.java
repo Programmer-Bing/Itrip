@@ -3,7 +3,6 @@ package com.cssl.pojo.controller;
 import com.cssl.pojo.HomePage_product;
 import com.cssl.pojo.Product_shopping;
 import com.cssl.pojo.order.Order;
-import com.cssl.pojo.po.User;
 import com.cssl.pojo.service.HomePageClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -116,39 +115,34 @@ public class HomePageController_Consumer {
     @RequestMapping("/findShoppingByUid")
     public ModelAndView findShoppingByUid(HttpSession session, ModelAndView model, Model model2, @RequestParam(value = "uid", required = false) Integer uid) {
         System.out.println("findShopping成功到消费者模块！！");
-        List<List> maps = service.showMycart();
-        System.out.println(uid);
+        List<List> maps = service.showMycart(uid);
         model2.addAttribute("ShoppingC", this.service.findShoppingByUid(uid));
         model2.addAttribute("ShoppingH", maps);
-        System.out.println("--------------------");
         model.setViewName("HomePage/ShoppingCart");
         return model;
     }
 
     /*删除购物车中的商品*/
     @RequestMapping(value = "/delShopping", method = RequestMethod.GET)
-    public ModelAndView delShopping(HttpSession session, @RequestParam(value = "psc_id", required = false) Integer psc_id,ModelAndView model,Model model2, @RequestParam(value = "uid", required = false) Integer uid) {
+    @ResponseBody
+    public Integer delShopping(HttpSession session, @RequestParam(value = "psc_id", required = false) Integer psc_id) {
         System.out.println("sessionId:" + session.getId());
-        User user=(User) session.getAttribute(session.getId());
-        uid=user.getUser_id();
-        System.out.println("用户编号： "+uid);
         System.out.println(psc_id);
         Integer num = this.service.delShopping(psc_id);
         System.out.println("num:" + num);
-        return findShoppingByUid(session,model,model2,uid);
+        return num;
     }
-
-
 
     /**
      * 删除酒店购物车
      */
-    @RequestMapping(value = "/delHotel" , method = RequestMethod.GET)
-    public ModelAndView delHotel(ModelAndView model,@RequestParam(value = "sht", required = false) Integer sht){
+    @RequestMapping(value = "delHotel/{sht}" , method = RequestMethod.GET)
+    @ResponseBody
+    public Long delHotel(@PathVariable("sht") Long sht){
         service.delHotel(sht);
-        model.setViewName("Europe");
-        return model;
+        return sht;
     }
+
     @RequestMapping("/PlacingOrder")
     @ResponseBody
     public ModelAndView PlacingOrder(HttpSession session, @RequestParam(value = "map", required = false) String map,ModelAndView model, Model model2) {

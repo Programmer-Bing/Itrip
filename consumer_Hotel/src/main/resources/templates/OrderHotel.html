@@ -44,6 +44,7 @@
     <script src="https://dl.ntalker.com/js/xn6/mqtt.chat.js?siteid=kf_9680&amp;v=nt6.96&amp;t=2019.05.14_182647"
             type="text/javascript" charset="utf-8" async="async" data-requiremodule="Connection"></script>
     <script src="../scripts/jquery-1.8.3.min.js"></script>
+    <script src="../static/layui/layui.all.js"></script>
 </head>
 
 <body>
@@ -547,435 +548,14 @@
             </div>
         </div>
         <!--3.保险预定-->
-        <div class="count_title pos_r mt15 padb insur_infos" style="background-color: #FFF;">
-            <i class="f16">
-						<span>
-							3</span>
-                <em>保险预订</em>
-            </i>
-            <div class="tips">
-                旅游保险能给您的出行安全带来更多保障，此产品可保障您购买的出行天数，请根据出行时间合理安排勿重复购买。购买前请点击相应保险名称，详细了解具体保险内容，并请留意并不是所有保险都涵盖高危活动（如跳伞、滑翔伞等项目），了解后请自愿选择购买。
-            </div>
-            <div class="time_cycle f14">
-                <span>起保时间：</span>
-                <div class="ipt date pt">
-                    <input th:id="startDatept" class="startDate pt hasDatepicker test27"
-                           id="startDatept" readonly="readonly"
-                           type="text" placeholder="选择出行日期" style="width: 130px;">
-                    <span class="icon icon_timer" style="top:8px;"></span>
-                </div>
 
-
-                <!--样式（不需了解）-->
-                <style>
-                    .insur_list {
-                        display: block !important;
-                    }
-
-                    .insur_list li select {
-                        width: 50px;
-                    }
-
-                    .select_t hand {
-                        display: block !important;
-                    }
-
-                    .select_f {
-                        display: inline-block !important;
-                    }
-
-                    .ml72 specNameAll {
-                        display: block !important;
-                    }
-                </style>
-                <span class="ml72 date">保障期限：</span>
-                <!--保障期限-->
-                <div class="select_f" style="display: inline-block;">
-                    <div class="select_type pos_r">
-                        <input class="select_t hand"
-                               style="border-bottom-right-radius: 5px; border-bottom-left-radius: 5px;"
-                               type="text" readonly="readonly"><b></b></div>
-                    <div class="option hide">
-                        <ul class="hand">
-                            <li value="1天">1天</li>
-                            <li value="2天">2天</li>
-                            <li value="3天">3天</li>
-                            <li value="4天">4天</li>
-                            <li value="5天">5天</li>
-                            <li value="6天">6天</li>
-                            <li class="selected" value="7天">7天</li>
-                            <li value="8天">8天</li>
-                            <li value="9天">9天</li>
-                            <li value="10天">10天</li>
-                            <li value="11天">11天</li>
-                            <li value="12天">12天</li>
-                            <li value="13天">13天</li>
-                            <li value="14天">14天</li>
-                            <li value="15天">15天</li>
-                            <li value="16天">16天</li>
-                            <li value="17天">17天</li>
-                            <li value="18天">18天</li>
-                            <li value="19天">19天</li>
-                            <li value="20天">20天</li>
-                            <li value="21天">21天</li>
-                            <li value="22天">22天</li>
-                            <li value="23天">23天</li>
-                            <li value="24天">24天</li>
-                            <li value="25天">25天</li>
-                            <li value="26天">26天</li>
-                            <li value="27天">27天</li>
-                            <li value="28天">28天</li>
-                            <li value="29天">29天</li>
-                            <li value="30天">30天</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!--当日期不可投保时-->
-            <div class="hide insur_msg">
-                <span class="red tl mt10 ml30 f12" style="display: none; width:340px;"></span>
-            </div>
-            <!--保险信息-->
-            <div class="insur_list" style="min-height: 77px;">
-                <ul class="clearfix" style="height: 45px;" insur_list hide>
-                    <li data-specid="710383599514168319" data-spename="7天">
-                        <a class="fl productInfo" href="https://www.itrip.com/help?menuId=394" target="_blank"
-                           data-id="13440" data-productname="利宝完美境外保障—尊崇型(人在境外不可购买）">利宝完美境外保障—尊崇型(人在境外不可购买）</a>
-                        <span class="fl w160">
-
-													承保年龄：1岁-88岁</span>
-                        <span class="fl w110">RMB <em id="ourPrice" data-to-currencyid="21" data-ocurrencyid="12"
-                                                      data-oprice="350">350</em>/份</span>
-                        <span class="fr ml5">份</span>
-                        <select class="fr insur_sel hand" data-orgvalue="2">
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
-                            <option>11</option>
-                            <option>12</option>
-                            <option>13</option>
-                            <option>14</option>
-                            <option>15</option>
-                            <option>16</option>
-                            <option>17</option>
-                            <option>18</option>
-                            <option>19</option>
-                            <option>20</option>
-                        </select>
-                    </li>
-                    <li data-specid="710378977834869306" data-spename="7天">
-                        <a class="fl productInfo" href="https://www.itrip.com/help?menuId=391" target="_blank"
-                           data-id="13435" data-productname="史带无忧境外旅行保障计划C(人在境外可买)">史带无忧境外旅行保障计划C(人在境外可买)</a>
-                        <span class="fl w160">
-
-													承保年龄：1岁-88岁</span>
-                        <span class="fl w110">RMB <em id="ourPrice" data-to-currencyid="21" data-ocurrencyid="12"
-                                                      data-oprice="30">30</em>/份</span>
-                        <span class="fr ml5">份</span>
-                        <select class="fr insur_sel hand" data-orgvalue="0">
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
-                            <option>11</option>
-                            <option>12</option>
-                            <option>13</option>
-                            <option>14</option>
-                            <option>15</option>
-                            <option>16</option>
-                            <option>17</option>
-                            <option>18</option>
-                            <option>19</option>
-                            <option>20</option>
-                        </select>
-                    </li>
-                    <li data-specid="78289934848579405" data-spename="7天">
-                        <a class="fl productInfo" href="https://www.itrip.com/help?menuId=389" target="_blank"
-                           data-id="13445" data-productname="史带无忧境外旅行保障计划A(人在境外可买)">史带无忧境外旅行保障计划A(人在境外可买)</a>
-                        <span class="fl w160">
-
-													承保年龄：1岁-88岁</span>
-                        <span class="fl w110">RMB <em id="ourPrice" data-to-currencyid="21" data-ocurrencyid="12"
-                                                      data-oprice="265">265</em>/份</span>
-                        <span class="fr ml5">份</span>
-                        <select class="fr insur_sel hand" data-orgvalue="0">
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
-                            <option>11</option>
-                            <option>12</option>
-                            <option>13</option>
-                            <option>14</option>
-                            <option>15</option>
-                            <option>16</option>
-                            <option>17</option>
-                            <option>18</option>
-                            <option>19</option>
-                            <option>20</option>
-                        </select>
-                    </li>
-                    <li class="hide" data-specid="78305945653300839" data-spename="8天">
-                        <a class="fl productInfo" href="https://www.itrip.com/help?menuId=394" target="_blank"
-                           data-id="13440" data-productname="利宝完美境外保障—尊崇型(人在境外不可购买）">利宝完美境外保障—尊崇型(人在境外不可购买）</a>
-                        <span class="fl w160">
-
-													承保年龄：1岁-88岁</span>
-                        <span class="fl w110">RMB <em id="ourPrice" data-to-currencyid="21" data-ocurrencyid="12"
-                                                      data-oprice="480">480</em>/份</span>
-                        <span class="fr ml5">份</span>
-                        <select class="fr insur_sel hand" data-orgvalue="0">
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
-                            <option>11</option>
-                            <option>12</option>
-                            <option>13</option>
-                            <option>14</option>
-                            <option>15</option>
-                            <option>16</option>
-                            <option>17</option>
-                            <option>18</option>
-                            <option>19</option>
-                            <option>20</option>
-                        </select>
-                    </li>
-                    <li class="hide" data-specid="78301327535852825" data-spename="8天">
-                        <a class="fl productInfo" href="https://www.itrip.com/help?menuId=391" target="_blank"
-                           data-id="13435" data-productname="史带无忧境外旅行保障计划C(人在境外可买)">史带无忧境外旅行保障计划C(人在境外可买)</a>
-                        <span class="fl w160">
-
-													承保年龄：1岁-88岁</span>
-                        <span class="fl w110">RMB <em id="ourPrice" data-to-currencyid="21" data-ocurrencyid="12"
-                                                      data-oprice="50">50</em>/份</span>
-                        <span class="fr ml5">份</span>
-                        <select class="fr insur_sel hand" data-orgvalue="0">
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
-                            <option>11</option>
-                            <option>12</option>
-                            <option>13</option>
-                            <option>14</option>
-                            <option>15</option>
-                            <option>16</option>
-                            <option>17</option>
-                            <option>18</option>
-                            <option>19</option>
-                            <option>20</option>
-                        </select>
-                    </li>
-                    <li class="hide" data-specid="710367603564293566" data-spename="8天">
-                        <a class="fl productInfo" href="https://www.itrip.com/help?menuId=389" target="_blank"
-                           data-id="13445" data-productname="史带无忧境外旅行保障计划A(人在境外可买)">史带无忧境外旅行保障计划A(人在境外可买)</a>
-                        <span class="fl w160">
-
-													承保年龄：1岁-88岁</span>
-                        <span class="fl w110">RMB <em id="ourPrice" data-to-currencyid="21" data-ocurrencyid="12"
-                                                      data-oprice="360">360</em>/份</span>
-                        <span class="fr ml5">份</span>
-                        <select class="fr insur_sel hand" data-orgvalue="0">
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
-                            <option>11</option>
-                            <option>12</option>
-                            <option>13</option>
-                            <option>14</option>
-                            <option>15</option>
-                            <option>16</option>
-                            <option>17</option>
-                            <option>18</option>
-                            <option>19</option>
-                            <option>20</option>
-                        </select>
-                    </li>
-                </ul>
-                <div class="more_in mt10 ml30 f12">
-                    <ins>+</ins>
-                    其他保险
-                </div>
-                <div class="all_price">合计：RMB <em data-oprice="78.98">700</em></div>
-            </div>
-            <!--保险投保人信息录入-->
-            <div class="insur_peo insuerInfo">
-                <!--第一种保险信息录入表格-->
-                <!--<div class="insur_info Passager pos_r" isinsur="true">
-                    <div class="done">
-                        <span class="personChoseBtn hand">选取常旅客</span>
-                        <span class="cleanPassger hand">删除</span>
-                    </div>
-                    <div class="insur_title" data-spec-id="710383599514168319" data-pid="13440">
-                        <span>投保人1</span><em>利宝完美境外保障—尊崇型(人在境外不可购买）</em>
-                    </div>
-                    <div class="person_detail">
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                            <tbody>
-                            <tr>
-                                <td width="33%" class="fruzzyBox">
-                                    性别&nbsp;&nbsp;
-                                    <select class="f14 insur_sel hand" data-id="9" require="true">
-                                        <option selected="selected" value="male">男</option>
-                                        <option value="female">女</option>
-                                    </select>
-                                    <span class="red tip"></span>
-                                </td>
-                                <td width="33%" class="fruzzyBox">
-                                    护照号码&nbsp;&nbsp;
-                                    <input class="insu_input" style="width:142px;" type="text" placeholder="与护照一致"
-                                           value="" data-id="10" require="true">
-                                    <span class="red tip"></span>
-                                </td>
-                                <td width="33%" class="fruzzyBox">
-
-                                    中文姓名
-                                    <input class="insu_input" style="width:142px;" type="text" placeholder="与护照一致"
-                                           value="" data-id="12" ischen="zh" require="true">
-                                    <span class="red tip"></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="33%" class="fruzzyBox">
-                                    出生日期&nbsp;&nbsp;
-                                    <span class="pos_r birthday" style="display:inline-block;">
-																	<input class="f14 star hand insu_input hasDatepicker"
-                                                                           id="dp1569037351779" type="text"
-                                                                           readonly="readonly" placeholder=""
-                                                                           value="1980-01-01" data-id="14"
-                                                                           require="true">
-																	<ins class="icon_Calendar hand"
-                                                                         style="top:17px;right:18px"></ins>
-																	<span class="red tip" style="top:-10px;"></span>
-																</span>
-                                </td>
-                                <td width="45%" class="fruzzyBox" style="text-align:left;padding-left:9%;" colspan="2">
-															<span class="hide other_rel">
-																	其他投保成人是我的&nbsp;&nbsp;
-																	<select class="relation_sel insur_sel insu_input"
-                                                                            style="width:25%;" data-id="847"
-                                                                            require="true">
-																		<option value="">请选择</option>
-																		<option value="父母亲">父母亲</option>
-																		<option value="兄弟姐妹">兄弟姐妹</option>
-																		<option value="祖父母">祖父母</option>
-																		<option value="其他">其他</option>
-																	</select>
-													  				<input class="hide other_relation insu_input"
-                                                                           style="width:120px;" type="text"
-                                                                           placeholder="" value="" data-id="847"
-                                                                           require="true">
-																	<span class="red tip"></span>
-																</span>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>-->
-            </div>
-        </div>
-        <!--优惠-->
-        <div class="count_title pos_r mt15 padb " style="background-color: #FFF;">
-            <i class="f16">
-						<span>
-							4</span><em>优惠</em></i>
-
-            <div class="f14 voucher" style="line-height:30px;">
-                <ul>
-                    <li>
-                        <div style="display:inline-block;width:30px;height:30px;">
-                            <span class="icon hand js_voucherSelect icon_blue_Hook"></span>
-                        </div>
-                        <span data-discount="20.0" data-ucode="lHnxhFrfLhyxz4Fh" data-value="xlRjOUuc">
-									           优惠劵：
-										<span class="coupon_name">欧洲20元通用优惠券</span>
-										<div class="pos_r" style="display:inline-block;">
-											<i class="iconfont"></i>
-											<div class="count_details pos_a">
-												<div class="pos_r">
-													<i class="icon_arrow_up"></i>
-													<p>适用产品类别：景点活动、打包产品、线路、当地跟团、出境游、接机-包车、接机-拼车、送机-包车、送机-拼车、按天包车、线路用车</p><p>适用国家：仅英国、荷兰、比利时、捷克、卢森堡、西班牙、葡萄牙、希腊、斯洛伐克、列支敦士登、摩纳哥、梵蒂冈、匈牙利、奥地利、瑞士、欧洲、克罗地亚、爱尔兰、波兰、挪威、丹麦、芬兰、瑞典、冰岛、斯洛文尼亚、法罗群岛、马耳他、格陵兰岛、土耳其、摩洛哥、俄罗斯、凡尔登、意大利、德国、法国产品可用</p></div>
-											</div>
-										</div>
-										</span>
-                    </li>
-                    <li style="line-height:30px;">
-                        <div style="display:inline-block;width:30px;height:30px;">
-                            <span class="icon icon_Circle hand js_voucherCode"></span>
-                        </div>
-                        <span>输入优惠码 （区分大小写）：</span>
-                        <input style="vertical-align:middle" type="text" readonly="readonly">
-                        <a class="btn-normal-blue vali_ma ml10" style="display: none;" href="javascript:;">验证优惠码</a>
-                        <span class="red" style="display: none;"></span>
-                    </li>
-                    <li>
-                        <div style="display:inline-block;width:30px;height:30px;">
-                            <span class="icon icon_Circle hand js_noVoucher"></span>
-                        </div>
-                        <span>不使用优惠</span>
-                    </li>
-                </ul>
-                <div class="couponBar couponBar_item hide" style="display: block;">
-                    <span class="f14">已使用 <label class="blue">1</label> 张优惠券，总共优惠  <label
-                            class="orange couponPrice">20</label> 元<label class="js_maxDiscount hide">，该订单最多优惠<label
-                            class="orange"></label> 元</label></span>
-                </div>
-            </div>
-
-        </div>
         <input id="snipingMemberId" type="hidden" value="">
         <div class="tr" style="height:30px;line-height:30px;">
             <!-- 判断是否包含促销，有输出下文字 -->
         </div>
         <!--支付按钮-->
         <div class="payBar oh ">
-            <a class="btn-orange fr f24" style="height:45px;line-height:45px;width:215px;" href="javascript:;">去支付</a>
+            <a class="btn-orange fr f24" style="height:45px;line-height:45px;width:215px;" th:href="'/MyZf/'+${sp3}">去支付</a>
             <div class="fr tc mr20">
                 <p>支付前，请仔细核对订单信息</p>
                 <p class="mt5"><span class="icon icon_blue_Hook mr5 hand"></span><a class="blue"
@@ -1024,7 +604,7 @@
                                 <ul class="insur_ul hide">
                                     <li class="oh">
                                         <p class="f16 fl">
-                                            保险 X<em class="toal_insur">0</em>
+                                            保险 X<em th:text="2" class="toal_insur">0</em>
                                         </p>
                                         <span class="orange bold fr f14"><label class="js_curCode">RMB</label>&nbsp;&nbsp;<label class="js_insurMoney"  data-cid = "" data-oprice="0">0</label></span>
                                     </li>
@@ -1041,18 +621,6 @@
 									</span>
                                     </li>
                                 </ul>
-                                <ul>
-                                    <li class="clearfix pos_r">
-                                        <p class="f16 fl">
-                                            <span class="pupup-bottom-target">优惠金额<def class="popup-discounted-price">[优惠明细]</def></span>
-                                        </p>
-                                        <span class="orange bold fr f14 have-discount-total">
-											<label class="js_curCode">RMB</label>&nbsp;&nbsp;
-											<label class="js_curMoney" data-cid="12" data-price="1353.15">
-												1353.15</label>
-										</span>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
 
@@ -1061,7 +629,7 @@
                 <p class="f16">应付：
                     <input id="couponValues" type="hidden" data-discount="20">
                     <label class="js_curCode" data-id="21" data-cur-currid="21">GBP</label>
-                    <span class="f24 orange bold ml10 js_total" data-org-price="1129.15">1205.88</span>
+                    <span th:text="${sp3}" class="f24 orange bold ml10 js_total" data-org-price="1129.15">1205.88</span>
                     <span class="orange f12 tr mr50 discount_tip">保险不参加优惠</span>
                     <span class="count f12 discount_info" style="display:none;">
 							<em>已优惠</em>
@@ -1070,10 +638,6 @@
 						</span>
                 </p>
                 <div class="pos_r">
-                    <p class=" rmb_p">
-                        <span class="f18 orange js_rmb" data-rmb="10007.09">=RMB 10687.09</span>
-                        <!--<span class="grey" id="ratesIds" data-rmb-rates-id="1" data-rates-id="8.86">汇率：8.86</span>-->
-                    </p>
                     <div class="popup-bottm-tip discount-details" style="float:none; display:inline-block;"
                          data-sharediscount="0.02" data-limitprice="100.0">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -3643,22 +3207,7 @@ data-i-op-reviewid
         changeCurrency(CUR_CID);
     }
     var check = setInterval(checkUserOnline, 3000);
-    function checkUserOnline() {
-        $(".js_insurMoney").text($(".all_price em").text());
-        var bx = $(".js_insurMoney").text();
-        var yh_one = document.getElementsByClassName("zj");
-        var yh_sum = 0;
-        for (var i = 0; i < yh_one.length; i++) {
-            yh_sum += (yh_one[i].innerHTML * 1);
-        }
-        $(".clearfix.pos_r .js_curMoney").text(yh_sum.toFixed(2));
-        var sum = 0;
-        var je_one = document.getElementsByClassName("js_curMoney price");
-        for (var i = 0; i < je_one.length; i++) {
-            sum += (je_one[i].innerHTML * 1);
-        }
-        $(".f24.orange.bold.ml10.js_total").text((sum + bx * 1));
-    }
+
 </script>
 
     <script>

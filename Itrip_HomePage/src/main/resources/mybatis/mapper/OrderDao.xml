@@ -4,5 +4,69 @@
 
 <mapper namespace="com.cssl.pojo.dao.OrderDao">
 
+        <select id="SelectUser" parameterType="int" resultType="Orders">
+
+
+            SELECT*FROM orders WHERE  user_id=#{id}
+        </select>
+
+        <resultMap id="MyOrder" type="Orders">
+                <id column="order_id" property="order_id"></id>
+                <association property="oo" column="oid" select="selectoid"></association>
+
+        </resultMap>
+
+
+
+
+        <select id="SelectOrderNumb" resultMap="MyOrder">
+
+
+            SELECT   COUNT(0) AS productnumb,o.*     FROM orders o INNER JOIN orderXQ s ON o.`order_id`=s.`orderid`
+            WHERE o.`user_id`=#{userid} GROUP BY o.`order_id`
+
+
+
+        </select>
+
+
+
+        <select id="selectoid" resultType="OrderXQ" parameterType="int">
+
+            SELECT*FROM orderxq WHERE oid=#{oid}
+        </select>
+
+
+
+
+        <resultMap id="MyProduct" type="OrderXQ">
+
+            <id property="orderid" column="orderid"></id>
+            <association property="pp" column="Product_id" select="selectppid"></association>
+            <association property="oo" column="order_id" select="selectooid"></association>
+        </resultMap>
+
+        <select id="SelectOrderProduct" resultMap="MyProduct" parameterType="String">
+
+
+            SELECT *     FROM orderXQ o INNER JOIN product p ON o.`productid`=p.`Product_id`
+            INNER JOIN orders s ON o.`orderid`=s.`order_id`
+            WHERE s.`orderNumber`=#{ordernum}
+        </select>
+
+
+        <select id="selectppid" parameterType="int" resultType="Product">
+
+
+        SELECT*FROM product WHERE product_id=#{Product_id}
+      </select>
+
+
+        <select id="selectooid" parameterType="int" resultType="Orders">
+
+
+
+            SELECT*FROM orders WHERE order_id=#{order_id}
+        </select>
 
 </mapper>

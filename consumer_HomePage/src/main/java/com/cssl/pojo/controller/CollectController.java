@@ -263,21 +263,6 @@ public class CollectController {
     }
 
 
-    /***
-     *
-     * 当前用户查询优惠卷
-     */
-    @RequestMapping("/SelectDiscountCouponUserShow")
-    @ResponseBody
-    public List<DiscountCoupon> SelectDiscountCouponUserShow(HttpSession se){
-        User user = (User)se.getAttribute(se.getId());
-
-        List<DiscountCoupon> discountCoupons = service.SelectDiscountCouponCountUser(user.getUser_id());
-
-
-        return  discountCoupons;
-    }
-
 
 
 }
