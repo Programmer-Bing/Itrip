@@ -1024,7 +1024,7 @@
                                 <ul class="insur_ul hide">
                                     <li class="oh">
                                         <p class="f16 fl">
-                                            保险 X<em class="toal_insur">0</em>
+                                            保险 X<em th:text="2" class="toal_insur">0</em>
                                         </p>
                                         <span class="orange bold fr f14"><label class="js_curCode">RMB</label>&nbsp;&nbsp;<label class="js_insurMoney"  data-cid = "" data-oprice="0">0</label></span>
                                     </li>
@@ -1041,18 +1041,6 @@
 									</span>
                                     </li>
                                 </ul>
-                                <ul>
-                                    <li class="clearfix pos_r">
-                                        <p class="f16 fl">
-                                            <span class="pupup-bottom-target">优惠金额<def class="popup-discounted-price">[优惠明细]</def></span>
-                                        </p>
-                                        <span class="orange bold fr f14 have-discount-total">
-											<label class="js_curCode">RMB</label>&nbsp;&nbsp;
-											<label class="js_curMoney" data-cid="12" data-price="1353.15">
-												1353.15</label>
-										</span>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
 
@@ -1061,7 +1049,7 @@
                 <p class="f16">应付：
                     <input id="couponValues" type="hidden" data-discount="20">
                     <label class="js_curCode" data-id="21" data-cur-currid="21">GBP</label>
-                    <span class="f24 orange bold ml10 js_total" data-org-price="1129.15">1205.88</span>
+                    <span th:text="${sp3}" class="f24 orange bold ml10 js_total" data-org-price="1129.15">1205.88</span>
                     <span class="orange f12 tr mr50 discount_tip">保险不参加优惠</span>
                     <span class="count f12 discount_info" style="display:none;">
 							<em>已优惠</em>
@@ -3643,22 +3631,7 @@ data-i-op-reviewid
         changeCurrency(CUR_CID);
     }
     var check = setInterval(checkUserOnline, 3000);
-    function checkUserOnline() {
-        $(".js_insurMoney").text($(".all_price em").text());
-        var bx = $(".js_insurMoney").text();
-        var yh_one = document.getElementsByClassName("zj");
-        var yh_sum = 0;
-        for (var i = 0; i < yh_one.length; i++) {
-            yh_sum += (yh_one[i].innerHTML * 1);
-        }
-        $(".clearfix.pos_r .js_curMoney").text(yh_sum.toFixed(2));
-        var sum = 0;
-        var je_one = document.getElementsByClassName("js_curMoney price");
-        for (var i = 0; i < je_one.length; i++) {
-            sum += (je_one[i].innerHTML * 1);
-        }
-        $(".f24.orange.bold.ml10.js_total").text((sum + bx * 1));
-    }
+
 </script>
 
     <script>

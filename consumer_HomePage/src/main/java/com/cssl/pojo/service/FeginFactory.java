@@ -167,12 +167,12 @@ public class FeginFactory implements FallbackFactory<HomePageClientService> {
             }
 
             @Override
-            public List<List> showMycart() {
+            public List<List> showMycart(Integer id) {
                 return null;
             }
 
             @Override
-            public boolean delHotel(Integer sht) {
+            public boolean delHotel(Long sht) {
                 return false;
             }
 

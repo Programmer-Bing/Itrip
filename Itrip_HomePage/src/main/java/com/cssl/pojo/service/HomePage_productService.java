@@ -51,9 +51,9 @@ public interface HomePage_productService {
      * 查询购物车的商品
      * @return
      */
-    List<List> showMycart();
+    List<List> showMycart(Integer id);
 
-    boolean delHotel(Integer sht);
+    boolean delHotel(Long sht);
     /***
      * 查询数据库最新添加的一条数据
      * @return

@@ -185,7 +185,7 @@
     </insert>
     <!--新增订单商品-->
     <insert id="addOrderProduct" parameterType="oProduct">
-        INSERT INTO `order_product` (`p_id`, `p_img`, `p_name`, `Traveltime`, `order_no`,money)
-        VALUES (#{p_id}, #{p_img}, #{p_name}, #{Traveltime}, #{order_no},#{money});
+        INSERT INTO `order_product` (`p_id`, `p_img`, `p_name`, `Traveltime`, `order_no`)
+        VALUES (#{p_id}, #{p_img}, #{p_name}, #{Traveltime}, #{order_no});
     </insert>
 </mapper>

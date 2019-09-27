@@ -1,6 +1,6 @@
 package com.cssl.pojo.controller;
 
-import com.cssl.pojo.DeptConsumerFeign80_App;
+import com.cssl.pojo.DeptConsumerFeign81_App;
 import com.cssl.pojo.po.User;
 import com.cssl.pojo.service.HomePageClientService;
 import org.bouncycastle.cert.ocsp.Req;
@@ -47,10 +47,12 @@ public class hotalControoler_Consumer {
     public ModelAndView showInfo(@PathVariable("id") int id,ModelAndView model,HttpSession session){
         List<Map> hotel = homePageClientService.hotel(id);
         List<Map> maps = homePageClientService.showInfo(id);
+        User user = (User) session.getAttribute(session.getId());
         model.addObject("hotel",hotel);
         model.addObject("lable",homePageClientService.showlable(id));
         model.addObject("home",maps);
         model.addObject("pre",homePageClientService.showpre(id));
+        model.addObject("user",user);
         model.setViewName("details");
         session.setAttribute("hol",hotel);
         session.setAttribute("home",maps);

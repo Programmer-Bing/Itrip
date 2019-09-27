@@ -91,13 +91,9 @@ public class shoppingcartController {
         model.addObject("user",user);
         model.addObject("hotel",hol);
         model.addObject("room",list);
-        System.out.println(user);
-        System.out.println(hol);
-        for (Map map : list) {
-            System.out.println(map);
-        }
         model.addObject("sp1",split1[1]);
         model.addObject("sp2",split1[2]);
+        model.addObject("sp3",split1[3]);
         model.setViewName("OrderHotel");
         return model;
     }

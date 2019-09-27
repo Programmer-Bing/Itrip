@@ -209,13 +209,13 @@ public interface HomePageClientService {
      * @return
      */
     @RequestMapping(method = RequestMethod.GET,value = "/showMycart")
-    public List<List> showMycart();
+    public List<List> showMycart(@RequestParam(value = "id") Integer id);
 
     /**
      *删除酒店购物车
      */
     @RequestMapping(method = RequestMethod.GET,value = "/delHotel")
-    public boolean delHotel(Integer sht);
+    public boolean delHotel(@RequestParam(value = "sht") Long sht);
 
     /***
      *

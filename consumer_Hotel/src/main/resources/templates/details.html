@@ -128,7 +128,7 @@
                     <span class="line">|</span>
                     <span class="pos_r">
 
-						<a href="https://www.itrip.com/shoppingCart" rel="nofollow" class="fl">
+						<a th:href="'http://localhost:8089/findShoppingByUid?uid='+${user.user_id}" rel="nofollow" class="fl">
 							<span class="buy_car js_sc"><i></i>购物车 <label></label></span>
 							<div class="prompt-price-warp hide">
 						        <i class="icon_arrow_up-in"></i>
@@ -399,7 +399,7 @@
 
                                         床型：一张大床<br>
                                     </p>
-                                    <p th:text="${ho.get('instroduce')}">
+                                    <p th:text="${ho.get('introduce')}">
                                         15平方米|1大床|暖气,卫生间,办公桌,浴室,冰箱</p>
                                 </div>
                                 <div class="fr">
@@ -442,7 +442,8 @@
             </div>
             <div class="hotel_info mt10 black minh">
                 <div class="hotel_tit f20 bold border-b">
-                    <label style="font-weight:normal; font-size:13px;line-height: 22px; display:none;">总价</label>
+                    <label class="js_curCode" th:id="zsfj">0</label>
+                    <label  style="font-weight:normal; font-size:13px;line-height: 22px; " th:id="zsfj"> 晚房价：</label>
                     <label class="js_curCode">RMB</label>&nbsp;
                     <span th:text="${hotel.get(0).get('P_price')}" th:id="js_curMoney" class="js_curMoney" data-cid="9" data-price="183.04" data-reward="1.2">
        						867.61</span>
@@ -821,6 +822,7 @@
             done:function(value,date){//value, date, endDate点击日期、清空、现在、确定均会触发。回调返回三个参数，分别代表：生成的值、日期时间对象、结束的日期时间对象
                 //其他操作
                 nol();
+                zsfj();
             }
         });
         laydate.render({
@@ -829,9 +831,21 @@
             done:function(value,date){//value, date, endDate点击日期、清空、现在、确定均会触发。回调返回三个参数，分别代表：生成的值、日期时间对象、结束的日期时间对象
                 //其他操作
                 nol();
+                zsfj();
             }
         });
     });
+
+    function zsfj(){
+        var start = new Date($("#start").val());
+        var end = new Date($("#end").val());
+        var sj = (end - start)/24/60/60/1000;
+        if(sj>=0){
+            $("#zsfj").html(sj);
+        }else{
+            $("#zsfj").html(0);
+        }
+    }
 
 
     $(document).on("click","#btn_jsjsorderhand",function() {
@@ -872,7 +886,8 @@
         }else{
             var start =  $("#start").val();
             var end = $("#end").val();
-            c += "'"+start+"'"+end;
+            var je = $("#js_curMoney").html();
+            c += "'"+start+"'"+end+"'"+je;
             window.location="http://localhost:8090/addHorder/"+c;
         }
     })
@@ -940,12 +955,18 @@
 
         }
     })
-    
+
+
 
 
 </script>
 
 <script>
+
+    $(function () {
+        nol();
+        zsfj();
+    })
 
     function nol() {
         var start = new Date($("#start").val());
@@ -967,6 +988,8 @@
             }else {
                 $("#js_curMoney").html("0.00");
             }
+        }else{
+            $("#js_curMoney").html("0.00");
         }
     }
 
