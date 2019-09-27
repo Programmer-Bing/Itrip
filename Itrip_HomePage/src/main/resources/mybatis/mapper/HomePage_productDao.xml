@@ -188,4 +188,11 @@
         INSERT INTO `order_product` (`p_id`, `p_img`, `p_name`, `Traveltime`, `order_no`,money)
         VALUES (#{p_id}, #{p_img}, #{p_name}, #{Traveltime}, #{order_no},#{money});
     </insert>
+    <!--更新订单状态-->
+    <update id="updOrderState" parameterType="String">
+        UPDATE `order` SET state = 2 WHERE order_no = #{order_no};
+    </update>
+    <update id="updOrderProductState" parameterType="String">
+        UPDATE `order_product` SET p_state = 2 WHERE order_no = #{order_no};
+    </update>
 </mapper>

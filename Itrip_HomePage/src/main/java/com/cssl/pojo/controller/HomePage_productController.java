@@ -90,7 +90,6 @@ public class HomePage_productController {
         System.out.println("AddShopping成功到服务者模块！！");
         Product_shopping product_shopping = new Product_shopping();
         Map<String, Object> map2 = json2map(map);
-        System.out.println(map2);
         HomePage_product hp = homePage_productService.findByP_id(Integer.valueOf((String) map2.get("p_id")));
         product_shopping.setP_id(Integer.valueOf((String) map2.get("p_id")));
         product_shopping.setTravel_date((String) map2.get("Travel_date"));
@@ -103,7 +102,6 @@ public class HomePage_productController {
         product_shopping.setUid(Integer.parseInt((String) map2.get("uid")));
         product_shopping.setP_imgpath(hp.getProduct_imgPath());
         product_shopping.setP_title(hp.getProduct_name());
-        System.out.println(product_shopping);
         return homePage_productService.addShopping(product_shopping);
     }
 
@@ -158,10 +156,11 @@ public class HomePage_productController {
     public Product_shopping findById(Integer psc_id) {
         return homePage_productService.findById(psc_id);
     }
+
     /* 添加订单*/
     @RequestMapping("addOrder")
     @ResponseBody
-    public int addOrder(@RequestParam(value = "map", required = false) String map) {
+    public Map addOrder(@RequestParam(value = "map", required = false) String map) {
         Map<String, Object> map2 = json2map(map);
         Order o = new Order();
         String orderno = getOrderIdByTime();
@@ -172,7 +171,6 @@ public class HomePage_productController {
         num1 = homePage_productService.addOrder(o);
         List<String> strings = (List<String>) map2.get("pscids");
         for (String string : strings) {
-            System.out.println("kaka"+string);
             Product_shopping ps = homePage_productService.findById(Integer.valueOf(string));
             OProduct op = new OProduct();
             op.setP_id(ps.getP_id());
@@ -182,8 +180,22 @@ public class HomePage_productController {
             op.setMoney(ps.getSettlement_price());
             op.setOrder_no(orderno);
             num1 = homePage_productService.addOrderProduct(op);
-            System.out.println(num1);
         }
-        return num1;
+        Map<String, Object> omap = new HashMap<>();
+        omap.put("orderNo", orderno);
+        omap.put("orderMoney", (String) map2.get("Allmoney"));
+        omap.put("num", num1);
+        return omap;
+    }
+
+    @RequestMapping("updOrder")
+    @ResponseBody
+    public int updOrder(@RequestParam(value = "order_no", required = false) String order_no) {
+        int num = 0;
+        num = homePage_productService.updOrderState(order_no);
+        System.out.println(order_no+"ij"+num);
+        num = homePage_productService.updOrderProductState(order_no);
+        System.out.println(num);
+        return num;
     }
 }

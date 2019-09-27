@@ -314,5 +314,13 @@ public interface HomePageClientService {
      * @return
      */
     @RequestMapping(method = RequestMethod.GET,value = "addOrder")
-    public int addOrder(@RequestParam("map") String map);
+    public Map addOrder(@RequestParam("map") String map);
+
+    /***
+     * 更新订单状态
+     * @param order_no
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET,value = "updOrder")
+    public int updOrder(@RequestParam("order_no") String order_no);
 }

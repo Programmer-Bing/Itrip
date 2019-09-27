@@ -229,6 +229,16 @@ public class FeginFactory implements FallbackFactory<HomePageClientService> {
             public List<DiscountCoupon> SelectDiscountCouponCountUser(int userid) {
                 return null;
             }
+
+            @Override
+            public Map addOrder(String map) {
+                return null;
+            }
+
+            @Override
+            public int updOrder(String order_no) {
+                return 0;
+            }
         };
     }
 }
