@@ -37,4 +37,21 @@ public interface OrderDao {
      */
     public int SelectOrderProductCount(int userid);
 
+
+    /***
+     *
+     *
+     * 查询 其它状态的订单
+     * @param map
+     * @return
+     */
+    public List<Orders>  SelectOrderObligation(Map<String,Object> map);
+
+
+    /***
+     *
+     *
+     * 查询其它状态的订单总数
+     */
+    public int SelectOrderObligationCount(Map<String,Object> map);
 }

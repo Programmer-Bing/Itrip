@@ -52,4 +52,29 @@ public class OrderController {
     public int SelectOrderProductCount(@RequestParam(value = "1") int userid) {
         return os.SelectOrderProductCount(userid);
     }
+
+    /****
+     *
+     *
+     * 查询其他状态订单
+     * @param map
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST,value = "/SelectOrderObligation")
+    public List<Orders> SelectOrderObligation(@RequestBody  Map<String, Object> map) {
+        return os.SelectOrderObligation(map);
+    }
+
+    /****
+     *
+     *
+     * 查询其他状态订单总数
+     * @param map
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST,value = "/SelectOrderObligationCount")
+    public int SelectOrderObligationCount(@RequestBody  Map<String, Object> map) {
+        return os.SelectOrderObligationCount(map);
+
+    }
 }

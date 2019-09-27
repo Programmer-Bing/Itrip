@@ -18,4 +18,10 @@ public interface OrderService {
     public int SelectOrderProductCount(int userid);
 
 
+    public List<Orders>  SelectOrderObligation(Map<String,Object> map);
+
+
+    public int SelectOrderObligationCount(Map<String,Object> map);
+
+
 }

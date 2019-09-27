@@ -35,4 +35,14 @@ public class OrderServiceImpl implements OrderService {
     public int SelectOrderProductCount(int userid) {
         return orderDao.SelectOrderProductCount(userid);
     }
+
+    @Override
+    public List<Orders> SelectOrderObligation(Map<String, Object> map) {
+        return orderDao.SelectOrderObligation(map);
+    }
+
+    @Override
+    public int SelectOrderObligationCount(Map<String, Object> map) {
+        return orderDao.SelectOrderObligationCount(map);
+    }
 }

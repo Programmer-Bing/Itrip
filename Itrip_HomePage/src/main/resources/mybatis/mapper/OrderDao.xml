@@ -27,4 +27,18 @@
 
                 SELECT COUNT(0)       FROM `order` WHERE uid=#{userid}
             </select>
+
+
+            <select id="SelectOrderObligation"  resultType="Orders" parameterType="Map">
+                SELECT COUNT(0) AS psum,o.* FROM `order` o INNER JOIN order_product p
+                ON o.`order_no`=p.`order_no`
+                WHERE o.uid=#{userid} AND o.`state`=#{ks} GROUP BY o.`order_no` limit #{pageno},#{pagesize}
+
+            </select>
+
+
+            <select id="SelectOrderObligationCount" resultType="java.lang.Integer" parameterType="Map">
+
+                SELECT COUNT(0)       FROM `order` WHERE uid=#{uid}  AND state=#{state}
+            </select>
 </mapper>

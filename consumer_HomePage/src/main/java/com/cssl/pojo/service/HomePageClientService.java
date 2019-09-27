@@ -353,4 +353,23 @@ public interface HomePageClientService {
      */
     @RequestMapping(method = RequestMethod.GET,value = "updOrder")
     public int updOrder(@RequestParam("order_no") String order_no);
+
+    /***
+     *
+     * 查询其它状态下的订单
+     * @param map
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST,value = "/SelectOrderObligation")
+    public List<Orders> SelectOrderObligation(@RequestBody  Map<String, Object> map);
+
+    /****
+     *
+     *
+     * 查询其它状态下的订单总数
+     * @param map
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST,value = "/SelectOrderObligationCount")
+    public int SelectOrderObligationCount(@RequestBody Map<String, Object> map);
 }

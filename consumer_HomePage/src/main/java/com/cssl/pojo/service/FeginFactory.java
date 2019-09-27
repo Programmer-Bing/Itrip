@@ -254,6 +254,16 @@ public class FeginFactory implements FallbackFactory<HomePageClientService> {
             public int updOrder(String order_no) {
                 return 0;
             }
+
+            @Override
+            public List<Orders> SelectOrderObligation(Map<String, Object> map) {
+                return null;
+            }
+
+            @Override
+            public int SelectOrderObligationCount(Map<String, Object> map) {
+                return 0;
+            }
         };
     }
 }

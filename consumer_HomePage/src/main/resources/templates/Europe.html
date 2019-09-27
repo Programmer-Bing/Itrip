@@ -300,7 +300,7 @@
                                 class="sw_sj"></i>
 							<dl class="down_list">
 								<dd class="js_myOrder"><a class="pos_r" href="个人信息订单.html"
-                                                          rel="nofollow">我的订单<label></label></a></dd>
+                                                          rel="nofollow">我的订单<label id="myorder"></label></a></dd>
 								<dd class="js_myFavor"><a class="pos_r" href="个人中心我的收藏.html"
                                                           rel="nofollow">我的收藏 <label id="collecttext"></label></a></dd>
 								<dd><a href="个人中心我的奖金.html" rel="nofollow">我的奖金</a></dd>
@@ -3509,9 +3509,15 @@
         })
     })
 
-    //显示总数
+    //显示收藏总数
     $.getJSON("/EuropeShowCollect",function (data) {
          $("#collecttext").text(data[0]);
+
+
+    })
+    //显示订单总数
+    $.getJSON("/ShowOrderSum",function (data) {
+            $("#myorder").text(data)
     })
 
 

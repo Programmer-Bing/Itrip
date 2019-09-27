@@ -195,6 +195,7 @@ public class UserController {
             se.setAttribute(se.getId()+"123",user.getPhone_number());
             System.out.println("sessionid: "+se.getId());
             User uu = (User) se.getAttribute(se.getId());
+            se.setAttribute("name",user.getChinese_Name());
             System.out.println("redis取出来的数据: "+uu.getChinese_Name());
             int administration = list.get(0).getAdministration();
             if(administration==1){
