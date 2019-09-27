@@ -116,9 +116,11 @@ public class HomePageController_Consumer {
     @RequestMapping("/findShoppingByUid")
     public ModelAndView findShoppingByUid(HttpSession session, ModelAndView model, Model model2, @RequestParam(value = "uid", required = false) Integer uid) {
         System.out.println("findShopping成功到消费者模块！！");
-        List<List> maps = service.showMycart(uid);
+        List<List> maps = service.showMycart();
+        System.out.println(uid);
         model2.addAttribute("ShoppingC", this.service.findShoppingByUid(uid));
         model2.addAttribute("ShoppingH", maps);
+        System.out.println("--------------------");
         model.setViewName("HomePage/ShoppingCart");
         return model;
     }
@@ -136,16 +138,17 @@ public class HomePageController_Consumer {
         return findShoppingByUid(session,model,model2,uid);
     }
 
+
+
     /**
      * 删除酒店购物车
      */
-    @RequestMapping(value = "delHotel/{sht}" , method = RequestMethod.GET)
-    @ResponseBody
-    public Long delHotel(@PathVariable("sht") Long sht){
+    @RequestMapping(value = "/delHotel" , method = RequestMethod.GET)
+    public ModelAndView delHotel(ModelAndView model,@RequestParam(value = "sht", required = false) Integer sht){
         service.delHotel(sht);
-        return sht;
+        model.setViewName("Europe");
+        return model;
     }
-
     @RequestMapping("/PlacingOrder")
     @ResponseBody
     public ModelAndView PlacingOrder(HttpSession session, @RequestParam(value = "map", required = false) String map,ModelAndView model, Model model2) {
