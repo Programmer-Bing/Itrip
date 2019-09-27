@@ -75,29 +75,18 @@
 
 
                 $("#yema").children().remove();
-                // for (var j=1;j<=pages;j++){
-                //     var td="";
-                //     if(j==pageIndex){
-                //         td+="<span class='current' id='pagination'>"+j+"</span>";
-                //     }else{
-                //         td+="<a id='pagination'>"+j+"</a>";
-                //     }
-                //     $("#yema").append(td);
-                // }
-
-
                 var td="";
                 var t=1;
 
                 if(pages<=5){  //如果页码小于等于五页 则正常加载所有页面
                     for (t;t<=pages;t++){
-
                         if(t==pageIndex){
                             td+="<span class='current' id='pagination'>"+t+"</span>";
                         }else{
                             td+="<a id='pagination'>"+t+"</a>";
                         }
                     }
+                    $("#yema").append(td);
                 }else if(pages >5){
                     if(pageIndex<5){
                         for (t;t<=5;t++){
@@ -237,7 +226,7 @@ function del(id){
 		        alert("删除成功！");
 		        window.location.reload();
             }else if(json==3){
-		        alert("删除失败！城市下有地区。");
+		        alert("删除失败！分类下有子分类！");
             }else{
                 alert("删除失败！");
             }

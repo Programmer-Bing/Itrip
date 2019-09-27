@@ -183,5 +183,35 @@ public class ProductServiceImpl implements ProductService {
         return productMapper.delRoom(id);
     }
 
+    @Override
+    public List<Map<String, Object>> order_no(Map<String, Object> map) {
+        return productMapper.order_no(map);
+    }
+
+    @Override
+    public List<Map<String, Object>> order_Product(String no) {
+        return productMapper.order_Product(no);
+    }
+
+    @Override
+    public int delOrder(String no) {
+        return productMapper.delOrder(no);
+    }
+
+    @Override
+    public int delOrderPro(String no) {
+        return productMapper.delOrderPro(no);
+    }
+
+    @Override
+    public int setState(Map<String, Object> map) {
+        return productMapper.setState(map);
+    }
+
+    @Override
+    public int setProState(Map<String, Object> map) {
+        return productMapper.setProState(map);
+    }
+
 
 }

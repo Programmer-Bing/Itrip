@@ -18,13 +18,14 @@
             $('#mpanel').codeVerify({
                 type: 1,
                 width: '110px',
-                height: '46px',
+                height: '44px',
                 fontSize: '18px',
                 codeLength: 4,
                 btnId: 'login', // 登陆按钮ID
                 ready: function() {},
                 success: function() {
                     // 验证成功之后调用登陆方法
+                    return false;
                 },
                 error: function() {
                     alert("验证码错误");
@@ -33,6 +34,7 @@
         });
     </script>
 </head>
+
 <body>
 <div class="bg"></div>
 <div class="container">
@@ -41,7 +43,7 @@
             <div style="height:150px;"></div>
             <div class="media media-y margin-big-bottom">           
             </div>         
-            <form name="input" action="" method="get">
+            <form id="forms" action="" method="get">
             <div class="panel loginbox">
                 <div class="text-center margin-big padding-big-top"><h1>后台管理中心</h1></div>
                 <div class="panel-body" style="padding:30px; padding-bottom:10px; padding-top:10px;">
@@ -60,30 +62,34 @@
                     <div class="form-group">
                         <div class="field">
                             <input type="text" class="input input-big" id="shuru" name="code" placeholder="填写右侧的验证码" data-validate="required:请填写右侧的验证码" />
-                           <div id="mpanel" class="passcode" style="display: inline-block;margin-bottom: 14px;"></div>
+                           <div id="mpanel" class="passcode" style="display: inline-block;margin-bottom: 13px;"></div>
                         </div>
                     </div>
                 </div>
-                <div style="padding:30px;"><input type="submit" class="button button-block bg-main text-big input-big" value="登录"></div>
+                <div style="padding:30px;"><input type="button" id="login" class="button button-block bg-main text-big input-big" value="登录"></div>
             </div>
             </form>          
         </div>
     </div>
 </div>
-
-</body>
 <script type="text/javascript">
 
-    $(document).ready(function () {
-        $("form").submit(function () {
-            var yan=$("#yan").text();
-            var shuru=$("#shuru").val();
-            $.getJSON("selUserAdmin",$("form").serialize(),function (json) {
-                alert("");
-            });
-        });
+    $("#shuru").focus(function () {
+        $(".input-help ul").remove();
     });
 
-
+    $("#login").click(function () {
+        $("form").submit();
+        var yan=$("#yan").text();
+        var shuru=$("#shuru").val();
+        if(yan.toUpperCase()==shuru.toUpperCase()){
+            $.getJSON("selUserAdmin",$("#forms").serialize(),function (json) {
+                alert(1);
+            });
+        }else{
+            $(".field .input-help ul li").text("验证码错误");
+        }
+    });
 </script>
+</body>
 </html>

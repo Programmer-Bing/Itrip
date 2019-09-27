@@ -397,4 +397,61 @@ public class ProductController {
     public int delRoom(@RequestBody int id){
         return productService.delRoom(id);
     }
+
+    @RequestMapping("order_no")
+    public Page order_no(@RequestBody Map<String,Object> map){
+        Map<String,Object> map1=new HashMap<>();
+        Map<String,Object> map2=new HashMap<>();
+
+        map1.put("pageIndex",null);
+        map1.put("pageSize",null);
+        map1.put("no",map.get("no"));
+        map1.put("uid",map.get("uid"));
+        List<Map<String,Object>> orderSize=productService.order_no(map1);
+        int total=orderSize.size();       //获取总数量
+        String pageNumber=(String) map.get("pageIndex");   //获取当前页
+        int pageIndex=Integer.parseInt(pageNumber);
+        int pageSize=3;   //每页显示数量
+        int pages=total%pageSize==0?total/pageSize:total/pageSize+1;
+
+        map2.put("pageIndex",(pageIndex-1)*pageSize);
+        map2.put("pageSize",pageSize);
+        map2.put("no",map.get("no"));
+        map2.put("uid",map.get("uid"));
+        List<Map<String,Object>> order_no=productService.order_no(map2);
+        for(int i=0;i<order_no.size();i++){
+            String no=(String)order_no.get(i).get("order_no");
+            List<Map<String,Object>> OrderProductMap=productService.order_Product(no);
+            order_no.get(i).put("product",OrderProductMap);
+            System.out.println("OrderProductMap:"+OrderProductMap);
+        }
+        Page page=new Page();
+        page.setTotalPage(pages);
+        page.setList(order_no);
+        page.setIndex(pageIndex);
+        page.setPageSize(pageSize);
+        return page;
+    }
+
+    @RequestMapping("delOrder")
+    public int delOrder(@RequestBody String no){
+        System.out.println("delOrder:"+no);
+        int num2= productService.delOrderPro(no);
+        int num1= productService.delOrder(no);
+        if(num1>0){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
+    @RequestMapping("setState")
+    public int setState(@RequestBody Map<String,Object> map){
+        return productService.setState(map);
+    }
+
+    @RequestMapping("setProState")
+    public int setProState(@RequestBody Map<String,Object> map){
+        return productService.setProState(map);
+    }
 }
